@@ -23,6 +23,24 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             position: absolute;            
         }
+        .texte-vert-olive {
+            color: #597819;
+        }
+         .form-label {
+            color: #2C3E50;
+        }
+         input[type="text"],
+         input[type="email"],
+         input[type="password"] {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+         .form-check-label {
+            color: #2C3E50;
+        }
 
     </style>
 </head>
@@ -36,7 +54,7 @@
                 <div class="d-flex align-items-center justify-content-center mb-4">
                     <div>
                         <h1 class="h4 fw-bold mb-0">KITABI</h1>
-                        <p class="text-muted small mb-0">reagit d,share,exchange</p>
+                        <p class="text-muted small mb-0">react,share,exchange</p>
                     </div>
                 </div>
             </div>
@@ -100,44 +118,44 @@
             </div>
         </nav>
         <section class="position-absolute end-0 min-vh-100 p-4" style="margin-left: 300px; background: linear-gradient(135deg, #f2efef, #ebe0db); width: calc(100% - 300px);">
-            <h> create an account </h>
+            <div class="position-relative">
+                <h class="fw-bold texte-vert-olive display-3 position-relative z-0"> create an account </h>
+                <svg class="position-absolute top-50 start-50 translate-middle z-1" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="35" r="25" fill="#6B8E23" stroke="#2C3E50" stroke-width="2"/>
+                    <path d="M20 85 Q 50 65, 80 85" stroke="#2C3E50" stroke-width="3" fill="none"/>
+                    <path d="M25 60 L 75 60" stroke="#2C3E50" stroke-width="3"/>
+                    <path d="M25 60 L 15 75" stroke="#2C3E50" stroke-width="3"/>
+                    <path d="M75 60 L 85 75" stroke="#2C3E50" stroke-width="3"/>
+                </svg>
+            </div>            
             <form action="give-information" method="post" name="user-info">
-                <div>
-                    <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="50" cy="35" r="25" fill="#6B8E23" stroke="#2C3E50" stroke-width="2"/>
-                        <path d="M20 85 Q 50 65, 80 85" stroke="#2C3E50" stroke-width="3" fill="none"/>
-                        <path d="M25 60 L 75 60" stroke="#2C3E50" stroke-width="3"/>
-                        <path d="M25 60 L 15 75" stroke="#2C3E50" stroke-width="3"/>
-                        <path d="M75 60 L 85 75" stroke="#2C3E50" stroke-width="3"/>
-                    </svg>
-                    <input type="file" id="profile-upload" accept="image/*" style="display: none;">
-                </div>
-                <div>
-                    <label for="username" class="form-label">Username</label>
+                <div class="ms-3">
+                    <input type="file" id="profile-upload" accept="image/*" style="display: none;"><div>
+                    <label for="username" class="form-label fw-bold">Username</label>
                     <input type="text" id="username" name="username" placeholder="input your name" required>
                 </div>
                 <div>
-                    <label for="email" class="form-label">Email</label>
+                    <label for="email" class="form-label fw-bold">Email</label>
                     <input type="email" id="email" name="email" placeholder="email@example.com" required>
                 </div>
                 <div>
-                    <label for="password" class="form-label">Password</label>
+                    <label for="password" class="form-label fw-bold">Password</label>
                     <input type="password" id="password" name="password" placeholder="password" required>
                 </div>
                 <div>
-                    <label for="Confirm password" class="form-label">Confirm Password</label>
+                    <label for="Confirm password" class="form-label fw-bold">Confirm Password</label>
                     <input type="password" class="form-control" id="confirm-password" name="confirm_password" placeholder="Confirm your password" required>                
                 </div>
                 <div >
-                    <label for="country" class="form-label">Country</label>
+                    <label for="country" class="form-label fw-bold">Country</label>
                     <input type="text" class="form-control" id="country" name="country" placeholder="Country of residence" required> 
                 </div>
                 <div >
-                    <label for="postal-code" class="form-label">Postal Code</label>
+                    <label for="postal-code" class="form-label fw-bold">Postal Code</label>
                     <input type="text" class="form-control" id="postal-code" name="postal_code" placeholder="Postal Code" required> 
                 </div>
                 <div>
-                    <label for="favorite-genres" class="form-label">Favorite Genres</label>
+                    <label for="favorite-genres" class="form-label fw-bold">Favorite Genres</label>
                     <input type="text" list="ma-liste" placeholder="tap to see options" class="form-control" id="favorite-genres" name="favorite_genres" required>
                     <datalist id="ma-liste">
                         <option value="Science Fiction">
@@ -187,11 +205,11 @@
                     </datalist>
                 </div>
                 <div >
-                    <label for="language-prefered" class="form-label">Language Preferred</label>
+                    <label for="language-prefered" class="form-label fw-bold">Language Preferred</label>
                     <input type="text" class="form-control" id="language-prefered" name="language_prefered" placeholder="Language Preferred" required> 
                 </div>
                 <div>
-                    <span> Accepted Book Conditions</span>
+                    <span class="fw-bold"> Accepted Book Conditions</span>
                     <div class="form-check">
                         <input type="radio" class="form-check-input" name="book_condition" id="condition-new" value="new" required>
                         <label class="form-check-label" for="condition-new"> New</label>
@@ -206,7 +224,7 @@
                     </div>                
                 </div>
                  <div>
-                    <span> exchange preferences</span>
+                    <span class="fw-bold"> exchange preferences</span>
                     <div class="form-check">
                         <input type="radio" class="form-check-input" name="type-echange" id="local" value="local" required>
                         <label class="form-check-label" for="local"> Local</label>
@@ -221,7 +239,11 @@
                     </div>                
                 </div>
                 <div >
-                    <label for="biography" class="form-label">Biography</label>
+                    <label for="biography" class="form-label fw-bold">Biography</label>
                     <input type="text" class="form-control" id="biography" name="biography" placeholder="Biography" required> 
                 </div>
-        </section>
+                <div>
+                    <label for="photo" class="form-label fw-bold">Profile Photo</label>
+                    <input type="file" id="photo" name="photo" accept="image/*" required>
+                </div>
+            </section>
