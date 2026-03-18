@@ -1,6 +1,8 @@
 /* Sidebar container */
 .app{
     display: flex;
+    width: 100%;
+
 }
 .sidebar {
     width: 300px;
@@ -251,9 +253,12 @@
     flex-direction: column;
     background-color: #fff;
     border-left: 1px solid #ddd;
+
+    width: 400px !important;
+    flex-shrink: 0 !important;
 }
 
-/* Header de la conversation */
+
 .conversations header {
     display: flex;
     align-items: center;
@@ -348,4 +353,7 @@
     padding: 8px 16px;
     cursor: pointer;
 }
+/* AJOUTEZ CE CODE À LA FIN DE VOTRE FICHIER messages.css */
+
+
 
