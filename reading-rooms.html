@@ -7,760 +7,731 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:ital,wght@0,200..900;1,200..900&display=swap"
     rel="stylesheet">
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+  <link rel="icon" href="favicon (1).ico" type="image/x-icon" />
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>book page</title>
+  <title>Reading Rooms - BookSwap</title>
   <style>
- body{
-  margin:0;
+body{
+  height: 100%;
+  margin: 0;
   font-family: Arial, sans-serif;
-  display: flex;
-   overflow-x: hidden;
-  min-height: 100vh;
- }
-.bar {
-  position:fixed;
-  overflow-y: auto; 
-  left:0;
-  right:0 ;
-  padding: 20px;
-  height:100vh;
-  box-sizing:border-box;
-  width: 300px;             
-  background-color:  #414833; 
 }
-.main {
-  flex: 1;
+
+.sidebar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100vh;
+  background: #6B8E23;
+  color: white;
+  overflow-y: auto;
   padding: 20px;
+  box-sizing: border-box;
+}
+
+.sidebar h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.sidebar p {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.sidebar hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  margin: 15px 0;
+}
+
+.sidebar a {
+  display: block;
+  text-decoration: none;
+  padding: 12px 16px;
+  color: white;
+  margin-bottom: 8px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.sidebar a i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.sidebar a:hover {
+  background-color: #FFF8E8;
+  color: #914F1E;
+  width: 70%;
+}
+
+.sidebar a:active {
+  background-color: black;
+  color: #914F1E;
+  width: 70%;
+}
+
+.content {
+  background-color: #FFF8E8;
   margin-left: 300px;
   min-height: 100vh;
-  background-color: #656d4a;
   overflow-y: auto;
-  padding-bottom: 50px;
-  display: flex; /* Ajout */
-  flex-direction: column; /* Ajout */
-  align-items: flex-start; 
+  padding: 30px;
 }
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      margin-bottom: 15px; 
-    }
-    .titre h2 {
+
+.header-section {
+  margin-bottom: 25px;
+}
+
+.header-section h1 {
   margin: 0;
-  font-size: 14px;
-  color: gray;
-}
-.titre h3 {
-  margin: 0;
-  font-size: 14px;
-  color: rgb(24, 23, 23);
-}
- 
-.titre a {
-  display: inline-block;           
-  color: #0d0303;
-  padding: 8px 18px;
-  text-decoration: none;
-  border-radius: 18px;
-
-  font-weight: 500;
-  transition: all 0.25s ease;      
+  font-size: 32px;
+  color: #333;
 }
 
-.titre a:hover {
-  background-color:  #656d4a;
-  transform: translateY(-2px);    
-}
-
-  img {
-  margin-right: 5px;
-  transition: transform 0.3s;
-  padding: 4px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #7f5539,#a68a64);
-}
-img:hover {
-  transform: scale(1.2);
-}
-.separator {
-  border: none;
-  border-bottom: 2px solid #0f0e0e;
-  margin: 10px 0; 
-}
-button {
-  padding: 10px 25px;
+.header-section h4 {
+  margin: 5px 0 20px 0;
   font-size: 16px;
-  font-weight: 500;
-  border: 2px solid #414833;
-  border-radius: 12px;
-  margin-left: 100px; 
-  color: #414833;
+  color: #666;
+  font-weight: normal;
+}
+
+.create-room-btn {
+  background-color: white;
+  border: 2px solid #6B8E23;
+  border-radius: 15px;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #6B8E23;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s ease;
-  background: #ede0d4;
-
-}
-.filter-button{
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-.filter-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-  background: #ede0d4;}
-  .container {
-  display: flex;                 
-  gap: 20px;             
-  width: 1000px;             
-  max-width: 1000px;     
-  margin: 0 auto;         
-}
-.card {
-  flex: 1 1 300px;        
-  background-color: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  transition: transform 0.3s;
+  display: inline-block;
+  text-decoration: none;
 }
 
-.card:hover {
-  transform: translateY(-5px); 
+.create-room-btn:hover {
+  background-color: #6B8E23;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(107, 142, 35, 0.3);
 }
-.container {
-  display: flex;
-  flex-wrap: wrap;  
+
+hr.separator {
+  border: none;
+  border-top: 2px solid #ddd;
+  margin: 20px 0;
+}
+
+
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  width: 90%;
-  max-width: 1000px;
-  margin: 0 auto;
+  margin-bottom: 30px;
 }
 
-
-.card {
-  flex: 0 0 220px;          
-  height: 100px;            
-  border-radius: 12px;
-  border: 2px solid #ccc;   
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 15px;
-  box-sizing: border-box;
-  background: #ede0d4;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-.card-content {
+.stat-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent;
 }
 
-.card-title {
-  font-size: 14px;
-  color: #555;
-}
-
-.card-number {
-  font-size: 22px;
-  font-weight: bold;
-  margin-top: 5px;
-}
-
-.card-icon img {
-  width: 40px;
-  height: 40px;
-}
-
-
-.card.live { border-color: #27782a; }
-.card.scheduled { border-color: #3576ab; }
-.card.myrooms { border-color: #6b2478; }
-.card.totalreaders { border-color: #b34321; }
-
-
-.card.live .card-number { color: #135d16; }
-.card.scheduled .card-number { color: #4287bf; }
-.card.myrooms .card-number { color: #853892; }
-.card.totalreaders .card-number { color: #cb6140; }
-
-.search-input {
-  
-  border-top: 20px;
-  margin-top:20px;
-  border: 1px solid #e5e7eb;
-  width: 450px;
-  border-radius: 8px;
-  font-size: 20px;
-  padding: 10px 15px;
-  box-sizing: border-box;
-  background: #ede0d4;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.search-input :hover {
+.stat-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-.separator2{ gap:50px; }
-
-.lien {
-  margin-top: 20px;
-  border: 1px solid #656d4a;
-  width: 600px;
-  border-radius: 12px;
-  font-size: 20px;
-  padding: 10px 15px;
-  box-sizing: border-box;
-  background: #656d4a;          
-  transition: transform 0.3s, box-shadow 0.3s;
-  
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-.lien a {
-  display: inline-block;           
-  color: #fff;                    
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 18px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  background-color: #b19166;
-  color:black;      
+.stat-card.live { border-color: #27782a; }
+.stat-card.scheduled { border-color: #3576ab; }
+.stat-card.myrooms { border-color: #6b2478; }
+.stat-card.totalreaders { border-color: #b34321; }
+
+.stat-info {
+  flex: 1;
 }
 
-.lien a:hover {
-  background-color:  #656d4a;      
-  transform: translateY(-4px) scale(1.05);  
-  box-shadow: 0 8px 15px rgba(0,0,0,0.2);  
+.stat-title {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.stat-number {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.stat-card.live .stat-number { color: #27782a; }
+.stat-card.scheduled .stat-number { color: #3576ab; }
+.stat-card.myrooms .stat-number { color: #6b2478; }
+.stat-card.totalreaders .stat-number { color: #b34321; }
+
+.stat-icon img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
 }
 
 
-
-.carde {
-  width: 45%;
-  max-width: 100%;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  font-family: sans-serif;
+.search-bar {
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  padding: 15px 20px;
+  font-size: 16px;
   margin: 20px 0;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  margin-right:20px;
-  margin-left: 20px;
-
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
 }
 
-.card-image {
+.search-bar:focus {
+  outline: none;
+  border-color: #6B8E23;
+  box-shadow: 0 4px 12px rgba(107, 142, 35, 0.2);
+}
+
+
+.nav-tabs {
+  display: flex;
+  gap: 15px;
+  margin: 25px 0;
+  flex-wrap: wrap;
+}
+
+.nav-tab {
+  background-color: white;
+  border: 2px solid #6B8E23;
+  border-radius: 25px;
+  padding: 12px 25px;
+  text-decoration: none;
+  color: #6B8E23;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.nav-tab:hover {
+  background-color: #6B8E23;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(107, 142, 35, 0.3);
+}
+
+
+.rooms-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.room-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.room-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.room-image {
   position: relative;
   width: 100%;
-  height: 250px; 
-  background-color: #ede0d4; 
-
+  height: 280px;
+  background-color: #f5f5f5;
+  overflow: hidden;
 }
 
-.card-image img {
+.room-image img {
   width: 100%;
-  height: 100%; 
-  object-fit: contain; 
-  background-color: #ede0d4; 
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-}
-.card-container {
-  width: 90%;
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
+  height: 100%;
+  object-fit: contain;
+  background-color: white;
 }
 
 .badge {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  padding: 3px 8px;
-  color: #fff;
-  border-radius: 6px;
+  top: 12px;
+  left: 12px;
+  padding: 6px 14px;
+  color: white;
+  border-radius: 20px;
   font-size: 12px;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
-.badge.live { background-color: red; }
-.badge.scheduled { background-color: #1d4ed8; }
+.badge.live { background-color: #dc2626; }
+.badge.scheduled { background-color: #2563eb; }
 
 .participants {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(0,0,0,0.6);
-  color: #fff;
-  padding: 3px 6px;
-  border-radius: 12px;
-  font-size: 12px;
+  top: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
 }
 
-.card-content {
-  padding: 15px 20px;
-  display: flex;
-  flex-direction: column;  
+.room-content {
+  padding: 20px;
 }
 
-.card-content h3 {
-  margin: 0;
+.room-content h3 {
+  margin: 0 0 8px 0;
   font-size: 20px;
+  color: #333;
 }
 
-.card-content .author {
-  color: #555;
+.room-author {
+  color: #666;
   font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
-.progress {
-  width: 40%;
+.progress-container {
+  margin: 15px 0;
+}
+
+.progress-bar-bg {
+  width: 100%;
   background: #e5e7eb;
-  height: 10px; 
-  border-radius: 5px;
-  margin: 10px 0;
+  height: 8px;
+  border-radius: 10px;
   overflow: hidden;
+  margin-bottom: 8px;
 }
 
-.progress-bar {
+.progress-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #7c3aed, #8b5cf6); 
-  border-radius: 5px;
+  background: linear-gradient(90deg, #7c3aed, #8b5cf6);
+  border-radius: 10px;
   transition: width 0.5s ease;
 }
 
 .progress-text {
-  font-size: 12px;
-  color: #555;
-  margin-bottom: 10px;
+  font-size: 13px;
+  color: #666;
 }
 
-.host {
+.host-info {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 10px;
+  margin: 15px 0;
 }
 
-.host img {
-  width: 30px;
-  height: 30px;
+.host-info img {
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
-.role {
+.host-name {
+  font-weight: 500;
+  color: #333;
+  flex: 1;
+}
+
+.host-role {
   font-size: 12px;
-  color: #888;
+  color: #999;
+  background: #f3f4f6;
+  padding: 4px 10px;
+  border-radius: 12px;
 }
 
 .tags {
-  margin-bottom: 10px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 15px 0;
 }
 
 .tag {
-  display: inline-block;
-  background: #eee;
-  padding: 2px 8px;
-  border-radius: 12px;
+  background: #f3f4f6;
+  padding: 6px 14px;
+  border-radius: 16px;
   font-size: 12px;
-  margin-right: 5px;
+  color: #666;
 }
 
-.join-btn {
-  width: 40%;
-  padding: 12px 20px;
+.room-action-btn {
+  width: 100%;
+  padding: 14px 20px;
   border: none;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #10b981, #34d399);
-  color: #fff;
+  border-radius: 12px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 15px;
-  box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
-  letter-spacing: 0.5px;
-   box-sizing: border-box;
+}
+
+.join-btn {
+  background: linear-gradient(135deg, #10b981, #34d399);
+  color: white;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
 .join-btn:hover {
   transform: translateY(-2px);
-  background: #059669;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
 }
-.join-btn-rsvp{
-  width: 40%;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #080e68, #1f1ccb);
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 15px;
-  box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
-  letter-spacing: 0.5px;
-   box-sizing: border-box;
+
+.rsvp-btn {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.rsvp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
 }
 
 
+@media (max-width: 1400px) {
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
-
-
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  .content {
+    margin-left: 0;
+  }
+  
+  .stats-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .rooms-container {
+    grid-template-columns: 1fr;
+  }
+}
   </style>
 </head>
 
 <body>
   
-    <div class="bar">
-      <div class="header">
-        <img src="https://i.pinimg.com/1200x/ed/5c/40/ed5c401a55be5334ccd5c436751267f8.jpg" alt="livre" width="60" >
-        <div class="titre">
-          <h1> BookSwap </h1>
-          <h2>Read.Share.Connect</h2>
-        </div>
-      </div>
-      <hr class="separator">
-      <div class="header">
-        <img src="https://i.pinimg.com/736x/a2/e4/9a/a2e49a3c7fee7bab8d6fd9fa0a9e6594.jpg" alt="livre" width="60" >
-        <div class="titre">
-          <a href="#">Marketplace</a>
-        </div>
-      </div>
-      <div class="header">
-        <img src="https://i.pinimg.com/736x/74/2a/1d/742a1d65b97b29d009ce0da6f7039d32.jpg" alt="livre" width="60" >
-        <div class="titre">
-          <a href="#">Messages</a>
-        </div>
-      </div>
-      <div class="header">
-        <img src="https://i.pinimg.com/736x/db/5d/46/db5d461cfdede87f9be1f21ea456a6da.jpg" alt="livre" width="60" >
-        <div class="titre">
-          <a href="#">Exchanges</a>
-        </div>
-      </div>
-      <div class="header">
-        <img src="https://i.pinimg.com/736x/2e/3c/38/2e3c387034b214401330dc2167f4d6b4.jpg" alt="livre" width="60" >
-        <div class="titre">
-          <a href="#">Favorites</a>
-        </div>
-      </div>
-      <div class="header">
-        <img src="https://i.pinimg.com/1200x/68/da/0d/68da0d207eafa686d4d6181fd3e7d5ab.jpg" alt="livre" width="60" >
-        <div class="titre">
-          <a href="#">Reading Rooms</a>
-        </div>
-      </div>
-      <div class="header">
-        <img src="https://i.pinimg.com/736x/12/ec/85/12ec8574f4ef6de2456f1e9e2f5afa1a.jpg" alt="livre" width="60" >
-        <div class="titre">
-          <a href="#">LeaderBoard</a>
-        </div>
-      </div>
-     
-      <div class="header">
-        <img src="https://i.pinimg.com/1200x/36/c3/fb/36c3fbd84d5f09c21fe6154cbad63781.jpg" alt="livre" width="60" >
-        <div class="titre">
-          <a href="#">Settings</a>
-        </div>
-      </div>
-    </div>
-  
-    <div class="main">
-      <div class="header">
-        <img src="https://i.pinimg.com/1200x/68/da/0d/68da0d207eafa686d4d6181fd3e7d5ab.jpg" alt="livre" width="100" >
-        <div class="titre">
-          <h1>Reading Rooms</h1>
-          <h2>Read together with the community</h2>
-        </div>
-         <div class="header-links">
-      <button class="btn btn-primary btn-animated filter-button">
-       + Create Room
-       </button>
-        </div>
-      </div>
-      <hr class="separator">
-      <div class="container">
-        <div class="card live">
-    <div class="card-content">
-      <div>
-        <div class="card-title">Live Now</div>
-        <div class="card-number">2</div>
-      </div>
-      <div class="card-icon">
-        <img src="https://i.pinimg.com/736x/cf/ac/d5/cfacd53f5bc159e0c2c01b69f3de1771.jpg" alt="Live">
-      </div>
-    </div>
+  <div class="sidebar">
+    <h1 style="margin-left: 20px">BookSwap</h1>
+    <p style="margin-left: 20px">Read. Share. Connect.</p>
+    <br><br>
+    <hr>
+    <a href="#"><i class="bi bi-shop fs-3"></i> Marketplace</a>
+    <a href="messages.html"><i class="bi bi-chat-left-text"></i> Messages</a>
+    <a href="codeHTML.html"><i class="bi bi-repeat"></i> Exchange</a>
+    <a href="#"><i class="bi bi-heart"></i> Favorites</a>
+    <a href="reading-rooms.html"><i class="bi bi-book"></i> Reading Rooms</a>
+    <div style="margin-bottom: 150px"></div>
+    <hr>
+    <a href="profile.html"><i class="bi bi-person-circle"></i> Profile</a>
+    <a href="#"><i class="bi bi-gear"></i> Settings</a>
+    <hr>
   </div>
 
-  <div class="card scheduled">
-    <div class="card-content">
-      <div>
-        <div class="card-title">Scheduled</div>
-        <div class="card-number">1</div>
-      </div>
-      <div class="card-icon">
-        <img src="https://i.pinimg.com/1200x/ea/fb/8b/eafb8b1c4c949f9343740e590c5652c8.jpg" alt="Scheduled">
-      </div>
+  <div class="content">
+    <div class="header-section">
+      <h1>Reading Rooms</h1>
+      <h4>Read together with the community</h4>
+      <button class="create-room-btn">+ Create Room</button>
     </div>
-  </div>
 
-  <div class="card myrooms">
-    <div class="card-content">
-      <div>
-        <div class="card-title">My Rooms</div>
-        <div class="card-number">2</div>
-      </div>
-      <div class="card-icon">
-        <img src="https://i.pinimg.com/1200x/c3/41/6e/c3416efade9f62b399498e657113ddf7.jpg" alt="My Rooms">
-      </div>
-    </div>
-  </div>
+    <hr class="separator">
 
-  <div class="card totalreaders">
-    <div class="card-content">
-      <div>
-        <div class="card-title">Total Readers</div>
-        <div class="card-number">38</div>
-      </div>
-      <div class="card-icon">
-        <img src="https://i.pinimg.com/736x/7a/9c/51/7a9c5126a655aa763c4f7e830c03a2f5.jpg" alt="Total Readers">
-      </div>
-    </div>
-  </div>
-</div>
- 
-<div>
-  <input type="text" class="search-input"placeholder="Search reading rooms by book title or author...">
-</div>
-
-<div class="lien">
-  <a href="#">Discover</a>
-  <a href="#">Live now</a>
-  <a href="#">Scheduled</a>
-  <a href="#">My rooms</a>
-</div>
-<hr class="separator">
-
-<div class="card-container"> 
-  <div class="carde">
-    <div class="card-image">
-      <img src="https://prodimage.images-bn.com/pimages/9798823186759_p0_v2_s600x595.jpg" alt="The Great Gatsby">
-      <span class="badge live">LIVE</span>
-      <span class="participants">8/10</span>
-    </div>
-    <div class="card-content">
-      <h3>The Great Gatsby</h3>
-      <p class="author">F. Scott Fitzgerald</p>
-     
-      <div class="progress">
-        <div class="progress-bar" style="width: 90%;"></div>
-      </div>
-      <p class="progress-text">Page 170 of 180</p>
-      
-      <div class="host">
-        <img src="https://retratosbarcelona.com/wp-content/uploads/2022/09/Retratos-Barcelona-Linkedin-Photography-Alejandra.jpg" alt="Host">
-        <span>Sarah Johnson</span>
-        <span class="role">Host</span>
-      </div>
     
-      <div class="tags">
-        <span class="tag">Classic</span>
-        <span class="tag">American Literature</span>
+    <div class="stats-container">
+      <div class="stat-card live">
+        <div class="stat-info">
+          <div class="stat-title">Live Now</div>
+          <div class="stat-number">2</div>
+        </div>
+        <div class="stat-icon">
+          <img src="https://i.pinimg.com/736x/cf/ac/d5/cfacd53f5bc159e0c2c01b69f3de1771.jpg" alt="Live">
+        </div>
       </div>
-     
-      <button class="join-btn">Join Now</button>
-    </div>
-  </div>
 
-  <div class="carde">
-    <div class="card-image">
-      <img src="https://m.media-amazon.com/images/I/61NAx5pd6XL._AC_UF1000,1000_QL80_.jpg" alt="1984">
-      <span class="badge scheduled">Scheduled</span>
-      <span class="participants">3/15</span>
+      <div class="stat-card scheduled">
+        <div class="stat-info">
+          <div class="stat-title">Scheduled</div>
+          <div class="stat-number">1</div>
+        </div>
+        <div class="stat-icon">
+          <img src="https://i.pinimg.com/1200x/ea/fb/8b/eafb8b1c4c949f9343740e590c5652c8.jpg" alt="Scheduled">
+        </div>
+      </div>
+
+      <div class="stat-card myrooms">
+        <div class="stat-info">
+          <div class="stat-title">My Rooms</div>
+          <div class="stat-number">2</div>
+        </div>
+        <div class="stat-icon">
+          <img src="https://i.pinimg.com/1200x/c3/41/6e/c3416efade9f62b399498e657113ddf7.jpg" alt="My Rooms">
+        </div>
+      </div>
+
+      <div class="stat-card totalreaders">
+        <div class="stat-info">
+          <div class="stat-title">Total Readers</div>
+          <div class="stat-number">38</div>
+        </div>
+        <div class="stat-icon">
+          <img src="https://i.pinimg.com/736x/7a/9c/51/7a9c5126a655aa763c4f7e830c03a2f5.jpg" alt="Total Readers">
+        </div>
+      </div>
     </div>
 
-    <div class="card-content">
-      <h3>1984</h3>
-      <p class="author">George Orwell</p>
-     
-      <div class="progress">
-        <div class="progress-bar" style="width: 0%;"></div>
-      </div>
-      <p class="progress-text">Page 0 of 390</p>
-      
-      <div class="host">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDNN3fs-m60JVM-DjYTylJD7Ev3o5KhIwTTg&s" alt="Host">
-        <span>Michael chen</span>
-        <span class="role">Host</span>
-      </div>
     
-      <div class="tags">
-        <span class="tag">Dystopian</span>
-        <span class="tag">Sci-Fi</span>
-      </div>
-     
-      <button class="join-btn-rsvp">Rsvp</button>
-    </div>
-  </div>
-  <div class="carde">
-    <div class="card-image">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUKqDMRHeygT485g4rZxw735snLqdX6zcTQQ&s" alt="pride and Prejudice">
-      <span class="badge live">LIVE</span>
-      <span class="participants">12/20</span>
-    </div>
+    <input type="text" class="search-bar" placeholder="🔍 Search reading rooms by book title or author...">
 
-    <div class="card-content">
-      <h3>Pride and Prejudice</h3>
-      <p class="author">F. Scott Fitzgerald</p>
-     
-      <div class="progress">
-        <div class="progress-bar" style="width: 30%;"></div>
-      </div>
-      <p class="progress-text">Page 156  of 432 </p>
-      
-      <div class="host">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK5zNWriikoIk7C1JEdOrDDIl66jX05zNvpw&s" alt="Host">
-        <span>emily davis</span>
-        <span class="role">Host</span>
-      </div>
     
-      <div class="tags">
-        <span class="tag">Classic</span>
-        <span class="tag">Romance</span>
-      </div>
-     
-      <button class="join-btn">Join Now</button>
+    <div class="nav-tabs">
+      <a href="#" class="nav-tab">Discover</a>
+      <a href="#" class="nav-tab">Live now</a>
+      <a href="#" class="nav-tab">Scheduled</a>
+      <a href="#" class="nav-tab">My rooms</a>
     </div>
-  </div>
- 
-</div>
- 
 
+    <hr class="separator">
 
-
-
-<div class="card-container"> 
-  <div class="carde">
-    <div class="card-image">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHIzm56W-N4vQhJsDLWcsku0JUjqfaOPYapQ&s" alt="The Hobbit">
-      <span class="badge live">LIVE</span>
-      <span class="participants">5/19</span>
-    </div>
-    <div class="card-content">
-      <h3>The Hobbit</h3>
-      <p class="author">J.R.R. Tolkien</p>
-     
-      <div class="progress">
-        <div class="progress-bar" style="width: 70%;"></div>
-      </div>
-      <p class="progress-text">Page 100 of 180</p>
-      
-      <div class="host">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkFFO3VWOyZNy1t7HUlWTMdo4P8DstxGpz3Q&s" alt="Host">
-        <span>Tom John</span>
-        <span class="role">Host</span>
-      </div>
     
-      <div class="tags">
-        <span class="tag">Fantasy</span>
-        <span class="tag">American Literature</span>
-      </div>
-     
-      <button class="join-btn">Join Now</button>
-    </div>
-  </div>
-
-  <div class="carde">
-    <div class="card-image">
-      <img src="https://i5.walmartimages.com/seo/The-Alchemist-A-Graphic-Novel-Hardcover-9780062024329_1a3e69cc-6f42-4595-a954-f39ad8f1d1f8.33bd5811edf7b1f49acfeef15af926a0.jpeg" alt="The Alchemist">
-      <span class="badge scheduled">Scheduled</span>
-      <span class="participants">8/15</span>
-    </div>
-
-    <div class="card-content">
-      <h3>The Alchemist</h3>
-      <p class="author">Paulo Coelho</p>
-     
-      <div class="progress">
-        <div class="progress-bar" style="width: 0%;"></div>
-      </div>
-      <p class="progress-text">Page 0 of 290</p>
+    <div class="rooms-container">
       
-      <div class="host">
-        <img src="https://slika.ch/wp-content/uploads/2023/05/photo-cv-photo-linkedin-profil-portrait-professionnel-slika.ch-photographe-lausanne-photography-3.jpg" alt="Host">
-        <span>Paulo chen</span>
-        <span class="role">Host</span>
+      <div class="room-card">
+        <div class="room-image">
+          <img src="https://prodimage.images-bn.com/pimages/9798823186759_p0_v2_s600x595.jpg" alt="The Great Gatsby">
+          <span class="badge live">LIVE</span>
+          <span class="participants">8/10</span>
+        </div>
+        <div class="room-content">
+          <h3>The Great Gatsby</h3>
+          <p class="room-author">F. Scott Fitzgerald</p>
+          
+          <div class="progress-container">
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 90%;"></div>
+            </div>
+            <p class="progress-text">Page 170 of 180</p>
+          </div>
+          
+          <div class="host-info">
+            <img src="https://retratosbarcelona.com/wp-content/uploads/2022/09/Retratos-Barcelona-Linkedin-Photography-Alejandra.jpg" alt="Host">
+            <span class="host-name">Sarah Johnson</span>
+            <span class="host-role">Host</span>
+          </div>
+        
+          <div class="tags">
+            <span class="tag">Classic</span>
+            <span class="tag">American Literature</span>
+          </div>
+        
+          <button class="room-action-btn join-btn">Join Now</button>
+        </div>
       </div>
-    
-      <div class="tags">
-        <span class="tag">Dystopian</span>
-        <span class="tag">Sci-Fi</span>
-      </div>
-     
-      <button class="join-btn-rsvp">Rsvp</button>
-    </div>
-  </div>
-  <div class="carde">
-    <div class="card-image">
-      <img src="https://static.wikia.nocookie.net/classical-literature/images/8/87/61c1BiBgvdL.jpg/revision/latest?cb=20190526154645" alt="The Alchemist">
-      <span class="badge scheduled">Scheduled</span>
-      <span class="participants">8/15</span>
-    </div>
 
-    <div class="card-content">
-      <h3>Jane Eyre</h3>
-      <p class="author">Charlotte Brontë</p>
      
-      <div class="progress">
-        <div class="progress-bar" style="width: 0%;"></div>
+      <div class="room-card">
+        <div class="room-image">
+          <img src="https://m.media-amazon.com/images/I/61NAx5pd6XL._AC_UF1000,1000_QL80_.jpg" alt="1984">
+          <span class="badge scheduled">Scheduled</span>
+          <span class="participants">3/15</span>
+        </div>
+        <div class="room-content">
+          <h3>1984</h3>
+          <p class="room-author">George Orwell</p>
+          
+          <div class="progress-container">
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 0%;"></div>
+            </div>
+            <p class="progress-text">Page 0 of 390</p>
+          </div>
+          
+          <div class="host-info">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDNN3fs-m60JVM-DjYTylJD7Ev3o5KhIwTTg&s" alt="Host">
+            <span class="host-name">Michael Chen</span>
+            <span class="host-role">Host</span>
+          </div>
+        
+          <div class="tags">
+            <span class="tag">Dystopian</span>
+            <span class="tag">Sci-Fi</span>
+          </div>
+        
+          <button class="room-action-btn rsvp-btn">RSVP</button>
+        </div>
       </div>
-      <p class="progress-text">Page 0 of 290</p>
+
       
-      <div class="host">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7crXgkVUl0oWLpnXeLMstVZ0Wevdt7ucZMw&s" alt="Host">
-        <span>michael kaven</span>
-        <span class="role">Host</span>
+      <div class="room-card">
+        <div class="room-image">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUKqDMRHeygT485g4rZxw735snLqdX6zcTQQ&s" alt="Pride and Prejudice">
+          <span class="badge live">LIVE</span>
+          <span class="participants">12/20</span>
+        </div>
+        <div class="room-content">
+          <h3>Pride and Prejudice</h3>
+          <p class="room-author">Jane Austen</p>
+          
+          <div class="progress-container">
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 30%;"></div>
+            </div>
+            <p class="progress-text">Page 156 of 432</p>
+          </div>
+          
+          <div class="host-info">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK5zNWriikoIk7C1JEdOrDDIl66jX05zNvpw&s" alt="Host">
+            <span class="host-name">Emily Davis</span>
+            <span class="host-role">Host</span>
+          </div>
+        
+          <div class="tags">
+            <span class="tag">Classic</span>
+            <span class="tag">Romance</span>
+          </div>
+        
+          <button class="room-action-btn join-btn">Join Now</button>
+        </div>
       </div>
-    
-      <div class="tags">
-        <span class="tag">Romance</span>
-        <span class="tag">Classic</span>
+
+      
+      <div class="room-card">
+        <div class="room-image">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHIzm56W-N4vQhJsDLWcsku0JUjqfaOPYapQ&s" alt="The Hobbit">
+          <span class="badge live">LIVE</span>
+          <span class="participants">5/19</span>
+        </div>
+        <div class="room-content">
+          <h3>The Hobbit</h3>
+          <p class="room-author">J.R.R. Tolkien</p>
+          
+          <div class="progress-container">
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 70%;"></div>
+            </div>
+            <p class="progress-text">Page 100 of 180</p>
+          </div>
+          
+          <div class="host-info">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkFFO3VWOyZNy1t7HUlWTMdo4P8DstxGpz3Q&s" alt="Host">
+            <span class="host-name">Tom John</span>
+            <span class="host-role">Host</span>
+          </div>
+        
+          <div class="tags">
+            <span class="tag">Fantasy</span>
+            <span class="tag">Adventure</span>
+          </div>
+        
+          <button class="room-action-btn join-btn">Join Now</button>
+        </div>
       </div>
+
      
-      <button class="join-btn-rsvp">Rsvp</button>
+      <div class="room-card">
+        <div class="room-image">
+          <img src="https://i5.walmartimages.com/seo/The-Alchemist-A-Graphic-Novel-Hardcover-9780062024329_1a3e69cc-6f42-4595-a954-f39ad8f1d1f8.33bd5811edf7b1f49acfeef15af926a0.jpeg" alt="The Alchemist">
+          <span class="badge scheduled">Scheduled</span>
+          <span class="participants">8/15</span>
+        </div>
+        <div class="room-content">
+          <h3>The Alchemist</h3>
+          <p class="room-author">Paulo Coelho</p>
+          
+          <div class="progress-container">
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 0%;"></div>
+            </div>
+            <p class="progress-text">Page 0 of 290</p>
+          </div>
+          
+          <div class="host-info">
+            <img src="https://slika.ch/wp-content/uploads/2023/05/photo-cv-photo-linkedin-profil-portrait-professionnel-slika.ch-photographe-lausanne-photography-3.jpg" alt="Host">
+            <span class="host-name">Paulo Chen</span>
+            <span class="host-role">Host</span>
+          </div>
+        
+          <div class="tags">
+            <span class="tag">Philosophy</span>
+            <span class="tag">Adventure</span>
+          </div>
+        
+          <button class="room-action-btn rsvp-btn">RSVP</button>
+        </div>
+      </div>
+
+      
+      <div class="room-card">
+        <div class="room-image">
+          <img src="https://static.wikia.nocookie.net/classical-literature/images/8/87/61c1BiBgvdL.jpg/revision/latest?cb=20190526154645" alt="Jane Eyre">
+          <span class="badge scheduled">Scheduled</span>
+          <span class="participants">8/15</span>
+        </div>
+        <div class="room-content">
+          <h3>Jane Eyre</h3>
+          <p class="room-author">Charlotte Brontë</p>
+          
+          <div class="progress-container">
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 0%;"></div>
+            </div>
+            <p class="progress-text">Page 0 of 290</p>
+          </div>
+          
+          <div class="host-info">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7crXgkVUl0oWLpnXeLMstVZ0Wevdt7ucZMw&s" alt="Host">
+            <span class="host-name">Michael Kaven</span>
+            <span class="host-role">Host</span>
+          </div>
+        
+          <div class="tags">
+            <span class="tag">Romance</span>
+            <span class="tag">Classic</span>
+          </div>
+        
+          <button class="room-action-btn rsvp-btn">RSVP</button>
+        </div>
+      </div>
     </div>
+
   </div>
-</div>
 
-
-  
-  
-  
-  
-  
-  
-  
-    </div>
-
-  
-
-
-
+</body>
+</html>
