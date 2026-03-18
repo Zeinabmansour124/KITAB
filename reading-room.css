@@ -430,5 +430,33 @@ hr.separator {
   .rooms-container {
     grid-template-columns: 1fr;
   }
-}
+ .lang-switcher {
+      display: flex;
+      gap: 6px;
+      padding: 0 24px 16px;
+    }
+    .lang-btn {
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.25);
+      border-radius: 8px;
+      color: #cad2c5;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      padding: 5px 12px;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .lang-btn:hover { background: rgba(255,255,255,0.22); color: #fff; }
+    .lang-btn.lang-active { background: #6B8E23; border-color: #6B8E23; color: #fff; }
+    /* RTL arabe */
+    body.rtl { direction: rtl; }
+    body.rtl .sidebar { left: auto !important; right: 0 !important; }
+    body.rtl .sidebar-link { border-left: none !important; border-right: 3px solid transparent; }
+    body.rtl .sidebar-link:hover, body.rtl .sidebar-link.active { border-right-color: #6B8E23; }
+    body.rtl .content { margin-left: 0 !important; margin-right: 300px !important; }
+    body.rtl .badge { left: auto; right: 12px; }
+    body.rtl .participants { right: auto; left: 12px; }
+    @media (max-width: 768px) { body.rtl .content { margin-right: 0 !important; } }}
 
