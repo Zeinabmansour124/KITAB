@@ -22,7 +22,7 @@ bouton.style.cssText = `
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 `;
 
-// 3. Les couleurs du mode sombre
+
 const stylesDark = `
   body, .content          { background-color: #0f1a16 !important; }
   .sidebar                { background-color: #0d1f18 !important; }
