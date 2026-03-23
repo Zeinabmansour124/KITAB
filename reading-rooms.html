@@ -567,6 +567,185 @@
     body.rtl .badge { left: auto; right: 12px; }
     body.rtl .participants { right: auto; left: 12px; }
     @media (max-width: 768px) { body.rtl .content { margin-right: 0 !important; } }
+
+    @keyframes shake {
+    0%   { transform: translateX(0); }
+    25%  { transform: translateX(-6px); }
+    50%  { transform: translateX(6px); }
+    75%  { transform: translateX(-4px); }
+    100% { transform: translateX(0); }
+}
+
+ 
+
+
+#joinPopup {
+    display: none;
+    position: fixed;
+    inset: 0;                             
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    backdrop-filter: blur(3px);            
+
+   
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#joinPopup.open {
+    display: flex;                         
+    animation: fadeIn 0.2s ease;
+}
+
+
+.popup-box {
+    background: white;
+    width: 100%;
+    max-width: 420px;
+    padding: 32px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    animation: slideUp 0.3s ease;
+}
+
+
+.popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.popup-header h3 {
+    color: #3b5d50;
+    font-size: 20px;
+    margin: 0;
+}
+
+.popup-close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #999;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.popup-close:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+
+#popupBook {
+    color: #888;
+    font-size: 14px;
+    margin: 0 0 20px;
+}
+
+
+.input-group {
+    margin-bottom: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #3b5d50;
+    box-shadow: 0 0 0 3px rgba(59, 93, 80, 0.15);
+}
+
+.input-group input.error {
+    border-color: #e53e3e;
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.15);
+    animation: shake 0.3s ease;
+}
+
+.input-group small {
+    display: none;
+    color: #e53e3e;
+    font-size: 12px;
+    margin-top: 5px;
+    padding-left: 4px;
+}
+
+
+.popup-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.popup-actions button {
+    flex: 1;
+    padding: 11px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+}
+
+.popup-actions button:active {
+    transform: scale(0.97);
+}
+
+#confirmJoin {
+    background: #3b5d50;
+    color: white;
+}
+
+#confirmJoin:hover {
+    opacity: 0.88;
+}
+
+#cancelJoin {
+    background: #f0f0f0;
+    color: #555;
+}
+
+#cancelJoin:hover {
+    background: #e4e4e4;
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+    0%   { transform: translateX(0); }
+    25%  { transform: translateX(-6px); }
+    50%  { transform: translateX(6px); }
+    75%  { transform: translateX(-4px); }
+    100% { transform: translateX(0); }
+}
+
+    
+
+   
+
+
+
   </style>
 </head>
 <body>
@@ -671,7 +850,7 @@
               <span class="host-name">Sarah Johnson</span><span class="host-role" class="host-role host_role_text">Host</span>
             </div>
             <div class="tags"><span class="tag">Classic</span><span class="tag">American Literature</span></div>
-            <button class="room-action-btn join-btn" class="room-action-btn join-btn btn_join">Join Now</button>
+            <button class="room-action-btn join-btn">Join Now</button>
           </div>
         </div>
  
@@ -848,11 +1027,75 @@
  
       </div>
     </div>
- 
   </div>
+
+
+  <!-- bouton join -->
+  <div id="joinPopup">
+  <div class="popup-box">
+
+    <div class="popup-header">
+      <h3 id="popupTitle">Join Room</h3>
+      <button class="popup-close" onclick="closePopup()">✕</button>
+    </div>
+
+    <p id="popupBook"></p>
+
+    <div class="input-group">
+      <input type="text" id="popupName" placeholder="Your name">
+      <small id="errorName"> Please enter your name</small>
+    </div>
+
+    <div class="input-group">
+      <input type="email" id="popupEmail" placeholder="Your email">
+      <small id="errorEmail">Please enter a valid email</small>
+    </div>
+
+    <div class="popup-actions">
+      <button id="confirmJoin" onclick="confirmJoin()">Join</button>
+      <button id="cancelJoin" onclick="closePopup()">Cancel</button>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="successMessage" style="
+    display: none;
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #3b5d50;
+    color: white;
+    padding: 16px 28px;
+    border-radius: 12px;
+    font-size: 15px;
+    z-index: 9999;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    animation: slideDown 0.4s ease;
+">
+   <span id="successText"></span>
+</div>
+
+
+
+   
+
+
+
+
+
+  
+
+ 
+
+ 
   
     
   <script src="traduction.js"></script>
+
+  <script src="join.js"></script>
   <script src="mode.js"></script> 
   <script src="notifications.js"></script>
   <script src="fontsize.js"></script>
@@ -890,6 +1133,14 @@
   noResult.style.display = found === 0 && query !== '' ? 'flex' : 'none';
   document.getElementById('search-query').textContent = query;
 });
+
+document.getElementById("confirmjoin").addEventListener('click',confirmJoin);
+
+document.getElementById("close").addEventListener('click',closePopup);
+
+
+
+
   </script>
 
 
