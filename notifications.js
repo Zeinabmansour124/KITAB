@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
   const bouton = document.createElement("button");
   bouton.id = "notif-btn";
-  bouton.innerHTML = `🔔 Sera Notifié`;
+  bouton.innerHTML = ` Sera Notifié`;
 
  
   const wrapper = document.createElement("div");
@@ -59,11 +59,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   bouton.addEventListener("click", function () {
     if (actif) {
-      bouton.innerHTML = `🔔 Sera Notifié`;
+      bouton.innerHTML = ` Sera Notifié`;
       bouton.classList.remove("actif");
       actif = false;
     } else {
-      bouton.innerHTML = `✅ Notifié !`;
+      bouton.innerHTML = ` Notifié !`;
       bouton.classList.add("actif");
       actif = true;
     }
