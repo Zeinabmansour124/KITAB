@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>BookSwap - Favorites</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        display: flex;
+        height: 100vh;
+        background-color: #f6f0d7;
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 260px;
+        height: 100vh;
+        background-color: #c5d89d;
+        padding: 25px 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .sidebar-top h2 {
+        color: #5d866c;
+      }
+
+      .sidebar-top p {
+        color: #5d866c;
+        font-size: 13px;
+        margin-bottom: 15px;
+      }
+
+      .sidebar hr {
+        border: none;
+        height: 1px;
+        background-color: #89986d;
+        margin: 15px 0;
+      }
+
+      .sidebar nav a,
+      .sidebar-bottom a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        text-decoration: none;
+        color: #5d866c;
+        border-radius: 10px;
+        transition: 0.3s;
+        font-weight: 500;
+      }
+
+      .sidebar nav a:hover,
+      .sidebar-bottom a:hover,
+      .sidebar a.active {
+        background-color: #89986d;
+        color: white;
+      }
+
+      .sidebar i {
+        font-size: 18px;
+      }
+
+      .badge {
+        background-color: #89986d;
+        color: white;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        margin-left: auto;
+      }
+      .content {
+        margin-left: 260px;
+        flex: 1;
+        padding: 30px;
+      }
+
+      .page-header .title {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .page-header img {
+        width: 59px;
+        border-radius: 10px;
+      }
+
+      .page-header h1 {
+        color: #5d866c;
+      }
+
+      .page-header p {
+        color: #89986d;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin: 30px 0;
+      }
+
+      .card {
+        background-color: white;
+        padding: 20px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 2px solid #9ed08b;
+        transition: 0.3s;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+      }
+
+      .card p {
+        color: #5d866c;
+        font-size: 14px;
+      }
+
+      .card h2 {
+        color: #5d866c;
+      }
+
+      .card img {
+        width: 52px;
+        border-radius: 10px;
+        height: 50px;
+      }
+
+      /* EMPTY STATE */
+
+      .empty {
+        background-color: white;
+        border-radius: 20px;
+        padding: 60px;
+        text-align: center;
+        border: 2px dashed #9ed08b;
+      }
+
+      .empty img {
+        width: 52px;
+        border-radius: 10px;
+        height: 50px;
+        margin-bottom: 20px;
+      }
+
+      .empty h2 {
+        color: #89986d;
+        margin-bottom: 10px;
+      }
+
+      .empty p {
+        color: #89986d;
+        margin-bottom: 30px;
+      }
+
+      .empty button {
+        padding: 15px 40px;
+        border: none;
+        border-radius: 30px;
+        background-color: #89986d;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .empty button:hover {
+        background-color: #5d866c;
+      }
+    </style>
+  </head>
+
+  <body>
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <h2>BookSwap</h2>
+        <p>Read. Share. Connect.</p>
+        <hr />
+      </div>
+
+      <nav>
+        <a href="#"><i class="bi bi-shop"></i> Marketplace</a>
+        <a href="#"
+          ><i class="bi bi-chat-left-text"></i> Messages
+          <span class="badge">3</span></a
+        >
+        <a href="#"><i class="bi bi-repeat"></i> Exchanges</a>
+        <a href="#" class="active"><i class="bi bi-heart"></i> Favorites</a>
+        <a href="#"><i class="bi bi-book"></i> Reading Rooms</a>
+        <a href="#"><i class="bi bi-trophy"></i> Leaderboard</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <hr />
+        <a href="#"><i class="bi bi-person-circle"></i> Profile</a>
+        <a href="#"><i class="bi bi-gear"></i> Settings</a>
+      </div>
+    </aside>
+    <main class="content">
+      <header class="page-header">
+        <div class="title">
+          <img src="💌.jpg" alt="" />
+          <div>
+            <h1>My Favorites</h1>
+            <p>Your curated collection of beloved books</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="stats">
+        <div class="card">
+          <div>
+            <p>Total Favorites</p>
+            <h2>0</h2>
+          </div>
+          <img src="💌.jpg" alt="" />
+        </div>
+
+        <div class="card">
+          <div>
+            <p>Total Value</p>
+            <h2>$0.00</h2>
+          </div>
+          <img src="Capture d'écran 2026-02-07 123316.png" alt="" />
+        </div>
+
+        <div class="card">
+          <div>
+            <p>For Exchange</p>
+            <h2>0</h2>
+          </div>
+          <img src="Capture d'écran 2026-02-07 123750.png" alt="" />
+        </div>
+
+        <div class="card">
+          <div>
+            <p>Genres</p>
+            <h2>0</h2>
+          </div>
+          <img src="Capture d'écran 2026-02-07 123955.png" alt="" />
+        </div>
+      </section>
+
+      <section class="empty">
+        <img src="Capture d'écran 2026-02-07 124509.png" alt="" />
+        <h2>No favorites yet</h2>
+        <p>
+          Start adding books to your favorites to create your personal
+          collection
+        </p>
+        <button>Browse Books</button>
+      </section>
+    </main>
+  </body>
+</html>
