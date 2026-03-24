@@ -1,6 +1,6 @@
 body {
       margin: 0px;
-      background-color: #b0d3a0;
+      background-color:#f6f0d7;
       
   font-family: Arial, sans-serif;
     }
@@ -8,7 +8,7 @@ body {
     .header {
       background-color: #b0d3a0;
       display: flex;
-      padding: 10px 50 px;
+      padding: 10px 50px;
       align-items: center;
       gap: 20px;
     }
@@ -130,6 +130,9 @@ body {
 }
 .color{
   color:green;
+}
+.icon-big{
+  font-size:50px;
 }
 
   

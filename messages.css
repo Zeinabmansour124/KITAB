@@ -131,7 +131,7 @@
     width:600px; /* occupe l’espace restant à côté de la sidebar */
     display: flex;
     flex-direction: column;
-    background-color: #f9f9f9;
+    background-color: #ac1515;
 }
 
 /* Header de la section Messages */
@@ -141,7 +141,7 @@
     gap: 10px;
     padding: 15px;
     border-bottom: 1px solid #ddd;
-    background-color: #fff;
+    background-color:#f6f0d7;
 }
 
 .messages header h1 {
@@ -171,7 +171,7 @@
 .conversation-list {
     flex: 1;
     overflow-y: auto; /* scroll si trop long */
-    background-color: #fff;
+    background-color:#f6f0d7;
 }
 
 .conversation-list ul {
