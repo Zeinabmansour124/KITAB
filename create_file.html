@@ -1,533 +1,632 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Reading Room - KITABI</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --sidebar:       #3b5d50;
-      --sidebar-dark:  #2f4a40;
-      --accent:        #6B8E23;
-      --accent-dark:   #4f6b17;
-      --accent-light:  #f5fde8;
-      --cream:         #FFF8E8;
-      --surface:       #ffffff;
-      --text:          #1e2d27;
-      --text-muted:    #6b7a6e;
-      --border:        #e0dbd0;
-      --radius:        16px;
-      --radius-sm:     10px;
-    }
-
-    
-    html, body {
-      margin: 0 !important;
-      padding: 0 !important;
-      width: 100% !important;
-      overflow-x: hidden !important;
-    }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      display: block !important;
-      position: relative !important;
-    }
-
-    
-    .sidebar {
-      width: 300px;
-      height: 100vh;
-      background-color: var(--sidebar);
-      display: flex;
-      position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      flex-direction: column;
-      justify-content: flex-start;
-      box-shadow: 2px 0 8px rgba(0,0,0,0.25);
-      overflow-y: auto;
-      z-index: 100;
-    }
-
-    .sidebar header {
-      display: flex;
-      align-items: center;
-      padding: 28px 24px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      gap: 12px;
-    }
-
-    .logo-text h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: 2px;
-      margin: 0;
-    }
-
-    .logo-text span {
-      font-size: 10px;
-      color: #cad2c5;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-
-    .sidebar-nav {
-      flex: 1;
-      padding: 16px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .sidebar-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 13px 24px;
-      color: #f0f3f5;
-      text-decoration: none;
-      font-size: 14px;
-      transition: all 0.25s;
-      border-left: 3px solid transparent;
-    }
-
-    .sidebar-link:hover, .sidebar-link.active {
-      background: rgba(0,0,0,0.15);
-      color: #fff;
-      border-left-color: var(--accent);
-    }
-
-    .sidebar-link .material-icons { font-size: 20px; color: #cad2c5; }
-    .sidebar-link:hover .material-icons,
-    .sidebar-link.active .material-icons { color: #a8c06e; }
-
-    .sidebar-footer {
-      border-top: 1px solid #2f3e46;
-      padding: 15px 20px;
-    }
-
-    .sidebar-footer .footer-links a {
-      display: flex;
-      align-items: center;
-      color: #f0f3f5;
-      font-size: 14px;
-      text-decoration: none;
-      margin-bottom: 10px;
-      transition: color 0.3s;
-      gap: 10px;
-    }
-
-    .sidebar-footer .footer-links a .material-icons { color: #cad2c5; }
-    .sidebar-footer .footer-links a:hover { color: #fff; }
-    .sidebar-footer .footer-links a:hover .material-icons { color: #a8c06e; }
-
-   
-    .content {
-      margin-left: 300px;
-      min-height: 100vh;
-      background: var(--cream);
-    }
-
-    
-    .page-header {
-      background-color: var(--sidebar);
-      padding: 32px 40px 28px;
-      box-shadow: 0 2px 12px rgba(59,93,80,0.2);
-    }
-
-    .page-header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      font-weight: 700;
-      color: #fff;
-      margin: 0;
-    }
-
-    .page-header p {
-      color: #cad2c5;
-      font-size: 14px;
-      margin-top: 5px;
-    }
-
-    
-    .form-wrapper {
-      padding: 40px;
-      display: flex;
-      justify-content: center;
-    }
-
-    
-    .card {
-      background: var(--surface);
-      border-radius: 20px;
-      width: 100%;
-      max-width: 560px;
-      padding: 36px 40px;
-      box-shadow: 0 8px 32px rgba(59,93,80,0.1);
-      border-top: 4px solid var(--sidebar);
-    }
-
-    
-    .card-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .card-subtitle {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 28px;
-      line-height: 1.6;
-    }
-
-    
-    .field { margin-bottom: 18px; }
-
-    .field label {
-      display: block;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--sidebar);
-      margin-bottom: 7px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .field input,
-    .field select,
-    .field textarea {
-      width: 100%;
-      background: #fafaf8;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 11px 14px;
-      font-size: 14px;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-    }
-
-    .field input::placeholder,
-    .field textarea::placeholder { color: #c0bdb5; }
-
-    .field input:focus,
-    .field select:focus,
-    .field textarea:focus {
-      border-color: var(--sidebar);
-      background: #f5fbf8;
-      box-shadow: 0 0 0 3px rgba(59,93,80,0.1);
-    }
-
-    .field select { appearance: none; cursor: pointer; }
-    .field textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
-
-   
-    .field-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    
-    .type-toggle { display: flex; gap: 8px; }
-
-    .type-opt {
-      flex: 1;
-      padding: 11px;
-      border-radius: var(--radius-sm);
-      font-size: 13px;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
-      cursor: pointer;
-      border: 2px solid var(--border);
-      background: white;
-      color: #aaa;
-      text-align: center;
-      transition: all 0.18s;
-    }
-
-    .type-opt.selected {
-      border-color: var(--sidebar);
-      color: var(--sidebar);
-      background: #eef5f2;
-    }
-
-    .type-opt:hover:not(.selected) {
-      border-color: #bbb;
-      color: var(--text);
-    }
-
-    
-    .tags-selector { display: flex; flex-wrap: wrap; gap: 7px; }
-
-    .tag-opt {
-      padding: 5px 14px;
-      border-radius: 50px;
-      font-size: 12px;
-      cursor: pointer;
-      border: 1.5px solid var(--border);
-      background: white;
-      color: #aaa;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      transition: all 0.15s;
-    }
-
-    .tag-opt:hover { border-color: #aaa; color: var(--text); }
-
-    .tag-opt.selected {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-light);
-    }
-
-    
-    .divider {
-      border: none;
-      border-top: 1.5px solid #f0ece4;
-      margin: 24px 0;
-    }
-
-    
-    .card-footer {
-      display: flex;
-      gap: 10px;
-      justify-content: flex-end;
-      padding-top: 20px;
-      border-top: 1.5px solid #f0ece4;
-    }
-
-    .btn-cancel {
-      padding: 11px 24px;
-      border-radius: 50px;
-      font-size: 13px;
-      font-weight: 600;
-      font-family: 'DM Sans', sans-serif;
-      cursor: pointer;
-      background: white;
-      color: var(--text-muted);
-      border: 1.5px solid var(--border);
-      transition: all 0.18s;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .btn-cancel:hover {
-      border-color: var(--sidebar);
-      color: var(--sidebar);
-      background: #eef5f2;
-    }
-
-    .btn-create {
-      padding: 11px 28px;
-      border-radius: 50px;
-      font-size: 13px;
-      font-weight: 600;
-      font-family: 'DM Sans', sans-serif;
-      cursor: pointer;
-      background: linear-gradient(135deg, var(--sidebar), #4e7a65);
-      color: white;
-      border: none;
-      transition: all 0.2s;
-      box-shadow: 0 4px 12px rgba(59,93,80,0.3);
-    }
-
-    .btn-create:hover {
-      background: linear-gradient(135deg, var(--sidebar-dark), var(--sidebar));
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(59,93,80,0.4);
-    }
-
-    /* ── adapter au taille des ecrans ── */
-    @media (max-width: 768px) {
-      .sidebar { width: 100%; height: auto; position: relative !important; }
-      .content { margin-left: 0; }
-      .form-wrapper { padding: 24px 16px; }
-      .card { padding: 24px 20px; }
-    }
-
-    @media (max-width: 540px) {
-      .field-row { grid-template-columns: 1fr; }
-    }
-
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #cad2c5; border-radius: 99px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--sidebar); }
-  </style>
-</head>
-<body>
-
-  
-  <aside class="sidebar">
-    <header>
-      <svg width="38" height="38" fill="#6B8E23" viewBox="0 0 24 24">
-        <path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM6 4h5v16H6V4zm12 16h-5V4h5v16z"/>
-        <path d="M9 7h6v2H9zM9 11h6v2H9zM9 15h4v2H9z"/>
-      </svg>
-      <div class="logo-text">
-        <h1>KITABI</h1>
-        <span>Read.Share.Connect</span>
-      </div>
-    </header>
-
-    <nav class="sidebar-nav">
-      <a href="#" class="sidebar-link"><span class="material-icons">local_mall</span>Marketplace</a>
-      <a href="marketPlace.html" class="sidebar-link"><span class="material-icons">chat_bubble</span>Messages</a>
-      <a href="codeHTML.html" class="sidebar-link"><span class="material-icons">swap_horiz</span>Exchanges</a>
-      <a href="#" class="sidebar-link"><span class="material-icons">favorite</span>Favorites</a>
-      <a href="reading-rooms.html" class="sidebar-link active"><span class="material-icons">import_contacts</span>Reading Rooms</a>
-      <a href="#" class="sidebar-link"><span class="material-icons">dashboard</span>Dashboard</a>
-      <a href="#" class="sidebar-link"><span class="material-icons">emoji_events</span>LeaderBoard</a>
-    </nav>
-
-    <div class="sidebar-footer">
-      <div class="footer-links">
-        <a href="profile.html"><span class="material-icons">account_circle</span>Profile</a>
-        <a href="#"><span class="material-icons">notifications</span>Notifications</a>
-        <a href="#"><span class="material-icons">settings</span>Settings</a>
-      </div>
-    </div>
-  </aside>
-
-  
-  <div class="content">
-
-    <div class="page-header">
-      <h1>Create a Reading Room</h1>
-      <p>Set up a new space to read and discuss with the community</p>
-    </div>
-
-    <div class="form-wrapper">
-      <div class="card">
-
-        <h2 class="card-title">Room Details</h2>
-        <p class="card-subtitle">Fill in the information below to create your reading room.</p>
-
-        <div class="field">
-          <label>Book title</label>
-          <input type="text" id="bookTitle" placeholder="e.g. The Brothers Karamazov">
-        </div>
-
-        <div class="field-row">
-          <div class="field">
-            <label>Author</label>
-            <input type="text" id="bookAuthor" placeholder="e.g. Fyodor Dostoevsky">
-          </div>
-          <div class="field">
-            <label>Total pages</label>
-            <input type="number" id="totalPages" placeholder="e.g. 520" min="1">
-          </div>
-        </div>
-
-        <div class="field">
-          <label>Room type</label>
-          <div class="type-toggle">
-            <button class="type-opt selected">Live Session</button>
-            <button class="type-opt">Scheduled</button>
-          </div>
-        </div>
-
-        <div class="field-row">
-          <div class="field">
-            <label>Max participants</label>
-            <input type="number" id="maxPart" placeholder="e.g. 15" min="2" max="50">
-          </div>
-          <div class="field">
-            <label>Genre</label>
-            <select id="genre">
-              <option value="" disabled selected>Select genre</option>
-              <option>Classic</option>
-              <option>Sci-Fi</option>
-              <option>Fantasy</option>
-              <option>Dystopian</option>
-              <option>Romance</option>
-              <option>Philosophy</option>
-              <option>Drama</option>
-              <option>Adventure</option>
-              <option>Fiction</option>
-              <option>Non-Fiction</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="field">
-          <label>Tags</label>
-          <div class="tags-selector">
-            <button class="tag-opt">Classic</button>
-            <button class="tag-opt">Sci-Fi</button>
-            <button class="tag-opt">Fantasy</button>
-            <button class="tag-opt">Romance</button>
-            <button class="tag-opt">Dystopian</button>
-            <button class="tag-opt">Philosophy</button>
-            <button class="tag-opt">Adventure</button>
-            <button class="tag-opt">Drama</button>
-            <button class="tag-opt">Fiction</button>
-          </div>
-        </div>
-
-        <div class="field">
-          <label>Description (optional)</label>
-          <textarea id="description" placeholder="What will you discuss in this reading room?"></textarea>
-        </div>
-
-        <div class="card-footer">
-          <a href="reading-rooms.html" class="btn-cancel">Cancel</a>
-          <button class="btn-create" id="createBtn">Create Room</button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <script>
-
-
-    document.querySelectorAll('.type-opt').forEach(opt => {
-      opt.addEventListener('click', () => {
-        document.querySelectorAll('.type-opt').forEach(o => o.classList.remove('selected'));
-        opt.classList.add('selected');
-      });
-    });
-
-    document.querySelectorAll('.tag-opt').forEach(tag => {
-      tag.addEventListener('click', () => tag.classList.toggle('selected'));
-    });
-
-    document.getElementById('createBtn').addEventListener('click', () => {
-      const title = document.getElementById('bookTitle');
-      if (!title.value.trim()) {
-        title.style.borderColor = '#ef4444';
-        title.style.boxShadow = '0 0 0 3px rgba(239,68,68,0.12)';
-        title.focus();
-        return;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Reading Room - KITABI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
-      const btn = document.getElementById('createBtn');
-      btn.textContent = '✓ Room Created!';
-      btn.style.background = 'linear-gradient(135deg, #3b8a5a, #6B8E23)';
-      setTimeout(() => { window.location.href = 'reading-rooms.html'; }, 1000);
-    });
 
-    document.getElementById('bookTitle').addEventListener('input', function() {
-      this.style.borderColor = '';
-      this.style.boxShadow = '';
-    });
-  </script>
+      :root {
+        --sidebar: #3b5d50;
+        --sidebar-dark: #2f4a40;
+        --accent: #6b8e23;
+        --accent-dark: #4f6b17;
+        --accent-light: #f5fde8;
+        --cream: #fff8e8;
+        --surface: #ffffff;
+        --text: #1e2d27;
+        --text-muted: #6b7a6e;
+        --border: #e0dbd0;
+        --radius: 16px;
+        --radius-sm: 10px;
+      }
 
-</body>
+      html,
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        overflow-x: hidden !important;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--cream);
+        display: block !important;
+        position: relative !important;
+      }
+
+      .sidebar {
+        width: 300px;
+        height: 100vh;
+        background-color: var(--sidebar);
+        display: flex;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        flex-direction: column;
+        justify-content: flex-start;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.25);
+        overflow-y: auto;
+        z-index: 100;
+      }
+
+      .sidebar header {
+        display: flex;
+        align-items: center;
+        padding: 28px 24px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        gap: 12px;
+      }
+
+      .logo-text h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: 2px;
+        margin: 0;
+      }
+
+      .logo-text span {
+        font-size: 10px;
+        color: #cad2c5;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+
+      .sidebar-nav {
+        flex: 1;
+        padding: 16px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .sidebar-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 13px 24px;
+        color: #f0f3f5;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.25s;
+        border-left: 3px solid transparent;
+      }
+
+      .sidebar-link:hover,
+      .sidebar-link.active {
+        background: rgba(0, 0, 0, 0.15);
+        color: #fff;
+        border-left-color: var(--accent);
+      }
+
+      .sidebar-link .material-icons {
+        font-size: 20px;
+        color: #cad2c5;
+      }
+      .sidebar-link:hover .material-icons,
+      .sidebar-link.active .material-icons {
+        color: #a8c06e;
+      }
+
+      .sidebar-footer {
+        border-top: 1px solid #2f3e46;
+        padding: 15px 20px;
+      }
+
+      .sidebar-footer .footer-links a {
+        display: flex;
+        align-items: center;
+        color: #f0f3f5;
+        font-size: 14px;
+        text-decoration: none;
+        margin-bottom: 10px;
+        transition: color 0.3s;
+        gap: 10px;
+      }
+
+      .sidebar-footer .footer-links a .material-icons {
+        color: #cad2c5;
+      }
+      .sidebar-footer .footer-links a:hover {
+        color: #fff;
+      }
+      .sidebar-footer .footer-links a:hover .material-icons {
+        color: #a8c06e;
+      }
+
+      .content {
+        margin-left: 300px;
+        min-height: 100vh;
+        background: var(--cream);
+      }
+
+      .page-header {
+        background-color: var(--sidebar);
+        padding: 32px 40px 28px;
+        box-shadow: 0 2px 12px rgba(59, 93, 80, 0.2);
+      }
+
+      .page-header h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: #fff;
+        margin: 0;
+      }
+
+      .page-header p {
+        color: #cad2c5;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+
+      .form-wrapper {
+        padding: 40px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .card {
+        background: var(--surface);
+        border-radius: 20px;
+        width: 100%;
+        max-width: 560px;
+        padding: 36px 40px;
+        box-shadow: 0 8px 32px rgba(59, 93, 80, 0.1);
+        border-top: 4px solid var(--sidebar);
+      }
+
+      .card-title {
+        font-family: "Playfair Display", serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+
+      .card-subtitle {
+        font-size: 13px;
+        color: var(--text-muted);
+        margin-bottom: 28px;
+        line-height: 1.6;
+      }
+
+      .field {
+        margin-bottom: 18px;
+      }
+
+      .field label {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--sidebar);
+        margin-bottom: 7px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .field input,
+      .field select,
+      .field textarea {
+        width: 100%;
+        background: #fafaf8;
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 11px 14px;
+        font-size: 14px;
+        font-family: "DM Sans", sans-serif;
+        color: var(--text);
+        outline: none;
+        transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+      }
+
+      .field input::placeholder,
+      .field textarea::placeholder {
+        color: #c0bdb5;
+      }
+
+      .field input:focus,
+      .field select:focus,
+      .field textarea:focus {
+        border-color: var(--sidebar);
+        background: #f5fbf8;
+        box-shadow: 0 0 0 3px rgba(59, 93, 80, 0.1);
+      }
+
+      .field select {
+        appearance: none;
+        cursor: pointer;
+      }
+      .field textarea {
+        resize: vertical;
+        min-height: 80px;
+        line-height: 1.6;
+      }
+
+      .field-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .type-toggle {
+        display: flex;
+        gap: 8px;
+      }
+
+      .type-opt {
+        flex: 1;
+        padding: 11px;
+        border-radius: var(--radius-sm);
+        font-size: 13px;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        border: 2px solid var(--border);
+        background: white;
+        color: #aaa;
+        text-align: center;
+        transition: all 0.18s;
+      }
+
+      .type-opt.selected {
+        border-color: var(--sidebar);
+        color: var(--sidebar);
+        background: #eef5f2;
+      }
+
+      .type-opt:hover:not(.selected) {
+        border-color: #bbb;
+        color: var(--text);
+      }
+
+      .tags-selector {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+
+      .tag-opt {
+        padding: 5px 14px;
+        border-radius: 50px;
+        font-size: 12px;
+        cursor: pointer;
+        border: 1.5px solid var(--border);
+        background: white;
+        color: #aaa;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 500;
+        transition: all 0.15s;
+      }
+
+      .tag-opt:hover {
+        border-color: #aaa;
+        color: var(--text);
+      }
+
+      .tag-opt.selected {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: var(--accent-light);
+      }
+
+      .divider {
+        border: none;
+        border-top: 1.5px solid #f0ece4;
+        margin: 24px 0;
+      }
+
+      .card-footer {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        padding-top: 20px;
+        border-top: 1.5px solid #f0ece4;
+      }
+
+      .btn-cancel {
+        padding: 11px 24px;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 600;
+        font-family: "DM Sans", sans-serif;
+        cursor: pointer;
+        background: white;
+        color: var(--text-muted);
+        border: 1.5px solid var(--border);
+        transition: all 0.18s;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn-cancel:hover {
+        border-color: var(--sidebar);
+        color: var(--sidebar);
+        background: #eef5f2;
+      }
+
+      .btn-create {
+        padding: 11px 28px;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 600;
+        font-family: "DM Sans", sans-serif;
+        cursor: pointer;
+        background: linear-gradient(135deg, var(--sidebar), #4e7a65);
+        color: white;
+        border: none;
+        transition: all 0.2s;
+        box-shadow: 0 4px 12px rgba(59, 93, 80, 0.3);
+      }
+
+      .btn-create:hover {
+        background: linear-gradient(
+          135deg,
+          var(--sidebar-dark),
+          var(--sidebar)
+        );
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(59, 93, 80, 0.4);
+      }
+
+      /* ── adapter au taille des ecrans ── */
+      @media (max-width: 768px) {
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative !important;
+        }
+        .content {
+          margin-left: 0;
+        }
+        .form-wrapper {
+          padding: 24px 16px;
+        }
+        .card {
+          padding: 24px 20px;
+        }
+      }
+
+      @media (max-width: 540px) {
+        .field-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cad2c5;
+        border-radius: 99px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--sidebar);
+      }
+    </style>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <header>
+        <svg width="38" height="38" fill="#6B8E23" viewBox="0 0 24 24">
+          <path
+            d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM6 4h5v16H6V4zm12 16h-5V4h5v16z"
+          />
+          <path d="M9 7h6v2H9zM9 11h6v2H9zM9 15h4v2H9z" />
+        </svg>
+        <div class="logo-text">
+          <h1>KITABI</h1>
+          <span>Read.Share.Connect</span>
+        </div>
+      </header>
+
+      <nav class="sidebar-nav">
+        <a href="#" class="sidebar-link"
+          ><span class="material-icons">local_mall</span>Marketplace</a
+        >
+        <a href="marketplace.html" class="sidebar-link"
+          ><span class="material-icons">chat_bubble</span>Messages</a
+        >
+        <a href="codeHTML.html" class="sidebar-link"
+          ><span class="material-icons">swap_horiz</span>Exchanges</a
+        >
+        <a href="favorisContenantLivres.html" class="sidebar-link"
+          ><span class="material-icons">favorite</span>Favorites</a
+        >
+        <a href="reading-rooms.html" class="sidebar-link active"
+          ><span class="material-icons">import_contacts</span>Reading Rooms</a
+        >
+        <a href="#" class="sidebar-link"
+          ><span class="material-icons">dashboard</span>Dashboard</a
+        >
+        <a href="#" class="sidebar-link"
+          ><span class="material-icons">emoji_events</span>LeaderBoard</a
+        >
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="footer-links">
+          <a href="profile.html"
+            ><span class="material-icons">account_circle</span>Profile</a
+          >
+          <a href="#"
+            ><span class="material-icons">notifications</span>Notifications</a
+          >
+          <a href="#"><span class="material-icons">settings</span>Settings</a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="content">
+      <div class="page-header">
+        <h1>Create a Reading Room</h1>
+        <p>Set up a new space to read and discuss with the community</p>
+      </div>
+
+      <div class="form-wrapper">
+        <div class="card">
+          <h2 class="card-title">Room Details</h2>
+          <p class="card-subtitle">
+            Fill in the information below to create your reading room.
+          </p>
+
+          <div class="field">
+            <label>Book title</label>
+            <input
+              type="text"
+              id="bookTitle"
+              placeholder="e.g. The Brothers Karamazov"
+            />
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Author</label>
+              <input
+                type="text"
+                id="bookAuthor"
+                placeholder="e.g. Fyodor Dostoevsky"
+              />
+            </div>
+            <div class="field">
+              <label>Total pages</label>
+              <input
+                type="number"
+                id="totalPages"
+                placeholder="e.g. 520"
+                min="1"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Room type</label>
+            <div class="type-toggle">
+              <button class="type-opt selected">Live Session</button>
+              <button class="type-opt">Scheduled</button>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Max participants</label>
+              <input
+                type="number"
+                id="maxPart"
+                placeholder="e.g. 15"
+                min="2"
+                max="50"
+              />
+            </div>
+            <div class="field">
+              <label>Genre</label>
+              <select id="genre">
+                <option value="" disabled selected>Select genre</option>
+                <option>Classic</option>
+                <option>Sci-Fi</option>
+                <option>Fantasy</option>
+                <option>Dystopian</option>
+                <option>Romance</option>
+                <option>Philosophy</option>
+                <option>Drama</option>
+                <option>Adventure</option>
+                <option>Fiction</option>
+                <option>Non-Fiction</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Tags</label>
+            <div class="tags-selector">
+              <button class="tag-opt">Classic</button>
+              <button class="tag-opt">Sci-Fi</button>
+              <button class="tag-opt">Fantasy</button>
+              <button class="tag-opt">Romance</button>
+              <button class="tag-opt">Dystopian</button>
+              <button class="tag-opt">Philosophy</button>
+              <button class="tag-opt">Adventure</button>
+              <button class="tag-opt">Drama</button>
+              <button class="tag-opt">Fiction</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Description (optional)</label>
+            <textarea
+              id="description"
+              placeholder="What will you discuss in this reading room?"
+            ></textarea>
+          </div>
+
+          <div class="card-footer">
+            <a href="reading-rooms.html" class="btn-cancel">Cancel</a>
+            <button class="btn-create" id="createBtn">Create Room</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.querySelectorAll(".type-opt").forEach((opt) => {
+        opt.addEventListener("click", () => {
+          document
+            .querySelectorAll(".type-opt")
+            .forEach((o) => o.classList.remove("selected"));
+          opt.classList.add("selected");
+        });
+      });
+
+      document.querySelectorAll(".tag-opt").forEach((tag) => {
+        tag.addEventListener("click", () => tag.classList.toggle("selected"));
+      });
+
+      document.getElementById("createBtn").addEventListener("click", () => {
+        const title = document.getElementById("bookTitle");
+        if (!title.value.trim()) {
+          title.style.borderColor = "#ef4444";
+          title.style.boxShadow = "0 0 0 3px rgba(239,68,68,0.12)";
+          title.focus();
+          return;
+        }
+        const btn = document.getElementById("createBtn");
+        btn.textContent = "✓ Room Created!";
+        btn.style.background = "linear-gradient(135deg, #3b8a5a, #6B8E23)";
+        setTimeout(() => {
+          window.location.href = "reading-rooms.html";
+        }, 1000);
+      });
+
+      document
+        .getElementById("bookTitle")
+        .addEventListener("input", function () {
+          this.style.borderColor = "";
+          this.style.boxShadow = "";
+        });
+    </script>
+  </body>
 </html>
