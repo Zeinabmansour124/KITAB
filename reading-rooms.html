@@ -31,7 +31,7 @@
         font-family: "DM Sans", Arial, sans-serif;
         background-color: #fff8e8;
       }
-
+      
       .sidebar {
         width: 300px;
         height: 100vh;
@@ -420,6 +420,66 @@
         animation: blink 1.2s ease-in-out infinite;
         flex-shrink: 0;
       }
+      #myrooms-section {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 36px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#myrooms-section .section-label {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  color: #3b5d50;
+}
+
+
+.myrooms-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.myrooms-image {
+  width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  object-fit: cover;
+}
+
+
+.myrooms-text {
+  max-width: 400px;
+  text-align: left;
+}
+
+.myrooms-text h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: #2c4c3b;
+}
+
+.myrooms-text p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+
+
 
       @keyframes blink {
         0%,
@@ -839,6 +899,7 @@
         background: #f0f0f0;
         color: #555;
       }
+     
 
       #cancelJoin:hover {
         background: #e4e4e4;
@@ -1036,7 +1097,7 @@
         </div>
 
         <hr class="separator" />
-
+        <div id ="live-section">
         <div class="section-label" id="section_live">Live Sessions</div>
         <div class="rooms-container">
           <div class="room-card">
@@ -1205,7 +1266,8 @@
             </div>
           </div>
         </div>
-
+      </div>
+        <div  id ="scheduled-section">
         <div
           class="section-label"
           style="margin-top: 36px"
@@ -1427,7 +1489,30 @@
               </button>
             </div>
           </div>
+        </div>
+        </div>
 
+        <div id="myrooms-section" class="section-container">
+  <div class="section-label" style="display: none;">My Rooms</div>
+
+  <div class="myrooms-content">
+    <img
+      src="https://i.pinimg.com/1200x/06/07/32/0607321cf97261adf09084370414347f.jpg"
+      alt="No rooms yet"
+      class="myrooms-image"
+    />
+    <div class="myrooms-text">
+      <h3>No rooms yet</h3>
+      <p>
+        You can create your own room by clicking the <strong>Create</strong> button above
+        or join one of our existing rooms.
+      </p>
+       <a href="create_file.html" class="create-room-btn" id="create_room"
+          >+ Create Room</a
+        >
+    </div>
+  </div>
+</div>
           <div
             id="no-result"
             style="
@@ -1460,7 +1545,7 @@
               >"
             </p>
           </div>
-        </div>
+        
       </div>
     </div>
 
@@ -1512,7 +1597,7 @@
       <span id="successText"></span>
     </div>
 
-    <script src="tabs.js"></script>
+    
 
     <script src="traduction.js"></script>
     <script src=" RSVP.js "></script>
@@ -1523,17 +1608,9 @@
     <script src="fontsize.js"></script>
     <script src="fullscreen.js"></script>
     <script src="ambiance.js"></script>
+    
     <script>
-      document.querySelectorAll(".nav-tab").forEach((tab) => {
-        tab.addEventListener("click", (e) => {
-          e.preventDefault();
-          document
-            .querySelectorAll(".nav-tab")
-            .forEach((t) => t.classList.remove("active"));
-          tab.classList.add("active");
-        });
-      });
-
+      
       const searchBar = document.querySelector(".search-bar");
       searchBar.addEventListener("input", function () {
         const query = this.value.trim().toLowerCase();
@@ -1559,11 +1636,42 @@
         document.getElementById("search-query").textContent = query;
       });
 
-      document
-        .getElementById("confirmjoin")
-        .addEventListener("click", confirmJoin);
+     
+      //add script for live/schedule/my room button
+document.querySelectorAll(".nav-tab").forEach((tab) => {
+  tab.addEventListener("click", function (e) {
+    e.preventDefault();
 
-      document.getElementById("close").addEventListener("click", closePopup);
+    document.querySelectorAll(".nav-tab").forEach((t) => {
+      t.classList.remove("active");
+    });
+
+    this.classList.add("active");
+
+    document.getElementById("live-section").style.display = "none";
+    document.getElementById("scheduled-section").style.display = "none";
+    document.getElementById("myrooms-section").style.display = "none";
+
+    if (this.id === "tab_live") {
+      document.getElementById("live-section").style.display = "block";
+    }
+
+    if (this.id === "tab_scheduled") {
+      document.getElementById("scheduled-section").style.display = "block";
+    }
+
+    if (this.id === "tab_myrooms") {
+      document.getElementById("myrooms-section").style.display = "block";
+    }
+
+    if (this.id === "tab_discover") {
+      document.getElementById("live-section").style.display = "block";
+      document.getElementById("scheduled-section").style.display = "block";
+      document.getElementById("myrooms-section").style.display = "none";
+    }
+  });
+});
+     
     </script>
   </body>
 </html>

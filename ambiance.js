@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
       display: flex;
     }
 
-    /* Chaque bouton de son */
+    
     .son-btn {
       display: inline-flex;
       align-items: center;
