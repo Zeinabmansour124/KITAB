@@ -1,72 +1,70 @@
-
 document.addEventListener("DOMContentLoaded", function () {
-
-  
+  // 1. Créer le bouton notification
   const bouton = document.createElement("button");
   bouton.id = "notif-btn";
-  bouton.innerHTML = ` Sera Notifié`;
+  bouton.type = "button"; // Force le type bouton
+  bouton.textContent = "Sera Notifié";
 
- 
+  // 2. Créer le wrapper
   const wrapper = document.createElement("div");
   wrapper.id = "header-btns";
 
+  // 3. Trouver le bouton Create Room (par son ID pour plus de précision)
+  const createRoom = document.getElementById("create_room");
 
-  const createRoom = document.querySelector(".create-room-btn");
-  createRoom.parentNode.insertBefore(wrapper, createRoom);
-  wrapper.appendChild(bouton);
-  wrapper.appendChild(createRoom);
+  if (createRoom) {
+    // Placer le wrapper avant le bouton Create Room
+    createRoom.parentNode.insertBefore(wrapper, createRoom);
 
+    // Ajouter les boutons dans le wrapper
+    wrapper.appendChild(bouton);
+    wrapper.appendChild(createRoom);
+  }
 
- 
+  // 4. Style (Ajout de position relative pour le clic)
   const style = document.createElement("style");
   style.textContent = `
-    
-    #header-btns {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    #header-btns { 
+      display: flex; 
+      gap: 10px; 
+      align-items: center; 
+      position: relative; 
+      z-index: 999; 
     }
-
     #notif-btn {
-      padding: 12px 24px;
-      border-radius: 15px;
+      padding: 10px 20px;
+      border-radius: 12px;
       border: 2px solid white;
       background: transparent;
       color: white;
       font-family: 'DM Sans', sans-serif;
-      font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: 0.3s;
+      position: relative;
+      z-index: 1000;
     }
-
-    #notif-btn:hover {
-      background: white;
-      color: #3b5d50;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(255,255,255,0.3);
-    }
-
-    #notif-btn.actif {
+    #notif-btn:hover, #notif-btn.actif {
       background: white;
       color: #3b5d50;
     }
   `;
   document.head.appendChild(style);
 
-  
+  // 5. Logique de clic (avec preventDefault pour garantir le fonctionnement)
   let actif = false;
-
-  bouton.addEventListener("click", function () {
+  bouton.addEventListener("click", function (e) {
+    e.preventDefault(); // EMPÊCHE LE RECHARGEMENT OU LE CONFLIT
+    e.stopPropagation(); // EMPÊCHE LE CLIC DE FILTRER AILLEURS
+    
+    actif = !actif;
     if (actif) {
-      bouton.innerHTML = ` Sera Notifié`;
-      bouton.classList.remove("actif");
-      actif = false;
+      this.textContent = "Notifié !";
+      this.classList.add("actif");
     } else {
-      bouton.innerHTML = ` Notifié !`;
-      bouton.classList.add("actif");
-      actif = true;
+      this.textContent = "Sera Notifié";
+      this.classList.remove("actif");
     }
+    console.log("Clic détecté !"); // Vérifie dans ta console F12
   });
-
 });

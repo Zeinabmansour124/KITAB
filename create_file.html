@@ -4,10 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create Reading Room - KITABI</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -25,16 +26,18 @@
       }
 
       :root {
-        --sidebar: #3b5d50;
-        --sidebar-dark: #2f4a40;
-        --accent: #6b8e23;
-        --accent-dark: #4f6b17;
-        --accent-light: #f5fde8;
-        --cream: #fff8e8;
-        --surface: #ffffff;
-        --text: #1e2d27;
-        --text-muted: #6b7a6e;
-        --border: #e0dbd0;
+        --ink: #1a1208;
+        --amber: #c8860a;
+        --amber-mid: #e8a82a;
+        --amber-light: #f9efd0;
+        --rust: #8b3a1a;
+        --teal: #0e6b5e;
+        --teal-dark: #0a5046;
+        --teal-light: #d6f0ec;
+        --sand: #f5f0e8;
+        --white: #fffdf8;
+        --border: #e2d9c8;
+        --muted: #7a6e5f;
         --radius: 16px;
         --radius-sm: 10px;
       }
@@ -49,22 +52,24 @@
 
       body {
         font-family: "DM Sans", sans-serif;
-        background: var(--cream);
+        background: var(--sand);
+        color: var(--ink);
         display: block !important;
         position: relative !important;
       }
 
+      /* ===== SIDEBAR ===== */
       .sidebar {
         width: 300px;
         height: 100vh;
-        background-color: var(--sidebar);
+        background-color: var(--ink);
         display: flex;
         position: fixed !important;
         top: 0 !important;
         left: 0 !important;
         flex-direction: column;
         justify-content: flex-start;
-        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.25);
+        box-shadow: 2px 0 18px rgba(0, 0, 0, 0.22);
         overflow-y: auto;
         z-index: 100;
       }
@@ -73,22 +78,22 @@
         display: flex;
         align-items: center;
         padding: 28px 24px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         gap: 12px;
       }
 
       .logo-text h1 {
         font-family: "Playfair Display", serif;
         font-size: 22px;
-        font-weight: 700;
-        color: #fff;
-        letter-spacing: 2px;
+        font-weight: 900;
+        color: var(--amber-mid);
+        letter-spacing: 1px;
         margin: 0;
       }
 
       .logo-text span {
         font-size: 10px;
-        color: #cad2c5;
+        color: rgba(255, 253, 248, 0.55);
         letter-spacing: 1.5px;
         text-transform: uppercase;
       }
@@ -106,7 +111,7 @@
         align-items: center;
         gap: 12px;
         padding: 13px 24px;
-        color: #f0f3f5;
+        color: rgba(255, 253, 248, 0.8);
         text-decoration: none;
         font-size: 14px;
         transition: all 0.25s;
@@ -115,29 +120,30 @@
 
       .sidebar-link:hover,
       .sidebar-link.active {
-        background: rgba(0, 0, 0, 0.15);
+        background: rgba(255, 255, 255, 0.05);
         color: #fff;
-        border-left-color: var(--accent);
+        border-left-color: var(--amber);
       }
 
       .sidebar-link .material-icons {
         font-size: 20px;
-        color: #cad2c5;
+        color: rgba(255, 253, 248, 0.55);
       }
+
       .sidebar-link:hover .material-icons,
       .sidebar-link.active .material-icons {
-        color: #a8c06e;
+        color: var(--amber-mid);
       }
 
       .sidebar-footer {
-        border-top: 1px solid #2f3e46;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
         padding: 15px 20px;
       }
 
       .sidebar-footer .footer-links a {
         display: flex;
         align-items: center;
-        color: #f0f3f5;
+        color: rgba(255, 253, 248, 0.8);
         font-size: 14px;
         text-decoration: none;
         margin-bottom: 10px;
@@ -146,41 +152,66 @@
       }
 
       .sidebar-footer .footer-links a .material-icons {
-        color: #cad2c5;
+        color: rgba(255, 253, 248, 0.55);
       }
+
       .sidebar-footer .footer-links a:hover {
         color: #fff;
       }
+
       .sidebar-footer .footer-links a:hover .material-icons {
-        color: #a8c06e;
+        color: var(--amber-mid);
       }
 
+      /* ===== CONTENT ===== */
       .content {
         margin-left: 300px;
         min-height: 100vh;
-        background: var(--cream);
+        background: var(--sand);
       }
 
+      /* ===== PAGE HEADER ===== */
       .page-header {
-        background-color: var(--sidebar);
-        padding: 32px 40px 28px;
-        box-shadow: 0 2px 12px rgba(59, 93, 80, 0.2);
+        background: linear-gradient(
+          105deg,
+          rgba(26, 18, 8, 0.97) 0%,
+          rgba(14, 107, 94, 0.9) 60%,
+          rgba(200, 134, 10, 0.4) 100%
+        );
+        padding: 34px 40px 30px;
+        box-shadow: 0 2px 20px rgba(26, 18, 8, 0.18);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page-header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e8a82a' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        opacity: 0.5;
+      }
+
+      .page-header h1,
+      .page-header p {
+        position: relative;
       }
 
       .page-header h1 {
         font-family: "Playfair Display", serif;
-        font-size: 28px;
-        font-weight: 700;
+        font-size: 30px;
+        font-weight: 900;
         color: #fff;
         margin: 0;
       }
 
       .page-header p {
-        color: #cad2c5;
+        color: rgba(255, 253, 248, 0.72);
         font-size: 14px;
-        margin-top: 5px;
+        margin-top: 6px;
       }
 
+      /* ===== FORM WRAPPER ===== */
       .form-wrapper {
         padding: 40px;
         display: flex;
@@ -188,26 +219,26 @@
       }
 
       .card {
-        background: var(--surface);
+        background: var(--white);
         border-radius: 20px;
         width: 100%;
-        max-width: 560px;
+        max-width: 620px;
         padding: 36px 40px;
-        box-shadow: 0 8px 32px rgba(59, 93, 80, 0.1);
-        border-top: 4px solid var(--sidebar);
+        box-shadow: 0 8px 32px rgba(26, 18, 8, 0.08);
+        border-top: 4px solid var(--amber);
       }
 
       .card-title {
         font-family: "Playfair Display", serif;
-        font-size: 20px;
-        font-weight: 700;
-        color: var(--text);
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--ink);
         margin-bottom: 4px;
       }
 
       .card-subtitle {
         font-size: 13px;
-        color: var(--text-muted);
+        color: var(--muted);
         margin-bottom: 28px;
         line-height: 1.6;
       }
@@ -220,7 +251,7 @@
         display: block;
         font-size: 11px;
         font-weight: 700;
-        color: var(--sidebar);
+        color: var(--ink);
         margin-bottom: 7px;
         letter-spacing: 0.08em;
         text-transform: uppercase;
@@ -230,37 +261,38 @@
       .field select,
       .field textarea {
         width: 100%;
-        background: #fafaf8;
+        background: #fffdf9;
         border: 1.5px solid var(--border);
         border-radius: var(--radius-sm);
         padding: 11px 14px;
         font-size: 14px;
         font-family: "DM Sans", sans-serif;
-        color: var(--text);
+        color: var(--ink);
         outline: none;
         transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
       }
 
       .field input::placeholder,
       .field textarea::placeholder {
-        color: #c0bdb5;
+        color: #b8afa2;
       }
 
       .field input:focus,
       .field select:focus,
       .field textarea:focus {
-        border-color: var(--sidebar);
-        background: #f5fbf8;
-        box-shadow: 0 0 0 3px rgba(59, 93, 80, 0.1);
+        border-color: var(--amber);
+        background: #fffaf0;
+        box-shadow: 0 0 0 3px rgba(232, 168, 42, 0.15);
       }
 
       .field select {
         appearance: none;
         cursor: pointer;
       }
+
       .field textarea {
         resize: vertical;
-        min-height: 80px;
+        min-height: 90px;
         line-height: 1.6;
       }
 
@@ -270,6 +302,7 @@
         gap: 14px;
       }
 
+      /* ===== TYPE TOGGLE ===== */
       .type-toggle {
         display: flex;
         gap: 8px;
@@ -283,24 +316,25 @@
         font-family: "DM Sans", sans-serif;
         font-weight: 600;
         cursor: pointer;
-        border: 2px solid var(--border);
+        border: 1.5px solid var(--border);
         background: white;
-        color: #aaa;
+        color: var(--muted);
         text-align: center;
         transition: all 0.18s;
       }
 
       .type-opt.selected {
-        border-color: var(--sidebar);
-        color: var(--sidebar);
-        background: #eef5f2;
+        border-color: var(--amber);
+        color: var(--amber);
+        background: var(--amber-light);
       }
 
       .type-opt:hover:not(.selected) {
-        border-color: #bbb;
-        color: var(--text);
+        border-color: #c9bca9;
+        color: var(--ink);
       }
 
+      /* ===== TAGS ===== */
       .tags-selector {
         display: flex;
         flex-wrap: wrap;
@@ -308,27 +342,27 @@
       }
 
       .tag-opt {
-        padding: 5px 14px;
+        padding: 6px 14px;
         border-radius: 50px;
         font-size: 12px;
         cursor: pointer;
         border: 1.5px solid var(--border);
         background: white;
-        color: #aaa;
+        color: var(--muted);
         font-family: "DM Sans", sans-serif;
         font-weight: 500;
         transition: all 0.15s;
       }
 
       .tag-opt:hover {
-        border-color: #aaa;
-        color: var(--text);
+        border-color: #c9bca9;
+        color: var(--ink);
       }
 
       .tag-opt.selected {
-        border-color: var(--accent);
-        color: var(--accent);
-        background: var(--accent-light);
+        border-color: var(--amber);
+        color: var(--amber);
+        background: var(--amber-light);
       }
 
       .divider {
@@ -337,12 +371,14 @@
         margin: 24px 0;
       }
 
+      /* ===== FOOTER ===== */
       .card-footer {
         display: flex;
         gap: 10px;
         justify-content: flex-end;
         padding-top: 20px;
         border-top: 1.5px solid #f0ece4;
+        margin-top: 28px;
       }
 
       .btn-cancel {
@@ -353,7 +389,7 @@
         font-family: "DM Sans", sans-serif;
         cursor: pointer;
         background: white;
-        color: var(--text-muted);
+        color: var(--muted);
         border: 1.5px solid var(--border);
         transition: all 0.18s;
         text-decoration: none;
@@ -361,9 +397,9 @@
       }
 
       .btn-cancel:hover {
-        border-color: var(--sidebar);
-        color: var(--sidebar);
-        background: #eef5f2;
+        border-color: var(--amber);
+        color: var(--amber);
+        background: var(--amber-light);
       }
 
       .btn-create {
@@ -373,36 +409,39 @@
         font-weight: 600;
         font-family: "DM Sans", sans-serif;
         cursor: pointer;
-        background: linear-gradient(135deg, var(--sidebar), #4e7a65);
+        background: linear-gradient(135deg, var(--amber), var(--amber-mid));
         color: white;
         border: none;
         transition: all 0.2s;
-        box-shadow: 0 4px 12px rgba(59, 93, 80, 0.3);
+        box-shadow: 0 4px 12px rgba(200, 134, 10, 0.28);
       }
 
       .btn-create:hover {
-        background: linear-gradient(
-          135deg,
-          var(--sidebar-dark),
-          var(--sidebar)
-        );
+        background: linear-gradient(135deg, var(--rust), var(--amber));
         transform: translateY(-1px);
-        box-shadow: 0 6px 20px rgba(59, 93, 80, 0.4);
+        box-shadow: 0 6px 20px rgba(200, 134, 10, 0.35);
       }
 
-      /* ── adapter au taille des ecrans ── */
+      /* ===== RESPONSIVE ===== */
       @media (max-width: 768px) {
         .sidebar {
           width: 100%;
           height: auto;
           position: relative !important;
         }
+
         .content {
           margin-left: 0;
         }
+
+        .page-header {
+          padding: 28px 20px 24px;
+        }
+
         .form-wrapper {
           padding: 24px 16px;
         }
+
         .card {
           padding: 24px 20px;
         }
@@ -412,32 +451,48 @@
         .field-row {
           grid-template-columns: 1fr;
         }
+
+        .card-footer {
+          flex-direction: column;
+        }
+
+        .btn-cancel,
+        .btn-create {
+          width: 100%;
+          text-align: center;
+        }
       }
 
+      /* ===== SCROLLBAR ===== */
       ::-webkit-scrollbar {
         width: 5px;
       }
+
       ::-webkit-scrollbar-track {
         background: transparent;
       }
+
       ::-webkit-scrollbar-thumb {
-        background: #cad2c5;
+        background: #d2c7b8;
         border-radius: 99px;
       }
+
       ::-webkit-scrollbar-thumb:hover {
-        background: var(--sidebar);
+        background: var(--amber);
       }
     </style>
   </head>
+
   <body>
     <aside class="sidebar">
       <header>
-        <svg width="38" height="38" fill="#6B8E23" viewBox="0 0 24 24">
+        <svg width="38" height="38" fill="#e8a82a" viewBox="0 0 24 24">
           <path
             d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM6 4h5v16H6V4zm12 16h-5V4h5v16z"
           />
           <path d="M9 7h6v2H9zM9 11h6v2H9zM9 15h4v2H9z" />
         </svg>
+
         <div class="logo-text">
           <h1>KITABI</h1>
           <span>Read.Share.Connect</span>
@@ -445,38 +500,48 @@
       </header>
 
       <nav class="sidebar-nav">
-        <a href="#" class="sidebar-link"
-          ><span class="material-icons">local_mall</span>Marketplace</a
-        >
-        <a href="marketplace.html" class="sidebar-link"
-          ><span class="material-icons">chat_bubble</span>Messages</a
-        >
-        <a href="codeHTML.html" class="sidebar-link"
-          ><span class="material-icons">swap_horiz</span>Exchanges</a
-        >
-        <a href="favorisContenantLivres.html" class="sidebar-link"
-          ><span class="material-icons">favorite</span>Favorites</a
-        >
-        <a href="reading-rooms.html" class="sidebar-link active"
-          ><span class="material-icons">import_contacts</span>Reading Rooms</a
-        >
-        <a href="#" class="sidebar-link"
-          ><span class="material-icons">dashboard</span>Dashboard</a
-        >
-        <a href="#" class="sidebar-link"
-          ><span class="material-icons">emoji_events</span>LeaderBoard</a
-        >
+        <a href="marketplace.html" class="sidebar-link">
+          <span class="material-icons">local_mall</span>Marketplace
+        </a>
+
+        <a href="messages.html" class="sidebar-link">
+          <span class="material-icons">chat_bubble</span>Messages
+        </a>
+
+        <a href="codeHTML.html" class="sidebar-link">
+          <span class="material-icons">swap_horiz</span>Exchanges
+        </a>
+
+        <a href="favorisContenantLivres.html" class="sidebar-link">
+          <span class="material-icons">favorite</span>Favorites
+        </a>
+
+        <a href="reading-rooms.html" class="sidebar-link active">
+          <span class="material-icons">import_contacts</span>Reading Rooms
+        </a>
+
+        <a href="#" class="sidebar-link">
+          <span class="material-icons">dashboard</span>Dashboard
+        </a>
+
+        <a href="#" class="sidebar-link">
+          <span class="material-icons">emoji_events</span>LeaderBoard
+        </a>
       </nav>
 
       <div class="sidebar-footer">
         <div class="footer-links">
-          <a href="profile.html"
-            ><span class="material-icons">account_circle</span>Profile</a
-          >
-          <a href="#"
-            ><span class="material-icons">notifications</span>Notifications</a
-          >
-          <a href="#"><span class="material-icons">settings</span>Settings</a>
+          <a href="profile.html">
+            <span class="material-icons">account_circle</span>Profile
+          </a>
+
+          <a href="#">
+            <span class="material-icons">notifications</span>Notifications
+          </a>
+
+          <a href="#">
+            <span class="material-icons">settings</span>Settings
+          </a>
         </div>
       </div>
     </aside>
@@ -512,6 +577,7 @@
                 placeholder="e.g. Fyodor Dostoevsky"
               />
             </div>
+
             <div class="field">
               <label>Total pages</label>
               <input
@@ -526,8 +592,8 @@
           <div class="field">
             <label>Room type</label>
             <div class="type-toggle">
-              <button class="type-opt selected">Live Session</button>
-              <button class="type-opt">Scheduled</button>
+              <button class="type-opt selected" type="button">Live Session</button>
+              <button class="type-opt" type="button">Scheduled</button>
             </div>
           </div>
 
@@ -542,6 +608,7 @@
                 max="50"
               />
             </div>
+
             <div class="field">
               <label>Genre</label>
               <select id="genre">
@@ -563,15 +630,15 @@
           <div class="field">
             <label>Tags</label>
             <div class="tags-selector">
-              <button class="tag-opt">Classic</button>
-              <button class="tag-opt">Sci-Fi</button>
-              <button class="tag-opt">Fantasy</button>
-              <button class="tag-opt">Romance</button>
-              <button class="tag-opt">Dystopian</button>
-              <button class="tag-opt">Philosophy</button>
-              <button class="tag-opt">Adventure</button>
-              <button class="tag-opt">Drama</button>
-              <button class="tag-opt">Fiction</button>
+              <button class="tag-opt" type="button">Classic</button>
+              <button class="tag-opt" type="button">Sci-Fi</button>
+              <button class="tag-opt" type="button">Fantasy</button>
+              <button class="tag-opt" type="button">Romance</button>
+              <button class="tag-opt" type="button">Dystopian</button>
+              <button class="tag-opt" type="button">Philosophy</button>
+              <button class="tag-opt" type="button">Adventure</button>
+              <button class="tag-opt" type="button">Drama</button>
+              <button class="tag-opt" type="button">Fiction</button>
             </div>
           </div>
 
@@ -585,7 +652,9 @@
 
           <div class="card-footer">
             <a href="reading-rooms.html" class="btn-cancel">Cancel</a>
-            <button class="btn-create" id="createBtn">Create Room</button>
+            <button class="btn-create" id="createBtn" type="button">
+              Create Room
+            </button>
           </div>
         </div>
       </div>
@@ -607,15 +676,18 @@
 
       document.getElementById("createBtn").addEventListener("click", () => {
         const title = document.getElementById("bookTitle");
+
         if (!title.value.trim()) {
           title.style.borderColor = "#ef4444";
           title.style.boxShadow = "0 0 0 3px rgba(239,68,68,0.12)";
           title.focus();
           return;
         }
+
         const btn = document.getElementById("createBtn");
         btn.textContent = "✓ Room Created!";
-        btn.style.background = "linear-gradient(135deg, #3b8a5a, #6B8E23)";
+        btn.style.background = "linear-gradient(135deg, #8b3a1a, #c8860a)";
+
         setTimeout(() => {
           window.location.href = "reading-rooms.html";
         }, 1000);
