@@ -170,3 +170,15 @@
 #allBtn:checked ~ #exchange-Accepted{
     display: block;
 }
+.text-amber-light {
+    color: #f9efd0 !important;
+}
+            .btn-teal {
+                background-color: #0e6b5e !important;
+                color: white !important;
+                border-color: #0e6b5e !important;
+            }
+        .btn-outline-teal {
+                border-color: #0e6b5e !important;
+                color: #0e6b5e !important;
+            }
