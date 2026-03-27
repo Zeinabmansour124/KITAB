@@ -41,7 +41,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Lancement immédiat pour l'état initial
     updateVisibility();
+
+
+
 });
+
 //upload the exchange data from the server and display it in the page
 document.addEventListener('DOMContentLoaded', function() {
 });
@@ -65,3 +69,8 @@ chatButtonRefused.addEventListener('click', function() {});
 
 chatButtonInProgress=document.getElementById('chat-button-in-progress');
 chatButtonInProgress.addEventListener('click', function() {});
+ //accepter ou refuser les demandes d echange
+const acceptBtn=document.getElementById('accept-request');
+acceptBtn.addEventListener('click', function() {});
+const declineBtn=document.getElementById('decline-request');
+declineBtn.addEventListener('click', function() {});
