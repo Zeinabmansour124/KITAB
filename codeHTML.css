@@ -129,21 +129,44 @@
     color: #a0a0b0; /* Gris moyen pour le placeholder */
     font-weight: 400;
 }
-#activeExchangesContainer,
-#completedExchangesContainer,
-#allSection {
-    display: none;
+.accepted {
+    display: none !important; 
 }
-
-/* 2. On affiche selon le bouton radio coché */
-#activeBtn:checked ~ #activeExchangesContainer {
+#activeBtn:checked ~#pending-Exchanges {
+    display: block;
+}
+#activeBtn:checked ~ #exchange-Accepted {
+    display: block;
+}
+#activeBtn:checked ~ #in-progress-Exchanges {
+    display: block;
+}
+#completedBtn:checked ~ #completed-Exchanges{
     display: block;
 }
 
-#completedBtn:checked ~ #completedExchangesContainer {
+
+
+#allBtn:checked ~ #in-progress-Exchanges{
     display: block;
 }
 
-#allBtn:checked ~ #allSection {
+
+#allBtn:checked ~ #refused-Exchanges{
+    display: block;
+}
+
+
+#allBtn:checked ~#completed-Exchanges{
+    display: block;
+}
+
+
+#allBtn:checked ~ #pending-Exchanges{
+    display: block;
+}
+
+
+#allBtn:checked ~ #exchange-Accepted{
     display: block;
 }

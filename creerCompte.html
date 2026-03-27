@@ -23,16 +23,16 @@
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
         }
-        .texte-vert-olive {
-            color: #597819;
+        .texte-Teal{
+            color: #0e665e;
+            font-family: "Helvetica Neue";
+
         }
          .form-label {
             color: #2C3E50;
         }
-         input[type="text"],
-         input[type="email"],
-         input[type="password"] {
-            border: 1px solid #ccc;
+        .form-control {
+            border: 1px solid #0e6b5e;
             border-radius: 5px;
             padding: 10px;
             width: 100%;
@@ -50,19 +50,32 @@
         .vert-profond {
             background-color: #3b5d50; 
         }
+        .btn-teal {
+                background-color: #0e6b5e !important;
+                color: white !important;
+                border-color: #0e6b5e !important;
+            }
+        .btn-outline-teal {
+                border-color: #0e6b5e !important;
+                color: #0e6b5e !important;
+            }
+        .form-check-border .form-check-input {
+            border: 2px solid #0e6b5e !important;
+        }
+   
 
     </style>
 </head>
 <body>
      <div class="container-fluid p-0">
         <nav id="mainNav">
-      <div class="logo">KITAB<span class="text_arb">كتاب </span></div>
-      <ul class="nav-links">
-        <li>
-          <a href="marketPlace.html"><i class="bi bi-shop fs-6"></i>Marketplace</a>
-        </li>
-        <li>
-          <a href="messages.html"><i class="bi bi-chat-left-text"></i>Messages</a>
+            <div class="logo">KITAB<span class="text_arb">كتاب </span></div>
+                <ul class="nav-links">
+                    <li>
+                        <a href="marketPlace.html"><i class="bi bi-shop fs-6"></i>Marketplace</a>
+                    </li>
+                    <li>
+                        <a href="messages.html"><i class="bi bi-chat-left-text"></i>Messages</a>
         </li>
         <li>
           <a href="codeHTML.html"><i class="bi bi-repeat"></i>Exchange</a>
@@ -83,16 +96,9 @@
         <hr />
       </ul>
     </nav>
-<section class="position-relative end-0 min-vh-100 p-4 exchanges" >
-            <div class="position-relative">
-                <h class="fw-bold texte-vert-olive display-3 position-relative z-0"> create an account </h>
-                <svg class="position-absolute top-50 start-50 translate-middle z-1" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="35" r="25" fill="#6B8E23" stroke="#2C3E50" stroke-width="2"/>
-                    <path d="M20 85 Q 50 65, 80 85" stroke="#2C3E50" stroke-width="3" fill="none"/>
-                    <path d="M25 60 L 75 60" stroke="#2C3E50" stroke-width="3"/>
-                    <path d="M25 60 L 15 75" stroke="#2C3E50" stroke-width="3"/>
-                    <path d="M75 60 L 85 75" stroke="#2C3E50" stroke-width="3"/>
-                </svg>
+        <section id="create-account" class="position-relative end-0 min-vh-100 p-4 exchanges mt-5 pt-5" >
+            <div class="position-relative mb-4">
+                <h class="fw-bold texte-Teal  display-3 position-relative z-0"> create an account </h>
             </div>            
             <form action="give-information" method="post" name="user-info">
                 <div class="ms-3">
@@ -102,11 +108,11 @@
                 </div>
                 <div>
                     <label for="email" class="form-label fw-bold">Email</label>
-                    <input type="email" id="email" name="email" placeholder="email@example.com" required>
+                    <input type="email" class='form-control' id="email" name="email" placeholder="email@example.com" required>
                 </div>
                 <div>
                     <label for="password" class="form-label fw-bold">Password</label>
-                    <input type="password" id="password" name="password" placeholder="password" required>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="password" required>
                 </div>
                 <div>
                     <label for="Confirm password" class="form-label fw-bold">Confirm Password</label>
@@ -175,43 +181,50 @@
                     <input type="text" class="form-control" id="language-prefered" name="language_prefered" placeholder="Language Preferred" required> 
                 </div>
                 <div>
-                    <span class="fw-bold"> Accepted Book Conditions</span>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="book_condition" id="condition-new" value="new" required>
-                        <label class="form-check-label" for="condition-new"> New</label>
+                    <span class="fw-bold form-label"> Accepted Book Conditions</span>
+                    <div class="form-check form-check-border">
+                        <input type="radio" class="form-check-input " name="book_condition" id="condition-new" value="new" required>
+                        <label class="form-check-label " for="condition-new"> New</label>
                     </div>
-                    <div class="form-check">
+                    <div class="form-check form-check-border">
                         <input type="radio" class="form-check-input" name="book_condition" id="condition-used" value="good-condition" required>
                         <label class="form-check-label" for="condition-used"> good condition</label>
                     </div>
-                    <div class="form-check">
+                    <div class="form-check form-check-border">
                         <input type="radio" class="form-check-input" name="book_condition" id="condition-acceptable" value="acceptable" required>
                         <label class="form-check-label" for="condition-acceptable"> Acceptable</label>
                     </div>                
                 </div>
                  <div>
-                    <span class="fw-bold"> exchange preferences</span>
-                    <div class="form-check">
+                    <span class="fw-bold form-label"> exchange preferences</span>
+                    <div class="form-check form-check-border">
                         <input type="radio" class="form-check-input" name="type-echange" id="local" value="local" required>
                         <label class="form-check-label" for="local"> Local</label>
                     </div>
-                    <div class="form-check">
+                    <div class="form-check form-check-border">
                         <input type="radio" class="form-check-input" name="type-echange" id="postal" value="postal" required>
                         <label class="form-check-label" for="postal"> Postal</label>
                     </div>
-                    <div class="form-check">
+                    <div class="form-check form-check-border">
                         <input type="radio" class="form-check-input" name="type-echange" id="condition-acceptable" value="2" required>
                         <label class="form-check-label" for="condition-acceptable"> 2 </label>
                     </div>                
                 </div>
                 <div >
                     <label for="biography" class="form-label fw-bold">Biography</label>
-                    <input type="text" class="form-control" id="biography" name="biography" placeholder="Biography" required> 
+                    <input type="text" class="form-control mb-3" id="biography" name="biography" placeholder="Biography" required> 
                 </div>
                 <div>
                     <label for="photo" class="form-label fw-bold">Profile Photo</label>
-                    <input type="file" id="photo" name="photo" accept="image/*" required>
+                    <input type="file" class="form-control mb-3" id="photo" name="photo" accept="image/*" required>
                 </div>
-                <button type="submit" class="btn btn-success">submit</button>
-                <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                <div>
+                     <label for="social-media" class="form-label fw-bold">Social Media Links</label>
+                     <input type="text" class="form-control mb-3" id="social-media" name="social_media" placeholder="Social Media Links (optional)">
+                </div>
+                <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-teal mt-4 me-5 ">submit</button>
+                <button type="reset" class="btn btn-outline-teal mt-4 ">Reset</button>
+                </div>
             </section>
+        </form>
