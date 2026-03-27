@@ -1,0 +1,244 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+:root {
+    --ink: #1a1208;
+    --amber: #c8860a;
+    --amber-mid: #e8a82a;
+    --amber-light: #f9efd0;
+    --rust: #8b3a1a;
+    --teal: #0e6b5e;
+    --teal-light: #d6f0ec;
+    --sand: #f5f0e8;
+    --white: #fffdf8;
+    --border: #e2d9c8;
+    --muted: #7a6e5f;
+  }
+  /* ===== NAV ===== */
+nav {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    right: 0; 
+    z-index: 200;
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    padding: 0 5vw;
+    height: 68px;
+    background: rgba(26, 18, 8, 0.95);
+    backdrop-filter: blur(10px);
+    transition: background 0.4s;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; 
+    font-weight: 900;
+    color: #e8a82a; 
+    letter-spacing: -.5px;
+  }
+  
+  .nav-links { 
+    display: flex;
+     gap: 32px; 
+     list-style: none; }
+  .nav-links a {
+    text-decoration: none; 
+    font-size: 13px;
+    color: rgba(255,253,248,.7); 
+    transition: color .2s;
+    display: inline; 
+    padding: 0; 
+    margin: 0;
+  }
+  .nav-links a:hover { color: #e8a82a; }
+
+body{
+    font-family: "DM Sans", sans-serif;
+    background: var(--ink);
+    color: var(--white);
+    overflow-x: hidden;
+    min-height: 100vh;
+    
+}
+.text_arb{
+    font-family: 'Amiri', serif;
+    direction: rtl;
+    font-size: 40px;
+    margin-left: 6px;
+    color: #8b3a1a; 
+  }
+ 
+
+ .content {
+    background-color: #FFF8E8;  
+    min-height: 100vh;
+    padding: 30px 10px 10px 20px;
+}
+
+
+.sugg{
+    color: beige;
+}
+.sugg:hover{
+    background-color: #1a1208;
+    color: #7a6e5f;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.15);
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 180px;
+    
+}
+
+div a {
+    display: block;
+    text-decoration: none;
+    padding: 20px 10px ;
+    padding: 0.5rem 1rem;   
+    margin-bottom: 0.5rem; 
+}
+.back{
+    position:fixed;
+    background-color: #c8860a;
+    color: black;
+    width: 300px;
+    height: 45px;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+.back:hover{
+    background-color: #1a1208;
+    color: #d6f0ec;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.15);
+    width: 300px;
+    border-radius: 20px;
+}
+.detailsside{
+    position:fixed;
+    top: 130px;
+    width: 300px;
+    height: 82vh;
+    background: #966c38;
+    color: white;
+    border-radius: 30px;
+}
+
+.detailscontent{
+    background: linear-gradient(to right, #1a1208, #8b3a1a, #ea9f13, #e8a82a, #f9efd0);;
+    margin-left: 400px;   
+    height: 100vh;
+    overflow-y: auto;
+    padding: 20px;
+    color: black;
+}
+
+.availability{
+    margin-left: 10px;
+    margin-right: 10px;
+    display: inline-block;
+    border-radius: 20px;
+    background-color: #c8860a;
+    width: 100px;
+    height: 22px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+.availability:hover{
+    background-color: rgb(186, 183, 183);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.15);
+    border-radius: 20px;
+}
+.imgdetails{
+    position: relative; 
+    display: inline-block;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+.imgdetails img{
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    transition: transform 0.4s ease;
+}
+.detailsside a{
+   margin-left: 50px;
+}
+
+.bloc {
+    margin-bottom: 20px;
+    background-color: #FFF8E8;
+    border-radius: 20px;
+    padding-left: 20px
+    
+}
+
+.initial span{
+    width: 200px;
+    height: 100px;
+    border-radius: 10px;
+    background-color: rgb(243, 243, 147);
+    margin-left: 200px;
+    margin-right: 0;
+
+}
+.booktype{
+    display: inline-block;
+    margin-right: 0 ; 
+    border-radius: 20px;
+    background-color: rgb(204, 148, 187);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    width: 100px;
+    height: 40px;
+
+}
+.conditionbook{
+    display: inline-block;
+    color: white;
+    top:1% ;
+    margin-left: 10px;
+    border-radius: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.Fair{
+    background-color: rgb(249, 197, 28);
+    width: 100px;
+    height: 40px;
+}
+.forexchange{
+    display: inline-block;
+    top:1% ;
+    right: 1%;
+    color: white;
+    background-color: purple;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 30px;
+    width: 100px;
+    height: 40px;
+    
+}
+.ownerpic{
+    float: left;
+    border-radius: 100%;
+    margin: 10px 0 ;
+    width:70px;
+    height: 70px;
+    display: flex;
+     align-items: center;
+
+}
+td{
+    padding: 20px;
+}
