@@ -592,3 +592,117 @@ nav.scrolled { background: rgba(26,18,8,.98); }
   100% { transform: translateX(-50%); }
   /* -50% car les items sont doublés → retour seamless au point de départ */
 }
+/* Container général */
+.settings.container {
+  margin-left: 250px; /* adapte selon navbar */
+  padding: 30px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Header */
+.settings-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.settings-header i {
+  font-size: 32px;
+  color: #6c63ff;
+  background: #eef0ff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.settings-header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.settings-header p {
+  margin: 0;
+  color: #666;
+}
+
+/* Tabs */
+.buttons-tabs {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.tab {
+  padding: 8px 16px;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tab:hover {
+  background: #ddd;
+}
+
+/* Card */
+.card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Titles */
+.card h2 {
+  margin-bottom: 20px;
+}
+
+/* Form */
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  flex: 1;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #6c63ff;
+  outline: none;
+}
+
+/* Button */
+.btn-save {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  background: #6c63ff;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-save:hover {
+  background: #5848d6;
+}
