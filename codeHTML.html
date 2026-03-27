@@ -8,57 +8,49 @@
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="messages.css">
         <link rel="stylesheet" href="codeHTML.css">
+        <link rel="stylesheet" href="marketPlace.css">
+        <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="codeHTML.js" defer></script>
     </head>
     
     <body>
         <div class="container-fluid p-0">
-        <aside class="sidebar col-auto vert-profond">
-        <header>
-            <svg width="42" height="42" fill="#6B8E23" class="me-3" viewBox="0 0 24 24">
-                    <path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM6 4h5v16H6V4zm12 16h-5V4h5v16z"/>
-                    <path d="M9 7h6v2H9zM9 11h6v2H9zM9 15h4v2H9z"/>
-            </svg>
-            <div class="logo-text">
-            <h1>
-                KITABI
-            </h1>
-                <span>Read.Share.Connect</span>
-            </div>
-
-        </header>
-
-
-        <nav class="sidebar-nav">
-            <a href="marketplace.html" class="sidebar-link"><span class="material-icons">local_mall</span>Marketplace</a>
-            <a href="messages.html" class="sidebar-link" class="messages"><span class="material-icons">chat_bubble</span>Messages</a>
-            <a href="codeHTML.html" class="sidebar-link"><span class="material-icons">swap_horiz</span>Exchanges</a>
-            <a href="favorisContenantLivres.html" class="sidebar-link"><span class="material-icons">favorite</span>Favorites</a>
-            <a href="reading-rooms.html" class="sidebar-link"><span class="material-icons">import_contacts</span>Reading Rooms</a>
-            <a href="#" class="sidebar-link"><span class="material-icons">dashboard</span>Dashboard</a>
-            <a href="#" class="sidebar-link"><span class="material-icons">emoji_events</span>LeaderBoard</a>
-        </nav>
-        <footer class="f">
-        <div class="sidebar-footer">
-                <div class="footer-links">
-                    <a href="profile.html"><span class="material-icons">account_circle</span>Profile</a>
-                    <a href="#"><span class="material-icons">notifications</span>Notifications</a>
-                    <a href="#"><span class="material-icons">settings</span>Settings</a>
-                </div>
-
-            
-        </div>
-
-        </footer>
-
-    </aside>
-        <section class="position-relative end-0 min-vh-100 p-4 exchanges" >
+         <nav id="mainNav">
+      <div class="logo">KITAB<span class="text_arb">كتاب </span></div>
+      <ul class="nav-links">
+        <li>
+          <a href="marketPlace.html"><i class="bi bi-shop fs-6"></i>Marketplace</a>
+        </li>
+        <li>
+          <a href="messages.html"><i class="bi bi-chat-left-text"></i>Messages</a>
+        </li>
+        <li>
+          <a href="codeHTML.html"><i class="bi bi-repeat"></i>Exchange</a>
+        </li>
+        <li>
+          <a href="favorisContenantLivres.html"><i class="bi bi-heart"></i>Favoris</a>
+        </li>
+        <li>
+          <a href="reading-rooms.html"><i class="bi bi-book"></i>Reading Room</a>
+        </li>
+        <hr />
+        <li>
+          <a href="profile.html"><i class="bi bi-person-circle"></i>Profile</a>
+        </li>
+        <li>
+          <a href=""><i class="bi bi-gear"></i>Settings</a>
+        </li>
+        <hr />
+      </ul>
+    </nav>
+        <section class="justify-content-center end-0 min-vh-100 p-4 exchanges" >
             <article class="d-flex align-items-center bg-photo border border-1 rounded p-3 mb-4"> 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-left-right me-2" viewBox="1 3 16 16">
-                        <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
-                    </svg> 
-                <div class="w-100">
-                    <h class="display-4 burgundian fw-bold mb-0 me-3">
+                   <div class="w-1₀">
+                    <h class="display-4 muted fw-bold mb-0 me-3">
                         BOOKEXCHANGES
                     </h>
                     <p class="fs-5 mb-0 text-light ">
@@ -67,37 +59,57 @@
                 </div>
             </article>
             <span class="mx-2"></span>
-            <article class="marges">
-                <div class="row gx-4">
-                    <div class="col-md-3 col-sm-6 mb-4 d-flex" style="width:150px; ">
-                        <div class=" active border border-1 rounded p-3 me-3 bg-burgundian">
-                            <div class="stat-label text-white">Total Exchanges</div> 
-                            <div class="stat-number text-white  " id="total-exchanges">0</div>   
+            <article class="d-flex justify-content-center mb-4 p-4 rounded-4 custom-dark-bg shadow-lg">
+    <div class="row g-3 justify-content-center w-100">
+        
+        <div class="col-md-3 col-sm-6 mb-4 d-flex" style ="width:150px; ">
+                    <div class="success-rate border border-1 rounded p-3 me-3 bg-amber-mid">
+                        <div class="stat-label text-white   ">Total Exchanges</div> 
+                            <div class="stat-number text-white fw-bold fs-3" id="total-exchanges">0</div>   
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 mb-4 d-flex" style ="width:150px; ">
+                    <div class="success-rate border border-1 rounded p-3 me-3 bg-amber-mid">
+                        <div class="stat-label text-white   ">Active </div> 
+                            <div class="stat-number text-white fw-bold fs-3" id="active">0</div>   
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6 mb-4 d-flex" style="width:150px; ">
-                        <div class=" active border border-1 rounded p-3 me-3 bg-burgundian">
-                            <div class="stat-label text-white">Active </div> 
-                            <div class="stat-number text-white  " id="active">0</div>   
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 mb-4 d-flex" style="width:150px; ">
-                        <div class="completed border border-1 rounded p-3 me-3 bg-burgundian">
+                        <div class="completed border border-1 rounded p-3 me-3 bg-amber-mid">
                             <div class="stat-label text-white">Completed </div>
-                            <div class="stat-number text-white" id="completed">0</div>
+                            <div class="stat-number text-white fw-bold fs-3" id="completed">0</div>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6 mb-4 d-flex" style ="width:150px; ">
-                    <div class="success-rate border border-1 rounded p-3 me-3 bg-burgundian">
+                    <div class="success-rate border border-1 rounded p-3 me-3 bg-amber-mid">
                         <div class="stat-label text-white   ">Success Rate </div>
-                        <div class="stat-number text-white" id="success-rate">0%</div>
+                        <div class="stat-number text-white fw-bold fs-3" id="success-rate">0%</div>
                      </div>
                 </div>
                 </div>
 
             </article>
-            <span class="mx-2"></span>
-            <article class="empl mb-4 p-3 rounded-bottom-4 rounded-top-4 bg-white d-inline-block">
+            <article id="search-tool" class="d-flex justify-content-center mb-4 p-3 rounded-4 bg-muted">
+    
+    <div class="search-filter-container d-flex align-items-center bg-white border rounded-4 p-3 shadow-sm w-100" style="max-width: 800px;">
+        
+        <div class="input-group search-input-group rounded-3 flex-grow-1 me-3">
+            <span class="input-group-text bg-transparent border-0 pe-1" id="search-icon">
+                <i class="bi bi-search text-muted fs-6"></i>
+            </span>
+            <input type="text" class="form-control bg-teal border-0 ps-2 fs-6" placeholder="Search by book title or partner name..." aria-label="Search" aria-describedby="search-icon">
+        </div>
+
+        <button class="btn btn-outline-secondary btn-filter d-flex align-items-center rounded-3 px-3 py-2" type="button">
+            <i class="bi bi-filter me-2 fs-6"></i>
+            <span class="fs-6 fw-normal text-dark">Filters</span>
+        </button>
+
+    </div>
+</article>
+            <span class=" mx-2  mb-4"></span>
+            <article class="d-flex justify-content-center empl mb-4 p-3 rounded-bottom-4 rounded-top-4 d-inline-block bg-muted">
                 <input type="radio" id="activeBtn" name="exchangeFilter" class="exchange-filter" checked>
                 <label for="activeBtn" class="filter-label">Active Exchanges</label>
                 <input type="radio" id="completedBtn" name="exchangeFilter" class="exchange-filter">
@@ -105,9 +117,10 @@
                 <input type="radio" id="allBtn" name="exchangeFilter" class="exchange-filter">
                 <label for="allBtn" class="filter-label">All Exchanges</label>
             </article>
-    <section class="accepted mt-4 push-content-up d-flex align-items-center border border-1 bg-success bg-opacity-25 rounded p-3">
+   <div id="activeExchangesContainer" >    
+    <section class="accepted mt-4 push-content-up d-flex align-items-center border border-1 bg-teal-light p-3">
         <div class="d-flex justify-content-between align-items-center mb-3 w-100">
-            <h class="d-flex align-items-center mb-0">
+            <h class="d-flex align-items-center mb-0 muted fw-bold">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
                     <circle cx="12" cy="12" r="4" fill="#28a745"/>
@@ -115,7 +128,7 @@
                 </svg>
                 Exchange Accepted 
             </h>
-            <button type="button" id="chat-button" class="btn btn-outline-success btn-sm">
+            <button type="button" id="chat-button" class="btn btn-outline-teal btn-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-fill me-1" viewBox="0 0 16 16">
                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
                 </svg> 
@@ -153,15 +166,15 @@
             </template>
 
     </section>
-   <section class="pendingResponse position-relative mt-4 border border-1 bg-success bg-opacity-25 rounded p-3">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h class="d-flex align-items-center mb-0">
+   <section class="pendingResponse position-relative mt-4 border border-1 bg-teal-light rounded p-3 ">
+        <div class="d-flex justify-content-between align-items-center mb-3 ">
+            <h class="d-flex align-items-center mb-0 muted fw-bold">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16" class="me-2">
                     <path d="M2 1.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1-.5-.5zm2.5.5v1a3.5 3.5 0 0 0 1.989 3.158c.533.256 1.011.791 1.011 1.491v.702c0 .7-.478 1.235-1.011 1.491A3.5 3.5 0 0 0 4.5 13v1h7v-1a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351v-.702c0-.7.478-1.235 1.011-1.491A3.5 3.5 0 0 0 11.5 3V2h-7z"/>
                 </svg>
                 Pending Response
             </h>
-        <button type="button" id="chat-button1" class="btn btn-outline-success btn-sm">
+        <button type="button" id="chat-button1" class="btn btn-outline-teal btn-sm">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-fill me-1" viewBox="0 0 16 16">
                 <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
             </svg> 
@@ -198,7 +211,7 @@
                 <div class="requesting persons">
                 </div>
                 <template id="requesting-person">
-                    <img id="userImage" src="" alt="User Image" width="50" height="50">
+                    <img id="userImage7" src="" alt="User Image7" width="50" height="50">
                     <div class="userDescription">
                         <div class="username" id="username"> Loading...</div>
                         <div class="location" id="location"> Loading...</div>
@@ -214,6 +227,300 @@
 
 
     </section>
+   </div>
+   <div id="completedExchangesContainer">
+     <section class="accepted mt-4 push-content-up d-flex align-items-center border border-1 bg-teal-light p-3">
+        <div class="d-flex justify-content-between align-items-center mb-3 w-100">
+            <h class="d-flex align-items-center mb-0 muted fw-bold">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                    <circle cx="12" cy="12" r="4" fill="#28a745"/>
+                    <path d="M11 12.5l1.5 1.5 3-3" stroke="white" stroke-width="1" fill="none"/>
+                </svg>
+                completed Exchanges
+            </h>
+            <button type="button" id="chat-button" class="btn btn-outline-teal btn-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-fill me-1" viewBox="0 0 16 16">
+                   <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+                </svg> 
+                Chat <span id="message-count">(0)</span>
+            </button>
+        </div>
+            <div class="devider">  </div>
+            <div id="livresEchnangesAcceptes"> 
+                
+            </div>
+            <template id="bookAdd">
+                <div class ="offering date">
+                you offered : <span id="offered-date"> Loading...</span>
+                </div>
+                <div class="book-exchange">
+                    <div class="offered-book">
+                        <h3>Your Book</h3>
+                    <img class="cover" data-book-id="" src="" alt="Book Cover" width="100" height="150">
+                    <article class="book-details">
+                        <th class="title" data-book-id=""> Loading...</th>
+                        <div class="author" data-book-id=""> Loading...</div>
+                        <div class="condition" data-book-id=""> Condition: Loading...</div>
+                    </article>
+                    </div>
+                    <img src="C:\gl2\sem2\dev web\projetWeb\.vscode\Illustration of switch arrows _ Free Vector.jpeg" alt="exchange icon" width="50" height="50">
+                    <div class="received-book">
+                        <h3>Received Book</h3>
+                    <img class="cover1" data-book-id="" src="" alt="Book Cover1" width="100" height="150">
+                    <article class="book-details1">
+                        <th class="title1" data-book-id=""> Loading...</th>
+                        <div class="author1" data-book-id=""> Loading...</div>
+                        <div class="condition1" data-book-id=""> Condition: Loading...</div>
+                    </article>
+                    </div>
+            </template>
+
+    </section>
+   </div>
+   <div id="allSection">
+     <section class="accepted mt-4 push-content-up d-flex align-items-center border border-1 bg-teal-light p-3">
+        <div class="d-flex justify-content-between align-items-center mb-3 w-100">
+            <h class="d-flex align-items-center mb-0 muted fw-bold">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                    <circle cx="12" cy="12" r="4" fill="#28a745"/>
+                    <path d="M11 12.5l1.5 1.5 3-3" stroke="white" stroke-width="1" fill="none"/>
+                </svg>
+                Exchange Accepted 
+            </h>
+            <button type="button" id="chat-button3" class="btn btn-outline-teal btn-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-fill me-1" viewBox="0 0 16 16">
+                   <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+                </svg> 
+                Chat <span id="message-count3">(0)</span>
+            </button>
+        </div>
+            <div class="devider">  </div>
+            <div id="livresEchnangesAcceptes3"> 
+                
+            </div>
+            <template id="bookAdd3">
+                <div class ="offering date">
+                you offered : <span id="offered-date3"> Loading...</span>
+                </div>
+                <div class="book-exchange">
+                    <div class="offered-book">
+                        <h3>Your Book</h3>
+                    <img class="cover" data-book-id="" src="" alt="Book Cover" width="100" height="150">
+                    <article class="book-details">
+                        <th class="title" data-book-id=""> Loading...</th>
+                        <div class="author" data-book-id=""> Loading...</div>
+                        <div class="condition" data-book-id=""> Condition: Loading...</div>
+                    </article>
+                    </div>
+                    <img src="C:\gl2\sem2\dev web\projetWeb\.vscode\Illustration of switch arrows _ Free Vector.jpeg" alt="exchange icon" width="50" height="50">
+                    <div class="received-book">
+                        <h3>Received Book</h3>
+                    <img class="cover1" data-book-id="" src="" alt="Book Cover1" width="100" height="150">
+                    <article class="book-details1">
+                        <th class="title1" data-book-id=""> Loading...</th>
+                        <div class="author1" data-book-id=""> Loading...</div>
+                        <div class="condition1" data-book-id=""> Condition: Loading...</div>
+                    </article>
+                    </div>
+            </template>
+            
+
+    </section>
+     <section class="accepted mt-4 push-content-up d-flex align-items-center border border-1 bg-teal-light p-3">
+        <div class="d-flex justify-content-between align-items-center mb-3 w-100">
+            <h class="d-flex align-items-center mb-0 muted fw-bold">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                    <circle cx="12" cy="12" r="4" fill="#28a745"/>
+                    <path d="M11 12.5l1.5 1.5 3-3" stroke="white" stroke-width="1" fill="none"/>
+                </svg>
+                Pending Response
+            </h>
+            <button type="button" id="chat-button4" class="btn btn-outline-teal btn-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-fill me-1" viewBox="0 0 16 16">
+                   <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+                </svg> 
+                Chat <span id="message-count4">(0)</span>
+            </button>
+        </div>
+            <div class="devider">  </div>
+            <div id="livresEchnangesAcceptes4"> 
+                
+            </div>
+            <template id="bookAdd4">
+                <div class ="offering date">
+                you offered : <span id="offered-date4"> Loading...</span>
+                </div>
+                <div class="book-exchange">
+                    <div class="offered-book">
+                        <h3>Your Book</h3>
+                    <img class="cover" data-book-id="" src="" alt="Book Cover" width="100" height="150">
+                    <article class="book-details">
+                        <th class="title" data-book-id=""> Loading...</th>
+                        <div class="author" data-book-id=""> Loading...</div>
+                        <div class="condition" data-book-id=""> Condition: Loading...</div>
+                    </article>
+                    </div>
+                    <img src="C:\gl2\sem2\dev web\projetWeb\.vscode\Illustration of switch arrows _ Free Vector.jpeg" alt="exchange icon" width="50" height="50">
+                    <div class="received-book">
+                        <h3>Received Book</h3>
+                    <img class="cover1" data-book-id="" src="" alt="Book Cover1" width="100" height="150">
+                    <article class="book-details1">
+                        <th class="title1" data-book-id=""> Loading...</th>
+                        <div class="author1" data-book-id=""> Loading...</div>
+                        <div class="condition1" data-book-id=""> Condition: Loading...</div>
+                    </article>
+                    </div>
+            </template>
+
+    </section>
+     <section class="accepted mt-4 push-content-up d-flex align-items-center border border-1 bg-teal-light p-3">
+        <div class="d-flex justify-content-between align-items-center mb-3 w-100">
+            <h class="d-flex align-items-center mb-0 muted fw-bold">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                    <circle cx="12" cy="12" r="4" fill="#28a745"/>
+                    <path d="M11 12.5l1.5 1.5 3-3" stroke="white" stroke-width="1" fill="none"/>
+                </svg>
+                completed Exchanges
+            </h>
+            <button type="button" id="chat-button5" class="btn btn-outline-teal btn-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-fill me-1" viewBox="0 0 16 16">
+                   <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+                </svg> 
+                Chat <span id="message-count5">(0)</span>
+            </button>
+        </div>
+            <div class="devider">  </div>
+            <div id="livresEchnangesAcceptes"> 
+                
+            </div>
+            <template id="bookAdd5">
+                <div class ="offering date">
+                you offered : <span id="offered-date5"> Loading...</span>
+                </div>
+                <div class="book-exchange">
+                    <div class="offered-book">
+                        <h3>Your Book</h3>
+                    <img class="cover" data-book-id="" src="" alt="Book Cover" width="100" height="150">
+                    <article class="book-details">
+                        <th class="title" data-book-id=""> Loading...</th>
+                        <div class="author" data-book-id=""> Loading...</div>
+                        <div class="condition" data-book-id=""> Condition: Loading...</div>
+                    </article>
+                    </div>
+                    <img src="C:\gl2\sem2\dev web\projetWeb\.vscode\Illustration of switch arrows _ Free Vector.jpeg" alt="exchange icon" width="50" height="50">
+                    <div class="received-book">
+                        <h3>Received Book</h3>
+                    <img class="cover1" data-book-id="" src="" alt="Book Cover1" width="100" height="150">
+                    <article class="book-details1">
+                        <th class="title1" data-book-id=""> Loading...</th>
+                        <div class="author1" data-book-id=""> Loading...</div>
+                        <div class="condition1" data-book-id=""> Condition: Loading...</div>
+                    </article>
+                    </div>
+            </template>
+
+    </section>
+     <section class="accepted mt-4 push-content-up d-flex align-items-center border border-1 bg-teal-light p-3">
+        <div class="d-flex justify-content-between align-items-center mb-3 w-100">
+            <h class="d-flex align-items-center mb-0 muted fw-bold">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                    <circle cx="12" cy="12" r="4" fill="#28a745"/>
+                    <path d="M11 12.5l1.5 1.5 3-3" stroke="white" stroke-width="1" fill="none"/>
+                </svg>
+                refused Exchanges
+            </h>
+            <button type="button" id="chat-button6" class="btn btn-outline-teal btn-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-fill me-1" viewBox="0 0 16 16">
+                   <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+                </svg> 
+                Chat <span id="message-count6">(0)</span>
+            </button>
+        </div>
+            <div class="devider">  </div>
+            <div id="livresEchnangesAcceptes6"> 
+                
+            </div>
+            <template id="bookAdd6">
+                <div class ="offering date">
+                you offered : <span id="offered-date6"> Loading...</span>
+                </div>
+                <div class="book-exchange">
+                    <div class="offered-book">
+                        <h3>Your Book</h3>
+                    <img class="cover" data-book-id="" src="" alt="Book Cover" width="100" height="150">
+                    <article class="book-details">
+                        <th class="title" data-book-id=""> Loading...</th>
+                        <div class="author" data-book-id=""> Loading...</div>
+                        <div class="condition" data-book-id=""> Condition: Loading...</div>
+                    </article>
+                    </div>
+                    <img src="C:\gl2\sem2\dev web\projetWeb\.vscode\Illustration of switch arrows _ Free Vector.jpeg" alt="exchange icon" width="50" height="50">
+                    <div class="received-book">
+                        <h3>Received Book</h3>
+                    <img class="cover1" data-book-id="" src="" alt="Book Cover1" width="100" height="150">
+                    <article class="book-details1">
+                        <th class="title1" data-book-id=""> Loading...</th>
+                        <div class="author1" data-book-id=""> Loading...</div>
+                        <div class="condition1" data-book-id=""> Condition: Loading...</div>
+                    </article>
+                    </div>
+            </template>
+
+    </section>
+     <section class="accepted mt-4 push-content-up d-flex align-items-center border border-1 bg-teal-light p-3">
+        <div class="d-flex justify-content-between align-items-center mb-3 w-100">
+            <h class="d-flex align-items-center mb-0 muted fw-bold">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                    <circle cx="12" cy="12" r="4" fill="#28a745"/>
+                    <path d="M11 12.5l1.5 1.5 3-3" stroke="white" stroke-width="1" fill="none"/>
+                </svg>
+                in progress Exchanges 
+            </h>
+            <button type="button" id="chat-button7" class="btn btn-outline-teal btn-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-fill me-1" viewBox="0 0 16 16">
+                   <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+                </svg> 
+                Chat <span id="message-count7">(0)</span>
+            </button>
+        </div>
+            <div class="devider">  </div>
+            <div id="livresEchnangesAcceptes7"> 
+                
+            </div>
+            <template id="bookAdd7">
+                <div class ="offering date">
+                you offered : <span id="offered-date7"> Loading...</span>
+                </div>
+                <div class="book-exchange">
+                    <div class="offered-book">
+                        <h3>Your Book</h3>
+                    <img class="cover" data-book-id="" src="" alt="Book Cover" width="100" height="150">
+                    <article class="book-details">
+                        <th class="title" data-book-id=""> Loading...</th>
+                        <div class="author" data-book-id=""> Loading...</div>
+                        <div class="condition" data-book-id=""> Condition: Loading...</div>
+                    </article>
+                    </div>
+                    <img src="C:\gl2\sem2\dev web\projetWeb\.vscode\Illustration of switch arrows _ Free Vector.jpeg" alt="exchange icon" width="50" height="50">
+                    <div class="received-book">
+                        <h3>Received Book</h3>
+                    <img class="cover1" data-book-id="" src="" alt="Book Cover1" width="100" height="150">
+                    <article class="book-details1">
+                        <th class="title1" data-book-id=""> Loading...</th>
+                        <div class="author1" data-book-id=""> Loading...</div>
+                        <div class="condition1" data-book-id=""> Condition: Loading...</div>
+                    </article>
+                    </div>
+            </template>
+
+    </section>
+   </div>
 </div>
 </section>
 </div>

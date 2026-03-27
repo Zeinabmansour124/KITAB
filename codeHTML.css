@@ -29,22 +29,28 @@
             height: 400px;   
             object-fit: cover;
         }
-        .burgundian {
-            color: #43161a
+        .muted {
+            color: #8b3a1a;
         }
         .vert-olive {
             color: #0f5514;
         }
-        .bg-burgundian {
-            background-color: #310808 !important;
+        .bg-amber-mid {
+            background-color: #e8a82a !important;
         }
         .exchange-filter {
             display: none;
         }
         .exchange-filter:checked + label {
-            background-color: #12805c;
+            background-color: #0e6b5e;
             color: white;
             border-color: #6B8E23;
+        }
+        .bg-muted{
+            background-color: #7a6e5f;
+        }
+        .bg-teal-light {
+            background-color: #f5f0e8;
         }
         .filter-label {
             display: inline-block;
@@ -64,11 +70,80 @@
         }
         .exchanges{
             flex-grow: 1;
-            margin-left: 0 !important;  
-            background: linear-gradient(135deg, #ecebea, #fffefc); 
+            margin-left: 0 ;  
+            background: rgba(202, 176, 145, 0.95);
             width: calc(100% - 300px);
         }
         .vert-profond {
             background-color: #3b5d50; 
         }
-   
+        .btn-outline-teal {
+            color: #0e6b5e !important;        /* Texte teal */
+            border-color: #0e6b5e !important;  /* Bordure teal */
+            background-color: transparent;
+            transition: 0.3s;
+        }
+        .btn-outline-teal:hover {
+            background-color: #0e6b5e !important; /* Devient plein au survol */
+            color: white !important;              /* Texte blanc au survol */
+        }
+        /* Container principal (la grande barre blanche) */
+.search-filter-container {
+    max-width: 900px; /* Optionnel : pour ne pas qu'elle soit trop large */
+    margin: 0 auto;   /* Centre la barre sur la page */
+}
+
+/* Zone de recherche grise */
+.search-input-group {
+    background-color: #f6f6f8; /* Le gris très clair du fond */
+    border: 1px solid #e9e9ef; /* Bordure très fine */
+}
+
+/* Supprime le contour bleu de Bootstrap au clic (focus) sur l'input */
+.search-input-group .form-control:focus {
+    box-shadow: none;
+    background-color: transparent;
+}
+
+/* Le bouton Filtre */
+.btn-filter {
+    background-color: transparent;
+    border-color: #e2e2e8 !important; /* Bordure grise claire du bouton */
+    transition: all 0.2s ease;
+}
+
+/* Effet au survol du bouton Filtre */
+.btn-filter:hover {
+    background-color: #f8f9fa !important;
+    border-color: #d1d1d9 !important;
+    color: #000 !important;
+}
+
+/* Style de l'icône de filtre (entonnoir) */
+.btn-filter i {
+    color: #1a1a1b; /* Noir très foncé/légèrement gris */
+}
+
+/* Style du Placeholder (le texte par défaut) */
+.search-input-group .form-control::placeholder {
+    color: #a0a0b0; /* Gris moyen pour le placeholder */
+    font-weight: 400;
+}
+#activeExchangesContainer,
+#completedExchangesContainer,
+#allSection {
+    display: none;
+}
+
+/* 2. On affiche selon le bouton radio coché */
+#activeBtn:checked ~ #activeExchangesContainer {
+    display: block;
+}
+
+#completedBtn:checked ~ #completedExchangesContainer {
+    display: block;
+}
+
+#allBtn:checked ~ #allSection {
+    display: block;
+}
