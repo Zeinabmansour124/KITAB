@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>KITAB - Favorites</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #1a1208;
+        --amber: #c8860a;
+        --amber-light: #f9efd0;
+        --teal: #0e6b5e;
+        --white: #fffdf8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      /* ===== NAVBAR ===== */
+      /* ===== NAVBAR identique à Marketplace ===== */
+      nav#mainNav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        display: flex;
+        justify-content: space-between; /* logo à gauche, nav + search à droite */
+        align-items: center;
+        padding: 0 5vw;
+        height: 68px; /* exactement comme Marketplace */
+        background: rgba(26, 18, 8, 0.95);
+        backdrop-filter: blur(10px);
+        transition: background 0.4s;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      nav#mainNav .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 24px;
+        font-weight: 900;
+        color: #e8a82a;
+        letter-spacing: -0.5px;
+      }
+
+      nav#mainNav .nav-links {
+        display: flex;
+        gap: 32px; /* identique à Marketplace */
+        list-style: none;
+      }
+
+      nav#mainNav .nav-links a {
+        text-decoration: none;
+        font-size: 13px;
+        color: rgba(255, 253, 248, 0.7);
+        transition: color 0.2s;
+      }
+
+      nav#mainNav .nav-links a:hover {
+        color: #e8a82a;
+      }
+
+      /* ===== Barre de recherche + boutons ===== */
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* exactement comme Marketplace */
+      }
+
+      .nav-search {
+        height: 36px;
+        border-radius: 6px;
+        border: none;
+        padding: 0 10px;
+        font-size: 14px;
+      }
+
+      .nav-btn {
+        height: 36px;
+        background: #e8a82a;
+        border: none;
+        border-radius: 6px;
+        color: #fffdf8;
+        padding: 0 12px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      .nav-btn:hover {
+        background: #c8860a;
+      }
+
+      body {
+        background: var(--ink);
+      }
+
+      .content {
+        margin-top: 70px;
+        padding: 30px;
+        background: var(--amber-light);
+        min-height: 100vh;
+      }
+
+      .page-header h1 {
+        color: var(--ink);
+        font-family: "Playfair Display", serif;
+      }
+
+      .page-header p {
+        color: #555;
+      }
+
+      /* ===== STATS ===== */
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin: 30px 0;
+      }
+
+      .card {
+        background: white;
+        display: flex;
+        justify-content: space-between; /* image à droite */
+        align-items: center;
+        padding: 20px;
+        border-radius: 16px;
+        border: 2px solid var(--amber);
+      }
+
+      .card img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .card h2 {
+        color: var(--ink);
+        margin: 0;
+      }
+
+      .card p {
+        margin: 0;
+        font-size: 14px;
+        color: #555;
+      }
+
+      /* ===== FAVORITES ===== */
+      .favorites-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+      }
+
+      .favorite-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 2px solid var(--amber);
+        transition: 0.3s;
+      }
+
+      .favorite-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .image-container {
+        position: relative;
+        height: 250px;
+        overflow: hidden;
+      }
+
+      .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* ===== CONDITION LABELS ===== */
+      .condition {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+      }
+
+      /* Couleurs par état */
+      .condition.Fair {
+        background: rgba(255, 255, 0, 0.646); /* rouge clair pour Fair */
+      }
+
+      .condition.Good {
+        background: blue; /* vert pour Good */
+      }
+
+      .condition.Acceptable {
+        background: #ffb74d; /* orange pour Acceptable */
+      }
+
+      /* ===== EXCHANGE LABEL ===== */
+      .exchange {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #2196f3; /* bleu comme Marketplace */
+        color: white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+      }
+
+      .exchange {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: purple;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+      }
+
+      .card-body {
+        padding: 15px;
+      }
+
+      .card-body h3 {
+        color: var(--ink);
+        margin: 0 0 5px 0;
+      }
+
+      .genre {
+        background: var(--amber-light);
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+      }
+
+      .price {
+        color: var(--teal);
+        font-weight: bold;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav id="mainNav">
+      <div class="logo">BookSwap</div>
+      <ul class="nav-links">
+        <li>
+          <a href="marketPlace.html"
+            ><i class="bi bi-shop fs-6"></i>Marketplace</a
+          >
+        </li>
+        <li>
+          <a href="messages.html"
+            ><i class="bi bi-chat-left-text"></i>Messages</a
+          >
+        </li>
+        <li>
+          <a href="codeHTML.html"><i class="bi bi-repeat"></i>Exchange</a>
+        </li>
+        <li>
+          <a href="favorisContenantLivres.html"
+            ><i class="bi bi-heart"></i>Favoris</a
+          >
+        </li>
+        <li>
+          <a href="reading-rooms.html"
+            ><i class="bi bi-book"></i>Reading Room</a
+          >
+        </li>
+        <hr />
+        <li>
+          <a href="profile.html"><i class="bi bi-person-circle"></i>Profile</a>
+        </li>
+        <li>
+          <a href="settings.html"><i class="bi bi-gear"></i>Settings</a>
+        </li>
+        <hr />
+      </ul>
+    </nav>
+
+    <div class="content">
+      <header class="page-header">
+        <h1>My Favorites</h1>
+        <p>Your curated collection of beloved books</p>
+      </header>
+
+      <section class="stats">
+        <div class="card">
+          <div>
+            <p>Total Favorites</p>
+            <h2>4</h2>
+          </div>
+          <img src="fav.jpg" alt="Fav 1" />
+        </div>
+
+        <div class="card">
+          <div>
+            <p>Total Value</p>
+            <h2>350dt</h2>
+          </div>
+          <img src="2.jpg" alt="Fav 2" />
+        </div>
+
+        <div class="card">
+          <div>
+            <p>For Exchange</p>
+            <h2>4</h2>
+          </div>
+          <img src="3.jpg" alt="Fav 3" />
+        </div>
+
+        <div class="card">
+          <div>
+            <p>Genres</p>
+            <h2>3</h2>
+          </div>
+          <img src="4.jpg" alt="Fav 4" />
+        </div>
+      </section>
+
+      <section class="favorites-container">
+        <div class="favorite-card">
+          <div class="image-container">
+            <img
+              src="https://m.media-amazon.com/images/I/81Scutrtj4L._UF1000,1000_QL80_.jpg"
+            />
+            <div class="condition Fair">Fair</div>
+            <div class="exchange">For Exchange</div>
+          </div>
+          <div class="card-body">
+            <h3>Pride and Prejudice</h3>
+            <p>by Jane Austen</p>
+            <span class="genre">Classic Literature</span>
+            <div class="price">30dt</div>
+          </div>
+        </div>
+
+        <div class="favorite-card">
+          <div class="image-container">
+            <img
+              src="https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1413706054i/18007564.jpg"
+            />
+            <div class="condition Good">Good</div>
+            <div class="exchange">For Exchange</div>
+          </div>
+          <div class="card-body">
+            <h3>The Martian</h3>
+            <p>by Andy Weir</p>
+            <span class="genre">Science Fiction</span>
+            <div class="price">40dt</div>
+          </div>
+        </div>
+
+        <div class="favorite-card">
+          <div class="image-container">
+            <img
+              src="https://res.cloudinary.com/bloomsbury-atlas/image/upload/w_360,c_scale/dpr_1.5/jackets/9781408855652.jpg"
+            />
+            <div class="condition Acceptable">Acceptable</div>
+            <div class="exchange">For Exchange</div>
+          </div>
+          <div class="card-body">
+            <h3>Harry Potter</h3>
+            <p>by J.K. Rowling</p>
+            <span class="genre">Fantasy</span>
+            <div class="price">54.8dt</div>
+          </div>
+        </div>
+
+        <div class="favorite-card">
+          <div class="image-container">
+            <img
+              src="https://i.pinimg.com/1200x/17/ff/b7/17ffb7a481c02832e942e151030d5cb0.jpg"
+            />
+            <div class="condition Good">Good</div>
+            <div class="exchange">For Exchange</div>
+          </div>
+          <div class="card-body">
+            <h3>أرض زيكولا</h3>
+            <p>عمرو عبد الحميد</p>
+            <span class="genre">Fantasy</span>
+            <div class="price">77.8dt</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
