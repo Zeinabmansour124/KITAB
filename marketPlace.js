@@ -98,7 +98,7 @@ function goTo(n, fromUser = true) {
   const dots = document.querySelectorAll(".dot-btn");
   slides[current].classList.remove("active");
   slides[current].classList.add("prev");
-  setTimeout(() => slides[current].classList.remove("prev"), 1400);
+  setTimeout(() => slides[current].classList.remove("prev"), 5000);
   current = (n + total) % total;
   slides[current].classList.add("active");
   dots.forEach((d) => d.classList.remove("active"));
