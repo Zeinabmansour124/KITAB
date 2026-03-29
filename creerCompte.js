@@ -4,7 +4,7 @@ const password = document.getElementById('password');
 const confirmPassword = document.getElementById('confirm-password');
 const country = document.getElementById('country');
 const submitBtn = document.getElementById('submit-btn');
-
+const image = document.getElementById('photo');
 userName.addEventListener('input', function () {
     const usernameValue = userName.value;
     if ((usernameValue.length < 3) || (usernameValue.length > 20) || !/^[a-zA-Z0-9_]+$/.test(usernameValue)) {
@@ -14,6 +14,7 @@ userName.addEventListener('input', function () {
         userName.setCustomValidity('');
     }
 });
+
 
 email.addEventListener('input', function () {
     const emailValue = email.value;
@@ -69,6 +70,11 @@ country.addEventListener('input', function () {
             country.setCustomValidity('');
         }
     });
+});
+
+//on verifie que c est un seul fichier et que c est une image
+image.addEventListener('input', function () {
+    const file = image.files[0];
 });
 //we are not sure if we will use this or we wil use sth with php code 
 /*submitBtn.addEventListener('click', function(event) {

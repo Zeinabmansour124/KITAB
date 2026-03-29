@@ -99,9 +99,9 @@
     </nav>
         <section id="create-account" class="position-relative end-0 min-vh-100 p-4 exchanges mt-5 pt-5" >
             <div class="position-relative mb-4">
-                <h class="fw-bold texte-Teal  display-3 position-relative z-0"> create an account </h>
-            </div>            
-            <form action="treatData.php" method="post" name="user-info">
+                <h class="fw-bold texte-Teal display-3 position-relative z-0"> create an account </h>
+            </div>
+            <form action="treatData.php" method="post" name="user-info" enctype="multipart/form-data">
                 <div class="ms-3">
                     <input type="file" id="profile-upload" accept="image/*" style="display: none;"><div>
                     <label for="username" class="form-label fw-bold">Username</label>
@@ -139,7 +139,7 @@
                         <option value="Thriller">
                         <option value="Non-fiction">
                         <option value="Historical Fiction">
-                        <option value="Young Adult">    
+                        <option value="Young Adult">
                         <option value="Children's Literature">
                         <option value="Contemporary Fiction">
                         <option value="Short Stories">
@@ -194,7 +194,7 @@
                     <div class="form-check form-check-border">
                         <input type="radio" class="form-check-input" name="book_condition" id="condition-acceptable" value="acceptable" required>
                         <label class="form-check-label" for="condition-acceptable"> Acceptable</label>
-                    </div>                
+                    </div>
                 </div>
                  <div>
                     <span class="fw-bold form-label"> exchange preferences</span>
@@ -209,7 +209,7 @@
                     <div class="form-check form-check-border">
                         <input type="radio" class="form-check-input" name="type-echange" id="condition-acceptable" value="2" required>
                         <label class="form-check-label" for="condition-acceptable"> 2 </label>
-                    </div>                
+                    </div>
                 </div>
                 <div >
                     <label for="biography" class="form-label fw-bold">Biography</label>
