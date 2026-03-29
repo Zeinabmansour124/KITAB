@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-  let taille = 15; 
-  const tailleMin = 12;  
-  const tailleMax = 22;  
+  let taille = 15;
+  const tailleMin = 12;
+  const tailleMax = 22;
 
   const wrapper = document.createElement("div");
   wrapper.id = "fontsize-wrapper";
 
   const btnPlus = document.createElement("button");
-  btnPlus.id  = "btn-aplus";
+  btnPlus.id = "btn-aplus";
   btnPlus.innerHTML = "A+";
 
   const btnMoins = document.createElement("button");
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
       el.style.fontSize = taille + "px";
     });
 
-    btnPlus.disabled  = taille >= tailleMax;
+    btnPlus.disabled = taille >= tailleMax;
     btnMoins.disabled = taille <= tailleMin;
   }
 

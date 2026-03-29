@@ -1,704 +1,677 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create Reading Room - KITABI</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Reading Room - KITABI</title>
 
-    <style>
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
-      :root {
-        --ink: #1a1208;
-        --amber: #c8860a;
-        --amber-mid: #e8a82a;
-        --amber-light: #f9efd0;
-        --rust: #8b3a1a;
-        --teal: #0e6b5e;
-        --teal-dark: #0a5046;
-        --teal-light: #d6f0ec;
-        --sand: #f5f0e8;
-        --white: #fffdf8;
-        --border: #e2d9c8;
-        --muted: #7a6e5f;
-        --radius: 16px;
-        --radius-sm: 10px;
-      }
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-      html,
-      body {
-        margin: 0 !important;
-        padding: 0 !important;
-        width: 100% !important;
-        overflow-x: hidden !important;
-      }
+    :root {
+      --ink: #1a1208;
+      --amber: #c8860a;
+      --amber-mid: #e8a82a;
+      --amber-light: #f9efd0;
+      --rust: #8b3a1a;
+      --teal: #0e6b5e;
+      --teal-dark: #0a5046;
+      --teal-light: #d6f0ec;
+      --sand: #f5f0e8;
+      --white: #fffdf8;
+      --border: #e2d9c8;
+      --muted: #7a6e5f;
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
 
-      body {
-        font-family: "DM Sans", sans-serif;
-        background: var(--sand);
-        color: var(--ink);
-        display: block !important;
+    html,
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+      overflow-x: hidden !important;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--sand);
+      color: var(--ink);
+      display: block !important;
+      position: relative !important;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      width: 300px;
+      height: 100vh;
+      background-color: var(--ink);
+      display: flex;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-shadow: 2px 0 18px rgba(0, 0, 0, 0.22);
+      overflow-y: auto;
+      z-index: 100;
+    }
+
+    .sidebar header {
+      display: flex;
+      align-items: center;
+      padding: 28px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      gap: 12px;
+    }
+
+    .logo-text h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--amber-mid);
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    .logo-text span {
+      font-size: 10px;
+      color: rgba(255, 253, 248, 0.55);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 24px;
+      color: rgba(255, 253, 248, 0.8);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.25s;
+      border-left: 3px solid transparent;
+    }
+
+    .sidebar-link:hover,
+    .sidebar-link.active {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      border-left-color: var(--amber);
+    }
+
+    .sidebar-link .material-icons {
+      font-size: 20px;
+      color: rgba(255, 253, 248, 0.55);
+    }
+
+    .sidebar-link:hover .material-icons,
+    .sidebar-link.active .material-icons {
+      color: var(--amber-mid);
+    }
+
+    .sidebar-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 15px 20px;
+    }
+
+    .sidebar-footer .footer-links a {
+      display: flex;
+      align-items: center;
+      color: rgba(255, 253, 248, 0.8);
+      font-size: 14px;
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.3s;
+      gap: 10px;
+    }
+
+    .sidebar-footer .footer-links a .material-icons {
+      color: rgba(255, 253, 248, 0.55);
+    }
+
+    .sidebar-footer .footer-links a:hover {
+      color: #fff;
+    }
+
+    .sidebar-footer .footer-links a:hover .material-icons {
+      color: var(--amber-mid);
+    }
+
+    /* ===== CONTENT ===== */
+    .content {
+      margin-left: 300px;
+      min-height: 100vh;
+      background: var(--sand);
+    }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      background: linear-gradient(105deg,
+          rgba(26, 18, 8, 0.97) 0%,
+          rgba(14, 107, 94, 0.9) 60%,
+          rgba(200, 134, 10, 0.4) 100%);
+      padding: 34px 40px 30px;
+      box-shadow: 0 2px 20px rgba(26, 18, 8, 0.18);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e8a82a' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+
+    .page-header h1,
+    .page-header p {
+      position: relative;
+    }
+
+    .page-header h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+      font-weight: 900;
+      color: #fff;
+      margin: 0;
+    }
+
+    .page-header p {
+      color: rgba(255, 253, 248, 0.72);
+      font-size: 14px;
+      margin-top: 6px;
+    }
+
+    /* ===== FORM WRAPPER ===== */
+    .form-wrapper {
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 620px;
+      padding: 36px 40px;
+      box-shadow: 0 8px 32px rgba(26, 18, 8, 0.08);
+      border-top: 4px solid var(--amber);
+    }
+
+    .card-title {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .card-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 7px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      background: #fffdf9;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 11px 14px;
+      font-size: 14px;
+      font-family: "DM Sans", sans-serif;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #b8afa2;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--amber);
+      background: #fffaf0;
+      box-shadow: 0 0 0 3px rgba(232, 168, 42, 0.15);
+    }
+
+    .field select {
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 90px;
+      line-height: 1.6;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    /* ===== TYPE TOGGLE ===== */
+    .type-toggle {
+      display: flex;
+      gap: 8px;
+    }
+
+    .type-opt {
+      flex: 1;
+      padding: 11px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-family: "DM Sans", sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1.5px solid var(--border);
+      background: white;
+      color: var(--muted);
+      text-align: center;
+      transition: all 0.18s;
+    }
+
+    .type-opt.selected {
+      border-color: var(--amber);
+      color: var(--amber);
+      background: var(--amber-light);
+    }
+
+    .type-opt:hover:not(.selected) {
+      border-color: #c9bca9;
+      color: var(--ink);
+    }
+
+    /* ===== TAGS ===== */
+    .tags-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .tag-opt {
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 12px;
+      cursor: pointer;
+      border: 1.5px solid var(--border);
+      background: white;
+      color: var(--muted);
+      font-family: "DM Sans", sans-serif;
+      font-weight: 500;
+      transition: all 0.15s;
+    }
+
+    .tag-opt:hover {
+      border-color: #c9bca9;
+      color: var(--ink);
+    }
+
+    .tag-opt.selected {
+      border-color: var(--amber);
+      color: var(--amber);
+      background: var(--amber-light);
+    }
+
+    .divider {
+      border: none;
+      border-top: 1.5px solid #f0ece4;
+      margin: 24px 0;
+    }
+
+    /* ===== FOOTER ===== */
+    .card-footer {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      padding-top: 20px;
+      border-top: 1.5px solid #f0ece4;
+      margin-top: 28px;
+    }
+
+    .btn-cancel {
+      padding: 11px 24px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: "DM Sans", sans-serif;
+      cursor: pointer;
+      background: white;
+      color: var(--muted);
+      border: 1.5px solid var(--border);
+      transition: all 0.18s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-cancel:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+      background: var(--amber-light);
+    }
+
+    .btn-create {
+      padding: 11px 28px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: "DM Sans", sans-serif;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--amber), var(--amber-mid));
+      color: white;
+      border: none;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(200, 134, 10, 0.28);
+    }
+
+    .btn-create:hover {
+      background: linear-gradient(135deg, var(--rust), var(--amber));
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(200, 134, 10, 0.35);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        height: auto;
         position: relative !important;
       }
 
-      /* ===== SIDEBAR ===== */
-      .sidebar {
-        width: 300px;
-        height: 100vh;
-        background-color: var(--ink);
-        display: flex;
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        flex-direction: column;
-        justify-content: flex-start;
-        box-shadow: 2px 0 18px rgba(0, 0, 0, 0.22);
-        overflow-y: auto;
-        z-index: 100;
-      }
-
-      .sidebar header {
-        display: flex;
-        align-items: center;
-        padding: 28px 24px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        gap: 12px;
-      }
-
-      .logo-text h1 {
-        font-family: "Playfair Display", serif;
-        font-size: 22px;
-        font-weight: 900;
-        color: var(--amber-mid);
-        letter-spacing: 1px;
-        margin: 0;
-      }
-
-      .logo-text span {
-        font-size: 10px;
-        color: rgba(255, 253, 248, 0.55);
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-      }
-
-      .sidebar-nav {
-        flex: 1;
-        padding: 16px 0;
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-      }
-
-      .sidebar-link {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 13px 24px;
-        color: rgba(255, 253, 248, 0.8);
-        text-decoration: none;
-        font-size: 14px;
-        transition: all 0.25s;
-        border-left: 3px solid transparent;
-      }
-
-      .sidebar-link:hover,
-      .sidebar-link.active {
-        background: rgba(255, 255, 255, 0.05);
-        color: #fff;
-        border-left-color: var(--amber);
-      }
-
-      .sidebar-link .material-icons {
-        font-size: 20px;
-        color: rgba(255, 253, 248, 0.55);
-      }
-
-      .sidebar-link:hover .material-icons,
-      .sidebar-link.active .material-icons {
-        color: var(--amber-mid);
-      }
-
-      .sidebar-footer {
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 15px 20px;
-      }
-
-      .sidebar-footer .footer-links a {
-        display: flex;
-        align-items: center;
-        color: rgba(255, 253, 248, 0.8);
-        font-size: 14px;
-        text-decoration: none;
-        margin-bottom: 10px;
-        transition: color 0.3s;
-        gap: 10px;
-      }
-
-      .sidebar-footer .footer-links a .material-icons {
-        color: rgba(255, 253, 248, 0.55);
-      }
-
-      .sidebar-footer .footer-links a:hover {
-        color: #fff;
-      }
-
-      .sidebar-footer .footer-links a:hover .material-icons {
-        color: var(--amber-mid);
-      }
-
-      /* ===== CONTENT ===== */
       .content {
-        margin-left: 300px;
-        min-height: 100vh;
-        background: var(--sand);
+        margin-left: 0;
       }
 
-      /* ===== PAGE HEADER ===== */
       .page-header {
-        background: linear-gradient(
-          105deg,
-          rgba(26, 18, 8, 0.97) 0%,
-          rgba(14, 107, 94, 0.9) 60%,
-          rgba(200, 134, 10, 0.4) 100%
-        );
-        padding: 34px 40px 30px;
-        box-shadow: 0 2px 20px rgba(26, 18, 8, 0.18);
-        position: relative;
-        overflow: hidden;
+        padding: 28px 20px 24px;
       }
 
-      .page-header::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e8a82a' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        opacity: 0.5;
-      }
-
-      .page-header h1,
-      .page-header p {
-        position: relative;
-      }
-
-      .page-header h1 {
-        font-family: "Playfair Display", serif;
-        font-size: 30px;
-        font-weight: 900;
-        color: #fff;
-        margin: 0;
-      }
-
-      .page-header p {
-        color: rgba(255, 253, 248, 0.72);
-        font-size: 14px;
-        margin-top: 6px;
-      }
-
-      /* ===== FORM WRAPPER ===== */
       .form-wrapper {
-        padding: 40px;
-        display: flex;
-        justify-content: center;
+        padding: 24px 16px;
       }
 
       .card {
-        background: var(--white);
-        border-radius: 20px;
-        width: 100%;
-        max-width: 620px;
-        padding: 36px 40px;
-        box-shadow: 0 8px 32px rgba(26, 18, 8, 0.08);
-        border-top: 4px solid var(--amber);
+        padding: 24px 20px;
       }
+    }
 
-      .card-title {
-        font-family: "Playfair Display", serif;
-        font-size: 22px;
-        font-weight: 800;
-        color: var(--ink);
-        margin-bottom: 4px;
-      }
-
-      .card-subtitle {
-        font-size: 13px;
-        color: var(--muted);
-        margin-bottom: 28px;
-        line-height: 1.6;
-      }
-
-      .field {
-        margin-bottom: 18px;
-      }
-
-      .field label {
-        display: block;
-        font-size: 11px;
-        font-weight: 700;
-        color: var(--ink);
-        margin-bottom: 7px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .field input,
-      .field select,
-      .field textarea {
-        width: 100%;
-        background: #fffdf9;
-        border: 1.5px solid var(--border);
-        border-radius: var(--radius-sm);
-        padding: 11px 14px;
-        font-size: 14px;
-        font-family: "DM Sans", sans-serif;
-        color: var(--ink);
-        outline: none;
-        transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-      }
-
-      .field input::placeholder,
-      .field textarea::placeholder {
-        color: #b8afa2;
-      }
-
-      .field input:focus,
-      .field select:focus,
-      .field textarea:focus {
-        border-color: var(--amber);
-        background: #fffaf0;
-        box-shadow: 0 0 0 3px rgba(232, 168, 42, 0.15);
-      }
-
-      .field select {
-        appearance: none;
-        cursor: pointer;
-      }
-
-      .field textarea {
-        resize: vertical;
-        min-height: 90px;
-        line-height: 1.6;
-      }
-
+    @media (max-width: 540px) {
       .field-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
+        grid-template-columns: 1fr;
       }
 
-      /* ===== TYPE TOGGLE ===== */
-      .type-toggle {
-        display: flex;
-        gap: 8px;
-      }
-
-      .type-opt {
-        flex: 1;
-        padding: 11px;
-        border-radius: var(--radius-sm);
-        font-size: 13px;
-        font-family: "DM Sans", sans-serif;
-        font-weight: 600;
-        cursor: pointer;
-        border: 1.5px solid var(--border);
-        background: white;
-        color: var(--muted);
-        text-align: center;
-        transition: all 0.18s;
-      }
-
-      .type-opt.selected {
-        border-color: var(--amber);
-        color: var(--amber);
-        background: var(--amber-light);
-      }
-
-      .type-opt:hover:not(.selected) {
-        border-color: #c9bca9;
-        color: var(--ink);
-      }
-
-      /* ===== TAGS ===== */
-      .tags-selector {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 7px;
-      }
-
-      .tag-opt {
-        padding: 6px 14px;
-        border-radius: 50px;
-        font-size: 12px;
-        cursor: pointer;
-        border: 1.5px solid var(--border);
-        background: white;
-        color: var(--muted);
-        font-family: "DM Sans", sans-serif;
-        font-weight: 500;
-        transition: all 0.15s;
-      }
-
-      .tag-opt:hover {
-        border-color: #c9bca9;
-        color: var(--ink);
-      }
-
-      .tag-opt.selected {
-        border-color: var(--amber);
-        color: var(--amber);
-        background: var(--amber-light);
-      }
-
-      .divider {
-        border: none;
-        border-top: 1.5px solid #f0ece4;
-        margin: 24px 0;
-      }
-
-      /* ===== FOOTER ===== */
       .card-footer {
-        display: flex;
-        gap: 10px;
-        justify-content: flex-end;
-        padding-top: 20px;
-        border-top: 1.5px solid #f0ece4;
-        margin-top: 28px;
+        flex-direction: column;
       }
 
-      .btn-cancel {
-        padding: 11px 24px;
-        border-radius: 50px;
-        font-size: 13px;
-        font-weight: 600;
-        font-family: "DM Sans", sans-serif;
-        cursor: pointer;
-        background: white;
-        color: var(--muted);
-        border: 1.5px solid var(--border);
-        transition: all 0.18s;
-        text-decoration: none;
-        display: inline-block;
-      }
-
-      .btn-cancel:hover {
-        border-color: var(--amber);
-        color: var(--amber);
-        background: var(--amber-light);
-      }
-
+      .btn-cancel,
       .btn-create {
-        padding: 11px 28px;
-        border-radius: 50px;
-        font-size: 13px;
-        font-weight: 600;
-        font-family: "DM Sans", sans-serif;
-        cursor: pointer;
-        background: linear-gradient(135deg, var(--amber), var(--amber-mid));
-        color: white;
-        border: none;
-        transition: all 0.2s;
-        box-shadow: 0 4px 12px rgba(200, 134, 10, 0.28);
+        width: 100%;
+        text-align: center;
       }
+    }
 
-      .btn-create:hover {
-        background: linear-gradient(135deg, var(--rust), var(--amber));
-        transform: translateY(-1px);
-        box-shadow: 0 6px 20px rgba(200, 134, 10, 0.35);
-      }
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
 
-      /* ===== RESPONSIVE ===== */
-      @media (max-width: 768px) {
-        .sidebar {
-          width: 100%;
-          height: auto;
-          position: relative !important;
-        }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
 
-        .content {
-          margin-left: 0;
-        }
+    ::-webkit-scrollbar-thumb {
+      background: #d2c7b8;
+      border-radius: 99px;
+    }
 
-        .page-header {
-          padding: 28px 20px 24px;
-        }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--amber);
+    }
+  </style>
+</head>
 
-        .form-wrapper {
-          padding: 24px 16px;
-        }
+<body>
+  <aside class="sidebar">
+    <header>
+      <svg width="38" height="38" fill="#e8a82a" viewBox="0 0 24 24">
+        <path
+          d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM6 4h5v16H6V4zm12 16h-5V4h5v16z" />
+        <path d="M9 7h6v2H9zM9 11h6v2H9zM9 15h4v2H9z" />
+      </svg>
 
-        .card {
-          padding: 24px 20px;
-        }
-      }
-
-      @media (max-width: 540px) {
-        .field-row {
-          grid-template-columns: 1fr;
-        }
-
-        .card-footer {
-          flex-direction: column;
-        }
-
-        .btn-cancel,
-        .btn-create {
-          width: 100%;
-          text-align: center;
-        }
-      }
-
-      /* ===== SCROLLBAR ===== */
-      ::-webkit-scrollbar {
-        width: 5px;
-      }
-
-      ::-webkit-scrollbar-track {
-        background: transparent;
-      }
-
-      ::-webkit-scrollbar-thumb {
-        background: #d2c7b8;
-        border-radius: 99px;
-      }
-
-      ::-webkit-scrollbar-thumb:hover {
-        background: var(--amber);
-      }
-    </style>
-  </head>
-
-  <body>
-    <aside class="sidebar">
-      <header>
-        <svg width="38" height="38" fill="#e8a82a" viewBox="0 0 24 24">
-          <path
-            d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM6 4h5v16H6V4zm12 16h-5V4h5v16z"
-          />
-          <path d="M9 7h6v2H9zM9 11h6v2H9zM9 15h4v2H9z" />
-        </svg>
-
-        <div class="logo-text">
-          <h1>KITABI</h1>
-          <span>Read.Share.Connect</span>
-        </div>
-      </header>
-
-      <nav class="sidebar-nav">
-        <a href="marketplace.html" class="sidebar-link">
-          <span class="material-icons">local_mall</span>Marketplace
-        </a>
-
-        <a href="messages.html" class="sidebar-link">
-          <span class="material-icons">chat_bubble</span>Messages
-        </a>
-
-        <a href="codeHTML.html" class="sidebar-link">
-          <span class="material-icons">swap_horiz</span>Exchanges
-        </a>
-
-        <a href="favorisContenantLivres.html" class="sidebar-link">
-          <span class="material-icons">favorite</span>Favorites
-        </a>
-
-        <a href="reading-rooms.html" class="sidebar-link active">
-          <span class="material-icons">import_contacts</span>Reading Rooms
-        </a>
-
-        <a href="#" class="sidebar-link">
-          <span class="material-icons">dashboard</span>Dashboard
-        </a>
-
-        <a href="#" class="sidebar-link">
-          <span class="material-icons">emoji_events</span>LeaderBoard
-        </a>
-      </nav>
-
-      <div class="sidebar-footer">
-        <div class="footer-links">
-          <a href="profile.html">
-            <span class="material-icons">account_circle</span>Profile
-          </a>
-
-          <a href="#">
-            <span class="material-icons">notifications</span>Notifications
-          </a>
-
-          <a href="#">
-            <span class="material-icons">settings</span>Settings
-          </a>
-        </div>
+      <div class="logo-text">
+        <h1>KITABI</h1>
+        <span>Read.Share.Connect</span>
       </div>
-    </aside>
+    </header>
 
-    <div class="content">
-      <div class="page-header">
-        <h1>Create a Reading Room</h1>
-        <p>Set up a new space to read and discuss with the community</p>
+    <nav class="sidebar-nav">
+      <a href="marketplace.html" class="sidebar-link">
+        <span class="material-icons">local_mall</span>Marketplace
+      </a>
+
+      <a href="messages.html" class="sidebar-link">
+        <span class="material-icons">chat_bubble</span>Messages
+      </a>
+
+      <a href="codeHTML.html" class="sidebar-link">
+        <span class="material-icons">swap_horiz</span>Exchanges
+      </a>
+
+      <a href="favorisContenantLivres.html" class="sidebar-link">
+        <span class="material-icons">favorite</span>Favorites
+      </a>
+
+      <a href="reading-rooms.html" class="sidebar-link active">
+        <span class="material-icons">import_contacts</span>Reading Rooms
+      </a>
+
+      <a href="#" class="sidebar-link">
+        <span class="material-icons">dashboard</span>Dashboard
+      </a>
+
+      <a href="#" class="sidebar-link">
+        <span class="material-icons">emoji_events</span>LeaderBoard
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="footer-links">
+        <a href="profile.html">
+          <span class="material-icons">account_circle</span>Profile
+        </a>
+
+        <a href="#">
+          <span class="material-icons">notifications</span>Notifications
+        </a>
+
+        <a href="#">
+          <span class="material-icons">settings</span>Settings
+        </a>
       </div>
+    </div>
+  </aside>
 
-      <div class="form-wrapper">
-        <div class="card">
-          <h2 class="card-title">Room Details</h2>
-          <p class="card-subtitle">
-            Fill in the information below to create your reading room.
-          </p>
+  <div class="content">
+    <div class="page-header">
+      <h1>Create a Reading Room</h1>
+      <p>Set up a new space to read and discuss with the community</p>
+    </div>
 
+    <div class="form-wrapper">
+      <div class="card">
+        <h2 class="card-title">Room Details</h2>
+        <p class="card-subtitle">
+          Fill in the information below to create your reading room.
+        </p>
+
+        <div class="field">
+          <label>Book title</label>
+          <input type="text" id="bookTitle" placeholder="e.g. The Brothers Karamazov" />
+        </div>
+
+        <div class="field-row">
           <div class="field">
-            <label>Book title</label>
-            <input
-              type="text"
-              id="bookTitle"
-              placeholder="e.g. The Brothers Karamazov"
-            />
-          </div>
-
-          <div class="field-row">
-            <div class="field">
-              <label>Author</label>
-              <input
-                type="text"
-                id="bookAuthor"
-                placeholder="e.g. Fyodor Dostoevsky"
-              />
-            </div>
-
-            <div class="field">
-              <label>Total pages</label>
-              <input
-                type="number"
-                id="totalPages"
-                placeholder="e.g. 520"
-                min="1"
-              />
-            </div>
+            <label>Author</label>
+            <input type="text" id="bookAuthor" placeholder="e.g. Fyodor Dostoevsky" />
           </div>
 
           <div class="field">
-            <label>Room type</label>
-            <div class="type-toggle">
-              <button class="type-opt selected" type="button">Live Session</button>
-              <button class="type-opt" type="button">Scheduled</button>
-            </div>
+            <label>Total pages</label>
+            <input type="number" id="totalPages" placeholder="e.g. 520" min="1" />
           </div>
+        </div>
 
-          <div class="field-row">
-            <div class="field">
-              <label>Max participants</label>
-              <input
-                type="number"
-                id="maxPart"
-                placeholder="e.g. 15"
-                min="2"
-                max="50"
-              />
-            </div>
+        <div class="field">
+          <label>Room type</label>
+          <div class="type-toggle">
+            <button class="type-opt selected" type="button">Live Session</button>
+            <button class="type-opt" type="button">Scheduled</button>
+          </div>
+        </div>
 
-            <div class="field">
-              <label>Genre</label>
-              <select id="genre">
-                <option value="" disabled selected>Select genre</option>
-                <option>Classic</option>
-                <option>Sci-Fi</option>
-                <option>Fantasy</option>
-                <option>Dystopian</option>
-                <option>Romance</option>
-                <option>Philosophy</option>
-                <option>Drama</option>
-                <option>Adventure</option>
-                <option>Fiction</option>
-                <option>Non-Fiction</option>
-              </select>
-            </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Max participants</label>
+            <input type="number" id="maxPart" placeholder="e.g. 15" min="2" max="50" />
           </div>
 
           <div class="field">
-            <label>Tags</label>
-            <div class="tags-selector">
-              <button class="tag-opt" type="button">Classic</button>
-              <button class="tag-opt" type="button">Sci-Fi</button>
-              <button class="tag-opt" type="button">Fantasy</button>
-              <button class="tag-opt" type="button">Romance</button>
-              <button class="tag-opt" type="button">Dystopian</button>
-              <button class="tag-opt" type="button">Philosophy</button>
-              <button class="tag-opt" type="button">Adventure</button>
-              <button class="tag-opt" type="button">Drama</button>
-              <button class="tag-opt" type="button">Fiction</button>
-            </div>
+            <label>Genre</label>
+            <select id="genre">
+              <option value="" disabled selected>Select genre</option>
+              <option>Classic</option>
+              <option>Sci-Fi</option>
+              <option>Fantasy</option>
+              <option>Dystopian</option>
+              <option>Romance</option>
+              <option>Philosophy</option>
+              <option>Drama</option>
+              <option>Adventure</option>
+              <option>Fiction</option>
+              <option>Non-Fiction</option>
+            </select>
           </div>
+        </div>
 
-          <div class="field">
-            <label>Description (optional)</label>
-            <textarea
-              id="description"
-              placeholder="What will you discuss in this reading room?"
-            ></textarea>
+        <div class="field">
+          <label>Tags</label>
+          <div class="tags-selector">
+            <button class="tag-opt" type="button">Classic</button>
+            <button class="tag-opt" type="button">Sci-Fi</button>
+            <button class="tag-opt" type="button">Fantasy</button>
+            <button class="tag-opt" type="button">Romance</button>
+            <button class="tag-opt" type="button">Dystopian</button>
+            <button class="tag-opt" type="button">Philosophy</button>
+            <button class="tag-opt" type="button">Adventure</button>
+            <button class="tag-opt" type="button">Drama</button>
+            <button class="tag-opt" type="button">Fiction</button>
           </div>
+        </div>
 
-          <div class="card-footer">
-            <a href="reading-rooms.html" class="btn-cancel">Cancel</a>
-            <button class="btn-create" id="createBtn" type="button">
-              Create Room
-            </button>
-          </div>
+        <div class="field">
+          <label>Description (optional)</label>
+          <textarea id="description" placeholder="What will you discuss in this reading room?"></textarea>
+        </div>
+
+        <div class="card-footer">
+          <a href="reading-rooms.html" class="btn-cancel">Cancel</a>
+          <button class="btn-create" id="createBtn" type="button">
+            Create Room
+          </button>
         </div>
       </div>
     </div>
+  </div>
 
-    <script>
-      document.querySelectorAll(".type-opt").forEach((opt) => {
-        opt.addEventListener("click", () => {
-          document
-            .querySelectorAll(".type-opt")
-            .forEach((o) => o.classList.remove("selected"));
-          opt.classList.add("selected");
-        });
+  <script>
+    document.querySelectorAll(".type-opt").forEach((opt) => {
+      opt.addEventListener("click", () => {
+        document
+          .querySelectorAll(".type-opt")
+          .forEach((o) => o.classList.remove("selected"));
+        opt.classList.add("selected");
       });
+    });
 
-      document.querySelectorAll(".tag-opt").forEach((tag) => {
-        tag.addEventListener("click", () => tag.classList.toggle("selected"));
+    document.querySelectorAll(".tag-opt").forEach((tag) => {
+      tag.addEventListener("click", () => tag.classList.toggle("selected"));
+    });
+
+    document.getElementById("createBtn").addEventListener("click", () => {
+      const title = document.getElementById("bookTitle");
+
+      if (!title.value.trim()) {
+        title.style.borderColor = "#ef4444";
+        title.style.boxShadow = "0 0 0 3px rgba(239,68,68,0.12)";
+        title.focus();
+        return;
+      }
+
+      const btn = document.getElementById("createBtn");
+      btn.textContent = "✓ Room Created!";
+      btn.style.background = "linear-gradient(135deg, #8b3a1a, #c8860a)";
+
+      setTimeout(() => {
+        window.location.href = "reading-rooms.html";
+      }, 1000);
+    });
+
+    document
+      .getElementById("bookTitle")
+      .addEventListener("input", function () {
+        this.style.borderColor = "";
+        this.style.boxShadow = "";
       });
+  </script>
+</body>
 
-      document.getElementById("createBtn").addEventListener("click", () => {
-        const title = document.getElementById("bookTitle");
-
-        if (!title.value.trim()) {
-          title.style.borderColor = "#ef4444";
-          title.style.boxShadow = "0 0 0 3px rgba(239,68,68,0.12)";
-          title.focus();
-          return;
-        }
-
-        const btn = document.getElementById("createBtn");
-        btn.textContent = "✓ Room Created!";
-        btn.style.background = "linear-gradient(135deg, #8b3a1a, #c8860a)";
-
-        setTimeout(() => {
-          window.location.href = "reading-rooms.html";
-        }, 1000);
-      });
-
-      document
-        .getElementById("bookTitle")
-        .addEventListener("input", function () {
-          this.style.borderColor = "";
-          this.style.boxShadow = "";
-        });
-    </script>
-  </body>
 </html>

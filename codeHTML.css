@@ -1,102 +1,124 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
 
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;}
+.container-fluid {
+    display: flex;
+    width: 100%;
+    padding: 0 !important;
+}
 
-        .container-fluid {
-            display: flex;
-            width: 100%;
-            padding: 0 !important;
-        }
-
-        .sidebar {
-            width: 300px;
-            flex-shrink: 0;
-            color: white;
-            height: 100vh;
-            position: sticky;
-            top: 0;
-    }
+.sidebar {
+    width: 300px;
+    flex-shrink: 0;
+    color: white;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
 
 
-        .bg-photo {
-            background-image: url("https://i.pinimg.com/1200x/64/5e/e5/645ee51be6049a8f993c17df1552020a.jpg");
-            background-size: cover;
-            background-position: center; 
-            height: 400px;   
-            object-fit: cover;
-        }
-        .muted {
-            color: #8b3a1a;
-        }
-        .vert-olive {
-            color: #0f5514;
-        }
-        .bg-amber-mid {
-            background-color: #e8a82a !important;
-        }
-        .exchange-filter {
-            display: none;
-        }
-        .exchange-filter:checked + label {
-            background-color: #0e6b5e;
-            color: white;
-            border-color: #6B8E23;
-        }
-        .bg-muted{
-            background-color: #7a6e5f;
-        }
-        .bg-teal-light {
-            background-color: #f5f0e8;
-        }
-        .filter-label {
-            display: inline-block;
-            padding: 8px 16px;
-            margin: 0 2px;
-            border: 1px solid #6B8E23;
-            border-radius: 4px;
-            color: #6B8E23;
-            background: white;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .push-content-up {
-                position: relative;
-                margin-top: -300px;
-                z-index: 1;
-        }
-        .exchanges{
-            flex-grow: 1;
-            margin-left: 0 ;  
-            background: rgba(202, 176, 145, 0.95);
-            width: calc(100% - 300px);
-        }
-        .vert-profond {
-            background-color: #3b5d50; 
-        }
-        .btn-outline-teal {
-            color: #0e6b5e !important;        /* Texte teal */
-            border-color: #0e6b5e !important;  /* Bordure teal */
-            background-color: transparent;
-            transition: 0.3s;
-        }
-        .btn-outline-teal:hover {
-            background-color: #0e6b5e !important; /* Devient plein au survol */
-            color: white !important;              /* Texte blanc au survol */
-        }
-        /* Container principal (la grande barre blanche) */
+.bg-photo {
+    background-image: url("https://i.pinimg.com/1200x/64/5e/e5/645ee51be6049a8f993c17df1552020a.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    object-fit: cover;
+}
+
+.muted {
+    color: #8b3a1a;
+}
+
+.vert-olive {
+    color: #0f5514;
+}
+
+.bg-amber-mid {
+    background-color: #e8a82a !important;
+}
+
+.exchange-filter {
+    display: none;
+}
+
+.exchange-filter:checked+label {
+    background-color: #0e6b5e;
+    color: white;
+    border-color: #6B8E23;
+}
+
+.bg-muted {
+    background-color: #7a6e5f;
+}
+
+.bg-teal-light {
+    background-color: #f5f0e8;
+}
+
+.filter-label {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 2px;
+    border: 1px solid #6B8E23;
+    border-radius: 4px;
+    color: #6B8E23;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.push-content-up {
+    position: relative;
+    margin-top: -300px;
+    z-index: 1;
+}
+
+.exchanges {
+    flex-grow: 1;
+    margin-left: 0;
+    background: rgba(202, 176, 145, 0.95);
+    width: calc(100% - 300px);
+}
+
+.vert-profond {
+    background-color: #3b5d50;
+}
+
+.btn-outline-teal {
+    color: #0e6b5e !important;
+    /* Texte teal */
+    border-color: #0e6b5e !important;
+    /* Bordure teal */
+    background-color: transparent;
+    transition: 0.3s;
+}
+
+.btn-outline-teal:hover {
+    background-color: #0e6b5e !important;
+    /* Devient plein au survol */
+    color: white !important;
+    /* Texte blanc au survol */
+}
+
+/* Container principal (la grande barre blanche) */
 .search-filter-container {
-    max-width: 900px; /* Optionnel : pour ne pas qu'elle soit trop large */
-    margin: 0 auto;   /* Centre la barre sur la page */
+    max-width: 900px;
+    /* Optionnel : pour ne pas qu'elle soit trop large */
+    margin: 0 auto;
+    /* Centre la barre sur la page */
 }
 
 /* Zone de recherche grise */
 .search-input-group {
-    background-color: #f6f6f8; /* Le gris très clair du fond */
-    border: 1px solid #e9e9ef; /* Bordure très fine */
+    background-color: #f6f6f8;
+    /* Le gris très clair du fond */
+    border: 1px solid #e9e9ef;
+    /* Bordure très fine */
 }
 
 /* Supprime le contour bleu de Bootstrap au clic (focus) sur l'input */
@@ -108,7 +130,8 @@
 /* Le bouton Filtre */
 .btn-filter {
     background-color: transparent;
-    border-color: #e2e2e8 !important; /* Bordure grise claire du bouton */
+    border-color: #e2e2e8 !important;
+    /* Bordure grise claire du bouton */
     transition: all 0.2s ease;
 }
 
@@ -121,64 +144,74 @@
 
 /* Style de l'icône de filtre (entonnoir) */
 .btn-filter i {
-    color: #1a1a1b; /* Noir très foncé/légèrement gris */
+    color: #1a1a1b;
+    /* Noir très foncé/légèrement gris */
 }
 
 /* Style du Placeholder (le texte par défaut) */
 .search-input-group .form-control::placeholder {
-    color: #a0a0b0; /* Gris moyen pour le placeholder */
+    color: #a0a0b0;
+    /* Gris moyen pour le placeholder */
     font-weight: 400;
 }
+
 .accepted {
-    display: none !important; 
+    display: none !important;
 }
-#activeBtn:checked ~#pending-Exchanges {
-    display: block;
-}
-#activeBtn:checked ~ #exchange-Accepted {
-    display: block;
-}
-#activeBtn:checked ~ #in-progress-Exchanges {
-    display: block;
-}
-#completedBtn:checked ~ #completed-Exchanges{
+
+#activeBtn:checked~#pending-Exchanges {
     display: block;
 }
 
-
-
-#allBtn:checked ~ #in-progress-Exchanges{
+#activeBtn:checked~#exchange-Accepted {
     display: block;
 }
 
+#activeBtn:checked~#in-progress-Exchanges {
+    display: block;
+}
 
-#allBtn:checked ~ #refused-Exchanges{
+#completedBtn:checked~#completed-Exchanges {
     display: block;
 }
 
 
-#allBtn:checked ~#completed-Exchanges{
+
+#allBtn:checked~#in-progress-Exchanges {
     display: block;
 }
 
 
-#allBtn:checked ~ #pending-Exchanges{
+#allBtn:checked~#refused-Exchanges {
     display: block;
 }
 
 
-#allBtn:checked ~ #exchange-Accepted{
+#allBtn:checked~#completed-Exchanges {
     display: block;
 }
+
+
+#allBtn:checked~#pending-Exchanges {
+    display: block;
+}
+
+
+#allBtn:checked~#exchange-Accepted {
+    display: block;
+}
+
 .text-amber-light {
     color: #f9efd0 !important;
 }
-            .btn-teal {
-                background-color: #0e6b5e !important;
-                color: white !important;
-                border-color: #0e6b5e !important;
-            }
-        .btn-outline-teal {
-                border-color: #0e6b5e !important;
-                color: #0e6b5e !important;
-            }
+
+.btn-teal {
+    background-color: #0e6b5e !important;
+    color: white !important;
+    border-color: #0e6b5e !important;
+}
+
+.btn-outline-teal {
+    border-color: #0e6b5e !important;
+    color: #0e6b5e !important;
+}

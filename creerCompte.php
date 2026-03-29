@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <lang ="en">
     <title>Book Exchanges</title>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -100,7 +101,7 @@
             <div class="position-relative mb-4">
                 <h class="fw-bold texte-Teal  display-3 position-relative z-0"> create an account </h>
             </div>            
-            <form action="give-information" method="post" name="user-info">
+            <form action="treatData.php" method="post" name="user-info">
                 <div class="ms-3">
                     <input type="file" id="profile-upload" accept="image/*" style="display: none;"><div>
                     <label for="username" class="form-label fw-bold">Username</label>

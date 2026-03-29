@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>profile</title>
@@ -8,28 +9,27 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="messages.css">
     <link rel="stylesheet" href="marketPlace.css">
-        <link rel="stylesheet" href="codeHTML.css">
+    <link rel="stylesheet" href="codeHTML.css">
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="profile.js" defer></script>
     <style>
-         body {
+        body {
             margin: 0;
             padding: 0;
             display: flex;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;}
+            background-color: #f0f0f0;
+        }
+
         .login {
             background-color: #e2d9c8;
             width: 90%;
             max-width: 400px;
             height: auto;
             min-height: 300px;
-            margin:0 auto;
+            margin: 0 auto;
             top: 50%;
             left: 50%;
             right: 50%;
@@ -37,64 +37,68 @@
             border-radius: 10px;
             padding: 30px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: absolute;            
+            position: absolute;
         }
-        .exchanges{
+
+        .exchanges {
             flex-grow: 1;
-            margin-left: 300px;  
-            background: linear-gradient(135deg, #ecebea, #fffefc); 
+            margin-left: 300px;
+            background: linear-gradient(135deg, #ecebea, #fffefc);
             width: calc(100% - 300px);
         }
+
         .vert-profond {
-            background-color: #3b5d50; 
+            background-color: #3b5d50;
         }
+
         .border-teal {
             border-color: #0e6b5e !important;
         }
-            .text-teal {
-                color: #0e6b5e !important;
-            }
-            .btn-teal {
-                background-color: #0e6b5e !important;
-                color: white !important;
-                border-color: #0e6b5e !important;
-            }
-       
 
+        .text-teal {
+            color: #0e6b5e !important;
+        }
+
+        .btn-teal {
+            background-color: #0e6b5e !important;
+            color: white !important;
+            border-color: #0e6b5e !important;
+        }
     </style>
 </head>
+
 <body>
-     <div class="container-fluid p-0">
-         <nav id="mainNav">
-      <div class="logo">KITAB<span class="text_arb">كتاب </span></div>
-      <ul class="nav-links">
-        <li>
-          <a href="marketPlace.html"><i class="bi bi-shop fs-6"></i>Marketplace</a>
-        </li>
-        <li>
-          <a href="messages.html"><i class="bi bi-chat-left-text"></i>Messages</a>
-        </li>
-        <li>
-          <a href="codeHTML.html"><i class="bi bi-repeat"></i>Exchange</a>
-        </li>
-        <li>
-          <a href="favorisContenantLivres.html"><i class="bi bi-heart"></i>Favoris</a>
-        </li>
-        <li>
-          <a href="reading-rooms.html"><i class="bi bi-book"></i>Reading Room</a>
-        </li>
-        <hr />
-        <li>
-          <a href="profile.html"><i class="bi bi-person-circle"></i>Profile</a>
-        </li>
-        <li>
-          <a href=""><i class="bi bi-gear"></i>Settings</a>
-        </li>
-        <hr />
-      </ul>
-    </nav>
-<section class="d-flex justify-content-center end-0 min-vh-100 p-4 exchanges" >
-     <div class="login ">
+    <div class="container-fluid p-0">
+        <nav id="mainNav">
+            <div class="logo">KITAB<span class="text_arb">كتاب </span></div>
+            <ul class="nav-links">
+                <li>
+                    <a href="marketPlace.html"><i class="bi bi-shop fs-6"></i>Marketplace</a>
+                </li>
+                <li>
+                    <a href="messages.html"><i class="bi bi-chat-left-text"></i>Messages</a>
+                </li>
+                <li>
+                    <a href="codeHTML.html"><i class="bi bi-repeat"></i>Exchange</a>
+                </li>
+                <li>
+                    <a href="favorisContenantLivres.html"><i class="bi bi-heart"></i>Favoris</a>
+                </li>
+                <li>
+                    <a href="reading-rooms.html"><i class="bi bi-book"></i>Reading Room</a>
+                </li>
+                <hr />
+                <li>
+                    <a href="profile.html"><i class="bi bi-person-circle"></i>Profile</a>
+                </li>
+                <li>
+                    <a href=""><i class="bi bi-gear"></i>Settings</a>
+                </li>
+                <hr />
+            </ul>
+        </nav>
+        <section class="d-flex justify-content-center end-0 min-vh-100 p-4 exchanges">
+            <div class="login ">
                 <h1 class="text-center mb-4 muted fw-bold"> Login</h1>
                 <form Action="script" method="post" name="login info">
                     <div>
@@ -107,7 +111,8 @@
                     </div>
                     <div>
                         <label for="password" class="form-label muted  fw-bold">Password:</label>
-                        <input type="password" class="border border-teal rounded" id="password" name="password" required>
+                        <input type="password" class="border border-teal rounded" id="password" name="password"
+                            required>
                     </div>
                     <button type="submit" class="btn btn-teal">submit</button>
                     <button type="reset" class="btn btn-outline-secondary">Reset</button>
@@ -121,7 +126,8 @@
 
             </div>
         </section>
-         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-     </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
 </body>
+
 </html>
