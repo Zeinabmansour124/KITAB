@@ -138,28 +138,31 @@
         border-color: var(--amber);
         color: #fff;
       }
+
       .nav-right {
-  display: flex;
-  align-items: center;
-  gap: 16px; /* espace entre profil et boutons langue */
-}
+        display: flex;
+        align-items: center;
+        gap: 16px; /* espace entre profil et boutons langue */
+      }
 
-.nav-right a#nav_profile {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-  font-size: 13px;
-  color: rgba(255, 253, 248, 0.65);
-  padding: 6px 12px;
-  border-radius: 8px;
-  transition: all 0.2s;
-}
+      .nav-right a#nav_profile,
+      .nav-right a#nav_logout {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+        font-size: 13px;
+        color: rgba(255, 253, 248, 0.65);
+        padding: 6px 12px;
+        border-radius: 8px;
+        transition: all 0.2s;
+      }
 
-.nav-right a#nav_profile:hover {
-  color: var(--amber-mid);
-  background: rgba(255, 255, 255, 0.06);
-}
+      .nav-right a#nav_profile:hover,
+      .nav-right a#nav_logout:hover {
+        color: var(--amber-mid);
+        background: rgba(255, 255, 255, 0.06);
+      }
 
       /* ===== PAGE ===== */
       .page-wrapper {
@@ -204,33 +207,20 @@
         align-items: center;
         box-shadow: 0 4px 16px rgba(254, 253, 253, 0);
         transition: 0.3s;
+        border: 2px solid #8b3a1a; /* encadré marron */
       }
-      .stats .card {
-  background: white;
-  padding: 20px;
-  border-radius: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 4px 16px rgba(254, 253, 253, 0);
-  transition: 0.3s;
 
-  border: 2px solid #8b3a1a; /* encadré marron */
-}
+      .stats .card p {
+        font-size: 16px; /* taille plus grande */
+        font-weight: bold;
+        color: black; /* marron */
+      }
 
-/* Agrandir les titres comme Total, Value, ... */
-.stats .card p {
-  font-size: 16px; /* taille plus grande */
-  font-weight: bold;
-  color: black; /* marron */
-}
-
-/* Agrandir les chiffres */
-.stats .card h2 {
-  font-size: 28px; /* plus grand que 2 */
-  font-weight: bold;
-  color: black;
-}s
+      .stats .card h2 {
+        font-size: 28px; /* plus grand */
+        font-weight: bold;
+        color: black;
+      }
 
       .card:hover {
         transform: translateY(-5px);
@@ -242,30 +232,24 @@
       }
 
       /* ===== FAVORITES ===== */
-      /* FAVORITES */
       .favorites-container {
         display: grid;
         grid-template-columns: repeat(3, 1fr); /* 3 livres par ligne */
         gap: 22px;
       }
 
-      /* Responsive */
       @media (max-width: 900px) {
         .favorites-container {
-          grid-template-columns: repeat(
-            2,
-            1fr
-          ); /* 2 livres par ligne sur tablettes */
+          grid-template-columns: repeat(2, 1fr);
         }
       }
 
       @media (max-width: 600px) {
         .favorites-container {
-          grid-template-columns: 1fr; /* 1 livre par ligne sur mobile */
+          grid-template-columns: 1fr;
         }
       }
 
-      /* IMAGE */
       .image-container {
         position: relative;
         height: 240px;
@@ -278,7 +262,6 @@
         object-fit: contain;
       }
 
-      /* BADGES */
       .condition {
         position: absolute;
         top: 10px;
@@ -310,7 +293,6 @@
         font-size: 11px;
       }
 
-      /* BODY */
       .card-body {
         padding: 15px;
         display: flex;
@@ -322,32 +304,6 @@
         font-family: "Playfair Display";
       }
 
-      .genre {
-        background: var(--amber-light);
-        padding: 4px 10px;
-        border-radius: 20px;
-        font-size: 12px;
-        width: fit-content;
-      }
-
-      .price {
-        color: var(--teal);
-        font-weight: bold;
-      }
-
-      /* BUTTON */
-      .btn {
-        margin-top: auto;
-        background: var(--teal);
-        color: white;
-        border: none;
-        padding: 10px;
-        border-radius: 20px;
-        cursor: pointer;
-      }
-      .btn:hover {
-        background: var(--teal-dark);
-      }
       .book-main {
         display: flex;
         justify-content: space-between;
@@ -357,70 +313,6 @@
 
       .book-left h3 {
         margin-bottom: 2px;
-        font-family: "Playfair Display";
-      }
-
-      .book-left p {
-        font-size: 14px;
-        color: var(--muted);
-      }
-
-      .book-right .price {
-        font-weight: bold;
-        color: var(--teal);
-        font-size: 16px;
-      }
-
-      .user-genre {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 6px;
-      }
-
-      .user {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 12px;
-        color: var(--muted);
-      }
-
-      .user img {
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-
-      .genre {
-        background: var(--amber-light);
-        padding: 4px 10px;
-        border-radius: 20px;
-        font-size: 12px;
-      }
-
-      .card-buttons {
-        display: flex;
-        gap: 8px;
-        margin-top: 10px;
-      }
-
-      .card-buttons .btn {
-        flex: 1;
-        padding: 8px 0;
-        font-size: 14px;
-      }
-      .book-main {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 10px;
-      }
-
-      .book-left h3 {
-        margin-bottom: 2px;
-        font-family: "Playfair Display";
       }
 
       .book-left p {
@@ -457,29 +349,28 @@
       }
 
       .user-type .genre {
-        font-size: 14px; /* texte un peu plus grand */
-        padding: 8px 16px; /* cadre plus large et plus haut */
-        font-weight: bold; /* texte en gras */
-        color: #8b3a1a; /* marron */
+        font-size: 14px;
+        padding: 8px 16px;
+        font-weight: bold;
+        color: #8b3a1a;
         background: var(--amber-light);
-        border-radius: 24px; /* légèrement plus arrondi */
-        width: fit-content; /* cadre s'adapte au texte + padding */
+        border-radius: 24px;
+        width: fit-content;
       }
 
       .favorite-card {
-        background: white; /* fond du livre */
+        background: white;
         border-radius: 16px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-
-        transition: transform 0.3s, box-shadow 0.3s; /* animation douce */
+        transition: transform 0.3s, box-shadow 0.3s;
       }
 
       .favorite-card:hover {
-        transform: translateY(-5px); /* lève légèrement la carte */
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* ombre plus visible */
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
       }
 
       .card-buttons {
@@ -489,9 +380,9 @@
       }
 
       .card-buttons .details {
-        flex: 1.2; /* un peu plus large que chat */
-        background: white; /* fond blanc */
-        color: var(--teal); /* texte vert */
+        flex: 1.2;
+        background: white;
+        color: var(--teal);
         border: 2px solid var(--teal);
         font-weight: bold;
         padding: 12px 0;
@@ -502,8 +393,8 @@
       }
 
       .card-buttons .chat {
-        flex: 1; /* légèrement moins large */
-        background: var(--teal); /* vert */
+        flex: 1;
+        background: var(--teal);
         color: white;
         border-radius: 20px;
         text-align: center;
@@ -513,7 +404,6 @@
         text-decoration: none;
       }
 
-      /* Hover */
       .card-buttons .details:hover {
         background: var(--teal);
         color: white;
@@ -547,28 +437,34 @@
           >
         </li>
         <li>
-          <a href="favorisContenantLivres.html " id="nav_favorites" class="active"
+          <a
+            href="favorisContenantLivres.html"
+            id="nav_favorites"
+            class="active"
             ><span class="material-icons">favorite</span> Favorites</a
           >
         </li>
         <li>
-          <a href="reading-rooms.html" id="nav_reading_rooms" 
+          <a href="reading-rooms.html" id="nav_reading_rooms"
             ><span class="material-icons">import_contacts</span> Reading
             Rooms</a
           >
         </li>
       </ul>
+
       <div class="nav-right">
         <a href="profile.html" id="nav_profile"
           ><span class="material-icons">account_circle</span> Profile</a
         >
+        <a href="logout.html" id="nav_logout"
+          ><span class="material-icons">logout</span>Log out</a
+        >
 
-      <!-- ===== Traduction ===== -->
-
-      <div class="lang-switcher-nav">
-        <button class="lang-btn" id="btn-en">EN</button>
-        <button class="lang-btn" id="btn-fr">FR</button>
-        <button class="lang-btn" id="btn-ar">AR</button>
+        <div class="lang-switcher-nav">
+          <button class="lang-btn" id="btn-en">EN</button>
+          <button class="lang-btn" id="btn-fr">FR</button>
+          <button class="lang-btn" id="btn-ar">AR</button>
+        </div>
       </div>
     </nav>
 
@@ -623,34 +519,24 @@
               <div class="exchange">Exchange</div>
             </div>
             <div class="card-body">
-              <!-- Nom et prix -->
               <div class="book-main">
                 <div class="book-left">
                   <h3>Pride and Prejudice</h3>
                   <p>Jane Austen</p>
                 </div>
-                <div class="book-right">
-                  <div class="price">30dt</div>
-                </div>
+                <div class="book-right"><div class="price">30dt</div></div>
               </div>
-
-              <!-- Utilisateur et type -->
               <div class="user-type">
                 <div class="user">
-                  <img src="user1.jpg" alt="user" />
-                  <span>Malek Selmi</span>
+                  <img src="user1.jpg" alt="user" /><span>Malek Selmi</span>
                 </div>
                 <span class="genre">Classic</span>
               </div>
-
-              <!-- Boutons -->
               <div class="card-buttons">
-                <a href="" class="details">
-                  <i class="bi bi-book"></i> Details
-                </a>
-                <a href="" class="chat">
-                  <i class="bi bi-chat-left"></i> Chat
-                </a>
+                <a href="" class="details"
+                  ><i class="bi bi-book"></i> Details</a
+                >
+                <a href="" class="chat"><i class="bi bi-chat-left"></i> Chat</a>
               </div>
             </div>
           </div>
@@ -668,26 +554,19 @@
                   <h3>The Martian</h3>
                   <p>Andy Weir</p>
                 </div>
-                <div class="book-right">
-                  <div class="price">40dt</div>
-                </div>
+                <div class="book-right"><div class="price">40dt</div></div>
               </div>
-
               <div class="user-type">
                 <div class="user">
-                  <img src="user2.jpg" alt="user" />
-                  <span>Sarah Ben Ali</span>
+                  <img src="user2.jpg" alt="user" /><span>Sarah Ben Ali</span>
                 </div>
                 <span class="genre">Sci-Fi</span>
               </div>
-
               <div class="card-buttons">
-                <a href="" class="details">
-                  <i class="bi bi-book"></i> Details
-                </a>
-                <a href="" class="chat">
-                  <i class="bi bi-chat-left"></i> Chat
-                </a>
+                <a href="" class="details"
+                  ><i class="bi bi-book"></i> Details</a
+                >
+                <a href="" class="chat"><i class="bi bi-chat-left"></i> Chat</a>
               </div>
             </div>
           </div>
@@ -705,25 +584,19 @@
                   <h3>Harry Potter</h3>
                   <p>J.K. Rowling</p>
                 </div>
-                <div class="book-right">
-                  <div class="price">54dt</div>
-                </div>
+                <div class="book-right"><div class="price">54dt</div></div>
               </div>
-
               <div class="user-type">
                 <div class="user">
-                  <img src="user3.jpg" alt="user" />
-                  <span>Amine Trabelsi</span>
+                  <img src="user3.jpg" alt="user" /><span>Amine Trabelsi</span>
                 </div>
                 <span class="genre">Fantasy</span>
               </div>
               <div class="card-buttons">
-                <a href="" class="details">
-                  <i class="bi bi-book"></i> Details
-                </a>
-                <a href="" class="chat">
-                  <i class="bi bi-chat-left"></i> Chat
-                </a>
+                <a href="" class="details"
+                  ><i class="bi bi-book"></i> Details</a
+                >
+                <a href="" class="chat"><i class="bi bi-chat-left"></i> Chat</a>
               </div>
             </div>
           </div>
