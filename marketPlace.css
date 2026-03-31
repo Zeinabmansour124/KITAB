@@ -19,6 +19,7 @@
 }
 
 /* ===== NAV ===== */
+/* ===== NAVBAR ===== */
 nav {
   position: fixed;
   top: 0;
@@ -29,39 +30,113 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 0 5vw;
-  height: 68px;
-  background: rgba(26, 18, 8, 0.95);
+  height: var(--nav-h);
+  background: rgba(26, 18, 8, 0.97);
   backdrop-filter: blur(10px);
-  transition: background 0.4s;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 24px;
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
   font-weight: 900;
-  color: #e8a82a;
-  letter-spacing: -.5px;
+  color: var(--amber-mid);
+  letter-spacing: -0.5px;
+  text-decoration: none;
+}
+.logo .text_arb {
+  font-family: "Amiri", serif;
+  direction: rtl;
+  font-size: 20px;
+  margin-left: 4px;
+  color: var(--rust);
 }
 
 .nav-links {
   display: flex;
-  gap: 32px;
+  gap: 4px;
   list-style: none;
+  align-items: center;
 }
-
 .nav-links a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   text-decoration: none;
   font-size: 13px;
-  color: rgba(255, 253, 248, .7);
-  transition: color .2s;
-  display: inline;
-  padding: 0;
-  margin: 0;
+  color: rgba(255, 253, 248, 0.65);
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-links a:hover {
+  color: var(--amber-mid);
+  background: rgba(255, 255, 255, 0.06);
+}
+.nav-links a.active {
+  color: var(--amber-mid);
+  background: rgba(200, 134, 10, 0.15);
+}
+.nav-links .material-icons {
+  font-size: 16px;
 }
 
-.nav-links a:hover {
-  color: #e8a82a;
+.lang-switcher-nav {
+  display: flex;
+  gap: 4px;
+  margin-left: 16px;
 }
+.lang-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: rgba(255, 253, 248, 0.65);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  padding: 4px 9px;
+  cursor: pointer;
+  transition: all 0.25s;
+  font-family: "DM Sans", sans-serif;
+}
+.lang-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+.lang-btn.lang-active {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #fff;
+}
+.nav-right {
+display: flex;
+align-items: center;
+gap: 16px; /* espace entre profil et boutons langue */
+}
+
+.nav-right a#nav_profile {
+display: flex;
+align-items: center;
+gap: 6px;
+text-decoration: none;
+font-size: 13px;
+color: rgba(255, 253, 248, 0.65);
+padding: 6px 12px;
+border-radius: 8px;
+transition: all 0.2s;
+}
+
+.nav-right a#nav_profile:hover {
+color: var(--amber-mid);
+background: rgba(255, 255, 255, 0.06);
+}
+
+/* ===== PAGE ===== */
+.page-wrapper {
+  margin-top: var(--nav-h);
+}
+
 
 
 /* ===== COMME PUB  ===== */
