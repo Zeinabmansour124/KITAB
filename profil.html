@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Profile - KITAB</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon (1).ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="profil.css" />
+  </head>
+  <body>
+       <!-- ===== NAVBAR ===== -->
+ <nav id="mainNav">
+    <a href="#" class="logo">KITAB<span class="text_arb">كتاب</span></a>
+    <ul class="nav-links">
+      <li><a href="marketplace.html" id="nav_marketplace"><span class="material-icons">local_mall</span> Marketplace</a></li>
+      <li><a href="messages.html" id="nav_messages"><span class="material-icons">chat_bubble</span> Messages</a></li>
+      <li><a href="codeHTML.html" id="nav_exchanges"><span class="material-icons">swap_horiz</span> Exchanges</a></li>
+      <li><a href="fav.html" id="nav_favorites"><span class="material-icons">favorite</span> Favorites</a></li>
+      <li><a href="reading-rooms.html" id="nav_reading_rooms" ><span class="material-icons">import_contacts</span> Reading Rooms</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="profil.html" id="nav_profile" class="active"
+        ><span class="material-icons">account_circle</span> Profile</a
+      >
+      <a href="logout.html" id="nav_logout"
+        ><span class="material-icons">logout</span>Log out</a
+      >
+  
+        <!-- ===== Traduction ===== -->
+  
+      <div class="lang-switcher-nav">
+       <button class="lang-btn" id="btn-en">EN</button>
+  <button class="lang-btn" id="btn-fr" >FR</button>
+  <button class="lang-btn" id="btn-ar">AR</button>
+      </div>
+    </nav>
+  
+    
+    <!-- ===== PAGE ===== -->
+    <div class="page-wrapper">
+      <div class="page-header">
+        <div class="page-header-text">
+          <h1 id="page_title">Your profil</h1>
+          <h4 id="page_subtitle">Update it</h4>
+        </div>
+       
+      </div>
+    
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="profile-container">
+      <!-- Barre titre en vert -->
+
+      <!-- Photo et infos -->
+      <section class="profile-card card">
+        <div class="profile-photo">
+          <img src="default-avatar.png" alt="Profile Photo" />
+        </div>
+
+        <form>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" value="John" />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" value="Doe" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" value="johndoe" />
+          </div>
+
+          <div class="form-group">
+            <label for="bio">Bio</label>
+            <textarea id="bio" rows="4">Book lover and collector...</textarea>
+          </div>
+
+          <button type="submit" class="btn-save">Save Changes</button>
+        </form>
+      </section>
+
+      <!-- Mot de passe -->
+      <section class="password-card card">
+        <h2>Change Password</h2>
+        <form>
+          <div class="form-group">
+            <label for="currentPassword">Current Password</label>
+            <input
+              type="password"
+              id="currentPassword"
+              placeholder="Enter current password"
+            />
+          </div>
+          <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <input
+              type="password"
+              id="newPassword"
+              placeholder="Enter new password"
+            />
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm new password"
+            />
+          </div>
+          <button type="submit" class="btn-save">Update Password</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

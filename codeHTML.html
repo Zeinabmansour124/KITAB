@@ -16,76 +16,96 @@
 </head>
 
 <body>
-    <div class="container-fluid p-0">
-        <nav id="mainNav">
-            <div class="logo">KITAB<span class="text_arb">كتاب </span></div>
-            <ul class="nav-links">
-                <li>
-                    <a href="marketPlace.html"><i class="bi bi-shop fs-6"></i>Marketplace</a>
-                </li>
-                <li>
-                    <a href="messages.html"><i class="bi bi-chat-left-text"></i>Messages</a>
-                </li>
-                <li>
-                    <a href="codeHTML.html"><i class="bi bi-repeat"></i>Exchange</a>
-                </li>
-                <li>
-                    <a href="favorisContenantLivres.html"><i class="bi bi-heart"></i>Favoris</a>
-                </li>
-                <li>
-                    <a href="reading-rooms.html"><i class="bi bi-book"></i>Reading Room</a>
-                </li>
-                <hr />
-                <li>
-                    <a href="profile.html"><i class="bi bi-person-circle"></i>Profile</a>
-                </li>
-                <li>
-                    <a href=""><i class="bi bi-gear"></i>Settings</a>
-                </li>
-                <hr />
-            </ul>
-        </nav>
-        <section class="justify-content-center end-0 min-vh-100 p-4 exchanges">
-            <article class="d-flex align-items-center bg-photo border border-1 rounded p-3 mb-4">
-                <div class="w-1₀">
-                    <h class="display-4 muted fw-bold mb-0 me-3">
-                        BOOKEXCHANGES
-                    </h>
-                    <p class="fs-5 mb-0 text-light ">
-                        Manage your book exchanges requests
-                    </p>
+        <!-- ===== NAVBAR ===== -->
+    <nav id="mainNav">
+        <a href="#" class="logo">KITAB<span class="text_arb">كتاب</span></a>
+        <ul class="nav-links">
+          <li>
+            <a href="marketplace.html" id="nav_marketplace"
+              ><span class="material-icons">local_mall</span> Marketplace</a
+            >
+          </li>
+          <li>
+            <a href="messages.html" id="nav_messages"
+              ><span class="material-icons">chat_bubble</span> Messages</a
+            >
+          </li>
+          <li>
+            <a href="codeHTML.html" id="nav_exchanges" class="active"
+              ><span class="material-icons">swap_horiz</span> Exchanges</a
+            >
+          </li>
+          <li>
+            <a
+              href="fav.html"
+              id="nav_favorites"
+              ><span class="material-icons">favorite</span> Favorites</a
+            >
+          </li>
+          <li>
+            <a href="reading-rooms.html" id="nav_reading_rooms"
+              ><span class="material-icons">import_contacts</span> Reading
+              Rooms</a
+            >
+          </li>
+        </ul>
+  
+        <div class="nav-right">
+          <a href="profil.html" id="nav_profile"
+            ><span class="material-icons">account_circle</span> Profile</a
+          >
+          <a href="logout.html" id="nav_logout"
+            ><span class="material-icons">logout</span>Log out</a
+          >
+  
+          <div class="lang-switcher-nav">
+            <button class="lang-btn" id="btn-en">EN</button>
+            <button class="lang-btn" id="btn-fr">FR</button>
+            <button class="lang-btn" id="btn-ar">AR</button>
+          </div>
+        </div>
+      </nav>
+        <section class="exchanges">
+            <div class="page-wrapper">
+                <div class="page-header">
+                  <div class="page-header-text">
+                    <h1 id="page_title">Book exchanges</h1>
+                    <h4 id="page_subtitle">Exchange books with other members of our community</h4>
+                  </div>
                 </div>
-            </article>
             <span class="mx-2"></span>
-            <article class="d-flex justify-content-center mb-4 p-4 rounded-4 custom-dark-bg shadow-lg">
-                <div class="row g-3 justify-content-center w-100">
-
-                    <div class="col-md-3 col-sm-6 mb-4 d-flex" style="width:150px; ">
-                        <div class="success-rate border border-1 rounded p-3 me-3 bg-amber-mid">
-                            <div class="stat-label text-white   ">Total Exchanges</div>
-                            <div class="stat-number text-white fw-bold fs-3" id="total-exchanges">0</div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6 mb-4 d-flex" style="width:150px; ">
-                        <div class="success-rate border border-1 rounded p-3 me-3 bg-amber-mid">
-                            <div class="stat-label text-white   ">Active </div>
-                            <div class="stat-number text-white fw-bold fs-3" id="active">0</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 mb-4 d-flex" style="width:150px; ">
-                        <div class="completed border border-1 rounded p-3 me-3 bg-amber-mid">
-                            <div class="stat-label text-white">Completed </div>
-                            <div class="stat-number text-white fw-bold fs-3" id="completed">0</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 mb-4 d-flex" style="width:150px; ">
-                        <div class="success-rate border border-1 rounded p-3 me-3 bg-amber-mid">
-                            <div class="stat-label text-white   ">Success Rate </div>
-                            <div class="stat-number text-white fw-bold fs-3" id="success-rate">0%</div>
-                        </div>
-                    </div>
-                </div>
+            <article class="shadow-lg">
+                 <!-- STATS -->
+      <div class="stats-container">
+        <div class="stat-card live">
+          <div class="stat-info">
+            <div class="stat-title" id="stat_live">Total exchanges</div>
+            <div class="stat-number">3</div>
+          </div>
+          <div class="stat-icon"><img src="exchanges1.jpg" alt="Live"/></div>
+        </div>
+        <div class="stat-card scheduled">
+          <div class="stat-info">
+            <div class="stat-title" id="stat_scheduled">Active</div>
+            <div class="stat-number">0</div>
+          </div>
+          <div class="stat-icon"><img src="exchanges2.jpg" alt="Scheduled"/></div>
+        </div>
+        <div class="stat-card myrooms">
+          <div class="stat-info">
+            <div class="stat-title" id="stat_myrooms">Completed</div>
+            <div class="stat-number">0</div>
+          </div>
+          <div class="stat-icon"><img src="exchanges3.jpg" alt="My Rooms"/></div>
+        </div>
+        <div class="stat-card totalreaders">
+          <div class="stat-info">
+            <div class="stat-title" id="stat_readers">Success Rate</div>
+            <div class="stat-number">0%</div>
+          </div>
+          <div class="stat-icon"><img src="exchanges4.jpg" alt="Readers"/></div>
+        </div>
+      </div>
 
             </article>
             <article id="search-tool" class="d-flex justify-content-center mb-4 p-3 rounded-4 bg-muted">
@@ -456,8 +476,6 @@
                 </div>
 
             </section>
-
-    </div>
     </section>
     </div>
 </body>
