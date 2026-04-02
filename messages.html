@@ -1,157 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Messages</title>
+    <title>Messages - KITAB</title>
+    <link rel="icon" href="favicon (1).ico" type="image/x-icon" />
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="reading-room.css" />
     <link rel="stylesheet" href="messages.css" />
   </head>
   <body>
-    <div class="app">
-      <aside class="sidebar">
-        <header>
-          <svg
-            width="42"
-            height="42"
-            fill="#6B8E23"
-            class="me-3"
-            viewBox="0 0 24 24"
+    <!-- ===== NAVBAR ===== -->
+    <nav id="mainNav">
+      <a href="#" class="logo">KITAB<span class="text_arb">كتاب</span></a>
+      <ul class="nav-links">
+        <li>
+          <a href="marketplace.html"
+            ><span class="material-icons">local_mall</span> Marketplace</a
           >
-            <path
-              d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM6 4h5v16H6V4zm12 16h-5V4h5v16z"
-            />
-            <path d="M9 7h6v2H9zM9 11h6v2H9zM9 15h4v2H9z" />
-          </svg>
-          <div class="logo-text">
-            <h1>KITABI</h1>
-            <span>Read.Share.Connect</span>
-          </div>
-        </header>
+        </li>
+        <li>
+          <a href="messages.html" class="active"
+            ><span class="material-icons">chat_bubble</span> Messages</a
+          >
+        </li>
+        <li>
+          <a href="codeHTML.html"
+            ><span class="material-icons">swap_horiz</span> Exchanges</a
+          >
+        </li>
+        <li>
+          <a href="fav.html"
+            ><span class="material-icons">favorite</span> Favorites</a
+          >
+        </li>
+        <li>
+          <a href="reading-rooms.html"
+            ><span class="material-icons">import_contacts</span> Reading
+            Rooms</a
+          >
+        </li>
+      </ul>
+      <div class="nav-right">
+        <a href="profile.html" id="nav_profile">
+          <span class="material-icons">account_circle</span> Profile
+        </a>
+        <a href="logout.html" id="nav_logout">
+          <span class="material-icons">logout</span> Log out </a
+        >>
+        <div class="lang-switcher-nav">
+          <button class="lang-btn" id="btn-en">EN</button>
+          <button class="lang-btn" id="btn-fr">FR</button>
+          <button class="lang-btn" id="btn-ar">AR</button>
+        </div>
+      </div>
+    </nav>
 
-        <nav class="sidebar-nav">
-          <a href="marketplace.html" class="sidebar-link"
-            ><span class="material-icons">local_mall</span>Marketplace</a
-          >
-          <a href="messages.html" class="sidebar-link" class="messages"
-            ><span class="material-icons">chat_bubble</span>Messages</a
-          >
-          <a href="codeHTML.html" class="sidebar-link"
-            ><span class="material-icons">swap_horiz</span>Exchanges</a
-          >
-          <a href="favorisContenantLivres.html" class="sidebar-link"
-            ><span class="material-icons">favorite</span>Favorites</a
-          >
-          <a href="reading-rooms.html" class="sidebar-link"
-            ><span class="material-icons">import_contacts</span>Reading Rooms</a
-          >
-          <a href="#" class="sidebar-link"
-            ><span class="material-icons">dashboard</span>Dashboard</a
-          >
-          <a href="#" class="sidebar-link"
-            ><span class="material-icons">emoji_events</span>LeaderBoard</a
-          >
-        </nav>
-        <footer class="f">
-          <div class="sidebar-footer">
-            <div class="footer-links">
-              <a href="profile.html"
-                ><span class="material-icons">account_circle</span>Profile</a
-              >
-              <a href="#"
-                ><span class="material-icons">notifications</span
-                >Notifications</a
-              >
-              <a href="#"
-                ><span class="material-icons">settings</span>Settings</a
-              >
+    <!-- ===== PAGE WRAPPER ===== -->
+    <div class="page-wrapper">
+      <!-- PAGE HEADER -->
+      <div class="page-header">
+        <div class="page-header-text">
+          <h1 id="page_title">Messages</h1>
+          <h4 id="page_subtitle">Chat with your contacts</h4>
+        </div>
+        <a href="new_message.html" class="create-room-btn" id="new_message"
+          >+ New Message</a
+        >
+      </div>
+
+      <!-- PAGE BODY -->
+      <div class="page-body">
+        <!-- Search Messages -->
+        <div class="search-area">
+          <input
+            type="text"
+            class="search-bar"
+            id="search_bar"
+            placeholder="🔍 Search messages or contacts…"
+          />
+        </div>
+
+        <!-- Message Threads -->
+        <div class="messages-container">
+          <!-- Alice -->
+          <div class="message-card">
+            <img src="messeges1.jpg" alt="Alice" class="contact-avatar" />
+            <div class="message-info">
+              <div class="message-header">
+                <h3 class="contact-name">Alice Brown</h3>
+                <span class="message-time">10:24 AM</span>
+              </div>
+              <p class="message-snippet">
+                Hey! Are we meeting today for the book discussion?
+              </p>
             </div>
           </div>
-        </footer>
-      </aside>
-      <section class="messages">
-        <header>
-          <h1>Messages</h1>
-          <div class="searchbar">
-            <span class="material-icons">search</span>
-            <input type="search" placeholder="search conversations" />
+
+          <!-- David -->
+          <div class="message-card">
+            <img src="messeges2.jpg" alt="David" class="contact-avatar" />
+            <div class="message-info">
+              <div class="message-header">
+                <h3 class="contact-name">David Smith</h3>
+                <span class="message-time">Yesterday</span>
+              </div>
+              <p class="message-snippet">
+                I finished reading "The Great Gatsby". Amazing book!
+              </p>
+            </div>
           </div>
-        </header>
-        <aside class="conversation-list">
-          <ul>
-            <li class="conversation-active">
-              <img
-                src="/photos/avatar1.jpg"
-                alt="sarah johnson"
-                class="avatar"
-              />
-              <div class="conversation-info">
-                <h3>Sarah Johson</h3>
-                <p>oui il est disponisble</p>
+
+          <!-- Emily -->
+          <div class="message-card">
+            <img src="messeges3.jpg" alt="Emily" class="contact-avatar" />
+            <div class="message-info">
+              <div class="message-header">
+                <h3 class="contact-name">Emily Davis</h3>
+                <span class="message-time">2 days ago</span>
               </div>
-              <span class="badge">3</span>
-              <span class="date">12.30</span>
-            </li>
-            <li class="conversation">
-              <img
-                src="/photos/avatar2.jpg"
-                alt="Michael chen"
-                class="avatar"
-              />
-              <div class="conversation-info">
-                <h3>Michael Chen</h3>
-                <p>tu as encore 1984?</p>
-              </div>
-              <span class="badge">1</span>
-              <span class="date">10.50</span>
-            </li>
-            <li class="conversation">
-              <img src="/photos/avatar3.jpg" alt="Emily " class="avatar" />
-              <div class="conversation-info">
-                <h3>Emily Davis</h3>
-                <p>cc on echanche to kill a mocking bird?</p>
-              </div>
-              <span class="date">hier</span>
-            </li>
-            <li>
-              <img
-                src="/photos/avatar4.jpg"
-                alt="sarah johnson"
-                class="avatar"
-              />
-              <div class="conversation-info">
-                <h3>David Wilson</h3>
-                <p>Pride and prejudice est encore dispo?</p>
-              </div>
-              <span class="date">hier</span>
-            </li>
-          </ul>
-        </aside>
-      </section>
-      <section class="conversations">
-        <header>
-          <img src="/photos/avatar1.jpg" alt="sarah johnson" class="avatar" />
-          <h2>Sarah Johnson</h2>
-          <span class="material-icons">kid_star</span>
-          <span class="material-icons">more_vert</span>
-        </header>
-        <div class="chat-messages">
-          <div class="message received">
-            <p>salut,le livre est en bon etat!</p>
-            <span class="timestamp">10:15</span>
-          </div>
-          <div class="message sent">
-            <p>parfait je suis interessée alors</p>
-            <span class="timestamp">10:23</span>
+              <p class="message-snippet">
+                Let's schedule the next reading room session.
+              </p>
+            </div>
           </div>
         </div>
-        <footer class="chat-input">
-          <input type="text" placeholder="ecrire un message" />
-          <input type="submit" value="envoyer" />
-        </footer>
-      </section>
+
+        <!-- No messages -->
+        <div id="no-messages" style="display: none">
+          <h3>No messages found</h3>
+          <p>
+            Start a new conversation by clicking <strong>+ New Message</strong>.
+          </p>
+        </div>
+      </div>
     </div>
+
+    <script src="traduction.js"></script>
+    <script>
+      // Search Messages
+      const searchBar = document.querySelector("#search_bar");
+      searchBar.addEventListener("input", function () {
+        const query = this.value.trim().toLowerCase();
+        const cards = document.querySelectorAll(".message-card");
+        let found = 0;
+        cards.forEach((card) => {
+          const name = card
+            .querySelector(".contact-name")
+            .textContent.toLowerCase();
+          const snippet = card
+            .querySelector(".message-snippet")
+            .textContent.toLowerCase();
+          if (name.includes(query) || snippet.includes(query)) {
+            card.style.display = "flex";
+            found++;
+          } else {
+            card.style.display = "none";
+          }
+        });
+        document.getElementById("no-messages").style.display =
+          found === 0 && query !== "" ? "block" : "none";
+      });
+    </script>
   </body>
 </html>

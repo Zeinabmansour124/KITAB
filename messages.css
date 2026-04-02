@@ -1,359 +1,75 @@
-/* Sidebar container */
-.app{
-    display: flex;
-    width: 100%;
-
-}
-.sidebar {
-    width: 300px;
-    height: 100vh;
-    background-color: #3b5d50; /* vert profond */
-    display: flex;
-    flex-direction: column;
-    justify-content:flex-start;
-    box-shadow: 2px 0 8px rgba(0,0,0,0.25);
+.nav-right a#nav_profile,
+.nav-right a#nav_logout {
+  color: rgba(255, 253, 248, 0.65) !important; /* couleur claire */
+  text-decoration: none !important;            /* supprime le soulignement */
 }
 
-/* Header */
-.sidebar header {
-    display: flex;
-    align-items: center;
-    gap:10px;
-    text-align: center;
-    padding: 20px;
-    border-bottom: 1px solid #2f3e46;
+.nav-right a#nav_profile:hover,
+.nav-right a#nav_profile:visited,
+.nav-right a#nav_profile:active,
+.nav-right a#nav_logout:hover,
+.nav-right a#nav_logout:visited,
+.nav-right a#nav_logout:active {
+  color: rgba(255, 253, 248, 0.65) !important; /* même couleur dans tous les états */
+  text-decoration: none !important;            /* supprime le soulignement */
 }
-
-.sidebar header h1 {
-    color: #f0f3f5;
-    font-size: 22px;
-    margin: 0;
-}
-.app img{
-    width: 50px;
-    height: 50px;
-    border: 1px solid #2f3e46;
-    border-radius: 20%;
-    background-color: white;
-}
-.logo-text span{
-    font-size: 12px;
-    color: #cad2c5
-}
-
-/* Navigation links */
-.sidebar-nav {
+.messages-container {
     display: flex;
     flex-direction: column;
-    margin-top:10px;
-}
-
-.sidebar-link {
+    gap: 16px;
+  }
+  
+  .message-card {
     display: flex;
     align-items: center;
-    padding: 12px 20px;
-    color: #f0f3f5;
-    font-size: 15px;
-    text-decoration: none;
-    transition: background 0.3s, color 0.3s;
-}
-
-.sidebar-link .material-icons {
-    margin-right: 12px;
-    font-size: 20px;
-    color: #cad2c5;
-    transition: color 0.3s;
-}
-
-/* Hover & active states */
-.sidebar-link:hover,
-.sidebar-link.active {
-    background-color: #84a98c; /* vert clair */
-    color: #1e1e1e;
-}
-
-.sidebar-link:hover .material-icons,
-.sidebar-link.active .material-icons {
-    color: #1e1e1e;
-}
-
-/* Footer */
-.sidebar-footer {
-    border-top: 1px solid #2f3e46;
-    padding: 15px 20px;
-}
-
-.sidebar-footer .footer-links a {
-    display: flex;
-    align-items: center;
-    color: #f0f3f5;
-    font-size: 14px;
-    text-decoration: none;
-    margin-bottom: 10px;
-    transition: color 0.3s;
-}
-
-.sidebar-footer .footer-links a .material-icons {
-    margin-right: 10px;
-    color: #cad2c5;
-}
-
-.sidebar-footer .footer-links a:hover {
-    color: #1e1e1e;
-}
-
-.sidebar-footer .footer-links a:hover .material-icons {
-    color: #1e1e1e;
-}
-
-/* Profile section */
-.profile {
-    display: flex;
-    align-items: center;
-    margin-top: 15px;
-}
-
-.profile img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 12px;
-}
-
-.profile small {
-    color: #cad2c5;
-}
-.f{
-    margin-top:auto;
-}
-/* Container principal (déjà défini dans .app) */
-.messages {
-    width:600px; /* occupe l’espace restant à côté de la sidebar */
-    display: flex;
-    flex-direction: column;
-    background-color: #ac1515;
-}
-
-/* Header de la section Messages */
-.messages header {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 15px;
-    border-bottom: 1px solid #ddd;
-    background-color:#f6f0d7;
-}
-
-.messages header h1 {
-    font-size: 40px;
-    margin: 0;
-    color: #3b5d50; /* cohérent avec la sidebar */
-}
-
-.searchbar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #f1f1f1;
-    padding: 5px 10px;
-    border-radius: 20px;
-}
-
-.searchbar input {
-    border: none;
-    background: transparent;
-    outline: none;
-    flex: 1;
-    font-size: 14px;
-}
-
-/* Liste des conversations */
-.conversation-list {
-    flex: 1;
-    overflow-y: auto; /* scroll si trop long */
-    background-color:#f6f0d7;
-}
-
-.conversation-list ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.conversation-list li {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding:15px;
-    border-bottom: 1px solid #eee;
+    gap: 12px; /* espace entre la photo et le texte */
+    padding: 10px 16px;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(26,18,8,.07);
     cursor: pointer;
-    position: relative;
-    border-radius: 5%;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    transition: background 0.3s, transform 0.2s;
-
-}
-
-.conversation-list li:hover {
-    background-color: #f0f0f0;
-    transform: translateY(-2px)
-}
-
-.conversation-active {
-    background-color: #e6f2ef; /* couleur spéciale pour la conversation active */
-}
-
-/* Avatar */
-.avatar {
-    width: 45px;
-    height: 45px;
+    transition: all .2s;
+    margin-bottom: 12px; /* <-- petit espace entre les contacts */
+  }
+  .message-card:last-child {
+    margin-bottom: 0;
+  }
+  .message-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(26,18,8,.12);
+  }
+  
+  .contact-avatar {
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     object-fit: cover;
-}
-
-/* Infos conversation */
-.conversation-info {
-    flex: 1; /* occupe l’espace central */
-}
-
-.conversation-info h3 {
-    margin: 0;
+  }
+  
+  .message-info {
+    flex: 1;
+  }
+  
+  .message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .contact-name {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
     font-size: 16px;
-    color: #333;
-}
-
-.conversation-info p {
-    margin: 2px 0 0;
+    color: var(--ink);
+  }
+  
+  .message-time {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  
+  .message-snippet {
     font-size: 14px;
-    color: #666;
-}
-
-/* Badge (messages non lus) */
-.badge {
-    background: #d9534f;
-    color: #fff;
-    font-size: 12px;
-    padding: 4px 8px;
-    border-radius: 12px;
-    margin-left: auto;
-}
-
-/* Date */
-.date {
-    font-size: 12px;
-    color: #999;
-    margin-left: auto;
-    position: absolute;
-    right: 15px;
-    top: 12px;
-}
-.conversations {
-    flex: 1; /* occupe l’espace à droite de la sidebar */
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    border-left: 1px solid #ddd;
-
-    width: 400px !important;
-    flex-shrink: 0 !important;
-}
-
-
-.conversations header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* espace entre nom et icônes */
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-    background-color: #f9f9f9;
-}
-
-.conversations header img.avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 12px;
-}
-
-.conversations header h2 {
-    flex: 1;
-    font-size: 18px;
-    margin: 0;
-    color: #333;
-}
-
-.conversations header .material-icons {
-    font-size: 22px;
-    color: #666;
-    cursor: pointer;
-    margin-left: 10px;
-}
-
-.conversations header .material-icons:hover {
-    color: #3b5d50; 
-}
-/* Zone des messages */
-.chat-messages {
-    flex: 1;
-    padding: 15px;
-    overflow-y: auto;
-    background-color: #fafafa;
-}
-
-.message {
-    max-width: 70%;
-    padding: 10px;
-    margin-bottom: 12px;
-    border-radius: 12px;
-    position: relative;
-}
-
-.message.received {
-    background-color: #e6f2ef;
-    align-self: flex-start;
-}
-
-.message.sent {
-    background-color: #3b5d50;
-    color: #fff;
-    align-self: flex-end;
-}
-
-.timestamp {
-    font-size: 11px;
-    color: #999;
-    display: block;
+    color: rgba(26,18,8,.8);
     margin-top: 4px;
-    text-align: right;
-}
-
-/* Footer */
-.chat-input {
-    display: flex;
-    padding: 10px;
-    border-top: 1px solid #ddd;
-    background-color: #fff;
-}
-
-.chat-input input {
-    flex: 1;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    padding: 8px 12px;
-    outline: none;
-}
-
-.chat-input button {
-    margin-left: 10px;
-    background-color: #3b5d50;
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    padding: 8px 16px;
-    cursor: pointer;
-}
-/* AJOUTEZ CE CODE À LA FIN DE VOTRE FICHIER messages.css */
-
-
-
+  }
