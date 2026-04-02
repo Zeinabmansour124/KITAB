@@ -709,4 +709,3 @@
     body.rtl { direction: rtl; }
     body.rtl .badge { left: auto; right: 12px; }
     body.rtl .participants { right: auto; left: 12px; }
- 
