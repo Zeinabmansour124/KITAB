@@ -1,0 +1,381 @@
+/* ============================================================
+   css/main.css — Styles globaux KITAB
+   ============================================================
+
+   Organisation :
+   1. Variables CSS (palette, espacements)
+   2. Reset & base
+   3. Navigation
+   4. Footer
+   5. Composants partagés (boutons, alertes, badges)
+   6. Utilitaires
+   ============================================================ */
+
+
+/* ── 1. VARIABLES CSS ─────────────────────────────────────── */
+:root {
+  /* Couleurs principales */
+  --ink:         #1a1208;   /* Texte principal (quasi-noir chaud) */
+  --amber:       #c8860a;   /* Ambre foncé – actions primaires */
+  --amber-mid:   #e8a82a;   /* Ambre moyen – hover, accents */
+  --amber-light: #f9efd0;   /* Ambre très clair – fonds légers */
+  --rust:        #8b3a1a;   /* Rouille – hover destructif, logo */
+  --teal:        #0e6b5e;   /* Sarcelle – secondaire, succès */
+  --teal-dark:   #0a5046;   /* Sarcelle foncée – hover */
+  --teal-light:  #d6f0ec;   /* Sarcelle très clair – alertes succès */
+  --sand:        #f5f0e8;   /* Fond sable – arrière-plan principal */
+  --white:       #fffdf8;   /* Blanc chaud – cartes */
+  --border:      #e2d9c8;   /* Bordures */
+  --muted:       #7a6e5f;   /* Texte secondaire / labels */
+
+  /* Navigation */
+  --nav-h: 68px;            /* Hauteur de la barre de navigation fixe */
+
+  /* Espacements */
+  --page-px: 5vw;           /* Padding horizontal des pages */
+  --radius:  12px;          /* Rayon de bordure standard */
+  --radius-lg: 20px;        /* Rayon de bordure large (cartes) */
+}
+
+
+/* ── 2. RESET & BASE ──────────────────────────────────────── */
+
+/* Reset box-sizing : la taille inclut padding et border */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Empêche le scroll horizontal (débordement de contenu) */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;  /* Police principale */
+  background: var(--sand);              /* Fond sable doux */
+  color: var(--ink);                    /* Couleur de texte */
+  min-height: 100vh;                    /* Au moins toute la hauteur écran */
+  line-height: 1.6;                     /* Interligne confortable */
+}
+
+/* Liens : pas de soulignement par défaut */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color .2s;
+}
+
+/* Images toujours responsives */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Listes sans puce par défaut */
+ul { list-style: none; }
+
+
+/* ── 3. NAVIGATION ────────────────────────────────────────── */
+
+/* Barre fixe en haut de page */
+.main-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;                           /* Au-dessus de tout le contenu */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--page-px);
+  height: var(--nav-h);
+  background: rgba(26, 18, 8, .97);       /* Fond sombre semi-transparent */
+  backdrop-filter: blur(10px);            /* Flou de l'arrière-plan (glassmorphism) */
+  box-shadow: 0 2px 20px rgba(0, 0, 0, .3);
+}
+
+/* Logo — typographie Playfair */
+.logo, .logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--amber-mid);
+  letter-spacing: -.5px;
+}
+
+/* Partie arabe du logo */
+.logo .text_arb,
+.logo-text .text_arb {
+  font-family: 'Amiri', serif;
+  direction: rtl;           /* Écriture droite-à-gauche */
+  font-size: 20px;
+  margin-left: 4px;
+  color: var(--rust);
+}
+
+/* Liste horizontale des liens nav */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Liens individuels */
+.nav-links a {
+  color: rgba(255, 253, 248, .65);
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: all .2s;
+}
+
+.nav-links a:hover {
+  color: var(--amber-mid);
+  background: rgba(255, 255, 255, .06);
+}
+
+/* Bouton "Publier" / CTA dans la nav */
+.nav-links .nav-cta {
+  background: var(--amber);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 8px 18px;
+}
+
+.nav-links .nav-cta:hover {
+  background: var(--rust);
+  transform: translateY(-1px);
+}
+
+/* Lien de déconnexion */
+.nav-links .nav-logout {
+  color: rgba(255, 100, 100, .7);
+}
+
+.nav-links .nav-logout:hover {
+  color: #ff6b6b;
+  background: rgba(255, 100, 100, .08);
+}
+
+/* Espace blanc compensant la nav fixe pour éviter de cacher le contenu */
+.nav-spacer { height: var(--nav-h); }
+
+
+/* ── 4. FOOTER ────────────────────────────────────────────── */
+
+.main-footer {
+  background: rgba(26, 18, 8, .97);
+  padding: 40px var(--page-px) 24px;
+  margin-top: 80px;                       /* Espace avant le footer */
+}
+
+/* Disposition en colonnes */
+.footer-inner {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.footer-brand p {
+  color: rgba(255, 253, 248, .45);
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.footer-links h4 {
+  color: var(--amber-mid);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.footer-links li + li { margin-top: 6px; }
+
+.footer-links a {
+  color: rgba(255, 253, 248, .55);
+  font-size: 13px;
+  transition: color .2s;
+}
+
+.footer-links a:hover { color: var(--amber-mid); }
+
+/* Bas du footer : copyright */
+.footer-legal {
+  border-top: 1px solid rgba(255, 255, 255, .08);
+  padding-top: 16px;
+  color: rgba(255, 253, 248, .3);
+  font-size: 12px;
+  width: 100%;
+}
+
+
+/* ── 5. COMPOSANTS PARTAGÉS ───────────────────────────────── */
+
+/* ── Bouton primaire (ambre) ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 50px;
+  border: none;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .3s;
+  letter-spacing: .3px;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--amber);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(200, 134, 10, .3);
+}
+
+.btn-primary:hover {
+  background: var(--rust);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 58, 26, .35);
+}
+
+/* ── Bouton secondaire (outline) ── */
+.btn-secondary {
+  background: transparent;
+  color: var(--muted);
+  border: 1.5px solid var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--muted);
+  color: var(--ink);
+}
+
+/* ── Bouton teal ── */
+.btn-teal {
+  background: var(--teal);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(14, 107, 94, .25);
+}
+
+.btn-teal:hover {
+  background: var(--teal-dark);
+  transform: translateY(-2px);
+}
+
+/* ── Alertes ── */
+.alert {
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.alert .material-icons {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Alerte succès (fond sarcelle clair) */
+.alert-success {
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  border: 1px solid rgba(14, 107, 94, .2);
+}
+
+/* Alerte erreur (fond rouge clair) */
+.alert-error {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid rgba(220, 38, 38, .2);
+}
+
+/* ── Message d'erreur sous un champ ── */
+.err-msg {
+  font-size: 12px;
+  color: #dc2626;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.err-msg .material-icons { font-size: 13px; }
+
+/* ── Badges ── */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+/* Badge état du livre */
+.badge-neuf     { background: #dcfce7; color: #166534; }
+.badge-bon      { background: #dbeafe; color: #1e40af; }
+.badge-moyen    { background: #fef9c3; color: #854d0e; }
+.badge-abime    { background: #fee2e2; color: #991b1b; }
+
+/* ── Carte générique ── */
+.card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 20px rgba(26, 18, 8, .06);
+  overflow: hidden;
+}
+
+
+/* ── 6. UTILITAIRES ───────────────────────────────────────── */
+
+/* Centrer un bloc avec largeur max */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--page-px);
+}
+
+/* Espacement de section */
+.section { padding: 48px 0; }
+
+/* Texte secondaire atténué */
+.text-muted { color: var(--muted); }
+
+/* Famille Playfair pour les titres */
+.font-serif { font-family: "Playfair Display", serif; }
+
+/* Affichage flex centré */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Animation de secousse pour les champs en erreur */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-5px); }
+  75%       { transform: translateX(5px); }
+}
+
+/* ── Responsive mobile ────────────────────────────────────── */
+@media (max-width: 640px) {
+  /* Menu hamburger non implémenté — liens empilés */
+  .nav-links { gap: 4px; }
+  .nav-links a { padding: 5px 10px; font-size: 12px; }
+  .footer-inner { flex-direction: column; gap: 24px; }
+}
