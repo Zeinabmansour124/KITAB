@@ -46,51 +46,11 @@ $books = $bookRepo->findAll();
   </head>
   <body>
     <!-- ===== NAVBAR ===== -->
-    <nav id="mainNav">
-      <a href="#" class="logo">KITAB<span class="text_arb">كتاب</span></a>
-      <ul class="nav-links">
-        <li>
-          <a href="marketplace.html" id="nav_marketplace" class="active"
-            ><span class="material-icons">local_mall</span> Marketplace</a
-          >
-        </li>
-        <li>
-          <a href="messages.html" id="nav_messages"
-            ><span class="material-icons">chat_bubble</span> Messages</a
-          >
-        </li>
-        <li>
-          <a href="codeHTML.html" id="nav_exchanges"
-            ><span class="material-icons">swap_horiz</span> Exchanges</a
-          >
-        </li>
-        <li>
-          <a href="fav.html" id="nav_favorites"
-            ><span class="material-icons">favorite</span> Favorites</a
-          >
-        </li>
-        <li>
-          <a href="reading-rooms.html" id="nav_reading_rooms"
-            ><span class="material-icons">import_contacts</span> Reading Rooms</a
-          >
-        </li>
-      </ul>
 
-      <div class="nav-right">
-        <a href="profile.html" id="nav_profile"
-          ><span class="material-icons">account_circle</span> Profile</a
-        >
-        <a href="logout.html" id="nav_logout"
-          ><span class="material-icons">logout</span>Log out</a
-        >
+    <?php include('bar.php') ?>
 
-        <div class="lang-switcher-nav">
-          <button class="lang-btn" id="btn-en">EN</button>
-          <button class="lang-btn" id="btn-fr">FR</button>
-          <button class="lang-btn" id="btn-ar">AR</button>
-        </div>
-      </div>
-    </nav>
+
+
 
     <!--COMME PUB-->
     <div class="page-wrapper">
@@ -245,7 +205,7 @@ $books = $bookRepo->findAll();
 
         <br>
 
-        <!-- ===== TOUTES LES CARTES DANS UN SEUL cards-container ===== -->
+        
         <div class="cards-container">
 
           <!-- CARTE 1 — Pride and Prejudice -->
@@ -440,85 +400,15 @@ $books = $bookRepo->findAll();
             </div>
           </div>
 
-          <!-- ===== CARTES DYNAMIQUES PHP — même structure exacte ===== -->
-          <?php if (empty($books)): ?>
-            <p style="text-align:center; width:100%; grid-column: 1/-1;">Aucun livre dynamique trouvé.</p>
-          <?php else: ?>
-            <?php foreach ($books as $book): ?>
-              <div class="book-card">
-                <div class="image-container">
-                  <img src="uploads/<?php echo htmlspecialchars($book->image); ?>" alt="Livre" />
-                  <div class="conditionbook <?php echo strtolower(htmlspecialchars($book->condition)); ?>">
-                    <?php echo htmlspecialchars($book->condition); ?>
-                  </div>
-                  <?php if ($book->for_exchange): ?>
-                    <div class="forexchange">for exchange</div>
-                  <?php else: ?>
-                    <div class="forexchange"></div>
-                  <?php endif; ?>
-                  <label class="heart">
-                    <input type="checkbox" />
-                    <span class="icon"><i class="bi bi-heart-fill"></i></span>
-                  </label>
-                </div>
-                <div class="card-body">
-                  <h4 class="nombook"><?php echo htmlspecialchars($book->titre); ?></h4>
-                  <p>by <?php echo htmlspecialchars($book->auteur); ?></p>
-                  <h6 class="booktype"><?php echo htmlspecialchars($book->genre); ?></h6>
-                  <span class="price" style="margin-left: 50px; margin-right: 0; color: green">
-                    <?php echo number_format($book->prix, 1); ?>dt
-                  </span>
-                  <br />
-                  <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($book->auteur); ?>&background=random" alt="" class="ownerpic" />
-                  <span class="person">Vendeur #<?php echo $book->user_id; ?></span><br />
-                  <a href="details.php?id=<?php echo $book->id; ?>" class="details">
-                    <i class="bi bi-book"></i> Details
-                  </a>
-                  <a href="chat.php?with=<?php echo $book->user_id; ?>" class="chat">
-                    <i class="bi bi-chat-left"></i> Chat
-                  </a>
-                </div>
-              </div>
-            <?php endforeach; ?>
-          <?php endif; ?>
+          
+          <?php include('AouterLivre.php');?>
 
-        </div><!-- fin .cards-container -->
-
-      </div><!-- fin .content -->
-
-      <footer class="footer">
-        <div class="descrp">
-          <div class="KITABdescrp">
-            <div class="logo">KITAB<span class="text_arb">كتاب </span></div>
-            <p>La marketplace tunisienne dédiée aux livres d'occasion, à l'échange et à la lecture communautaire.</p>
-          </div>
-          <div class="footerdet">
-            <h5>EXPLORER</h5>
-            <a href="#">All books</a>
-            <a href="#">Reading Room</a>
-            <a href="#">Exchange</a>
-            <a href="#">New Arrivals</a>
-          </div>
-          <div class="contact footerdet">
-            <h5>CONTACT</h5>
-            <p>Email: <br> support@kitab.com</p>
-            <p>Téléphone: <br> +216 XX XXX XXX</p>
-          </div>
-          <div class="footerdet">
-            <h5>SUIVEZ-NOUS</h5>
-            <a href="#">Facebook</a>
-            <a href="#">Instagram</a>
-            <a href="#">Twitter</a>
-          </div>
         </div>
-        <div class="footer-bottom">
-          <hr>
-          <span>© 2026 KITAB كتاب — Tous droits réservés</span>
-          <span>Fait avec ♥ en Tunisie 🇹🇳</span>
-        </div>
-      </footer>
 
-    </div><!-- fin .page-wrapper -->
+      </div>
+
+      <? include('footer.php') ?>
+    </div>
 
     <script src="marketPlace.js"></script>
   </body>
