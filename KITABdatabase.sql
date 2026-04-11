@@ -31,3 +31,18 @@ CREATE TABLE IF NOT EXISTS books (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+--table exchanges
+CREATE TABLE IF NOT EXISTS exchanges (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_receiving_id INT NOT NULL,                       -- Référence à l'utilisateur qui reçoit le livre
+    your_book_id INT NOT NULL,                       -- Référence au livre proposé pour échange
+    user_offering_id INT NOT NULL,                       -- Référence à l'utilisateur qui propose l'échange
+    proposed_book_id INT,                      -- Référence au livre proposé en échange (peut être NULL si pas encore proposé)
+    status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',  -- Statut de l'échange
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (your_book_id) REFERENCES books(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_offering_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (proposed_book_id) REFERENCES books(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_receiving_id) REFERENCES users(id) ON DELETE CASCADE
+);
