@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS books (
     auteur VARCHAR(100),
     prix DECIMAL(10,2),                         -- Prix du livre
     genre VARCHAR(50),
-    `condition` ENUM('neuf', 'bon', 'moyen', 'abimé') DEFAULT 'bon',  -- État du livre
+    condition ENUM('neuf', 'bon', 'moyen', 'abimé') DEFAULT 'bon',  -- État du livre
     image VARCHAR(255),                          -- URL ou chemin de l'image
     description TEXT,
     for_exchange BOOLEAN DEFAULT FALSE,         -- True si le livre est proposé pour échange
@@ -33,14 +33,15 @@ CREATE TABLE IF NOT EXISTS books (
 );
 
 --table exchanges
-CREATE TABLE IF NOT EXISTS exchanges (
+CREATE TABLE IF NOT EXISTS exchange (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_receiving_id INT NOT NULL,                       -- Référence à l'utilisateur qui reçoit le livre
+    user_id INT NOT NULL,                       -- Référence à l'utilisateur qui reçoit le livre
     your_book_id INT NOT NULL,                       -- Référence au livre proposé pour échange
     user_offering_id INT NOT NULL,                       -- Référence à l'utilisateur qui propose l'échange
-    proposed_book_id INT,                      -- Référence au livre proposé en échange (peut être NULL si pas encore proposé)
+    partner_book_id INT,                      -- Référence au livre proposé en échange (peut être NULL si pas encore proposé)
     status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',  -- Statut de l'échange
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    completed ENUM('yes', 'no') DEFAULT 'no',           -- Indique si l'échange est complété
     FOREIGN KEY (your_book_id) REFERENCES books(id) ON DELETE CASCADE,
     FOREIGN KEY (user_offering_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (proposed_book_id) REFERENCES books(id) ON DELETE CASCADE,
