@@ -42,8 +42,9 @@ CREATE TABLE IF NOT EXISTS exchange (
     status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',  -- Statut de l'échange
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     completed ENUM('yes', 'no') DEFAULT 'no',           -- Indique si l'échange est complété
+    accepted ENUM('yes', 'no') DEFAULT 'no',            -- Indique si l'échange a été accepté   
     FOREIGN KEY (your_book_id) REFERENCES books(id) ON DELETE CASCADE,
     FOREIGN KEY (user_offering_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (proposed_book_id) REFERENCES books(id) ON DELETE CASCADE,
-    FOREIGN KEY (user_receiving_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (partner_book_id) REFERENCES books(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );

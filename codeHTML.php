@@ -18,6 +18,7 @@ if ($total > 0) {
     $success_rate = 0;
 }
 $mes_echanges = $exchange->recuperer_donnees($user);
+$accepts = $exchange->recuperer_accepted($user);
 ?>
 <!DOCTYPE html>
 <html xml:lang="en" lang="en">
@@ -163,6 +164,9 @@ $mes_echanges = $exchange->recuperer_donnees($user);
                 <label for="allBtn" class="filter-label">All Exchanges</label>
             </article>
             <section class="accepted mt-4 push-content-up d-flex align-items-center border border-1 bg-teal-light p-3" id="exchange-Accepted">
+                <?php
+                foreach ($accepts as $accept) {
+                ?>
                 <div class="d-flex justify-content-between align-items-center mb-3 w-100">
                     <h class="d-flex align-items-center mb-0 muted fw-bold">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
@@ -182,16 +186,35 @@ $mes_echanges = $exchange->recuperer_donnees($user);
                 <div class="devider"> </div>
                 <div id="bookAdd3" class="position-relative empl mb-4 p-4 rounded-4 w-100 bg-muted d-flex flex-column gap-4">
                     <div class="offering-date text-amber-light border-bottom border-white border-opacity-10 pb-2">
-                        you offered : <span id="offered-date3"> Loading...</span>
+                        you offered : <span id="offered-date3">
+                            <?php
+                            echo $accept->created_at;
+                            ?>
+                        </span>
                     </div>
                     <div class="book-exchange d-flex align-items-center justify-content-center">
                         <div class="offered-book me-5">
                             <h3>Your Book</h3>
                             <img class="cover" data-book-id="" src="" alt="Book Cover" width="100" height="150">
                             <article class="book-details">
-                                <th class="title" data-book-id=""> Loading...</th>
-                                <div class="author" data-book-id=""> Loading...</div>
-                                <div class="condition" data-book-id=""> Condition: Loading...</div>
+                                <th class="title" data-book-id="">
+                                    <?php
+                                    $booktitle = $book->getbooktitle($accept->your_book_id);
+                                    echo $booktitle;
+                                    ?>
+                                </th>
+                                <div class="author" data-book-id="">
+                                    <?php
+                                    $bookAuthor = $book->getBookAuthor($accept->your_book_id);
+                                    echo $bookAuthor;
+                                    ?>
+                                </div>
+                                <div class="condition" data-book-id=""> Condition:
+                                    <?php
+                                    $bookCondition = $book->getBookCondition($accept->your_book_id);
+                                    echo $bookCondition;
+                                    ?>
+                                </div>
                             </article>
                         </div>
                         <svg class="me-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -204,16 +227,33 @@ $mes_echanges = $exchange->recuperer_donnees($user);
                             <h3>Received Book</h3>
                             <img class="cover1" data-book-id="" src="" alt="Book Cover1" width="100" height="150">
                             <article class="book-details1">
-                                <th class="title1" data-book-id=""> Loading...</th>
-                                <div class="author1" data-book-id=""> Loading...</div>
-                                <div class="condition1" data-book-id=""> Condition: Loading...</div>
+                                <th class="title1" data-book-id="">
+                                    <?php
+                                    $booktitle1 = $book->getbooktitle($accept->partner_book_id);
+                                    echo $booktitle1;
+                                    ?>
+                                </th>
+                                <div class="author1" data-book-id="">
+                                    <?php
+                                    $bookAuthor1 = $book->getBookAuthor($accept->partner_book_id);
+                                    echo $bookAuthor1;
+                                    ?>
+                                </div>
+                                <div class="condition1" data-book-id="">
+                                    Condition:
+                                    <?php
+                                    $bookCondition1 = $book->getBookCondition($accept->partner_book_id);
+                                    echo $bookCondition1;
+                                    ?>
+                                </div>
                             </article>
                         </div>
                     </div>
 
-
+            <?php
+                }
+            ?>
             </section>
-
             <section class="pendingResponse position-relative mt-4 border border-1 bg-teal-light rounded p-3 " id="pending-Exchanges">
                 <div class="d-flex justify-content-between align-items-center mb-3 ">
                     <h class="d-flex align-items-center mb-0 muted fw-bold">
