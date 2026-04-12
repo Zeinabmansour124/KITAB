@@ -11,8 +11,9 @@ CREATE TABLE IF NOT EXISTS users (
     prenom VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    avatar VARCHAR(255),
+    location VARCHAR(100),
     bio TEXT,
+    image VARCHAR(255),                          -- URL ou chemin de l'image de profil
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -42,7 +43,7 @@ CREATE TABLE IF NOT EXISTS exchange (
     status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',  -- Statut de l'échange
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     completed ENUM('yes', 'no') DEFAULT 'no',           -- Indique si l'échange est complété
-    accepted ENUM('yes', 'no') DEFAULT 'no',            -- Indique si l'échange a été accepté   
+    accepted ENUM(0, 1,-1) DEFAULT 0,            -- Indique si l'échange a été accepté   
     FOREIGN KEY (your_book_id) REFERENCES books(id) ON DELETE CASCADE,
     FOREIGN KEY (user_offering_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (partner_book_id) REFERENCES books(id) ON DELETE CASCADE,

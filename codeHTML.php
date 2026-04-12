@@ -9,6 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 $user = $_SESSION['user_id'];
 $exchange = new exchange();
 $book = new Book();
+$us= new User();
 $total = $exchange->count_all($user);
 $completed = $exchange->count_completed($user);
 $active = $exchange->count_active($user);
@@ -19,6 +20,7 @@ if ($total > 0) {
 }
 $mes_echanges = $exchange->recuperer_donnees($user);
 $accepts = $exchange->recuperer_accepted($user);
+$pending = $exchange->recuperer_pending($user);
 ?>
 <!DOCTYPE html>
 <html xml:lang="en" lang="en">
@@ -255,6 +257,9 @@ $accepts = $exchange->recuperer_accepted($user);
             ?>
             </section>
             <section class="pendingResponse position-relative mt-4 border border-1 bg-teal-light rounded p-3 " id="pending-Exchanges">
+                <?php
+                foreach ($pending as $pend) {
+                ?>
                 <div class="d-flex justify-content-between align-items-center mb-3 ">
                     <h class="d-flex align-items-center mb-0 muted fw-bold">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16" class="me-2">
@@ -274,16 +279,32 @@ $accepts = $exchange->recuperer_accepted($user);
                 <div id="LivresEnAttente"></div>
                 <div id="book_requested" class="position-relative empl mb-4 p-4 rounded-4 w-100 bg-muted d-flex flex-column gap-4">
                     <div class="offering-date text-amber-light border-bottom border-white border-opacity-10 pb-2">
-                        you requested: <span id="requested-date"> Loading...</span>
+                        you requested: <span id="requested-date"> 
+                            <?php
+                            echo $pend->created_at;
+                            ?>
+                        </span>
                     </div>
                     <div class="book-exchange d-flex align-items-center justify-content-center">
                         <div class="your-book me-5">
                             <h3>Your Book</h3>
                             <img class="cover2" data-book-id="" src="" alt="Book Cover2" width="100" height="150">
                             <article class="book-details2">
-                                <th class="title2" data-book-id=""> Loading...</th>
-                                <div class="author2" data-book-id=""> Loading...</div>
-                                <div class="condition2" data-book-id=""> Condition: Loading...</div>
+                                <th class="title2" data-book-id=""> 
+                                    <?php
+                                    $booktitle= $book->getbooktitle($pend->your_book_id);
+                                    echo $booktitle2;
+                                    ?>
+                                </th>
+                                <div class="author2" data-book-id="">
+                                    <?php
+                                    $bookAuthor= $book->getBookAuthor($pend->your_book_id);
+                                    echo $bookAuthor2;
+                                    ?>
+                                </div>
+                                <div class="condition2" data-book-id=""> Condition: 
+                                    <?php echo $book->getBookCondition($pend->your_book_id); ?>
+                                </div>
                             </article>
                         </div>
                         <svg class="me-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -296,17 +317,42 @@ $accepts = $exchange->recuperer_accepted($user);
                             <h3>Received Book</h3>
                             <img class="cover3" data-book-id="" src="" alt="Book Cover3" width="100" height="150">
                             <article class="book-details3">
-                                <th class="title3" data-book-id=""> Loading...</th>
-                                <div class="author3" data-book-id=""> Loading...</div>
-                                <div class="condition3" data-book-id=""> Condition: Loading...</div>
+                                <th class="title3" data-book-id=""> 
+                                    <?php
+                                    $booktitle3 = $book->getbooktitle($pend->partner_book_id);
+                                    echo $booktitle3;
+                                    ?>
+                                </th>
+                                <div class="author3" data-book-id=""> 
+                                    <?php
+                                    $bookAuthor3 = $book->getBookAuthor($pend->partner_book_id);
+                                    echo $bookAuthor3;
+                                    ?>
+                                </div>
+                                <div class="condition3" data-book-id=""> Condition: 
+                                    <?php echo $book->getBookCondition($pend->partner_book_id); ?>
+                                </div>
                             </article>
                         </div>
                     </div>
                     <div id="requesting-person ">
-                        <img id="userImage7" src="" alt="User Image7" width="50" height="50">
+                        <?php
+                        $imgsrc= $us->getUserImage($pend->user_offering_id);
+                        ?>
+                        <img id="userImage7" src="<=? $imgsrc; ?>" alt="User" width="50" height="50">
                         <div class="userDescription">
-                            <div class="username" id="username"> Loading...</div>
-                            <div class="location" id="location"> Loading...</div>
+                            <div class="username" id="username">
+                                <?php
+                                $username = $us->getUserName($pend->user_offering_id);
+                                echo $username;
+                                ?>
+                            </div>
+                            <div class="location" id="location"> 
+                                <?php
+                                $userLocation = $us->getUserLocation($pend->user_offering_id);
+                                echo $userLocation;
+                                ?>
+                            </div>
                             <div class="rate"></div>
                             <div id="etoile-vide"></div>
                             <script>
@@ -332,7 +378,9 @@ $accepts = $exchange->recuperer_accepted($user);
                     </div>
 
                 </div>
-
+            <?php
+                }
+            ?>
 
             </section>
             <section class="accepted mt-4 push-content-up d-flex align-items-center border border-1 bg-teal-light p-3" id="completed-Exchanges">

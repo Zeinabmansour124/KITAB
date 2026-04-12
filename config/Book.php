@@ -1,5 +1,5 @@
 <?php
-class Book extends Repository{
+class Book extends BookRepository{
     public function __construct(
         public $id = null,
         public $titre = "",

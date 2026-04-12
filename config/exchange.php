@@ -43,8 +43,13 @@ class Exchange extends Repository {  // Nom de classe avec majuscule (convention
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
     public function recuperer_Accepted($userId) {  // Nom sans accent + camelCase
-        $stmt = $this->db->prepare("SELECT * FROM exchange WHERE user_id = :user_id AND accepted = 'yes'");
-        $stmt->execute(['user_id' => $userId]);
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
-    }
+            $stmt = $this->db->prepare("SELECT * FROM exchange WHERE user_id = :user_id AND accepted = 1");
+            $stmt->execute(['user_id' => $userId]);
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
+    public function recuperer_Pending($userId) {  
+            $stmt = $this->db->prepare("SELECT * FROM exchange WHERE user_id = :user_id AND accepted = 0");
+            $stmt->execute(['user_id' => $userId]);
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
 }
