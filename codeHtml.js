@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const completedBtn = document.getElementById('completedBtn');
     const allBtn = document.getElementById('allBtn');
 
-    // On récupère les sections
     const exchangeAccepted = document.getElementById('exchange-Accepted');
     const pendingExchanges = document.getElementById('pending-Exchanges');
     const completedExchanges = document.getElementById('completed-Exchanges');
@@ -11,66 +10,155 @@ document.addEventListener('DOMContentLoaded', function () {
     const inProgressExchanges = document.getElementById('in-progress-Exchanges');
 
     function updateVisibility() {
-        // Liste de toutes nos sections pour boucler dessus facilement
         const sections = [exchangeAccepted, pendingExchanges, completedExchanges, refusedExchanges, inProgressExchanges];
-
-        // On cache tout par défaut (si la section existe)
         sections.forEach(sec => {
-            if (sec) sec.style.setProperty('display', 'none', 'important');
+            if (sec) sec.style.display = 'none';
         });
 
         if (activeBtn && activeBtn.checked) {
-            if (exchangeAccepted) exchangeAccepted.style.setProperty('display', 'block', 'important');
-            if (pendingExchanges) pendingExchanges.style.setProperty('display', 'block', 'important');
-            if (inProgressExchanges) inProgressExchanges.style.setProperty('display', 'block', 'important');
+            if (exchangeAccepted) exchangeAccepted.style.display = 'block';
+            if (pendingExchanges) pendingExchanges.style.display = 'block';
+            if (inProgressExchanges) inProgressExchanges.style.display = 'block';
         }
         else if (completedBtn && completedBtn.checked) {
-            if (completedExchanges) completedExchanges.style.setProperty('display', 'block', 'important');
+            if (completedExchanges) completedExchanges.style.display = 'block';
         }
         else if (allBtn && allBtn.checked) {
             sections.forEach(sec => {
-                if (sec) sec.style.setProperty('display', 'block', 'important');
+                if (sec) sec.style.display = 'block';
             });
         }
     }
 
-    // Écouteurs d'événements
     if (activeBtn) activeBtn.addEventListener('change', updateVisibility);
     if (completedBtn) completedBtn.addEventListener('change', updateVisibility);
     if (allBtn) allBtn.addEventListener('change', updateVisibility);
-
-    // Lancement immédiat pour l'état initial
     updateVisibility();
 
+    // ========== BOUTONS CHAT (avec vérification) ==========
+    const chatButtonAccepted = document.getElementById('chat-button-Accepted');
+    if (chatButtonAccepted) chatButtonAccepted.addEventListener('click', function () { });
 
+    const chatButtonPending = document.getElementById('chat-button-pending');
+    if (chatButtonPending) chatButtonPending.addEventListener('click', function () { });
 
+    const chatButtonCompleted = document.getElementById('chat-button-completed');
+    if (chatButtonCompleted) chatButtonCompleted.addEventListener('click', function () { });
+
+    const chatButtonRefused = document.getElementById('chat-button-refused');
+    if (chatButtonRefused) chatButtonRefused.addEventListener('click', function () { });
+
+    const chatButtonInProgress = document.getElementById('chat-button-in-progress');
+    if (chatButtonInProgress) chatButtonInProgress.addEventListener('click', function () { });
+
+    // ========== BOUTON ACCEPT ==========
+    const acceptBtn = document.getElementById('accept-request');
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const container = this.closest('[data-exchange-id]');
+            if (!container) {
+                showNotification('Erreur: Échange non identifié', 'error');
+                return;
+            }
+            
+            const exchangeId = container.dataset.exchangeId;
+            
+            if (confirm('Are you sure you want to accept this exchange request?')) {
+                fetch('update_exchange_status.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        exchangeId: exchangeId,
+                        status: 'accepted'
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showNotification('Exchange accepted successfully!', 'success');
+                        setTimeout(() => location.reload(), 1500);
+                    } else {
+                        showNotification('Failed to accept the exchange.', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification('Network error. Please try again.', 'error');
+                });
+            }
+        });
+    }
+
+    // ========== BOUTON DECLINE ==========
+    const declineBtn = document.getElementById('decline-request');
+    if (declineBtn) {
+        declineBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const container = this.closest('[data-exchange-id]');
+            if (!container) {
+                showNotification('Erreur: Échange non identifié', 'error');
+                return;
+            }
+            
+            const exchangeId = container.dataset.exchangeId;
+            
+            if (confirm('Are you sure you want to decline this exchange request?')) {
+                fetch('update_exchange_status.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        exchangeId: exchangeId,
+                        status: 'declined'
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showNotification('Exchange declined successfully!', 'success');
+                        setTimeout(() => location.reload(), 1500);
+                    } else {
+                        showNotification('Failed to decline the exchange.', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification('Network error. Please try again.', 'error');
+                });
+            }
+        });
+    }
 });
 
-//upload the exchange data from the server and display it in the page
-document.addEventListener('DOMContentLoaded', function () {
-});
+// ========== FONCTION NOTIFICATION ==========
+function showNotification(message, type) {
+    const notification = document.createElement('div');
+    notification.textContent = message;
 
-//manipuler les statiques a chaque fois que la page est chargée
-document.addEventListener('DOMContentLoaded', function () {
-});
+    let backgroundColor = '#17a2b8';
+    if (type === 'success') backgroundColor = '#28a745';
+    if (type === 'error') backgroundColor = '#dc3545';
 
-//ouvrir les chats relative a chaque type d echange 
-const chatButtonAccepted = document.getElementById('chat-button-Accepted');
-chatButtonAccepted.addEventListener('click', function () { });
+    notification.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 24px;
+        background-color: ${backgroundColor};
+        color: white;
+        border-radius: 8px;
+        font-weight: 500;
+        z-index: 10000;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        animation: fadeInOut 3s ease;
+    `;
 
-chatButtonPending = document.getElementById('chat-button-pending');
-chatButtonPending.addEventListener('click', function () { });
-
-chatButtonCompleted = document.getElementById('chat-button-completed');
-chatButtonCompleted.addEventListener('click', function () { });
-
-chatButtonRefused = document.getElementById('chat-button-refused');
-chatButtonRefused.addEventListener('click', function () { });
-
-chatButtonInProgress = document.getElementById('chat-button-in-progress');
-chatButtonInProgress.addEventListener('click', function () { });
-//accepter ou refuser les demandes d echange
-const acceptBtn = document.getElementById('accept-request');
-acceptBtn.addEventListener('click', function () { });
-const declineBtn = document.getElementById('decline-request');
-declineBtn.addEventListener('click', function () { });
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 3000);
+}

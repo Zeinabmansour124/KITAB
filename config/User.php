@@ -1,4 +1,5 @@
 <?php
+include_once 'config/UserRepository.php';  // Chemin corrigé (slash, pas backslash)
 class User extends UserRepository {
     public function __construct(
         public $id = null,
@@ -22,6 +23,6 @@ class User extends UserRepository {
         $this->db->execute(['id' => $id]);
         return $this->db->fetchColumn();
     }
-    
+
     
 }

@@ -1,4 +1,5 @@
 <?php
+include_once 'config/IRepository.php';  // Chemin corrigé (slash, pas backslash)
 abstract class Repository implements IRepository {
     protected $db;
     public function __construct(protected $tableName) {

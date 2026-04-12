@@ -1,4 +1,5 @@
 <?php
+include_once 'config/Repository.php';  // Chemin corrigé (slash, pas backslash)
 class BookRepository extends Repository {
     public function __construct() {
         parent::__construct('books');
