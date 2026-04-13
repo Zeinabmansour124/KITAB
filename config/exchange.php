@@ -52,4 +52,15 @@ class Exchange extends Repository {  // Nom de classe avec majuscule (convention
             $stmt->execute(['user_id' => $userId]);
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
+        public function count_refused($userId) {  // camelCase
+            $stmt = $this->db->prepare("SELECT COUNT(*) as count FROM exchange WHERE user_id = :user_id AND accepted = -1");
+            $stmt->execute(['user_id' => $userId]);
+            $result = $stmt->fetch(PDO::FETCH_OBJ);
+            return $result ? $result->count : 0;
+        }
+        public function recuperer_progress($userId) {  
+            $stmt = $this->db->prepare("SELECT * FROM exchange WHERE user_id = :user_id AND accepted = 1 AND completed = 'no'");
+            $stmt->execute(['user_id' => $userId]);
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
 }
