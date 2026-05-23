@@ -1,7 +1,7 @@
 <?php
 session_start();
-$_SESSION['user_id'] = 1;
-//session_destroy();
+//$_SESSION['user_id'] = 1;
+session_destroy();
 require_once 'config/autoloader.php';
 
 // 1. Vérification de l'utilisateur (Sécurité)

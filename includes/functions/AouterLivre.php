@@ -39,9 +39,9 @@
                 <?php endif; ?>
 
                 <label class="heart">
-                    <input type="checkbox" />
-                    <span class="icon"><i class="bi bi-heart-fill"></i></span>
-                </label>
+            <input type="checkbox" />
+            <span class="icon"><i class="bi bi-heart-fill"></i></span>
+        </label>
             </div>
 
             <div class="card-body">
