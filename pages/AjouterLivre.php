@@ -46,7 +46,13 @@ $books = $bookRepo->findAll();
         
         <div class="book-card">
             <div class="image-container">
-                <img src="../uploads/<?php echo htmlspecialchars($book->image); ?>" alt="Livre" />
+                <?php  if (strpos($book->image, 'http') === 0) {
+                 $src_final = htmlspecialchars($book->image);
+                } else {
+                     $src_final = "../uploads/" . htmlspecialchars($book->image);
+                        }
+                            ?>
+                <img src="<?php echo $src_final; ?>" alt="Livre" />
                 
                 <div class="conditionbook <?php echo $classe_css; ?>">
                     <?php echo $texte_en; ?>

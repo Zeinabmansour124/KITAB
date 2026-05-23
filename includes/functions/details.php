@@ -50,7 +50,16 @@ require_once(__DIR__ . '/../../includes/controllers/book-details-controller.php'
                 
                 <div class="detailsside">
                     <div class="imgdetails">
-                       <img src="../../uploads/<?php echo htmlspecialchars($book->image); ?>" alt="Livre cover" />
+                       <?php 
+                // Si l'image commence par http, c'est une URL directe (Lien Amazon...)
+                    if (strpos($book->image, 'http') === 0) {
+                         $src_final = htmlspecialchars($book->image);
+                    } else {
+                     // Sinon, c'est un fichier téléversé localement
+                     $src_final = "../../uploads/" . htmlspecialchars($book->image);
+                            }
+?>
+<img src="<?php echo $src_final; ?>" alt="Livre cover" />
                     </div>
                     
                     <div style="padding: 20px;">

@@ -8,13 +8,13 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <meta charset="UTF-8">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="messages.css">
-  <link rel="stylesheet" href="marketPlace.css">
-  <link rel="stylesheet" href="codeHTML.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/messages.css">
+  <link rel="stylesheet" href="../assets/css/marketPlace.css">
+  <link rel="stylesheet" href="../assets/css/codeHTML.css">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
-  <script src="forgotPassword.js" defer></script>
+  <script src="../assets/js/forgotPassword.js" defer></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
     body {
@@ -75,17 +75,17 @@
       <a href="#" class="logo">KITAB<span class="text_arb">كتاب</span></a>
       <ul class="nav-links">
         <li>
-          <a href="marketplace.html" id="nav_marketplace" class="active"
+          <a href="marketplace.php" id="nav_marketplace" class="active"
             ><span class="material-icons">local_mall</span> Marketplace</a
           >
         </li>
         <li>
-          <a href="messages.html" id="nav_messages"
+          <a href="messages.php" id="nav_messages"
             ><span class="material-icons">chat_bubble</span> Messages</a
           >
         </li>
         <li>
-          <a href="codeHTML.html" id="nav_exchanges"
+          <a href="codeHTML.php" id="nav_exchanges"
             ><span class="material-icons">swap_horiz</span> Exchanges</a
           >
         </li>
@@ -97,7 +97,7 @@
           >
         </li>
         <li>
-          <a href="reading-rooms.html" id="nav_reading_rooms"
+          <a href="reading-rooms.php" id="nav_reading_rooms"
             ><span class="material-icons">import_contacts</span> Reading
             Rooms</a
           >
@@ -105,10 +105,10 @@
       </ul>
 
       <div class="nav-right">
-        <a href="connect.html" id="nav_profile"
+        <a href="connect.php" id="nav_profile"
           ><span class="material-icons">account_circle</span> Profile</a
         >
-        <a href="logout.html" id="nav_logout"
+        <a href="logout.php" id="nav_logout"
           ><span class="material-icons">logout</span>Log out</a
         >
 
@@ -135,7 +135,7 @@
         </form>
         <button class="mb-2 btn btn-teal" type="submit">submit</button>
         <div class="mb-2">
-          <a href="connect.html" class="text-decoration-underline text-teal text-wrap">Back to login</a>
+          <a href="connect.php" class="text-decoration-underline text-teal text-wrap">Back to login</a>
         </div>
       </div>
 

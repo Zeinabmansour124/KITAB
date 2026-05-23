@@ -8,18 +8,18 @@
           >
         </li>
         <li>
-          <a href="../../pages/messages.php" id="nav_messages"
+          <a href="/projet_web/KITAB//pages/messages.php" id="nav_messages"
             ><span class="material-icons">chat_bubble</span> Messages</a
           >
         </li>
         <li>
-          <a href="../../pages/codeHTML.php" id="nav_exchanges"
+          <a href="/projet_web/KITAB//pages/codeHTML.php" id="nav_exchanges"
             ><span class="material-icons">swap_horiz</span> Exchanges</a
           >
         </li>
         <li>
           <a
-            href="../../pages/fav.php"
+            href="/projet_web/KITAB//pages/fav.php"
             id="nav_favorites"
             ><span class="material-icons">favorite</span> Favorites</a
           >
@@ -33,7 +33,7 @@
       </ul>
 
       <div class="nav-right">
-        <a href="../../pages/profile.php" id="nav_profile"
+        <a href="/projet_web/KITAB//pages/profile.php" id="nav_profile"
           ><span class="material-icons">account_circle</span> Profile</a
         >
         <a href="logout.html" id="nav_logout"

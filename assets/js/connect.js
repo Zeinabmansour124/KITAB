@@ -31,5 +31,5 @@ password.addEventListener('input', function () {
 });
 
 if (emailValid && passwordValid && usernameValid) {
-    globalThis.location.href = 'compte.html';
+    globalThis.location.href = 'compte.php';
 }
