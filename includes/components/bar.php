@@ -3,29 +3,29 @@
       <a href="#" class="logo">KITAB<span class="text_arb">كتاب</span></a>
       <ul class="nav-links">
         <li>
-          <a href="marketplace.html" id="nav_marketplace" class="active"
+          <a href="/projet_web/KITAB/pages/marketplace.php" id="nav_marketplace" class="active"
             ><span class="material-icons">local_mall</span> Marketplace</a
           >
         </li>
         <li>
-          <a href="messages.html" id="nav_messages"
+          <a href="../../pages/messages.php" id="nav_messages"
             ><span class="material-icons">chat_bubble</span> Messages</a
           >
         </li>
         <li>
-          <a href="codeHTML.html" id="nav_exchanges"
+          <a href="../../pages/codeHTML.php" id="nav_exchanges"
             ><span class="material-icons">swap_horiz</span> Exchanges</a
           >
         </li>
         <li>
           <a
-            href="fav.html"
+            href="../../pages/fav.php"
             id="nav_favorites"
             ><span class="material-icons">favorite</span> Favorites</a
           >
         </li>
         <li>
-          <a href="reading-rooms.html" id="nav_reading_rooms"
+          <a href="/projet_web/KITAB/pages/reading-rooms.php" id="nav_reading_rooms"
             ><span class="material-icons">import_contacts</span> Reading
             Rooms</a
           >
@@ -33,7 +33,7 @@
       </ul>
 
       <div class="nav-right">
-        <a href="profile.html" id="nav_profile"
+        <a href="../../pages/profile.php" id="nav_profile"
           ><span class="material-icons">account_circle</span> Profile</a
         >
         <a href="logout.html" id="nav_logout"

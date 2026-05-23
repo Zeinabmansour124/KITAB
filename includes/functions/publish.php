@@ -1,8 +1,8 @@
 <?php
 session_start();
-//$_SESSION['user_id'] = 1;
-session_destroy();
-require_once 'config/autoloader.php';
+$_SESSION['user_id'] = 1;
+//session_destroy();
+require_once('../../config/autoloader.php');
 
 // 1. Vérification de l'utilisateur (Sécurité)
 $isLoggedIn = isset($_SESSION['user_id']);
@@ -19,10 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isLoggedIn) {
         if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
             $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
             $fileName = uniqid('book_') . '.' . $ext;
-            move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/' . $fileName);
-            $imagePath = $fileName;
+            
+            // CORRECTION ICI : On ajoute ../../ pour sortir de includes/functions/
+            move_uploaded_file($_FILES['image']['tmp_name'], '../../uploads/' . $fileName);
+            
+            $imagePath = $fileName; // On garde uniquement le nom du fichier pour la base de données
         }
-
         // Insertion dans la base via le Repository
         $bookRepo->create([
             'user_id'     => $_SESSION['user_id'],
@@ -48,8 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isLoggedIn) {
 <head>
     <meta charset="UTF-8">
     <title>Publier un livre - KITAB</title>
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="publish.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/publish.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
@@ -139,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isLoggedIn) {
     <?php endif; ?>
 </main>
 
-<script src="main.js"></script>
-<script src="publish.js"></script>
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/publish.js"></script>
 </body>
 </html>

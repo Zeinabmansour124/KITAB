@@ -32,10 +32,10 @@ $progress = $exchange->recuperer_progress($user);
     <title>Book Exchanges</title>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="messages.css">
-    <link rel="stylesheet" href="codeHTML.css">
-    <link rel="stylesheet" href="marketPlace.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/messages.css">
+    <link rel="stylesheet" href="assets/css/codeHTML.css">
+    <link rel="stylesheet" href="assets/css/marketPlace.css">
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
         rel="stylesheet" />

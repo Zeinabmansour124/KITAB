@@ -27,6 +27,25 @@
       color: var(--ink);
       min-height: 100vh;
     }
+    .upload-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 20px;
+    border: 1.5px dashed var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--muted);
+    background: #fffdf9;
+    transition: border-color .2s, color .2s;
+    width: 100%;
+}
+
+.upload-btn:hover {
+    border-color: var(--amber);
+    color: var(--amber);
+}
 
    
     nav {

@@ -1,16 +1,13 @@
 <?php
-// 1. On affiche les erreurs pour comprendre le problème
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
-// 2. On connecte la base de données
-require_once 'config/autoloader.php'; 
+require_once __DIR__ . '/../config/ConnexionDB.php';
+require_once __DIR__ . '/../config/IRepository.php';
+require_once __DIR__ . '/../config/Repository.php';
+require_once __DIR__ . '/../config/repositories/BookRepository.php';
 
 $bookRepo = new BookRepository();
 $books = $bookRepo->findAll(); 
 
-// TEST DE DÉBOGAGE : Enlève les "//" devant la ligne suivante pour voir si les livres existent
-// var_dump($books); die(); 
+
 ?>
 
 
@@ -18,7 +15,7 @@ $books = $bookRepo->findAll();
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="marketPlace.css" />
+    <link rel="stylesheet" href="../assets/css/marketPlace.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=Amiri&display=swap"
       rel="stylesheet"
@@ -45,9 +42,9 @@ $books = $bookRepo->findAll();
     <title>KITAB</title>
   </head>
   <body>
-    <!-- ===== NAVBAR ===== -->
+    <!--  NAVBAR  -->
 
-    <?php include('bar.php') ?>
+    <?php include('../includes/components/bar.php'); ?>
 
 
 
@@ -170,7 +167,10 @@ $books = $bookRepo->findAll();
         <div class="bloc1">
           <div class="search-right">
             <input class="nav-search" type="text" placeholder="Rechercher un livre…" />
-            <button class="nav-btn">Publier un livre</button>
+
+            <a href="../includes/functions/publish.php" class="nav-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+        Publier un livre
+    </a>
             <button id="exchangeBtn" class="nav-btn">Exchange</button>
           </div>
 
@@ -205,7 +205,7 @@ $books = $bookRepo->findAll();
 
         <br>
 
-        
+        <!--  je garde les cartes statiques(html puis j ajoute les cartes dynamiques)  -->
         <div class="cards-container">
 
           <!-- CARTE 1 — Pride and Prejudice -->
@@ -401,16 +401,16 @@ $books = $bookRepo->findAll();
           </div>
 
           
-          <?php include('AouterLivre.php');?>
+          <?php include('AjouterLivre.php');?>
 
         </div>
 
       </div>
 
-      <? include('footer.php') ?>
+      <? include('../includes/components/footer.php') ?>
     </div>
 
-    <script src="marketPlace.js"></script>
+    <script src="../assets/js/marketPlace.js"></script>
 
 
    

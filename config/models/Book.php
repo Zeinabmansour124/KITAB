@@ -1,5 +1,5 @@
 <?php
-include_once 'config/BookRepository.php';  // Chemin corrigé (slash, pas backslash)
+include_once 'config/BookRepository.php';  
 class Book extends BookRepository{
     public function __construct(
         public $id = null,

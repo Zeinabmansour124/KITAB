@@ -1,27 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // 1. Créer le bouton notification
+ 
   const bouton = document.createElement("button");
   bouton.id = "notif-btn";
-  bouton.type = "button"; // Force le type bouton
+  bouton.type = "button"; 
   bouton.textContent = "Sera Notifié";
-
-  // 2. Créer le wrapper
+  
   const wrapper = document.createElement("div");
   wrapper.id = "header-btns";
 
-  // 3. Trouver le bouton Create Room (par son ID pour plus de précision)
+ 
   const createRoom = document.getElementById("create_room");
 
   if (createRoom) {
-    // Placer le wrapper avant le bouton Create Room
+   
     createRoom.parentNode.insertBefore(wrapper, createRoom);
 
-    // Ajouter les boutons dans le wrapper
+   
     wrapper.appendChild(bouton);
     wrapper.appendChild(createRoom);
   }
 
-  // 4. Style (Ajout de position relative pour le clic)
+  
   const style = document.createElement("style");
   style.textContent = `
     #header-btns { 
@@ -51,11 +50,11 @@ document.addEventListener("DOMContentLoaded", function () {
   `;
   document.head.appendChild(style);
 
-  // 5. Logique de clic (avec preventDefault pour garantir le fonctionnement)
+  
   let actif = false;
   bouton.addEventListener("click", function (e) {
-    e.preventDefault(); // EMPÊCHE LE RECHARGEMENT OU LE CONFLIT
-    e.stopPropagation(); // EMPÊCHE LE CLIC DE FILTRER AILLEURS
+    e.preventDefault(); 
+    e.stopPropagation(); 
     
     actif = !actif;
     if (actif) {
@@ -65,6 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
       this.textContent = "Sera Notifié";
       this.classList.remove("actif");
     }
-    console.log("Clic détecté !"); // Vérifie dans ta console F12
+    console.log("Clic détecté !"); 
   });
 });

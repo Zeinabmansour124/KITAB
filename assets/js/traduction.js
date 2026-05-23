@@ -70,7 +70,7 @@ window.setLang = function(lang) {
 
     const t = translations[lang];
 
-    // Mise à jour du Menu (avec innerHTML pour garder les icônes)
+    
     document.getElementById("nav_marketplace").innerHTML = t.marketplace;
     document.getElementById("nav_messages").innerHTML = t.messages;
     document.getElementById("nav_exchanges").innerHTML = t.exchanges;

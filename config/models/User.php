@@ -1,5 +1,5 @@
 <?php
-include_once 'config/UserRepository.php';  // Chemin corrigé (slash, pas backslash)
+include_once 'config/UserRepository.php';  
 class User extends UserRepository {
     public function __construct(
         public $id = null,

@@ -1,3 +1,21 @@
+<?php
+// 1. Force l'affichage des erreurs si un chemin bloque
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+// 2. Charge l'autoloader (on remonte d'un cran car on est dans pages/)
+require_once('../config/autoloader.php');
+
+// 3. Initialise le Repository des livres
+$bookRepo = new BookRepository();
+
+// 4. Crée et remplit la variable $books pour que ton IF et ton FOREACH fonctionnent !
+// (Tu peux utiliser findAll() pour tout voir, ou une méthode spécifique comme findByUserId() plus tard)
+$books = $bookRepo->findAll(); 
+?>
+
+
+
 <?php if (empty($books)): ?>
     <p style="text-align:center; width:100%; grid-column: 1/-1;">Aucun livre dynamique trouvé.</p>
 <?php else: ?>
@@ -28,7 +46,7 @@
         
         <div class="book-card">
             <div class="image-container">
-                <img src="uploads/<?php echo htmlspecialchars($book->image); ?>" alt="Livre" />
+                <img src="../uploads/<?php echo htmlspecialchars($book->image); ?>" alt="Livre" />
                 
                 <div class="conditionbook <?php echo $classe_css; ?>">
                     <?php echo $texte_en; ?>
@@ -55,7 +73,7 @@
                 <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($book->auteur); ?>&background=random" alt="" class="ownerpic" />
                 <span class="person">Vendeur #<?php echo $book->user_id; ?></span><br />
                 
-                <a href="details.php?id=<?php echo $book->id; ?>" class="details">
+                <a href="../includes/functions/details.php?id=<?php echo $book->id; ?>" class="details">
                     <i class="bi bi-book"></i> Details
                 </a>
                 <a href="chat.php?with=<?php echo $book->user_id; ?>" class="chat">
