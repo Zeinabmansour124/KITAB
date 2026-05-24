@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../../config/models/User.php';
-require_once __DIR__ . '/../../config/repositories/UserRepository.php';
+require_once __DIR__ . '/../../config/models/repositories/UserRepository.php';
 require_once __DIR__ . '/../../core/session.php';
 
 class AuthController

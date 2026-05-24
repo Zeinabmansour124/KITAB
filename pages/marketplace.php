@@ -2,7 +2,8 @@
 require_once __DIR__ . '/../config/ConnexionDB.php';
 require_once __DIR__ . '/../config/IRepository.php';
 require_once __DIR__ . '/../config/Repository.php';
-require_once __DIR__ . '/../config/repositories/BookRepository.php';
+require_once __DIR__ . '/../config/models/repositories/BookRepository.php';
+require_once __DIR__ .'/../core/bootstap.php';
 
 $bookRepo = new BookRepository();
 $books = $bookRepo->findAll(); 
