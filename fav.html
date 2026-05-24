@@ -18,407 +18,12 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
       rel="stylesheet"
     />
-    <style>
-      /* ===== RESET ===== */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      /* ===== COLORS ===== */
-      :root {
-        --ink: #1a1208;
-        --amber: #c8860a;
-        --amber-mid: #e8a82a;
-        --amber-light: #f9efd0;
-        --rust: #8b3a1a;
-        --teal: #0e6b5e;
-        --teal-dark: #0a5046;
-        --sand: #f5f0e8;
-        --white: #fffdf8;
-        --border: #e2d9c8;
-        --muted: #7a6e5f;
-        --nav-h: 68px;
-      }
-
-      body {
-        font-family: "DM Sans", sans-serif;
-        background: var(--sand);
-        color: var(--ink);
-      }
-
-      /* ===== NAVBAR ===== */
-      nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 200;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 5vw;
-        height: var(--nav-h);
-        background: rgba(26, 18, 8, 0.97);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-      }
-
-      .logo {
-        font-family: "Playfair Display", serif;
-        font-size: 22px;
-        font-weight: 900;
-        color: var(--amber-mid);
-        letter-spacing: -0.5px;
-        text-decoration: none;
-      }
-      .logo .text_arb {
-        font-family: "Amiri", serif;
-        direction: rtl;
-        font-size: 20px;
-        margin-left: 4px;
-        color: var(--rust);
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 4px;
-        list-style: none;
-        align-items: center;
-      }
-      .nav-links a {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        text-decoration: none;
-        font-size: 13px;
-        color: rgba(255, 253, 248, 0.65);
-        padding: 6px 12px;
-        border-radius: 8px;
-        transition: all 0.2s;
-        white-space: nowrap;
-      }
-      .nav-links a:hover {
-        color: var(--amber-mid);
-        background: rgba(255, 255, 255, 0.06);
-      }
-      .nav-links a.active {
-        color: var(--amber-mid);
-        background: rgba(200, 134, 10, 0.15);
-      }
-      .nav-links .material-icons {
-        font-size: 16px;
-      }
-
-      .lang-switcher-nav {
-        display: flex;
-        gap: 4px;
-        margin-left: 16px;
-      }
-      .lang-btn {
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 6px;
-        color: rgba(255, 253, 248, 0.65);
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.8px;
-        padding: 4px 9px;
-        cursor: pointer;
-        transition: all 0.25s;
-        font-family: "DM Sans", sans-serif;
-      }
-      .lang-btn:hover {
-        background: rgba(255, 255, 255, 0.18);
-        color: #fff;
-      }
-      .lang-btn.lang-active {
-        background: var(--amber);
-        border-color: var(--amber);
-        color: #fff;
-      }
-
-      .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 16px; /* espace entre profil et boutons langue */
-      }
-
-      .nav-right a#nav_profile,
-      .nav-right a#nav_logout {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        text-decoration: none;
-        font-size: 13px;
-        color: rgba(255, 253, 248, 0.65);
-        padding: 6px 12px;
-        border-radius: 8px;
-        transition: all 0.2s;
-      }
-
-      .nav-right a#nav_profile:hover,
-      .nav-right a#nav_logout:hover {
-        color: var(--amber-mid);
-        background: rgba(255, 255, 255, 0.06);
-      }
-
-      /* ===== PAGE ===== */
-      .page-wrapper {
-        margin-top: var(--nav-h);
-      }
-
-      /* ===== HEADER ===== */
-      .page-header {
-        background: linear-gradient(105deg, #1a1208, #0e6b5e, #c8860a);
-        padding: 40px 5vw;
-        color: white;
-      }
-
-      .page-header h1 {
-        font-family: "Playfair Display";
-        font-size: 32px;
-      }
-
-      .page-header h4 {
-        opacity: 0.7;
-      }
-
-      /* ===== BODY ===== */
-      .page-body {
-        padding: 30px 5vw;
-      }
-
-      /* ===== STATS ===== */
-      .stats {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 16px;
-        margin-bottom: 30px;
-      }
-
-      .card {
-        background: white;
-        padding: 20px;
-        border-radius: 16px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 4px 16px rgba(254, 253, 253, 0);
-        transition: 0.3s;
-        border: 2px solid #8b3a1a; /* encadré marron */
-      }
-
-      .stats .card p {
-        font-size: 16px; /* taille plus grande */
-        font-weight: bold;
-        color: black; /* marron */
-      }
-
-      .stats .card h2 {
-        font-size: 28px; /* plus grand */
-        font-weight: bold;
-        color: black;
-      }
-
-      .card:hover {
-        transform: translateY(-5px);
-      }
-
-      .card img {
-        width: 45px;
-        border-radius: 10px;
-      }
-
-      /* ===== FAVORITES ===== */
-      .favorites-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* 3 livres par ligne */
-        gap: 22px;
-      }
-
-      @media (max-width: 900px) {
-        .favorites-container {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
-      @media (max-width: 600px) {
-        .favorites-container {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      .image-container {
-        position: relative;
-        height: 240px;
-        background: #eee;
-      }
-
-      .image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-
-      .condition {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        padding: 5px 12px;
-        border-radius: 20px;
-        color: white;
-        font-size: 11px;
-      }
-
-      .condition.Good {
-        background: #2fa4d7;
-      }
-      .condition.Fair {
-        background: #6faf4f;
-      }
-      .condition.Acceptable {
-        background: #f67d31;
-      }
-
-      .exchange {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: #bda6ce;
-        color: white;
-        padding: 5px 10px;
-        border-radius: 20px;
-        font-size: 11px;
-      }
-
-      .card-body {
-        padding: 15px;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .card-body h3 {
-        font-family: "Playfair Display";
-      }
-
-      .book-main {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 10px;
-      }
-
-      .book-left h3 {
-        margin-bottom: 2px;
-      }
-
-      .book-left p {
-        font-size: 14px;
-        color: var(--muted);
-      }
-
-      .book-right .price {
-        font-weight: bold;
-        color: var(--teal);
-        font-size: 16px;
-      }
-
-      .user-type {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-        margin-top: 6px;
-      }
-
-      .user-type .user {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 12px;
-        color: var(--muted);
-      }
-
-      .user-type .user img {
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-
-      .user-type .genre {
-        font-size: 14px;
-        padding: 8px 16px;
-        font-weight: bold;
-        color: #8b3a1a;
-        background: var(--amber-light);
-        border-radius: 24px;
-        width: fit-content;
-      }
-
-      .favorite-card {
-        background: white;
-        border-radius: 16px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        transition: transform 0.3s, box-shadow 0.3s;
-      }
-
-      .favorite-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      }
-
-      .card-buttons {
-        display: flex;
-        gap: 10px;
-        margin-top: 10px;
-      }
-
-      .card-buttons .details {
-        flex: 1.2;
-        background: white;
-        color: var(--teal);
-        border: 2px solid var(--teal);
-        font-weight: bold;
-        padding: 12px 0;
-        border-radius: 20px;
-        text-align: center;
-        cursor: pointer;
-        text-decoration: none;
-      }
-
-      .card-buttons .chat {
-        flex: 1;
-        background: var(--teal);
-        color: white;
-        border-radius: 20px;
-        text-align: center;
-        font-weight: bold;
-        padding: 12px 0;
-        cursor: pointer;
-        text-decoration: none;
-      }
-
-      .card-buttons .details:hover {
-        background: var(--teal);
-        color: white;
-      }
-
-      .card-buttons .chat:hover {
-        opacity: 0.9;
-        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-      }
-    </style>
+    <link rel="stylesheet" href="assets/css/favorites.css" />
   </head>
 
   <body>
     <!-- ===== NAVBAR ===== -->
-     <nav id="mainNav">
+    <nav id="mainNav">
       <a href="#" class="logo">KITAB<span class="text_arb">كتاب</span></a>
       <ul class="nav-links">
         <li>
@@ -437,9 +42,7 @@
           >
         </li>
         <li>
-          <a
-            href="favorisContenantLivres.html"
-            id="nav_favorites"
+          <a href="favorisContenantLivres.html" id="nav_favorites"
             ><span class="material-icons">favorite</span> Favorites</a
           >
         </li>
@@ -466,12 +69,13 @@
         </div>
       </div>
     </nav>
+
     <!-- PAGE -->
     <div class="page-wrapper">
       <!-- HEADER -->
       <div class="page-header">
-        <h1>My Favorites</h1>
-        <h4>Your curated collection of beloved books</h4>
+        <h1 id="fav_title">My Favorites</h1>
+        <h4 id="fav_subtitle">Your curated collection of beloved books</h4>
       </div>
 
       <div class="page-body">
@@ -479,31 +83,31 @@
         <div class="stats">
           <div class="card">
             <div>
-              <p>Total</p>
+              <p id="stat_total">Total</p>
               <h2>4</h2>
             </div>
-            <img src="fav.jpg" />
+            <img src=".vscode/fav.jpg" />
           </div>
           <div class="card">
             <div>
-              <p>Value</p>
+              <p id="stat_value">Value</p>
               <h2>350dt</h2>
             </div>
-            <img src="2.jpg" />
+            <img src=".vscode/2.jpg" />
           </div>
           <div class="card">
             <div>
-              <p>Exchange</p>
+              <p id="stat_exchange">Exchange</p>
               <h2>4</h2>
             </div>
-            <img src="3.jpg" />
+            <img src=".vscode/3.jpg" />
           </div>
           <div class="card">
             <div>
-              <p>Genres</p>
+              <p id="stat_genres">Genres</p>
               <h2>3</h2>
             </div>
-            <img src="4.jpg" />
+            <img src=".vscode/4.jpg" />
           </div>
         </div>
 
@@ -513,8 +117,9 @@
           <div class="favorite-card">
             <div class="image-container">
               <img src="https://m.media-amazon.com/images/I/81Scutrtj4L.jpg" />
-              <div class="condition Fair">Fair</div>
-              <div class="exchange">Exchange</div>
+              <div class="condition Fair" id="cond_fair_1">Fair</div>
+              <div class="fav-icon-badge"><i class="bi bi-heart-fill"></i></div>
+              <div class="exchange" id="type_exchange_1">Exchange</div>
             </div>
             <div class="card-body">
               <div class="book-main">
@@ -528,13 +133,15 @@
                 <div class="user">
                   <img src="user1.jpg" alt="user" /><span>Malek Selmi</span>
                 </div>
-                <span class="genre">Classic</span>
+                <span class="genre" id="genre_classic">Classic</span>
               </div>
               <div class="card-buttons">
-                <a href="" class="details"
+                <a href="" class="details" id="btn_details_1"
                   ><i class="bi bi-book"></i> Details</a
                 >
-                <a href="" class="chat"><i class="bi bi-chat-left"></i> Chat</a>
+                <a href="" class="chat" id="btn_chat_1"
+                  ><i class="bi bi-chat-left"></i> Chat</a
+                >
               </div>
             </div>
           </div>
@@ -543,8 +150,9 @@
           <div class="favorite-card">
             <div class="image-container">
               <img src="https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg" />
-              <div class="condition Good">Good</div>
-              <div class="exchange">Exchange</div>
+              <div class="condition Good" id="cond_good_2">Good</div>
+              <div class="fav-icon-badge"><i class="bi bi-heart-fill"></i></div>
+              <div class="exchange" id="type_exchange_2">Exchange</div>
             </div>
             <div class="card-body">
               <div class="book-main">
@@ -558,13 +166,15 @@
                 <div class="user">
                   <img src="user2.jpg" alt="user" /><span>Sarah Ben Ali</span>
                 </div>
-                <span class="genre">Sci-Fi</span>
+                <span class="genre" id="genre_scifi">Sci-Fi</span>
               </div>
               <div class="card-buttons">
-                <a href="" class="details"
+                <a href="" class="details" id="btn_details_2"
                   ><i class="bi bi-book"></i> Details</a
                 >
-                <a href="" class="chat"><i class="bi bi-chat-left"></i> Chat</a>
+                <a href="" class="chat" id="btn_chat_2"
+                  ><i class="bi bi-chat-left"></i> Chat</a
+                >
               </div>
             </div>
           </div>
@@ -573,8 +183,11 @@
           <div class="favorite-card">
             <div class="image-container">
               <img src="https://m.media-amazon.com/images/I/81iqZ2HHD-L.jpg" />
-              <div class="condition Acceptable">Acceptable</div>
-              <div class="exchange">Exchange</div>
+              <div class="condition Acceptable" id="cond_acceptable_3">
+                Acceptable
+              </div>
+              <div class="fav-icon-badge"><i class="bi bi-heart-fill"></i></div>
+              <div class="exchange" id="type_exchange_3">Exchange</div>
             </div>
             <div class="card-body">
               <div class="book-main">
@@ -588,18 +201,47 @@
                 <div class="user">
                   <img src="user3.jpg" alt="user" /><span>Amine Trabelsi</span>
                 </div>
-                <span class="genre">Fantasy</span>
+                <span class="genre" id="genre_fantasy">Fantasy</span>
               </div>
               <div class="card-buttons">
-                <a href="" class="details"
+                <a href="" class="details" id="btn_details_3"
                   ><i class="bi bi-book"></i> Details</a
                 >
-                <a href="" class="chat"><i class="bi bi-chat-left"></i> Chat</a>
+                <a href="" class="chat" id="btn_chat_3"
+                  ><i class="bi bi-chat-left"></i> Chat</a
+                >
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="assets/js/notifications.js"></script>
+    <script src="assets/js/traduction.js"></script>
+    <script src="assets/js/RSVP.js"></script>
+    <script src="assets/js/join.js"></script>
+    <script src="assets/js/mode.js"></script>
+    <script src="assets/js/fontsize.js"></script>
+    <script src="assets/js/fullscreen.js"></script>
+    <script src="assets/js/ambiance.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const btnEn = document.getElementById("btn-en");
+        const btnFr = document.getElementById("btn-fr");
+        const btnAr = document.getElementById("btn-ar");
+
+        if (typeof window.setLang === "function" && btnEn && btnFr && btnAr) {
+          btnEn.addEventListener("click", () => window.setLang("en"));
+          btnFr.addEventListener("click", () => window.setLang("fr"));
+          btnAr.addEventListener("click", () => window.setLang("ar"));
+
+          const savedLang = localStorage.getItem("kitabi_lang") || "en";
+          window.setLang(savedLang);
+        }
+      });
+    </script>
   </body>
 </html>

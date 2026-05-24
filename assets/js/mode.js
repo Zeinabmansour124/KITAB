@@ -67,18 +67,43 @@ document.head.appendChild(baliseStyle);
 
 let modeEstSombre = false;
 
+// Fonction globale appelée par traduction.js pour changer la langue du bouton
+window.updateModeButton = function () {
+  const t = window.currentTranslations || {
+    mode_dark: "Dark",
+    mode_light: "Light",
+  };
+  // On extrait juste le mot sans l'icône s'il y en a une dans la trad, ou on l'utilise
+  const texteDark = t.mode_dark.includes("Mode")
+    ? t.mode_dark.replace("Mode", "").trim()
+    : t.mode_dark;
+  const texteLight = t.mode_light.includes("Mode")
+    ? t.mode_light.replace("Mode", "").trim()
+    : t.mode_light;
+
+  if (modeEstSombre) {
+    bouton.textContent = `☀️ ${texteLight}`;
+  } else {
+    bouton.textContent = `🌙 ${texteDark}`;
+  }
+};
+
 bouton.addEventListener("click", function () {
   if (modeEstSombre) {
     baliseStyle.textContent = "";
-    bouton.textContent = "🌙 Dark";
-    bouton.style.background = "var(--white)";
-    bouton.style.color = "var(--amber)";
     modeEstSombre = false;
   } else {
     baliseStyle.textContent = stylesDark;
-    bouton.textContent = "☀️ Light";
+    modeEstSombre = true;
+  }
+  // On rafraîchit le texte et le style du bouton après le clic
+  window.updateModeButton();
+
+  if (!modeEstSombre) {
+    bouton.style.background = "var(--white)";
+    bouton.style.color = "var(--amber)";
+  } else {
     bouton.style.background = "var(--ink)";
     bouton.style.color = "var(--amber-mid)";
-    modeEstSombre = true;
   }
 });
