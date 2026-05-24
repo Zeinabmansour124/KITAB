@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     location VARCHAR(100),
+    rate DECIMAL(1,2) DEFAULT 0.00 BETWEEN 0.00 AND 5.00,                 -- Note moyenne de l'utilisateur
     bio TEXT,
     image VARCHAR(255),                          -- URL ou chemin de l'image de profil
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP

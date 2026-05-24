@@ -1,5 +1,5 @@
 <?php
-include_once 'config/Repository.php';  // Chemin corrigé (slash, pas backslash)
+include_once 'config/Repository.php';  
 
 class Exchange extends Repository {  // Nom de classe avec majuscule (convention)
     

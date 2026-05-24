@@ -467,6 +467,9 @@ $progress = $exchange->recuperer_progress($user);
 
                             <div class="exchange-rate w-100 border-top border-white border-opacity-25 mt-4 pt-3 text-amber-light text-center">
                                 Exchange Rate : <span id="rating-star" class="ms-2"></span>
+                                <?php
+                                $rating=getuder 
+                                ?>
                                 <script>
                                     document.addEventListener('DOMContentLoaded', function() {
                                         const etoileVide = document.getElementById('rating-star');
