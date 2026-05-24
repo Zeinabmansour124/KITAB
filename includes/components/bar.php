@@ -1,4 +1,3 @@
-
 <nav id="mainNav">
       <a href="#" class="logo">KITAB<span class="text_arb">كتاب</span></a>
       <ul class="nav-links">
@@ -8,35 +7,32 @@
           >
         </li>
         <li>
-          <a href="/projet_web/KITAB//pages/messages.php" id="nav_messages"
+          <a href="/projet_web/KITAB/pages/messages.php" id="nav_messages"
             ><span class="material-icons">chat_bubble</span> Messages</a
           >
         </li>
         <li>
-          <a href="/projet_web/KITAB//pages/codeHTML.php" id="nav_exchanges"
+          <a href="/projet_web/KITAB/pages/exchangePage.php" id="nav_exchanges"
             ><span class="material-icons">swap_horiz</span> Exchanges</a
           >
         </li>
         <li>
-          <a
-            href="/projet_web/KITAB//pages/fav.php"
-            id="nav_favorites"
+          <a href="/projet_web/KITAB/pages/fav.php" id="nav_favorites"
             ><span class="material-icons">favorite</span> Favorites</a
           >
         </li>
         <li>
           <a href="/projet_web/KITAB/pages/reading-rooms.php" id="nav_reading_rooms"
-            ><span class="material-icons">import_contacts</span> Reading
-            Rooms</a
+            ><span class="material-icons">import_contacts</span> Reading Rooms</a
           >
         </li>
       </ul>
 
       <div class="nav-right">
-        <a href="/projet_web/KITAB//pages/profile.php" id="nav_profile"
+        <a href="/projet_web/KITAB/pages/profile.php" id="nav_profile"
           ><span class="material-icons">account_circle</span> Profile</a
         >
-        <a href="logout.html" id="nav_logout"
+        <a href="/projet_web/KITAB/pages/connect.php" id="nav_logout"
           ><span class="material-icons">logout</span>Log out</a
         >
 
@@ -46,4 +42,7 @@
           <button class="lang-btn" id="btn-ar">AR</button>
         </div>
       </div>
+      <!-- bar.php — corrige ici -->
+      <script src="/projet_web/KITAB/assets/js/traduction.js"></script>
+      <script src="/projet_web/KITAB/assets/js/mode.js"></script> 
     </nav>
