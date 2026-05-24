@@ -13,13 +13,13 @@
           >
         </li>
         <li>
-          <a href="/projet_web/KITAB//pages/codeHTML.php" id="nav_exchanges"
+          <a href="/projet_web/KITAB/pages/codeHTML.php" id="nav_exchanges"
             ><span class="material-icons">swap_horiz</span> Exchanges</a
           >
         </li>
         <li>
           <a
-            href="/projet_web/KITAB//pages/fav.php"
+            href="/projet_web/KITAB/pages/fav.php"
             id="nav_favorites"
             ><span class="material-icons">favorite</span> Favorites</a
           >
