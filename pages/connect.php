@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>profile</title>
+    <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/messages.css" />
+    <link rel="stylesheet" href="../assets/css/marketPlace.css" />
+    <link rel="stylesheet" href="../assets/css/codeHTML.css" />
+    <link rel="stylesheet" href="../assets/css/connect.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="../assets/js/connect.js" defer></script>
+  </head>
+
+  <body>
+    <div class="container-fluid p-0">
+      <nav id="mainNav">
+        <a href="#" class="logo">KITAB<span class="text_arb">كتاب</span></a>
+        <ul class="nav-links">
+          <li>
+            <a href="marketplace.html" id="nav_marketplace" class="active"
+              ><span class="material-icons">local_mall</span> Marketplace</a
+            >
+          </li>
+          <li>
+            <a href="messages.html" id="nav_messages"
+              ><span class="material-icons">chat_bubble</span> Messages</a
+            >
+          </li>
+          <li>
+            <a href="codeHTML.php" id="nav_exchanges"
+              ><span class="material-icons">swap_horiz</span> Exchanges</a
+            >
+          </li>
+          <li>
+            <a href="favorisContenantLivres.html" id="nav_favorites"
+              ><span class="material-icons">favorite</span> Favorites</a
+            >
+          </li>
+          <li>
+            <a href="reading-rooms.html" id="nav_reading_rooms"
+              ><span class="material-icons">import_contacts</span> Reading
+              Rooms</a
+            >
+          </li>
+        </ul>
+
+        <div class="nav-right">
+          <a href="connect.html" id="nav_profile"
+            ><span class="material-icons">account_circle</span> Profile</a
+          >
+          <a href="logout.html" id="nav_logout"
+            ><span class="material-icons">logout</span>Log out</a
+          >
+
+          <div class="lang-switcher-nav">
+            <button class="lang-btn" id="btn-en">EN</button>
+            <button class="lang-btn" id="btn-fr">FR</button>
+            <button class="lang-btn" id="btn-ar">AR</button>
+          </div>
+        </div>
+      </nav>
+      <section
+        class="d-flex justify-content-center end-0 min-vh-100 p-4 exchanges"
+      >
+        <div class="login">
+          <h1 class="text-center mb-4 muted fw-bold">Login</h1>
+          <form action="script" method="post" name="login info">
+            <div>
+              <label for="username" class="form-label muted fw-bold"
+                >Username:</label
+              >
+              <input
+                type="text"
+                class="border border-teal rounded"
+                id="username"
+                name="username"
+                required
+              />
+            </div>
+            <div>
+              <label for="email" class="form-label muted fw-bold">Email:</label>
+              <input
+                type="email"
+                class="border border-teal rounded"
+                id="email"
+                name="email"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label muted fw-bold"
+                >Password:</label
+              >
+              <input
+                type="password"
+                class="border border-teal rounded"
+                id="password"
+                name="password"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-teal">submit</button>
+            <button type="reset" class="btn btn-outline-secondary">
+              Reset
+            </button>
+            <a href="forgotPassword.php">
+              <div class="text-decoration-underline text-teal text-wrap">
+                forgot password ?
+              </div>
+            </a>
+            <a href="creerCompte.php">
+              <div class="text-decoration-underline text-teal text-wrap">
+                don't have an account ?
+              </div>
+            </a>
+          </form>
+        </div>
+      </section>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,400 @@
+<?php
+session_start();
+require_once __DIR__ . '/../config/models/Book.php';
+require_once __DIR__ . '/../config/models/User.php';
+require_once __DIR__ . '/../config/models/exchange.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: connect.php');
+    exit();
+}
+
+$user     = $_SESSION['user_id'];
+$exchange = new exchange();
+$book     = new Book();
+$us       = new User();
+
+$total     = $exchange->count_all($user);
+$completed = $exchange->count_completed($user);
+$active    = $exchange->count_active($user);
+
+$success_rate = ($total > 0) ? round(($completed / $total) * 100, 2) : 0;
+
+$mes_echanges = $exchange->recuperer_donnees($user);
+$accepts      = $exchange->recuperer_accepted($user);
+$pending      = $exchange->recuperer_pending($user);
+$refused      = $exchange->recuperer_refused($user);  // retourne tableau d'objets
+$progress     = $exchange->recuperer_progress($user);
+?>
+<!DOCTYPE html>
+<html xml:lang="en" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Exchanges</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/messages.css">
+    <link rel="stylesheet" href="../assets/css/codeHTML.css">
+    <link rel="stylesheet" href="../assets/css/marketPlace.css">
+    <link rel="icon" href="../favicon (1).ico" type="image/x-icon">
+    <script src="../assets/js/codeHTML.js" defer></script>
+</head>
+<body>
+<div class="container-fluid p-0">
+
+    <!-- NAV -->
+    <nav id="mainNav">
+        <a href="#" class="logo">KITAB<span class="text_arb">كتاب</span></a>
+        <ul class="nav-links">
+            <li><a href="marketplace.php"   id="nav_marketplace"><span class="material-icons">local_mall</span> Marketplace</a></li>
+            <li><a href="messages.php"      id="nav_messages"><span class="material-icons">chat_bubble</span> Messages</a></li>
+            <li><a href="codeHTML.php"      id="nav_exchanges" class="active"><span class="material-icons">swap_horiz</span> Exchanges</a></li>
+            <li><a href="fav.html"          id="nav_favorites"><span class="material-icons">favorite</span> Favorites</a></li>
+            <li><a href="reading-rooms.php" id="nav_reading_rooms"><span class="material-icons">import_contacts</span> Reading Rooms</a></li>
+        </ul>
+        <div class="nav-right">
+            <a href="connect.php" id="nav_profile"><span class="material-icons">account_circle</span> Profile</a>
+            <a href="logout.php"  id="nav_logout"><span class="material-icons">logout</span> Log out</a>
+            <div class="lang-switcher-nav">
+                <button class="lang-btn" id="btn-en">EN</button>
+                <button class="lang-btn" id="btn-fr">FR</button>
+                <button class="lang-btn" id="btn-ar">AR</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="justify-content-center end-0 min-vh-100 p-4 exchanges">
+
+        <!-- Hero -->
+        <article class="d-flex align-items-center bg-photo border border-1 rounded p-3 mb-4">
+            <div class="w-100">
+                <h1 class="display-4 muted fw-bold mb-0 me-3">BOOK EXCHANGES</h1>
+                <p class="fs-5 mb-0 text-light">Manage your book exchange requests</p>
+            </div>
+        </article>
+
+        <!-- Stats -->
+        <article class="d-flex justify-content-center mb-4 p-4 rounded-4 custom-dark-bg shadow-lg">
+            <div class="row g-3 justify-content-center w-100">
+                <?php
+                $stats = [
+                    ['label' => 'Total Exchanges', 'value' => $total,               'id' => 'total-exchanges'],
+                    ['label' => 'Active',           'value' => $active,              'id' => 'active'],
+                    ['label' => 'Completed',        'value' => $completed,           'id' => 'completed'],
+                    ['label' => 'Success Rate',     'value' => $success_rate . '%',  'id' => 'success-rate'],
+                ];
+                foreach ($stats as $s): ?>
+                <div class="col-md-3 col-sm-6 mb-4 d-flex" style="width:150px;">
+                    <div class="success-rate border border-1 rounded p-3 me-3 bg-amber-mid">
+                        <div class="stat-label text-white"><?= htmlspecialchars($s['label']) ?></div>
+                        <div class="stat-number text-white fw-bold fs-3" id="<?= $s['id'] ?>"><?= $s['value'] ?></div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </article>
+
+        <!-- Search -->
+        <article id="search-tool" class="d-flex justify-content-center mb-4 p-3 rounded-4 bg-muted">
+            <div class="search-filter-container d-flex align-items-center bg-white border rounded-4 p-3 shadow-sm w-100" style="max-width:800px;">
+                <div class="input-group search-input-group rounded-3 flex-grow-1 me-3">
+                    <span class="input-group-text bg-transparent border-0 pe-1">
+                        <i class="bi bi-search text-muted fs-6"></i>
+                    </span>
+                    <input type="text" class="form-control bg-teal border-0 ps-2 fs-6"
+                           placeholder="Search by book title or partner name…" aria-label="Search">
+                </div>
+                <button class="btn btn-outline-secondary btn-filter d-flex align-items-center rounded-3 px-3 py-2" type="button">
+                    <i class="bi bi-filter me-2 fs-6"></i>
+                    <span class="fs-6 fw-normal text-dark">Filters</span>
+                </button>
+            </div>
+        </article>
+
+        <!-- Filter tabs -->
+        <article class="d-flex justify-content-center empl mb-4 p-3 rounded-bottom-4 rounded-top-4 d-inline-block bg-muted">
+            <input type="radio" id="activeBtn"    name="exchangeFilter" class="exchange-filter" checked>
+            <label for="activeBtn"    class="filter-label">Active Exchanges</label>
+            <input type="radio" id="completedBtn" name="exchangeFilter" class="exchange-filter">
+            <label for="completedBtn" class="filter-label">Completed</label>
+            <input type="radio" id="allBtn"       name="exchangeFilter" class="exchange-filter">
+            <label for="allBtn"       class="filter-label">All Exchanges</label>
+        </article>
+
+        <!-- ═══ ACCEPTED ═══ -->
+        <section class="mt-4 border border-1 bg-teal-light p-3 d-flex flex-column" id="exchange-Accepted">
+            <?php if (empty($accepts)): ?>
+                <div class="text-center w-100 p-4 text-white-50">
+                    <i class="bi bi-emoji-smile fs-1"></i>
+                    <p>No accepted exchanges yet. Keep browsing!</p>
+                </div>
+            <?php else: foreach ($accepts as $accept): ?>
+                <div class="d-flex justify-content-between align-items-center mb-3 w-100">
+                    <h2 class="d-flex align-items-center mb-0 muted fw-bold fs-6">
+                        <i class="bi bi-check-circle-fill text-success me-2 fs-5"></i>
+                        Exchange Accepted
+                    </h2>
+                    <button type="button" class="btn btn-outline-teal btn-sm">
+                        <i class="bi bi-chat-left-fill me-1"></i> Chat
+                    </button>
+                </div>
+                <div class="devider"></div>
+                <div class="position-relative empl mb-4 p-4 rounded-4 w-100 bg-muted d-flex flex-column gap-4">
+                    <div class="offering-date text-amber-light border-bottom border-white border-opacity-10 pb-2">
+                        You offered: <span><?= htmlspecialchars($accept->created_at) ?></span>
+                    </div>
+                    <div class="book-exchange d-flex align-items-center justify-content-center flex-wrap">
+                        <div class="offered-book me-5">
+                            <h3>Your Book</h3>
+                            <img src="../photo/<?= htmlspecialchars($book->getBookCover($accept->your_book_id)) ?>" alt="Book Cover" width="100" height="150">
+                            <article class="book-details">
+                                <div class="title fw-bold"><?= htmlspecialchars($book->getbooktitle($accept->your_book_id)) ?></div>
+                                <div class="author"><?= htmlspecialchars($book->getBookAuthor($accept->your_book_id)) ?></div>
+                                <div class="condition">Condition: <?= htmlspecialchars($book->getBookCondition($accept->your_book_id)) ?></div>
+                            </article>
+                        </div>
+                        <svg class="me-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/>
+                        </svg>
+                        <div class="received-book">
+                            <h3>Received Book</h3>
+                            <img src="../photo/<?= htmlspecialchars($book->getBookCover($accept->partner_book_id)) ?>" alt="Book Cover" width="100" height="150">
+                            <article class="book-details1">
+                                <div class="title1 fw-bold"><?= htmlspecialchars($book->getbooktitle($accept->partner_book_id)) ?></div>
+                                <div class="author1"><?= htmlspecialchars($book->getBookAuthor($accept->partner_book_id)) ?></div>
+                                <div class="condition1">Condition: <?= htmlspecialchars($book->getBookCondition($accept->partner_book_id)) ?></div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; endif; ?>
+        </section>
+
+        <!-- ═══ PENDING ═══ -->
+        <section class="pendingResponse mt-4 border border-1 bg-teal-light rounded p-3" id="pending-Exchanges">
+            <?php if (empty($pending)): ?>
+                <div class="text-center w-100 p-4 text-white-50">
+                    <p>No pending requests. You're all caught up!</p>
+                </div>
+            <?php else: foreach ($pending as $pend): ?>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="d-flex align-items-center mb-0 muted fw-bold fs-6">
+                        <i class="bi bi-hourglass-split text-warning me-2 fs-5"></i>
+                        Pending Response
+                    </h2>
+                    <button type="button" class="btn btn-outline-teal btn-sm">
+                        <i class="bi bi-chat-left-fill me-1"></i> Chat
+                    </button>
+                </div>
+                <div class="devider1"></div>
+
+                <!-- ✅ pending-card + data-exchange-id pour le JS -->
+                <div class="pending-card position-relative empl mb-4 p-4 rounded-4 w-100 bg-muted d-flex flex-column gap-4"
+                     data-exchange-id="<?= (int)$pend->id ?>">
+
+                    <div class="offering-date text-amber-light border-bottom border-white border-opacity-10 pb-2">
+                        You requested: <span><?= htmlspecialchars($pend->created_at) ?></span>
+                    </div>
+                    <div class="book-exchange d-flex align-items-center justify-content-center flex-wrap">
+                        <div class="your-book me-5">
+                            <h3>Your Book</h3>
+                            <img src="../photo/<?= htmlspecialchars($book->getBookCover($pend->your_book_id)) ?>" alt="Book Cover" width="100" height="150">
+                            <article class="book-details2">
+                                <div class="title2 fw-bold"><?= htmlspecialchars($book->getbooktitle($pend->your_book_id)) ?></div>
+                                <div class="author2"><?= htmlspecialchars($book->getBookAuthor($pend->your_book_id)) ?></div>
+                                <div class="condition2">Condition: <?= htmlspecialchars($book->getBookCondition($pend->your_book_id)) ?></div>
+                            </article>
+                        </div>
+                        <svg class="me-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/>
+                        </svg>
+                        <div class="their-book">
+                            <h3>Requested Book</h3>
+                            <img src="../photo/<?= htmlspecialchars($book->getBookCover($pend->partner_book_id)) ?>" alt="Book Cover" width="100" height="150">
+                            <article class="book-details3">
+                                <div class="title3 fw-bold"><?= htmlspecialchars($book->getbooktitle($pend->partner_book_id)) ?></div>
+                                <div class="author3"><?= htmlspecialchars($book->getBookAuthor($pend->partner_book_id)) ?></div>
+                                <div class="condition3">Condition: <?= htmlspecialchars($book->getBookCondition($pend->partner_book_id)) ?></div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <!-- Requesting person -->
+                    <div class="requesting-person d-flex align-items-center gap-3 mt-2">
+                        <?php $imgsrc = $us->getUserImage($pend->user_offering_id); ?>
+                        <img src="../photo/<?= htmlspecialchars($imgsrc) ?>" alt="User" width="50" height="50" class="rounded-circle object-fit-cover">
+                        <div class="userDescription">
+                            <div class="username fw-bold"><?= htmlspecialchars($us->getUserName($pend->user_offering_id)) ?></div>
+                            <div class="rate-stars">
+                                <?php
+                                $note = $us->getUserRating($pend->user_offering_id);
+                                for ($i = 1; $i <= 5; $i++) {
+                                    echo '<i class="bi ' . ($i <= $note ? 'bi-star-fill' : 'bi-star') . ' text-warning me-1"></i>';
+                                }
+                                ?>
+                                <span class="text-white-50 small">(<?= $note ?>/5)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ✅ Boutons avec classes accept-btn / decline-btn (pas d'id dupliqué) -->
+                    <div class="response-buttons d-flex justify-content-center gap-4">
+                        <button type="button" class="accept-btn btn-teal mt-4">Accept</button>
+                        <button type="button" class="decline-btn btn-outline-secondary mt-4">Decline</button>
+                    </div>
+                </div>
+            <?php endforeach; endif; ?>
+        </section>
+
+        <!-- ═══ COMPLETED ═══ -->
+        <section class="mt-4 border border-1 bg-teal-light p-3 d-flex flex-column" id="completed-Exchanges">
+            <?php if (empty($mes_echanges)): ?>
+                <div class="text-center w-100 p-4 text-white-50">
+                    <p>No completed exchanges yet.</p>
+                </div>
+            <?php else: foreach ($mes_echanges as $monexchange): ?>
+                <div class="position-relative empl mb-4 p-4 rounded-4 w-100 bg-muted d-flex flex-column gap-4">
+                    <div class="offering-date text-amber-light border-bottom border-white border-opacity-10 pb-2">
+                        You offered: <span><?= htmlspecialchars($monexchange->offered_date) ?></span>
+                    </div>
+                    <div class="book-exchange d-flex align-items-center justify-content-center flex-wrap">
+                        <div class="offered-book me-5">
+                            <h3>Your Book</h3>
+                            <img src="../photo/<?= htmlspecialchars($book->getBookCover($monexchange->your_book_id)) ?>" alt="Book Cover" width="100" height="150">
+                            <article class="book-details">
+                                <div class="title fw-bold"><?= htmlspecialchars($book->getbooktitle($monexchange->your_book_id)) ?></div>
+                                <div class="author"><?= htmlspecialchars($book->getBookAuthor($monexchange->your_book_id)) ?></div>
+                                <div class="condition">Condition: <?= htmlspecialchars($book->getBookCondition($monexchange->your_book_id)) ?></div>
+                            </article>
+                        </div>
+                        <svg class="me-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/>
+                        </svg>
+                        <div class="received-book">
+                            <h3>Received Book</h3>
+                            <img src="../photo/<?= htmlspecialchars($book->getBookCover($monexchange->partner_book_id)) ?>" alt="Book Cover" width="100" height="150">
+                            <article class="book-details1">
+                                <div class="title1 fw-bold"><?= htmlspecialchars($book->getbooktitle($monexchange->partner_book_id)) ?></div>
+                                <div class="author1"><?= htmlspecialchars($book->getBookAuthor($monexchange->partner_book_id)) ?></div>
+                                <div class="condition1">Condition: <?= htmlspecialchars($book->getBookCondition($monexchange->partner_book_id)) ?></div>
+                            </article>
+                        </div>
+                        <div class="exchange-rate w-100 border-top border-white border-opacity-25 mt-4 pt-3 text-amber-light text-center">
+                            Exchange Rate:
+                            <span class="ms-2">
+                                <?php for ($i = 0; $i < 5; $i++): ?>
+                                    <i class="bi bi-star text-warning me-1"></i>
+                                <?php endfor; ?>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; endif; ?>
+        </section>
+
+        <!-- ═══ REFUSED ═══ -->
+        <section class="mt-4 border border-1 bg-teal-light p-3 d-flex flex-column" id="refused-Exchanges">
+            <div class="d-flex justify-content-between align-items-center mb-3 w-100">
+                <h2 class="d-flex align-items-center mb-0 muted fw-bold fs-6">
+                    <i class="bi bi-x-circle-fill text-danger me-2 fs-5"></i>
+                    Refused Exchanges
+                </h2>
+            </div>
+            <div class="devider"></div>
+            <?php if (empty($refused)): ?>
+                <div class="text-center w-100 p-4 text-white-50">
+                    <i class="bi bi-emoji-smile fs-1"></i>
+                    <p>No refused exchanges yet. Keep browsing!</p>
+                </div>
+            <?php else: foreach ($refused as $refuse): ?>
+                <div class="position-relative empl mb-4 p-4 rounded-4 w-100 bg-muted d-flex flex-column gap-4">
+                    <div class="offering-date text-amber-light border-bottom border-white border-opacity-10 pb-2">
+                        You offered: <span><?= htmlspecialchars($refuse->created_at) ?></span>
+                    </div>
+                    <div class="book-exchange d-flex align-items-center justify-content-center flex-wrap">
+                        <div class="offered-book me-5">
+                            <h3>Your Book</h3>
+                            <img src="../photo/<?= htmlspecialchars($book->getBookCover($refuse->your_book_id)) ?>" alt="Book Cover" width="100" height="150">
+                            <article class="book-details">
+                                <div class="title fw-bold"><?= htmlspecialchars($book->getbooktitle($refuse->your_book_id)) ?></div>
+                                <div class="author"><?= htmlspecialchars($book->getBookAuthor($refuse->your_book_id)) ?></div>
+                                <div class="condition">Condition: <?= htmlspecialchars($book->getBookCondition($refuse->your_book_id)) ?></div>
+                            </article>
+                        </div>
+                        <svg class="me-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/>
+                        </svg>
+                        <div class="received-book">
+                            <h3>Asked Book</h3>
+                            <img src="../photo/<?= htmlspecialchars($book->getBookCover($refuse->partner_book_id)) ?>" alt="Book Cover" width="100" height="150">
+                            <article class="book-details1">
+                                <div class="title1 fw-bold"><?= htmlspecialchars($book->getbooktitle($refuse->partner_book_id)) ?></div>
+                                <div class="author1"><?= htmlspecialchars($book->getBookAuthor($refuse->partner_book_id)) ?></div>
+                                <div class="condition1">Condition: <?= htmlspecialchars($book->getBookCondition($refuse->partner_book_id)) ?></div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; endif; ?>
+        </section>
+
+        <!-- ═══ IN PROGRESS ═══ -->
+        <section class="mt-4 border border-1 bg-teal-light p-3 d-flex flex-column" id="in-progress-Exchanges">
+            <div class="d-flex justify-content-between align-items-center mb-3 w-100">
+                <h2 class="d-flex align-items-center mb-0 muted fw-bold fs-6">
+                    <i class="bi bi-arrow-repeat text-info me-2 fs-5"></i>
+                    In Progress Exchanges
+                </h2>
+            </div>
+            <div class="devider"></div>
+            <?php if (empty($progress)): ?>
+                <div class="text-center w-100 p-4 text-white-50">
+                    <i class="bi bi-emoji-smile fs-1"></i>
+                    <p>No in-progress exchanges yet. Keep browsing!</p>
+                </div>
+            <?php else: foreach ($progress as $prog): ?>
+                <div class="position-relative empl mb-4 p-4 rounded-4 w-100 bg-muted d-flex flex-column gap-4">
+                    <div class="offering-date text-amber-light border-bottom border-white border-opacity-10 pb-2">
+                        You offered: <span><?= htmlspecialchars($prog->offered_date) ?></span>
+                    </div>
+                    <div class="book-exchange d-flex align-items-center justify-content-center flex-wrap">
+                        <div class="offered-book me-5">
+                            <h3>Your Book</h3>
+                            <img src="../photo/<?= htmlspecialchars($book->getBookCover($prog->your_book_id)) ?>" alt="Book Cover" width="100" height="150">
+                            <article class="book-details">
+                                <div class="title fw-bold"><?= htmlspecialchars($book->getbooktitle($prog->your_book_id)) ?></div>
+                                <div class="author"><?= htmlspecialchars($book->getBookAuthor($prog->your_book_id)) ?></div>
+                                <div class="condition">Condition: <?= htmlspecialchars($book->getBookCondition($prog->your_book_id)) ?></div>
+                            </article>
+                        </div>
+                        <svg class="me-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/>
+                        </svg>
+                        <div class="received-book">
+                            <h3>Received Book</h3>
+                            <img src="../photo/<?= htmlspecialchars($book->getBookCover($prog->partner_book_id)) ?>" alt="Book Cover" width="100" height="150">
+                            <article class="book-details1">
+                                <div class="title1 fw-bold"><?= htmlspecialchars($book->getbooktitle($prog->partner_book_id)) ?></div>
+                                <div class="author1"><?= htmlspecialchars($book->getBookAuthor($prog->partner_book_id)) ?></div>
+                                <div class="condition1">Condition: <?= htmlspecialchars($book->getBookCondition($prog->partner_book_id)) ?></div>
+                            </article>
+                        </div>
+                        <div class="arriving-date w-100 border-top border-white border-opacity-25 mt-4 pt-3 text-amber-light">
+                            Arrives: <span class="fw-bold"><?= htmlspecialchars($prog->arriving_date ?? 'TBD') ?></span>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; endif; ?>
+        </section>
+
+    </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

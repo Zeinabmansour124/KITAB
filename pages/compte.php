@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>profile</title>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/messages.css">
+  <link rel="stylesheet" href="assets/css/marketPlace.css">
+  <link rel="stylesheet" href="assets/css/codeHTML.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid p-0">
+    <nav id="mainNav">
+      <div class="logo">KITAB<span class="text_arb">كتاب </span></div>
+      <ul class="nav-links">
+        <li>
+          <a href="marketPlace.html"><i class="bi bi-shop fs-6"></i>Marketplace</a>
+        </li>
+        <li>
+          <a href="messages.html"><i class="bi bi-chat-left-text"></i>Messages</a>
+        </li>
+        <li>
+          <a href="codeHTML.html"><i class="bi bi-repeat"></i>Exchange</a>
+        </li>
+        <li>
+          <a href="favorisContenantLivres.html"><i class="bi bi-heart"></i>Favoris</a>
+        </li>
+        <li>
+          <a href="reading-rooms.html"><i class="bi bi-book"></i>Reading Room</a>
+        </li>
+        <hr />
+        <li>
+          <a href="profile.html"><i class="bi bi-person-circle"></i>Profile</a>
+        </li>
+        <li>
+          <a href=""><i class="bi bi-gear"></i>Settings</a>
+        </li>
+        <hr />
+      </ul>
+    </nav>

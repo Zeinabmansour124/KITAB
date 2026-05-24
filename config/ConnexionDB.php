@@ -7,7 +7,7 @@ class ConnexionDB {
     public static function getInstance() {
         if (self::$_bdd === null) {
             try {
-                // IMPORTANT : On ajoute ;port=3307 ici
+                
                 $host = "127.0.0.1";
                 $port = "3307"; 
                 $dbname = "kitab";

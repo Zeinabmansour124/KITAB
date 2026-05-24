@@ -1,5 +1,5 @@
 <?php
-include_once 'config/IRepository.php';  // Chemin corrigé (slash, pas backslash)
+include_once('IRepository.php');  
 abstract class Repository implements IRepository {
     protected $db;
     public function __construct(protected $tableName) {
@@ -24,9 +24,7 @@ abstract class Repository implements IRepository {
 public function create($params) {
     $keys = array_keys($params);
     
-    // CORRECTION : On ajoute ` ` autour de chaque nom de colonne
-    // Au lieu de: titre,condition
-    // On aura: `titre`,`condition`
+    
     $protectedKeys = array_map(function($key) {
         return "`$key`";
     }, $keys);
