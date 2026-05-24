@@ -1,8 +1,34 @@
-document.addEventListener("DOMContentLoaded", function () {
+// 1. Fonction globale placée en haut pour être accessible instantanément par traduction.js
+window.updateFullscreenButton = function () {
+  const bouton = document.getElementById("fullscreen-btn");
+  if (!bouton) return; // Sécurité si le bouton n'est pas encore créé au DOM
 
+  const t = window.currentTranslations || {
+    screen_full: "Plein Écran",
+    screen_exit: "Quitter Plein Écran",
+  };
+
+  // On vérifie l'état réel via la classe présente sur le body
+  const estPleinEcran = document.body.classList.contains("fullscreen");
+
+  if (estPleinEcran) {
+    bouton.innerHTML = `✕ ${t.screen_exit}`;
+  } else {
+    bouton.innerHTML = `⛶ ${t.screen_full}`;
+  }
+};
+
+document.addEventListener("DOMContentLoaded", function () {
   const bouton = document.createElement("button");
   bouton.id = "fullscreen-btn";
-  bouton.innerHTML = `⛶ Plein Écran`;
+
+  // Applique la traduction directe dès la création de l'élément
+  const t = window.currentTranslations || {
+    screen_full: "Plein Écran",
+    screen_exit: "Quitter Plein Écran",
+  };
+  bouton.innerHTML = `⛶ ${t.screen_full}`;
+
   document.body.appendChild(bouton);
 
   const style = document.createElement("style");
@@ -50,38 +76,31 @@ document.addEventListener("DOMContentLoaded", function () {
   `;
   document.head.appendChild(style);
 
-  let estPleinEcran = false;
-
+  // Un seul écouteur de clic propre
   bouton.addEventListener("click", function () {
+    const estPleinEcranActuel = document.body.classList.contains("fullscreen");
 
-    if (estPleinEcran) {
-
+    if (estPleinEcranActuel) {
       if (document.exitFullscreen) {
         document.exitFullscreen();
       }
       document.body.classList.remove("fullscreen");
-      bouton.innerHTML = `⛶ Plein Écran`;
-      estPleinEcran = false;
-
     } else {
-
       if (document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen();
       }
       document.body.classList.add("fullscreen");
-      bouton.innerHTML = `✕ Quitter Plein Écran`;
-      estPleinEcran = true;
-
     }
 
+    // Met à jour le texte du bouton immédiatement après le changement d'état
+    window.updateFullscreenButton();
   });
 
+  // Gère aussi le retour à la normale via la touche Échap du clavier
   document.addEventListener("fullscreenchange", function () {
     if (!document.fullscreenElement) {
       document.body.classList.remove("fullscreen");
-      bouton.innerHTML = `⛶ Plein Écran`;
-      estPleinEcran = false;
+      window.updateFullscreenButton();
     }
   });
-
 });
