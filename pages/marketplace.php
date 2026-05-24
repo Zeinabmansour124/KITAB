@@ -207,7 +207,7 @@ $pageChatbot = true;
               <br />
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIV99IJOGUBMQBy9kccOQsAyq36yzt0BRYUw&s" alt="" class="ownerpic" />
               <span class="person">Sarah Johnson</span><br />
-              <a href="details.html" class="details"><i class="bi bi-book"></i> Details</a>
+              <a href="#" class="details static-card-details" title="Carte de démonstration — pas en base de données"><i class="bi bi-book"></i> Details</a>
               <a href="" class="chat"><i class="bi bi-chat-left"></i> Chat</a>
             </div>
           </div>
@@ -231,7 +231,7 @@ $pageChatbot = true;
               <br />
               <img src="https://t3.ftcdn.net/jpg/02/99/04/20/360_F_299042079_vGBD7wIlSeNl7vOevWHiL93G4koMM967.jpg" alt="" class="ownerpic" />
               <span class="person">Mohamed lio</span><br />
-              <a href="" class="details"><i class="bi bi-book"></i> Details</a>
+              <a href="#" class="details static-card-details" title="Carte de démonstration — pas en base de données"><i class="bi bi-book"></i> Details</a>
               <a href="" class="chat"><i class="bi bi-chat-left"></i> Chat</a>
             </div>
           </div>
@@ -255,7 +255,7 @@ $pageChatbot = true;
               <br />
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQLulSTm2MNWTnME2ZcxlhmOU2DvQZgh8wUQ&s" alt="" class="ownerpic" />
               <span class="person">Layan hamdan</span><br />
-              <a href="" class="details"><i class="bi bi-book"></i> Details</a>
+              <a href="#" class="details static-card-details" title="Carte de démonstration — pas en base de données"><i class="bi bi-book"></i> Details</a>
               <a href="" class="chat"><i class="bi bi-chat-left"></i> Chat</a>
             </div>
           </div>
@@ -279,7 +279,7 @@ $pageChatbot = true;
               <br />
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhA_VuqI8DqCHBMlOg_Y6KMjEuJsX_prJX9g&s" alt="" class="ownerpic" />
               <span class="person">Ahmed salah</span><br />
-              <a href="" class="details"><i class="bi bi-book"></i> Details</a>
+              <a href="#" class="details static-card-details" title="Carte de démonstration — pas en base de données"><i class="bi bi-book"></i> Details</a>
               <a href="" class="chat"><i class="bi bi-chat-left"></i> Chat</a>
             </div>
           </div>
@@ -303,7 +303,7 @@ $pageChatbot = true;
               <br />
               <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" alt="" class="ownerpic" />
               <span class="person">Jan Bs</span><br />
-              <a href="" class="details"><i class="bi bi-book"></i> Details</a>
+              <a href="#" class="details static-card-details" title="Carte de démonstration — pas en base de données"><i class="bi bi-book"></i> Details</a>
               <a href="" class="chat"><i class="bi bi-chat-left"></i> Chat</a>
             </div>
           </div>
@@ -327,7 +327,7 @@ $pageChatbot = true;
               <br />
               <img src="https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg" alt="" class="ownerpic" />
               <span class="person">Roben J</span><br />
-              <a href="" class="details"><i class="bi bi-book"></i> Details</a>
+              <a href="#" class="details static-card-details" title="Carte de démonstration — pas en base de données"><i class="bi bi-book"></i> Details</a>
               <a href="" class="chat"><i class="bi bi-chat-left"></i> Chat</a>
             </div>
           </div>
@@ -351,7 +351,7 @@ $pageChatbot = true;
               <br />
               <img src="https://plus.unsplash.com/premium_photo-1690407617542-2f210cf20d7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fHww" alt="" class="ownerpic" />
               <span class="person">Sofia Rossi</span><br />
-              <a href="" class="details"><i class="bi bi-book"></i> Details</a>
+              <a href="#" class="details static-card-details" title="Carte de démonstration — pas en base de données"><i class="bi bi-book"></i> Details</a>
               <a href="" class="chat"><i class="bi bi-chat-left"></i> Chat</a>
             </div>
           </div>
@@ -375,7 +375,7 @@ $pageChatbot = true;
               <br />
               <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29ufGVufDB8fDB8fHww" alt="" class="ownerpic" />
               <span class="person">Amina Salah</span><br />
-              <a href="details.html" class="details"><i class="bi bi-book"></i> Details</a>
+              <a href="#" class="details static-card-details" title="Carte de démonstration — pas en base de données"><i class="bi bi-book"></i> Details</a>
               <a href="" class="chat"><i class="bi bi-chat-left"></i> Chat</a>
             </div>
           </div>

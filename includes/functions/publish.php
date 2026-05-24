@@ -21,7 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isLoggedIn) {
             $fileName = uniqid('book_') . '.' . $ext;
             
             // CORRECTION ICI : On ajoute ../../ pour sortir de includes/functions/
-            move_uploaded_file($_FILES['image']['tmp_name'], '../../uploads/' . $fileName);
+            $uploadDir = __DIR__ . '/../../uploads/';
+            move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $fileName);
             
             $imagePath = $fileName; // On garde uniquement le nom du fichier pour la base de données
         }
