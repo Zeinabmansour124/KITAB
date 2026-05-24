@@ -216,10 +216,8 @@ $src = (str_starts_with($room->image, 'http'))
 <div id="successMessage"><span id="successText"></span></div>
 
 <script src="../assets/js/notifications.js"></script>
-<script src="../assets/js/traduction.js"></script>
 <script src="../assets/js/RSVP.js"></script>
 <script src="../assets/js/join.js"></script>
-<script src="../assets/js/mode.js"></script>
 <script src="../assets/js/fontsize.js"></script>
 <script src="../assets/js/fullscreen.js"></script>
 <script src="../assets/js/ambiance.js"></script>
@@ -261,7 +259,7 @@ document.querySelectorAll(".nav-tab").forEach(tab => {
     });
 });
 
-// Translation Init
+/* Translation Init
 document.addEventListener("DOMContentLoaded", function () {
     const btnEn = document.getElementById("btn-en");
     const btnFr = document.getElementById("btn-fr");
@@ -273,7 +271,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const savedLang = localStorage.getItem("kitabi_lang") || "en";
         window.setLang(savedLang);
     }
-});
+});*/
 </script>
 </body>
 </html>

@@ -1,54 +1,58 @@
-//c pour filtration
+// ===== VARIABLES GLOBALES =====
 const selectCondition = document.getElementById("constionselect");
 const allBooks = document.querySelectorAll(".book-card");
 const genreselect = document.getElementById("genreselect");
+const searchnav = document.querySelector(".nav-search");
+const noResult = document.getElementById("no-result");
 
+// ===== FONCTION CENTRALE : filtre recherche + condition + genre =====
 function filtrerbooks() {
   const selected1 = selectCondition.value.toLowerCase();
   const selected2 = genreselect.value.toLowerCase();
+  const query = searchnav.value.trim().toLowerCase();
+
   allBooks.forEach((book) => {
     let condition = book
       .querySelector(".conditionbook")
-      .textContent.toLowerCase();
-    condition = condition.replace("-", " ");
+      .textContent.toLowerCase()
+      .replace("-", " ");
     let typeb = book.querySelector(".booktype").textContent.toLowerCase();
-    if (
-      (selected1 == "all condition" || condition == selected1) &&
-      (selected2 == "all genres" || selected2 == typeb)
-    ) {
-      book.style.display = "";
-    } else {
-      book.style.display = "none";
-    }
+    let titre = book.querySelector(".nombook")?.textContent.toLowerCase() || "";
+    let auteur =
+      book.querySelector(".card-body p")?.textContent.toLowerCase() || "";
+
+    const condOk = selected1 === "all condition" || condition === selected1;
+    const genreOk = selected2 === "all genres" || selected2 === typeb;
+    const searchOk =
+      query === "" ||
+      titre.includes(query) ||
+      auteur.includes(query) ||
+      typeb.includes(query);
+
+    book.style.display = condOk && genreOk && searchOk ? "" : "none";
   });
+
+  // Affiche image si aucun résultat
+  const visible = [...allBooks].filter(
+    (b) => b.style.display !== "none"
+  ).length;
+  if (noResult) noResult.style.display = visible === 0 ? "flex" : "none";
+
+  // Met à jour le compteur
+  const counter = document.getElementById("bookCount");
+  document.getElementById("countNum").textContent = visible;
 }
 
+// Écoute filtres + recherche live
 selectCondition.addEventListener("change", filtrerbooks);
 genreselect.addEventListener("change", filtrerbooks);
+searchnav.addEventListener("input", filtrerbooks);
 
-// c pour recherche
-
-const searchnav = document.querySelector(".nav-search");
-searchnav.addEventListener("keydown", (e) => {
-  if (e.key == "Enter") {
-    const userinput = searchnav.value.toLowerCase();
-    console.log("ach kteb :", userinput);
-    allBooks.forEach((book) => {
-      let nombook = book.querySelector(".nombook").textContent.toLowerCase();
-      if (nombook == userinput || userinput == "") {
-        book.style.display = "";
-      } else {
-        book.style.display = "none";
-      }
-    });
-  }
-});
-
-//pour filtre A-Z / price
-
+// ===== TRI : prix / A-Z =====
 const bookscontainer = document.querySelector(".cards-container");
 let tabbooks = Array.from(allBooks);
 const priceAZselct = document.getElementById("priceAZselct");
+
 function updatebooksorder() {
   for (const element of tabbooks) {
     bookscontainer.appendChild(element);
@@ -57,38 +61,36 @@ function updatebooksorder() {
 
 priceAZselct.addEventListener("click", () => {
   const optionn = priceAZselct.value;
-
   switch (optionn) {
     case "low to height":
-      tabbooks.sort((a, b) => {
-        const price1 = parseFloat(a.querySelector(".price").textContent);
-        const price2 = parseFloat(b.querySelector(".price").textContent);
-        return price1 - price2;
-      });
+      tabbooks.sort(
+        (a, b) =>
+          parseFloat(a.querySelector(".price").textContent) -
+          parseFloat(b.querySelector(".price").textContent)
+      );
       break;
     case "height to low":
-      tabbooks.sort((a, b) => {
-        const price1 = parseFloat(a.querySelector(".price").textContent);
-        const price2 = parseFloat(b.querySelector(".price").textContent);
-        return price2 - price1;
-      });
+      tabbooks.sort(
+        (a, b) =>
+          parseFloat(b.querySelector(".price").textContent) -
+          parseFloat(a.querySelector(".price").textContent)
+      );
       break;
     case "title : A-Z":
-      tabbooks.sort((a, b) => {
-        const nom1 = a
+      tabbooks.sort((a, b) =>
+        a
           .querySelector(".nombook")
-          .textContent.toLocaleLowerCase();
-        const nom2 = b
-          .querySelector(".nombook")
-          .textContent.toLocaleLowerCase();
-        return nom1.localeCompare(nom2);
-      });
+          .textContent.toLocaleLowerCase()
+          .localeCompare(
+            b.querySelector(".nombook").textContent.toLocaleLowerCase()
+          )
+      );
       break;
-    default:
   }
   updatebooksorder();
 });
 
+// ===== SLIDER =====
 let current = 0;
 const total = 3;
 let timer;
@@ -119,26 +121,25 @@ function next() {
 function prev() {
   goTo(current - 1);
 }
-
 function startAuto() {
   timer = setInterval(() => goTo(current + 1, false), 5000);
 }
 startAuto();
 
-// Keyboard nav
+// Keyboard nav slider
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight") next();
   if (e.key === "ArrowLeft") prev();
 });
 
-// Nav scroll effect
+// ===== NAV SCROLL =====
 window.addEventListener("scroll", () => {
   document
     .getElementById("mainNav")
-    .classList.toggle("scrolled", window.scrollY > 50);
+    ?.classList.toggle("scrolled", window.scrollY > 50);
 });
 
-// Heart toggle
+// ===== HEART TOGGLE =====
 document.querySelectorAll(".heart-btn").forEach((btn) => {
   btn.addEventListener("click", function () {
     this.textContent = this.textContent === "♡" ? "♥" : "♡";
@@ -147,14 +148,11 @@ document.querySelectorAll(".heart-btn").forEach((btn) => {
   });
 });
 
+// ===== PROMO BAND PAUSE =====
 const band = document.querySelector(".promo-items");
-
-// Pause quand la souris entre
 band.addEventListener("mouseenter", () => {
   band.style.animationPlayState = "paused";
 });
-
-// Reprend quand la souris sort
 band.addEventListener("mouseleave", () => {
   band.style.animationPlayState = "running";
 });

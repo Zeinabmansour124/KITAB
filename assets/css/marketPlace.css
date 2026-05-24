@@ -475,11 +475,16 @@ body {
   min-height: 100vh;
   padding: 30px 10px 10px 20px;
 }
+#bookCount {
+  color: var(--ink) !important;
+  font-size: 14px;
+  margin: 10px 0 10px 5px;
+}
 
-div a {
+/* On cible uniquement les liens de navigation, pas les cartes */
+.footerdet a, .nav-links a {
   display: block;
   text-decoration: none;
-  padding: 20px 10px;
   padding: 0.5rem 1rem;
   margin-bottom: 0.5rem;
 }
@@ -1055,7 +1060,32 @@ nav.scrolled {
   align-items: center;
 
 }
+/* ===== BOOK CARD — couleurs texte ===== */
+.book-card {
+  color: var(--ink) !important; /* texte noir en light mode */
+}
 
+.book-card .nombook {
+  color: #1a1208 !important;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.book-card .card-body p {
+  color: #555 !important;
+  font-size: 13px;
+}
+
+.book-card .person {
+  color: #333 !important;
+  font-size: 13px;
+}
+
+.book-card .card-body {
+  padding: 12px;
+  color: var(--ink) !important;
+}
 /*[ slide active ]  ← visible (z-index:2)
   [ slide prev   ]  ← cachée (z-index:1)*/
 
@@ -1801,14 +1831,14 @@ nav.scrolled {
 }
 nav ul { margin: 0; padding: 0; }
 nav li { list-style: none; }
-/* Cache la case à cocher carrée par défaut */
+/* Cache la checkbox */
 .heart input[type="checkbox"] {
   display: none;
 }
 
 /* Cœur gris par défaut */
 .heart .icon {
-  color: rgba(255, 255, 255, 0.7);
+  color: gray;
   cursor: pointer;
   font-size: 1.2rem;
   transition: color 0.2s ease;
@@ -1817,9 +1847,4 @@ nav li { list-style: none; }
 /* Cœur rouge quand coché */
 .heart input[type="checkbox"]:checked + .icon {
   color: #e74c3c;
-}
-
-/* Masquer la checkbox native */
-.heart input[type="checkbox"] {
-  display: none;
 }
