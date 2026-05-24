@@ -3,6 +3,7 @@ require_once __DIR__ . '/../config/ConnexionDB.php';
 require_once __DIR__ . '/../config/IRepository.php';
 require_once __DIR__ . '/../config/Repository.php';
 require_once __DIR__ . '/../config/repositories/BookRepository.php';
+require_once __DIR__. '/../core/bootstap.php';
 
 $bookRepo = new BookRepository();
 $books = $bookRepo->findAll(); 
@@ -407,7 +408,7 @@ $books = $bookRepo->findAll();
 
       </div>
 
-      <? include('../includes/components/footer.php') ?>
+      <?php include('../includes/components/footer.php') ?>
     </div>
 
     <script src="../assets/js/marketPlace.js"></script>

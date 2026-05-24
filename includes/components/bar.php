@@ -33,12 +33,22 @@
       </ul>
 
       <div class="nav-right">
+          <?php if(!Session::get('user')):?>
+          <a href="/projet_web/KITAB/includes/controllers/index.php?page=login" id="nav_login">
+              <span class="material-icons">login</span> Sign in
+          </a>
+
+          <a href="/projet_web/KITAB/includes/controllers/index.php?page=register" id="nav_register">
+              <span class="material-icons">person_add</span> Sign up
+          </a>
+          <?php else: ?>
         <a href="/projet_web/KITAB//pages/profile.php" id="nav_profile"
           ><span class="material-icons">account_circle</span> Profile</a
         >
         <a href="logout.html" id="nav_logout"
           ><span class="material-icons">logout</span>Log out</a
         >
+          <?php endif; ?>
 
         <div class="lang-switcher-nav">
           <button class="lang-btn" id="btn-en">EN</button>
