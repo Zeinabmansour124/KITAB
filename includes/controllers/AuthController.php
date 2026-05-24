@@ -117,7 +117,7 @@ class AuthController
     {
         Session::destroy();
 
-        header("Location: /KITAB/pages/marketplace.php");
+        header("Location: /projet_web/KITAB/pages/marketplace.php");
         exit;
     }
 }

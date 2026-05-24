@@ -42,7 +42,7 @@
                 Profile
             </a>
 
-            <a href="/projet_web/KITAB/logout.php" id="nav_logout">
+            <a href="/projet_web/KITAB/includes/controllers/index.php?page=logout" id="nav_logout">
                 <span class="material-icons">logout</span>
                 Log out
             </a>
