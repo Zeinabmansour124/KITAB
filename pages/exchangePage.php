@@ -52,8 +52,8 @@ $progress     = $exchange->recuperer_progress($user);
         <a href="#" class="logo">KITAB<span class="text_arb">كتاب</span></a>
         <ul class="nav-links">
             <li><a href="marketplace.php"   id="nav_marketplace"><span class="material-icons">local_mall</span> Marketplace</a></li>
-            <li><a href="messages.php"      id="nav_messages"><span class="material-icons">chat_bubble</span> Messages</a></li>
-            <li><a href="codeHTML.php"      id="nav_exchanges" class="active"><span class="material-icons">swap_horiz</span> Exchanges</a></li>
+            <li><a href="messages.html"      id="nav_messages"><span class="material-icons">chat_bubble</span> Messages</a></li>
+            <li><a href="exchangePage.php"      id="nav_exchanges" class="active"><span class="material-icons">swap_horiz</span> Exchanges</a></li>
             <li><a href="fav.html"          id="nav_favorites"><span class="material-icons">favorite</span> Favorites</a></li>
             <li><a href="reading-rooms.php" id="nav_reading_rooms"><span class="material-icons">import_contacts</span> Reading Rooms</a></li>
         </ul>
