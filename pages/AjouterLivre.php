@@ -63,7 +63,7 @@ $books = $bookRepo->findAll();
                 <?php endif; ?>
 
                 <label class="heart">
-            <input type="checkbox" />
+            <input type="checkbox" class="fav-checkbox" data-book-id="<?php echo $book->id; ?>" />
             <span class="icon"><i class="bi bi-heart-fill"></i></span>
         </label>
             </div>
@@ -89,3 +89,51 @@ $books = $bookRepo->findAll();
         </div>
     <?php endforeach; ?>
 <?php endif; ?>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // 1. Au chargement — colorier les coeurs des livres déjà en favoris
+    fetch('/projet_web/KITAB/config/models/ajax/get_favorites.php')
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            data.favorites.forEach(bookId => {
+                const checkbox = document.querySelector('.fav-checkbox[data-book-id="' + bookId + '"]');
+                if (checkbox) checkbox.checked = true;
+            });
+        }
+    });
+
+    // 2. Clic sur un coeur
+    const favCheckboxes = document.querySelectorAll('.fav-checkbox');
+    favCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+            const bookId = this.getAttribute('data-book-id');
+            const currentCheckbox = this;
+            const isChecked = this.checked;
+
+            fetch('/projet_web/KITAB/config/models/ajax/toggle_favorite.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'book_id=' + encodeURIComponent(bookId)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    if (data.action === 'added') {
+                        currentCheckbox.checked = true;
+                    } else if (data.action === 'removed') {
+                        currentCheckbox.checked = false;
+                    }
+                } else {
+                    currentCheckbox.checked = !isChecked;
+                }
+            })
+            .catch(error => {
+                console.error('Erreur AJAX:', error);
+                currentCheckbox.checked = !isChecked;
+            });
+        });
+    });
+});
+</script>

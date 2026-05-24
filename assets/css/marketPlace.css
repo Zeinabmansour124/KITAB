@@ -1831,3 +1831,20 @@ nav.scrolled {
 }
 nav ul { margin: 0; padding: 0; }
 nav li { list-style: none; }
+/* Cache la checkbox */
+.heart input[type="checkbox"] {
+  display: none;
+}
+
+/* Cœur gris par défaut */
+.heart .icon {
+  color: gray;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: color 0.2s ease;
+}
+
+/* Cœur rouge quand coché */
+.heart input[type="checkbox"]:checked + .icon {
+  color: #e74c3c;
+}
