@@ -1,6 +1,6 @@
 <?php
 include_once('../config/autoloader.php');
-include_once('../config/repositories/RoomRepository.php');
+include_once('../config/models/repositories/RoomRepository.php');
 
 $repo      = new RoomRepository();
 $lives     = $repo->findByType('live');

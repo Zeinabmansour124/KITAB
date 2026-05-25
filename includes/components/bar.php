@@ -1,4 +1,3 @@
-
 <nav id="mainNav">
       <a href="#" class="logo">KITAB<span class="text_arb">كتاب</span></a>
       <ul class="nav-links">
@@ -8,7 +7,7 @@
           >
         </li>
         <li>
-          <a href="/projet_web/KITAB//pages/messages.php" id="nav_messages"
+          <a href="/projet_web/KITAB/pages/messages.php" id="nav_messages"
             ><span class="material-icons">chat_bubble</span> Messages</a
           >
         </li>
@@ -18,16 +17,13 @@
           >
         </li>
         <li>
-          <a
-            href="/projet_web/KITAB/pages/favorites.php"
-            id="nav_favorites"
+          <a href="/projet_web/KITAB/pages/favorites.php" id="nav_favorites"
             ><span class="material-icons">favorite</span> Favorites</a
           >
         </li>
         <li>
           <a href="/projet_web/KITAB/pages/reading-rooms.php" id="nav_reading_rooms"
-            ><span class="material-icons">import_contacts</span> Reading
-            Rooms</a
+            ><span class="material-icons">import_contacts</span> Reading Rooms</a
           >
         </li>
       </ul>
@@ -36,7 +32,6 @@
 
         <?php if(isset($_SESSION['user'])): ?>
 
-            <!-- Utilisateur connecté -->
             <a href="/projet_web/KITAB/pages/profile.php" id="nav_profile">
                 <span class="material-icons">account_circle</span>
                 Profile
@@ -49,7 +44,6 @@
 
         <?php else: ?>
 
-            <!-- Utilisateur non connecté -->
             <a href="/projet_web/KITAB/includes/controllers/index.php?page=login" id="nav_login">
                 <span class="material-icons">login</span>
                 Sign In
@@ -69,3 +63,11 @@
         </div>
 
     </div>
+
+</nav>  
+
+
+<script src="/projet_web/KITAB/assets/js/mode.js"></script>
+
+
+<script src="/projet_web/KITAB/assets/js/traduction.js"></script>

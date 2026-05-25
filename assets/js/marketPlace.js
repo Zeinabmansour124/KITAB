@@ -39,8 +39,8 @@ function filtrerbooks() {
   if (noResult) noResult.style.display = visible === 0 ? "flex" : "none";
 
   // Met à jour le compteur
-  const counter = document.getElementById("bookCount");
-  document.getElementById("countNum").textContent = visible;
+  const countNum = document.getElementById("countNum");
+  if (countNum) countNum.textContent = visible;
 }
 
 // Écoute filtres + recherche live

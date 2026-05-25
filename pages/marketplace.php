@@ -1,49 +1,23 @@
 <?php
+require_once __DIR__ . '/../core/bootstap.php';  
 require_once __DIR__ . '/../config/ConnexionDB.php';
 require_once __DIR__ . '/../config/IRepository.php';
 require_once __DIR__ . '/../config/Repository.php';
 require_once __DIR__ . '/../config/models/repositories/BookRepository.php';
-require_once __DIR__ .'/../core/bootstap.php';
-
 
 
 $bookRepo = new BookRepository();
 $books = $bookRepo->findAll(); 
-
+$pageTitle   = "KITAB — Marketplace";   
+$pageCSS     = "marketPlace.css";        
+$pageChatbot = true; 
 
 ?>
 
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="../assets/css/marketPlace.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=Amiri&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&amp;family=DM+Sans:wght@300;400;500&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" href="favicon (1).ico" type="image/x-icon" />
-    
-    <title>KITAB</title>
-  </head>
+<?php include('../includes/components/head.php'); ?> 
   <body>
     <!--  NAVBAR  -->
 
@@ -171,7 +145,7 @@ $books = $bookRepo->findAll();
           <div class="search-right">
             <input class="nav-search" type="text" placeholder="Rechercher un livre…" />
 
-            <a href="../includes/functions/publish.php" class="nav-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+            <a href="../includes/controllers/functions/publish.php" class="nav-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
         Publier un livre
     </a>
             <button id="exchangeBtn" class="nav-btn">Exchange</button>
@@ -205,8 +179,12 @@ $books = $bookRepo->findAll();
             </select>
           </div>
         </div>
-
         <br>
+        <p id="bookCount">showing <span id="countNum"></span> books</p>
+        <div id="no-result" style="display:none; flex-direction:column; align-items:center; justify-content:center; width:100%; padding:3rem 0;">
+        <img src="../photos/404_books_bg_FFF8E8.png" alt="Aucun résultat" style="max-width:380px; width:90%; opacity:0.9;" />
+        </div>
+
 
         <!--  je garde les cartes statiques(html puis j ajoute les cartes dynamiques)  -->
         <div class="cards-container">
@@ -410,10 +388,11 @@ $books = $bookRepo->findAll();
 
       </div>
 
-      <? include('../includes/components/footer.php') ?>
+      <?php include('../includes/components/footer.php'); ?> 
     </div>
 
     <script src="../assets/js/marketPlace.js"></script>
+    <script src="../assets/js/chatbot.js"></script>
 
 
    
