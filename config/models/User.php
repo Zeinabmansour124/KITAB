@@ -1,35 +1,49 @@
 <?php
-require_once __DIR__ . '/../repositories/UserRepository.php';
+require_once __DIR__ . '/repositories/UserRepository.php';
 
-class User extends UserRepository {
+class User {
+
+    private $userRepository;
 
     public function __construct(
-        public $id     = null,
-        public $nom    = "",
-        public $prenom = "",
-        public $email  = "",
-        public $avatar = ""
-    ) {}
-
-    public function getUserImage($id) {
-        $stmt = $this->db->prepare("SELECT avatar FROM users WHERE id = :id");
-        $stmt->execute(['id' => $id]);
-        $result = $stmt->fetch(PDO::FETCH_OBJ);
-        return $result ? $result->avatar : "default.png";
+        public $id       = null,
+        public $nom      = "",
+        public $prenom   = "",
+        public $email    = "",
+        public $image    = "",
+        public $password = "",
+        public $location = "",
+        public $rate     = 0.00,
+        public $bio      = ""
+    ) {
+        // On instancie le repository existant
+        $this->userRepository = new UserRepository();
+    }
+    
+    /**
+     * Récupère le nom complet via le Repository
+     */
+    public function getUserName($userId) {
+        return $this->userRepository->getUserName($userId);
     }
 
-    public function getUserName($id) {
-        $stmt = $this->db->prepare("SELECT CONCAT(prenom, ' ', nom) as fullname FROM users WHERE id = :id");
-        $stmt->execute(['id' => $id]);
-        $result = $stmt->fetch(PDO::FETCH_OBJ);
-        return $result ? $result->fullname : "Unknown User";
+    /**
+     * Récupère l'image de profil via le Repository
+     */
+    public function getUserImage($userId) {
+        return $this->userRepository->getUserImage($userId);
     }
 
-    public function getUserLocation($id) {
-        return "";
-    }
-
-    public function getUserRating($id) {
+    /**
+     * Récupère la note (rating) de l'utilisateur
+     */
+    public function getUserRating($userId) {
+        // Comme findById renvoie un tableau (FETCH_ASSOC) dans ton repository :
+        $userData = $this->userRepository->findById($userId);
+        
+        if ($userData && isset($userData['rate'])) {
+            return round($userData['rate']);
+        }
         return 0;
     }
 }

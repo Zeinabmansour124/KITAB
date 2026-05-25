@@ -21,7 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isLoggedIn) {
             $fileName = uniqid('book_') . '.' . $ext;
             
             // CORRECTION ICI : On ajoute ../../ pour sortir de includes/functions/
-            move_uploaded_file($_FILES['image']['tmp_name'], '../../uploads/' . $fileName);
+            $uploadDir = __DIR__ . '/../../uploads/';
+            move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $fileName);
             
             $imagePath = $fileName; // On garde uniquement le nom du fichier pour la base de données
         }
@@ -74,7 +75,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isLoggedIn) {
 
             <form action="" method="POST" enctype="multipart/form-data" class="form-body">
                 
-                <?php if($success): ?> <div class="alert alert-success"><?php echo $success; ?></div> <?php endif; ?>
+            <?php if($success): ?>
+<!-- Overlay succès animé -->
+<div id="successOverlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:9999;display:flex;align-items:center;justify-content:center;">
+  <div id="successBox" style="background:#fff;border-radius:16px;padding:2.5rem 2rem;text-align:center;max-width:380px;width:90%;transform:scale(0.7);opacity:0;transition:transform 0.4s cubic-bezier(.34,1.56,.64,1),opacity 0.3s ease;">
+    <div style="width:72px;height:72px;border-radius:50%;background:#e8f5e9;margin:0 auto 1.2rem;display:flex;align-items:center;justify-content:center;">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <h3 style="margin:0 0 0.5rem;font-size:1.3rem;color:#1b5e20;">Livre publié avec succès !</h3>
+    <p style="color:#555;font-size:0.95rem;margin:0 0 1.5rem;">Votre livre est maintenant visible sur la marketplace.</p>
+    <a href="../../pages/marketplace.php"
+       style="display:inline-block;background:#2e7d32;color:#fff;padding:0.65rem 1.8rem;border-radius:8px;text-decoration:none;font-size:0.95rem;">
+      ← Retour à la Marketplace
+    </a>
+  </div>
+</div>
+<script>
+  window.addEventListener('load', function() {
+    const box = document.getElementById('successBox');
+    setTimeout(function() {
+      box.style.transform = 'scale(1)';
+      box.style.opacity = '1';
+    }, 50);
+  });
+</script>
+<?php endif; ?>
                 <?php if($error): ?> <div class="alert alert-error"><?php echo $error; ?></div> <?php endif; ?>
 
                 <div class="form-grid">
@@ -133,9 +160,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isLoggedIn) {
                 </div>
 
                 <div class="form-footer">
-                    <button type="reset" class="btn btn-secondary" id="resetBtn">Annuler</button>
-                    <button type="submit" class="btn btn-primary btn-submit">Publier le livre</button>
-                </div>
+    <button type="button" class="btn btn-secondary"
+            onclick="window.location.href='../../pages/marketplace.php'">
+        Annuler
+    </button>
+    <button type="submit" class="btn btn-primary btn-submit">Publier le livre</button>
+</div>
             </form>
         </div>
     <?php endif; ?>

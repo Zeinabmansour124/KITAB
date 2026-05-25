@@ -4,15 +4,16 @@ require_once __DIR__ . '/../config/models/Book.php';
 require_once __DIR__ . '/../config/models/User.php';
 require_once __DIR__ . '/../config/models/exchange.php';
 
+
 if (!isset($_SESSION['user_id'])) {
     header('Location: connect.php');
     exit();
 }
 
 $user     = $_SESSION['user_id'];
-$exchange = new exchange();
-$book     = new Book();
-$us       = new User();
+$exchange=new exchange(); 
+$book=new Book();
+$us= new User();
 
 $total     = $exchange->count_all($user);
 $completed = $exchange->count_completed($user);
@@ -48,25 +49,8 @@ $progress     = $exchange->recuperer_progress($user);
 <div class="container-fluid p-0">
 
     <!-- NAV -->
-    <nav id="mainNav">
-        <a href="#" class="logo">KITAB<span class="text_arb">كتاب</span></a>
-        <ul class="nav-links">
-            <li><a href="marketplace.php"   id="nav_marketplace"><span class="material-icons">local_mall</span> Marketplace</a></li>
-            <li><a href="messages.html"      id="nav_messages"><span class="material-icons">chat_bubble</span> Messages</a></li>
-            <li><a href="exchangePage.php"      id="nav_exchanges" class="active"><span class="material-icons">swap_horiz</span> Exchanges</a></li>
-            <li><a href="fav.html"          id="nav_favorites"><span class="material-icons">favorite</span> Favorites</a></li>
-            <li><a href="reading-rooms.php" id="nav_reading_rooms"><span class="material-icons">import_contacts</span> Reading Rooms</a></li>
-        </ul>
-        <div class="nav-right">
-            <a href="connect.php" id="nav_profile"><span class="material-icons">account_circle</span> Profile</a>
-            <a href="logout.php"  id="nav_logout"><span class="material-icons">logout</span> Log out</a>
-            <div class="lang-switcher-nav">
-                <button class="lang-btn" id="btn-en">EN</button>
-                <button class="lang-btn" id="btn-fr">FR</button>
-                <button class="lang-btn" id="btn-ar">AR</button>
-            </div>
-        </div>
-    </nav>
+   <?php include('../includes/components/bar.php'); ?>
+
 
     <section class="justify-content-center end-0 min-vh-100 p-4 exchanges">
 
@@ -192,8 +176,7 @@ $progress     = $exchange->recuperer_progress($user);
                     </button>
                 </div>
                 <div class="devider1"></div>
-
-                <!-- ✅ pending-card + data-exchange-id pour le JS -->
+>
                 <div class="pending-card position-relative empl mb-4 p-4 rounded-4 w-100 bg-muted d-flex flex-column gap-4"
                      data-exchange-id="<?= (int)$pend->id ?>">
 
@@ -242,7 +225,6 @@ $progress     = $exchange->recuperer_progress($user);
                         </div>
                     </div>
 
-                    <!-- ✅ Boutons avec classes accept-btn / decline-btn (pas d'id dupliqué) -->
                     <div class="response-buttons d-flex justify-content-center gap-4">
                         <button type="button" class="accept-btn btn-teal mt-4">Accept</button>
                         <button type="button" class="decline-btn btn-outline-secondary mt-4">Decline</button>

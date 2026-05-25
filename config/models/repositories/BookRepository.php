@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../Repository.php';
+include_once __DIR__ . '/../../Repository.php';
 
 class BookRepository extends Repository {
     public function __construct() {
