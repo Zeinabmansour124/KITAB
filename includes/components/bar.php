@@ -13,11 +13,7 @@
           >
         </li>
         <li>
-<<<<<<< HEAD
           <a href="/projet_web/KITAB//pages/exchangePage.php" id="nav_exchanges"
-=======
-          <a href="/projet_web/KITAB/pages/exchangePage.php" id="nav_exchanges"
->>>>>>> e99bc50aff697e627bf98d9406ba323990661496
             ><span class="material-icons">swap_horiz</span> Exchanges</a
           >
         </li>
