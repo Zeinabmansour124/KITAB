@@ -1,5 +1,5 @@
 <?php
-include_once '../config/Repository.php';
+require_once __DIR__ . '/../../Repository.php'; // 🚀 Corrigé : remonte proprement de deux niveaux pour retrouver la racine config/
 
 class RoomRepository extends Repository {
     public function __construct() {

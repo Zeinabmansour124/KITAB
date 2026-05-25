@@ -1,6 +1,5 @@
 <?php
-require_once __DIR__ . '/../repositories/BookRepository.php';
-
+require_once __DIR__ . '/repositories/BookRepository.php';
 class Book extends BookRepository {
 
     public function __construct(

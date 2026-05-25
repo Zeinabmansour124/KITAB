@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../repositories/BookRepository.php';
-require_once __DIR__ . '/../ConnexionDB.php';
+require_once __DIR__ . '/repositories/BookRepository.php'; 
+require_once __DIR__ . '/../ConnexionDB.php'; // 🚀 Corrigé : un seul dossier de recul pour sortir de models/
 
 class exchange {
 
@@ -62,10 +62,9 @@ class exchange {
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-
-    // Échanges refusés (retourne tableau d'objets, pas un int)
     public function recuperer_refused($userId) {
         $stmt = $this->db->prepare("SELECT * FROM exchanges WHERE (user_requesting_id = :uid OR user_offering_id = :uid2) AND status = 'refused' ORDER BY created_at DESC");
         $stmt->execute(['uid' => $userId, 'uid2' => $userId]);
         return $stmt->fetchAll(PDO::FETCH_OBJ);
-    }}
+    }
+}

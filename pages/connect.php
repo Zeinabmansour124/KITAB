@@ -41,7 +41,7 @@
             >
           </li>
           <li>
-            <a href="codeHTML.php" id="nav_exchanges"
+            <a href="exchangePage.php" id="nav_exchanges"
               ><span class="material-icons">swap_horiz</span> Exchanges</a
             >
           </li>

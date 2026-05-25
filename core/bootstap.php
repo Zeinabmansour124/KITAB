@@ -11,3 +11,4 @@ session::start();  // 👈 classe avec s minuscule comme tu veux
 
 // 4. configs globales
 define('BASE_URL', '/projet_web/KITAB');
+

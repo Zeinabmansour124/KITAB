@@ -2,8 +2,7 @@
 
 require_once __DIR__ . '/../../config/models/User.php';
 require_once __DIR__ . '/../../config/models/repositories/UserRepository.php';
-require_once __DIR__ . '/../../core/session.php';
-
+require_once __DIR__ . '/../../core/session.php'; // 🚀 Vérifie bien ici que ton dossier s'appelle "core" sans faute de frappe ("bootstap" dans ton message)
 class AuthController
 {
     private $userRepo;

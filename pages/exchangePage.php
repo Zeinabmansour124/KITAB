@@ -49,8 +49,8 @@ $progress     = $exchange->recuperer_progress($user);
 <div class="container-fluid p-0">
 
     <!-- NAV -->
-   <?php include('../includes/components/bar.php'); ?>
 
+    <?php include('../includes/components/bar.php'); ?>
 
     <section class="justify-content-center end-0 min-vh-100 p-4 exchanges">
 
@@ -214,14 +214,20 @@ $progress     = $exchange->recuperer_progress($user);
                         <div class="userDescription">
                             <div class="username fw-bold"><?= htmlspecialchars($us->getUserName($pend->user_offering_id)) ?></div>
                             <div class="rate-stars">
-                                <?php
-                                $note = $us->getUserRating($pend->user_offering_id);
-                                for ($i = 1; $i <= 5; $i++) {
-                                    echo '<i class="bi ' . ($i <= $note ? 'bi-star-fill' : 'bi-star') . ' text-warning me-1"></i>';
-                                }
-                                ?>
-                                <span class="text-white-50 small">(<?= $note ?>/5)</span>
-                            </div>
+    <?php
+    if ($pend->user_offering_id == $user) {
+        $partner_id = $pend->user_receiving_id; // (Assure-toi du nom de cette propriété dans ton objet $pend)
+    } else {
+        $partner_id = $pend->user_offering_id;
+    }
+
+    $note = $us->getUserRating($partner_id);
+    for ($i = 1; $i <= 5; $i++) {
+        echo '<i class="bi ' . ($i <= $note ? 'bi-star-fill' : 'bi-star') . ' text-warning me-1"></i>';
+    }
+    ?>
+    <span class="text-white-50 small">(<?= $note ?>/5)</span>
+</div>
                         </div>
                     </div>
 
