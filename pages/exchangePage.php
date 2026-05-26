@@ -48,13 +48,11 @@ $progress     = $exchange->recuperer_progress($user);
 <body>
 <div class="container-fluid p-0">
 
-    <!-- NAV -->
+    
 
     <?php include('../includes/components/bar.php'); ?>
 
     <section class="justify-content-center end-0 min-vh-100 p-4 exchanges">
-
-        <!-- Hero -->
         <article class="d-flex align-items-center bg-photo border border-1 rounded p-3 mb-4">
             <div class="w-100">
                 <h1 class="display-4 muted fw-bold mb-0 me-3">BOOK EXCHANGES</h1>
