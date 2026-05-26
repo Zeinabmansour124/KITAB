@@ -36,7 +36,7 @@
           <a href="messages.html"><i class="bi bi-chat-left-text"></i>Messages</a>
         </li>
         <li>
-          <a href="codeHTML.html"><i class="bi bi-repeat"></i>Exchange</a>
+          <a href="exchangePage.php"><i class="bi bi-repeat"></i>Exchange</a>
         </li>
         <li>
           <a href="favorisContenantLivres.html"><i class="bi bi-heart"></i>Favoris</a>

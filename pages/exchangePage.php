@@ -10,8 +10,9 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+
 $user     = $_SESSION['user_id'];
-$exchange=new exchange(); 
+$exchange=new exchange();
 $book=new Book();
 $us= new User();
 
