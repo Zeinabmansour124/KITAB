@@ -1,10 +1,30 @@
 <?php
+session_start();
+require_once __DIR__ . '/../core/bootstap.php';
 include_once('../config/autoloader.php');
 include_once('../config/models/repositories/RoomRepository.php');
 
+$_SESSION['user'] = [
+    'id' => 1,
+    'nom' => 'Développeur Test',
+    'email' => 'test@kitab.tn',
+    'role' => 'user'
+];
+
+if (!Session::isLoggedIn()) {
+    header('Location: ../includes/components/restricted-block.php');
+    exit;
+}
+
 $repo      = new RoomRepository();
-$lives     = $repo->findByType('live');
+$lives     =  $repo->findByType('live');
 $scheduled = $repo->findByType('scheduled');
+
+// Rooms du user connecté
+$myRooms = [];
+if (isset($_SESSION['user'])) {
+    $myRooms = $repo->findByHostId($_SESSION['user']['id']);
+}
 
 $pageTitle = "Reading Rooms - KITABI";
 $pageCSS   = "reading-room.css";
@@ -13,8 +33,9 @@ $pageCSS   = "reading-room.css";
 <html lang="en">
 <?php require('../includes/components/head.php'); ?>
 <body>
-<?php include('../includes/components/bar.php'); ?>
+<?php require('../includes/components/bar.php'); ?>
 
+      
 <div class="page-wrapper">
     <div class="page-header">
         <div class="page-header-text">
@@ -49,7 +70,7 @@ $pageCSS   = "reading-room.css";
             <div class="stat-card myrooms">
                 <div class="stat-info">
                     <div class="stat-title" id="stat_myrooms">My Rooms</div>
-                    <div class="stat-number">0</div>
+                    <div class="stat-number"><?= count($myRooms) ?></div>
                 </div>
                 <div class="stat-icon">
                     <img src="https://i.pinimg.com/1200x/c3/41/6e/c3416efade9f62b399498e657113ddf7.jpg" alt="My Rooms"/>
@@ -91,12 +112,8 @@ $pageCSS   = "reading-room.css";
                     <?php foreach ($lives as $room): ?>
                     <div class="room-card">
                         <div class="room-image">
-                            <?php
-                              $src = (str_starts_with($room->image, 'http'))
-                                ? $room->image
-                                  : '../uploads/rooms/' . $room->image;
-                                ?>
-<img src="<?= htmlspecialchars($src) ?>" alt="<?= htmlspecialchars($room->titre) ?>"/>
+                            <?php $src = str_starts_with($room->image, 'http') ? $room->image : '../uploads/rooms/' . $room->image; ?>
+                            <img src="<?= htmlspecialchars($src) ?>" alt="<?= htmlspecialchars($room->titre) ?>"/>
                             <span class="badge live">LIVE</span>
                             <span class="participants">0/<?= $room->max_participants ?></span>
                         </div>
@@ -111,11 +128,13 @@ $pageCSS   = "reading-room.css";
                                 </div>
                                 <p class="progress-text">Page 0 of <?= $room->total_pages ?></p>
                             </div>
+                            <?php if ($room->tags): ?>
                             <div class="tags">
                                 <?php foreach (explode(',', $room->tags) as $tag): ?>
                                     <span class="tag"><?= htmlspecialchars(trim($tag)) ?></span>
                                 <?php endforeach; ?>
                             </div>
+                            <?php endif; ?>
                             <button class="room-action-btn join-btn btn_join">Join Now</button>
                         </div>
                     </div>
@@ -134,12 +153,8 @@ $pageCSS   = "reading-room.css";
                     <?php foreach ($scheduled as $room): ?>
                     <div class="room-card">
                         <div class="room-image">
-                            <?php
-$src = (str_starts_with($room->image, 'http'))
-    ? $room->image
-    : '../uploads/rooms/' . $room->image;
-?>
-<img src="<?= htmlspecialchars($src) ?>" alt="<?= htmlspecialchars($room->titre) ?>"/>
+                            <?php $src = str_starts_with($room->image, 'http') ? $room->image : '../uploads/rooms/' . $room->image; ?>
+                            <img src="<?= htmlspecialchars($src) ?>" alt="<?= htmlspecialchars($room->titre) ?>"/>
                             <span class="badge scheduled">Scheduled</span>
                             <span class="participants">0/<?= $room->max_participants ?></span>
                         </div>
@@ -154,11 +169,13 @@ $src = (str_starts_with($room->image, 'http'))
                                 </div>
                                 <p class="progress-text">Page 0 of <?= $room->total_pages ?></p>
                             </div>
+                            <?php if ($room->tags): ?>
                             <div class="tags">
                                 <?php foreach (explode(',', $room->tags) as $tag): ?>
                                     <span class="tag"><?= htmlspecialchars(trim($tag)) ?></span>
                                 <?php endforeach; ?>
                             </div>
+                            <?php endif; ?>
                             <button class="room-action-btn rsvp-btn btn_rsvp">RSVP</button>
                         </div>
                     </div>
@@ -169,15 +186,50 @@ $src = (str_starts_with($room->image, 'http'))
 
         <!-- My Rooms -->
         <div id="myrooms-section" style="display:none">
-            <div class="myrooms-content">
-                <img src="https://i.pinimg.com/1200x/06/07/32/0607321cf97261adf09084370414347f.jpg"
-                     alt="No rooms" class="myrooms-image"/>
-                <div class="myrooms-text">
-                    <h3 id="no_rooms">No rooms yet</h3>
-                    <p id="no_rooms_sub">Create your own room or join an existing one.</p>
-                    <a href="create_file.php" class="create-room-btn">+ Create Room</a>
+            <?php if (empty($myRooms)): ?>
+                <div class="myrooms-content">
+                    <div class="myrooms-text">
+                        <h3 id="no_rooms">No rooms yet</h3>
+                        <p id="no_rooms_sub">Create your own room or join an existing one.</p>
+                        <a href="create_file.php" class="create-room-btn">+ Create Room</a>
+                    </div>
                 </div>
-            </div>
+            <?php else: ?>
+                <div class="rooms-container" style="margin-top:16px">
+                    <?php foreach ($myRooms as $room): ?>
+                    <div class="room-card">
+                        <div class="room-image">
+                            <?php $src = str_starts_with($room->image, 'http') ? $room->image : '../uploads/rooms/' . $room->image; ?>
+                            <img src="<?= htmlspecialchars($src) ?>" alt="<?= htmlspecialchars($room->titre) ?>"/>
+                            <span class="badge <?= $room->type ?>">
+                                <?= $room->type === 'live' ? 'LIVE' : 'Scheduled' ?>
+                            </span>
+                            <span class="participants">0/<?= $room->max_participants ?></span>
+                        </div>
+                        <div class="room-content">
+                            <div>
+                                <h3><?= htmlspecialchars($room->titre) ?></h3>
+                                <p class="room-author"><?= htmlspecialchars($room->auteur) ?></p>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" style="width:0%"></div>
+                                </div>
+                                <p class="progress-text">Page 0 of <?= $room->total_pages ?></p>
+                            </div>
+                            <?php if ($room->tags): ?>
+                            <div class="tags">
+                                <?php foreach (explode(',', $room->tags) as $tag): ?>
+                                    <span class="tag"><?= htmlspecialchars(trim($tag)) ?></span>
+                                <?php endforeach; ?>
+                            </div>
+                            <?php endif; ?>
+                            <button class="room-action-btn join-btn">Manage</button>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
         </div>
 
         <!-- No search result -->
@@ -221,6 +273,7 @@ $src = (str_starts_with($room->image, 'http'))
 <script src="../assets/js/fontsize.js"></script>
 <script src="../assets/js/fullscreen.js"></script>
 <script src="../assets/js/ambiance.js"></script>
+<script src="../assets/js/mode.js"></script>
 
 <script>
 // Search
@@ -258,20 +311,6 @@ document.querySelectorAll(".nav-tab").forEach(tab => {
         }
     });
 });
-
-/* Translation Init
-document.addEventListener("DOMContentLoaded", function () {
-    const btnEn = document.getElementById("btn-en");
-    const btnFr = document.getElementById("btn-fr");
-    const btnAr = document.getElementById("btn-ar");
-    if (typeof window.setLang === "function") {
-        btnEn.addEventListener("click", () => window.setLang("en"));
-        btnFr.addEventListener("click", () => window.setLang("fr"));
-        btnAr.addEventListener("click", () => window.setLang("ar"));
-        const savedLang = localStorage.getItem("kitabi_lang") || "en";
-        window.setLang(savedLang);
-    }
-});*/
 </script>
 </body>
 </html>

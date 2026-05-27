@@ -1,5 +1,3 @@
-
-
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="../../assets/css/restricted-block.css">
 <style>
@@ -17,23 +15,23 @@
   </div>
 
   <h2 class="ad-title">
-    Publication interdite
+    Espace réservé
   </h2>
 
   <div class="ad-divider"></div>
 
   <p class="ad-text">
-    Désolé, la publication de livres est réservée aux membres de la communauté 
+    Désolé, cette fonctionnalité est réservée aux membres de la communauté 
     <strong>KITABI</strong>. 
-    Rejoignez-nous pour partager vos œuvres.
+    Rejoignez-nous dès maintenant pour participer et accéder à tous nos espaces.
   </p>
 
   <div class="ad-btn-container">
-    <a href="login.php" class="ad-btn-login">
+    <a href="../../includes/controllers/index.php?page=login" class="ad-btn-login">
       <span class="material-icons">login</span> Se connecter
     </a>
     
-    <a href="register.php" class="ad-btn-register">
+    <a href="../../includes/controllers/index.php?page=register" class="ad-btn-register">
       <span class="material-icons">person_add</span> Créer un compte
     </a>
   </div>
