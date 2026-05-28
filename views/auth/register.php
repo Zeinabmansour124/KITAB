@@ -1,73 +1,88 @@
 <link rel="stylesheet" href="/projet_web/KITAB/assets/css/register.css">
 
-<div class="auth-wrapper">
+<div class="auth">
 
     <!-- LEFT: FORM -->
-    <div class="auth-left">
+    <section class="auth__left">
 
-        <div class="auth-card">
+        <div class="auth__card">
 
-            <h2>Créer un compte 📚</h2>
-            <p class="subtitle">Rejoins la communauté des lecteurs</p>
+            <header class="auth__header">
+                <h1>Créer un compte 📚</h1>
+                <p class="auth__subtitle">Rejoins la communauté des lecteurs</p>
+            </header>
 
-            <form action="/projet_web/KITAB/includes/controllers/index.php?page=register"
+            <form class="auth__form"
+                  action="/projet_web/KITAB/includes/controllers/index.php?page=register"
                   method="POST"
                   enctype="multipart/form-data">
 
-                <div class="row">
-                    <input type="text" name="name" placeholder="Nom" required>
-                    <input type="text" name="lastname" placeholder="Prénom" required>
+                <div class="auth__row">
+                    <input type="text" name="nom" placeholder="Nom" required>
+                    <input type="text" name="prenom" placeholder="Prénom" required>
                 </div>
 
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Mot de passe" required>
-                <input type="text" name="location" placeholder="Localisation" required>
+                <div class="auth__group">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
 
-                <textarea name="bio" placeholder="Parle de toi..." rows="3"></textarea>
+                <div class="auth__group">
+                    <input type="password" name="password" placeholder="Mot de passe" required>
+                </div>
 
-                <div class="image-upload">
-                    <label>Photo de profil</label>
+                <div class="auth__group">
+                    <textarea name="bio" placeholder="Parle de toi..." rows="3"></textarea>
+                </div>
 
-                    <input type="file" name="profile_image" id="profile_image" accept="image/*">
+                <div class="auth__upload">
 
-                    <div class="preview">
-                        <img id="previewImg" src="https://via.placeholder.com/120">
+                    <label for="avatar">Photo de profil</label>
+
+                    <div class="auth__uploadBox">
+                        <input type="file" name="avatar" id="avatar" accept="image/*">
+
+                        <div class="auth__preview">
+                            <img id="previewImg" src="https://via.placeholder.com/120" alt="preview">
+                        </div>
                     </div>
+
                 </div>
 
-                <button type="submit" class="btn-primary">
+                <button type="submit" class="auth__btn">
                     S'inscrire 🚀
                 </button>
 
             </form>
 
-            <p class="switch-link">
-                Déjà un compte ?
-                <a href="/projet_web/KITAB/views/auth/login.php">Se connecter</a>
-            </p>
+            <footer class="auth__footer">
+                <p>
+                    Déjà un compte ?
+                    <a href="/projet_web/KITAB/views/auth/login.php">Se connecter</a>
+                </p>
+            </footer>
 
         </div>
-    </div>
+    </section>
 
-    <!-- RIGHT: CAROUSEL -->
-    <div class="auth-right">
+    <!-- RIGHT: VISUAL / CAROUSEL -->
+    <aside class="auth__right">
 
-        <div class="slide active">
-            <img src="/projet_web/KITAB/photos/citation2.webp">
+        <div class="auth__slide is-active">
+            <img src="/projet_web/KITAB/photos/citation2.webp" alt="">
             <p>“A reader lives a thousand lives.”</p>
         </div>
 
-        <div class="slide">
-            <img src="/projet_web/KITAB/photos/citation3.jpg">
+        <div class="auth__slide">
+            <img src="/projet_web/KITAB/photos/citation3.jpg" alt="">
             <p>“Books are magic portals.”</p>
         </div>
 
-        <div class="slide">
-            <img src="/projet_web/KITAB/photos/citation1.jpg">
+        <div class="auth__slide">
+            <img src="/projet_web/KITAB/photos/citation1.jpg" alt="">
             <p>“Read. Learn. Transform.”</p>
         </div>
 
-    </div>
+    </aside>
 
 </div>
 

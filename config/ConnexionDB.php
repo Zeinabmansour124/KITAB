@@ -1,32 +1,25 @@
 <?php
-class ConnexionDB {
-    private static $_bdd = null;
 
-    private function __construct() {}
+class ConnexionDB
+{
+    private static $instance = null;
 
-    public static function getInstance() {
-        if (self::$_bdd === null) {
-            try {
-                
-                $host = "127.0.0.1";
-                $port = "3307"; 
-                $dbname = "kitab";
-                $user = "root";
-                $pass = ""; 
+    public static function getInstance()
+    {
+        if (self::$instance === null) {
 
-                self::$_bdd = new PDO(
-                    "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8",
-                    $user,
-                    $pass,
-                    [
-                        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
-                    ]
-                );
-            } catch (Exception $e) {
-                die("Erreur de connexion (Port 3307) : " . $e->getMessage());
-            }
+            self::$instance = new PDO(
+                "mysql:host=127.0.0.1;port=3307;dbname=kitab;charset=utf8",
+                "root",
+                ""
+            );
+
+            self::$instance->setAttribute(
+                PDO::ATTR_ERRMODE,
+                PDO::ERRMODE_EXCEPTION
+            );
         }
-        return self::$_bdd;
+
+        return self::$instance;
     }
 }

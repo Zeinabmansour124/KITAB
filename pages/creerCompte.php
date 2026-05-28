@@ -68,7 +68,7 @@
     </style>
 </head>
 <body>
-     <div class="container-fluid p-0">
+     <div class="container-fluid p-0"></div>
          <nav id="mainNav">
       <a href="#" class="logo">KITAB<span class="text_arb">كتاب</span></a>
       <ul class="nav-links">
@@ -244,4 +244,4 @@
                 <button type="reset" class="btn btn-outline-teal mt-4 ">Reset</button>
                 </div>
             </section>
-        </form>
+        </body>
