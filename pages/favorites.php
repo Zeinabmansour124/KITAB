@@ -1,6 +1,6 @@
 <?php
 // =========================================================================
-// 1. SIMULATION SESSION USER ID = 1 (En attendant le travail de ta camarade)
+require_once __DIR__ . '/../core/auth_middelware.php';
 // =========================================================================
 $current_user_id = 1; 
 

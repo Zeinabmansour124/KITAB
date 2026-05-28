@@ -1,3 +1,5 @@
+<?php
+require_once __DIR__ . '/../core/auth_middelware.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -195,7 +197,7 @@
 
           <p class="message-snippet">
             Let's schedule the next reading room session.
-          </p>
+            </p>
 
         </div>
 

@@ -100,7 +100,7 @@ class AuthController
             null
         );
 
-        // 💾 SAVE USER
+
         $this->userRepo->create($user);
 
         header("Location: /projet_web/KITAB/pages/marketplace.php");

@@ -1,8 +1,9 @@
 <?php
-session_start();
+
 require_once __DIR__ . '/../core/bootstap.php';
 include_once('../config/autoloader.php');
 include_once('../config/models/repositories/RoomRepository.php');
+require_once __DIR__ . '/../core/auth_middelware.php';
 
 $_SESSION['user'] = [
     'id' => 1,
