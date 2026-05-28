@@ -2,7 +2,14 @@
 // =========================================================================
 require_once __DIR__ . '/../core/auth_middelware.php';
 // =========================================================================
-$current_user_id = 1; 
+if (!isset($_SESSION['user'])) {
+    header("Location: login.php");
+    exit;
+}
+
+
+$current_user_id = $_SESSION['user']['id'];
+
 
 // Connexion à la base de données
 try {
@@ -83,7 +90,7 @@ $genresCount = count($distinctGenres);
       </ul>
 
       <div class="nav-right">
-        <a href="connect.html" id="nav_profile"><span class="material-icons">account_circle</span> Profile</a>
+        <a href="profile.php" id="nav_profile"><span class="material-icons">account_circle</span> Profile</a>
         <a href="logout.html" id="nav_logout"><span class="material-icons">logout</span>Log out</a>
 
         <div class="lang-switcher-nav">

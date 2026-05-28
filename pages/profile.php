@@ -1,342 +1,78 @@
+<?php
+require_once __DIR__ . '/../core/auth_middelware.php';
+require_once __DIR__ . '/../config/models/repositories/UserRepository.php';
+
+$userRepo = new UserRepository();
+
+if (!isset($_SESSION['user'])) {
+    header("Location: /projet_web/KITAB/includes/controllers/index.php?page=login");
+    exit;
+}
+
+$userId = $_SESSION['user']['id'];
+$user = $userRepo->findById($userId);
+
+// ✅ stats via repository
+$booksCount = $userRepo->countBooksByUser($userId);
+$favCount   = $userRepo->countFavoritesByUser($userId);
+
+$pageTitle = "My Profile - KITAB";
+$pageCSS   = "profile.css";
+var_dump($favCount);
+?>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&amp;family=DM+Sans:wght@300;400;500&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" href="favicon (1).ico" type="image/x-icon" />
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/messages.css">
-    <link rel="stylesheet" href="assets/css/codeHTML.css">
-    <link rel="stylesheet" href="assets/css/marketPlace.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="profile.js" defer></script>
-    <style>
-        .bg-amber-light {
-            background-color: #f9efd0;
-        }
-        .btn-amber{
-            background-color: #fbbf24;
-            color: white;
-        }
-         .btn-amber:hover {
-            background-color: #f59e0b;
-            color: white;
-        }
-        .stat-amber:hover {
-            color: #fbbf24;
-        }
-            .stat-card {
-                border-radius: 8px;
-                padding: 20px;
-                text-align: center;
-            }
-        .bg-rust {
-            background-color: #8b3a1a;
-        }
-.bg-rust {
-    background: linear-gradient(135deg, #2c4a3f 0%, #1e332b 100%);
-    border: none;
-}
-
-.tracking-wide {
-    letter-spacing: 2px;
-}
-
-/* Animation de la barre de progression */
-@keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-}
-
-.progress-bar-premium {
-    background: linear-gradient(90deg, #3b5d50, #5a8f7a, #7fb09c, #5a8f7a, #3b5d50);
-    background-size: 200% auto;
-    transition: width 0.8s cubic-bezier(0.25, 0.95, 0.45, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.progress-bar-premium::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-    background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
-    border-radius: 40px 40px 0 0;
-    pointer-events: none;
-}
-
-/* Effet de brillance au survol */
-.progress-bar-premium:hover {
-    filter: brightness(1.02);
-    box-shadow: 0 0 12px rgba(59,93,80,0.5);
-}
-
-/* Badge de niveau */
-.level-badge {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.level-badge:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-}
-
-/* Texte ambre pour les valeurs restantes */
-.text-amber-light {
-    color: #d4a11e;
-    font-weight: 700;
-    background: rgba(212, 161, 30, 0.1);
-    padding: 0.2rem 0.6rem;
-    border-radius: 20px;
-    display: inline-block;
-}
-    </style>
-</head>
+<?php require('../includes/components/head.php'); ?>
 
 <body>
-    <nav id="mainNav">
-      <a href="#" class="logo">KITAB<span class="text_arb">كتاب</span></a>
-      <ul class="nav-links">
-        <li>
-          <a href="marketplace.html" id="nav_marketplace" class="active"
-            ><span class="material-icons">local_mall</span> Marketplace</a
-          >
-        </li>
-        <li>
-          <a href="messages.html" id="nav_messages"
-            ><span class="material-icons">chat_bubble</span> Messages</a
-          >
-        </li>
-        <li>
-          <a href="codeHTML.php" id="nav_exchanges"
-            ><span class="material-icons">swap_horiz</span> Exchanges</a
-          >
-        </li>
-        <li>
-          <a
-            href="favorisContenantLivres.html"
-            id="nav_favorites"
-            ><span class="material-icons">favorite</span> Favorites</a
-          >
-        </li>
-        <li>
-          <a href="reading-rooms.html" id="nav_reading_rooms"
-            ><span class="material-icons">import_contacts</span> Reading
-            Rooms</a
-          >
-        </li>
-      </ul>
 
-      <div class="nav-right">
-        <a href="connect.html" id="nav_profile"
-          ><span class="material-icons">account_circle</span> Profile</a
-        >
-        <a href="logout.html" id="nav_logout"
-          ><span class="material-icons">logout</span>Log out</a
-        >
+<?php require('../includes/components/bar.php'); ?>
 
-        <div class="lang-switcher-nav">
-          <button class="lang-btn" id="btn-en">EN</button>
-          <button class="lang-btn" id="btn-fr">FR</button>
-          <button class="lang-btn" id="btn-ar">AR</button>
-        </div>
-      </div>
-    </nav>
-    <div class="flex-column container">
-    <section id="info-container" class="container d-flex rounded-3 p-4  bg-amber-light m" style="margin-top: 100px;">
-        <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="45" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="2"/>
-            <circle cx="50" cy="38" r="15" fill="#9CA3AF"/>
-            <path d="M30 65 Q50 75 70 65" fill="#9CA3AF"/>
-        </svg>
-        <div class="ms-4">
-            <h2 class="mb-3 text-black" id="user's-name">loading...</h2>
-            <p><strong class="text-black">Email:</strong> <span id="user's-email" class="text-black">loading...</span></p>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#EF4444" stroke="#DC2626" stroke-width="1.5"/>
-                <circle cx="12" cy="9" r="3" fill="white"/>
-            </svg>
-            <text class="text-black ms-4">Location: <span id="user's-location">loading...</span></text>
-            <text class="text-black ms-4">Member since: <span id="user's-membership-date">loading...</span></text>
-            <div class="mt-3 d-flex">
-            <div id="etoile-vide"></div>
-                            <script>
-                                document.addEventListener('DOMContentLoaded', function () {
-                                    const etoileVide = document.getElementById('etoile-vide');
-                                    etoileVide.innerHTML = '';
-                                    if (etoileVide) {
-                                        for (let i = 0; i < 5; i++) {
-                                            let ne = document.createElement('i');
-                                            ne.className = 'bi bi-star text-warning me-1';
-                                            etoileVide.appendChild(ne);
-                                        }
-                                    }
-                                })
-                            </script>
-                            <template class="bi bi-star-fill text-warning fs-4"></template>
-                            <text class="rating text-black" id="rating"> Loading...</text>
-                             </div>
-                            <div class="d-flex">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" fill="none" stroke="#000000" stroke-width="1.5"/>
-</svg>
-                                <text class="text-black ms-2" id="user-phone">Loading...</text>
-                            </div>
-           
-            <button class="btn  mt-3 btn-amber btn-amber:hover" id="edit-profile-btn" href="settings.html">Edit Profile</button>
+<div class="page-wrapper">
+
+    <div class="profile-container">
+
+        <div class="profile-card">
+
+            <!-- AVATAR -->
+            <div class="profile-avatar">
+                <img src="/projet_web/KITAB/uploads/<?= htmlspecialchars($user['avatar'] ?? 'default.png') ?>" />
             </div>
-            <div class="devider flex-wrap ms-auto" style="width: 1px; background-color: #9CA3AF; margin: 0 20px;"></div>
-            <div class="mt-3">
-                <div class="stat-card myrooms">
-                    <div class="stat-info">
-                        <div class="stat-title stat-amber:hover" id="stat_book_listed">Book Listed</div>
-                        <div class="stat-number">0</div>
-                    </div>
-                </div>
-                <div class="stat-card myrooms mt-2">
-                    <div class="stat-info">
-                        <div class="stat-title stat-amber:hover" id="stat_exchanges">Exchanges</div>
-                        <div class="stat-number">0</div>
-                    </div>
-                </div>
-                <div class="stat-card myrooms mt-2">
-                    <div class="stat-info">
-                        <div class="stat-title stat-amber:hover" id="stat_favorites">Favorites</div>
-                        <div class="stat-number">0</div>
-                    </div>
-                </div>
-                <div class="stat-card myrooms mt-2">
-                    <div class="stat-info">
-                        <div class="stat-title stat-amber:hover" id="stat_reading_sessions">Reading Sessions</div>
-                        <div class="stat-number">0</div>
-                    </div>
-                </div>
+
+            <!-- INFO -->
+            <div class="profile-info">
+                <h1><?= htmlspecialchars($user['prenom'] . ' ' . $user['nom']) ?></h1>
+                <p class="bio"><?= htmlspecialchars($user['bio'] ?? 'No bio yet...') ?></p>
+                <p class="email"><?= htmlspecialchars($user['email']) ?></p>
             </div>
-    </section>
-   <section class="container d-flex flex-column rounded-4 p-4 mb-5" 
-         style="margin-top: 100px; background: linear-gradient(135deg, #2c4a3f 0%, #1e332b 100%); box-shadow: 0 20px 35px -12px rgba(0,0,0,0.25);">
-    
-    <!-- En-tête avec icône -->
-    <div class="d-flex align-items-center gap-3 mb-3">
-        <div class="bg-white bg-opacity-15 rounded-circle p-2" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2Z" fill="#FFD700" stroke="#FFD700" stroke-width="1.5"/>
-                <path d="M12 6L13.5 10L17.5 10.5L14.5 13L15.5 17L12 15L8.5 17L9.5 13L6.5 10.5L10.5 10L12 6Z" fill="#FFF8E7"/>
-            </svg>
+
+            <!-- STATS -->
+            <div class="profile-stats">
+
+                <div class="stat">
+                    <h2><?= $booksCount ?></h2>
+                    <span>Books</span>
+                </div>
+
+                <div class="stat">
+                    <h2><?= $favCount ?></h2>
+                    <span>Favorites</span>
+                </div>
+
+            </div>
+
+            <!-- EDIT -->
+            <a class="btn-edit" href="/projet_web/KITAB/pages/edit_profile.php">
+                Edit Profile
+            </a>
+
         </div>
-        <div>
-            <span class="text-white-50 small fw-semibold tracking-wide" style="letter-spacing: 2px;">READING PROGRESS</span>
-            <h2 id="user-reading-level" class="text-white fw-bold mb-0" style="font-size: 1.8rem;">Loading...</h2>
-        </div>
+
     </div>
 
-    <!-- Carte principale de progression -->
-    <div class="rounded-4 p-4 mt-3" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(2px); box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
-        
-        <!-- Section XP -->
-        <div class="mb-4">
-            <div class="d-flex justify-content-between align-items-end mb-2">
-                <div>
-                    <span class="text-uppercase small fw-semibold text-secondary" style="letter-spacing: 1.5px;">Total Experience</span>
-                    <h3 class="fw-bold mb-0" style="color: #2c4a3f; font-size: 1.6rem;">XP Points</h3>
-                </div>
-                <div class="text-end">
-                    <span class="fw-bold" style="font-size: 2rem; color: #3b5d50;" id="current-score-num">0</span>
-                    <span class="text-muted fw-medium" style="font-size: 1rem;">/ 100 XP</span>
-                </div>
-            </div>
-
-            <!-- Barre de progression moderne -->
-            <div class="position-relative mt-3">
-                <div class="bg-light rounded-pill" style="height: 42px; overflow: hidden; box-shadow: inset 0 2px 6px rgba(0,0,0,0.08);">
-                    <div id="progress-bar-fill" 
-                         class="rounded-pill d-flex align-items-center justify-content-end px-3"
-                         style="width: 0%; height: 100%; background: linear-gradient(90deg, #3b5d50, #5a8f7a, #7fb09c); transition: width 0.8s cubic-bezier(0.25, 0.95, 0.45, 1); box-shadow: 0 2px 8px rgba(59,93,80,0.4);">
-                        <span class="text-white fw-semibold small" style="text-shadow: 0 1px 2px rgba(0,0,0,0.2); letter-spacing: 1px;">PROGRESS</span>
-                    </div>
-                </div>
-                <!-- Petit marqueur décoratif -->
-                <div class="position-absolute top-0 start-0 w-100 h-100 pointer-events-none">
-                    <div class="d-flex justify-content-between px-2" style="transform: translateY(-24px);">
-                        <span class="small text-white-50 fw-semibold">0</span>
-                        <span class="small text-white-50 fw-semibold">25</span>
-                        <span class="small text-white-50 fw-semibold">50</span>
-                        <span class="small text-white-50 fw-semibold">75</span>
-                        <span class="small text-white-50 fw-semibold">100</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bloc Statut avec icône améliorée -->
-        <div class="rounded-4 p-3 mt-4 d-flex align-items-start gap-3" 
-             style="background: linear-gradient(115deg, #eef5f2 0%, #f7fbf9 100%); border-left: 5px solid #3b5d50; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
-            
-            <div class="bg-white rounded-circle p-2 shadow-sm" style="width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 8V12L15 15" stroke="#3b5d50" stroke-width="2" stroke-linecap="round"/>
-                    <circle cx="12" cy="12" r="9" stroke="#3b5d50" stroke-width="2"/>
-                </svg>
-            </div>
-            
-            <div>
-                <div class="small fw-semibold text-uppercase mb-1" style="color: #3b5d50; letter-spacing: 1.5px;">Status Update</div>
-                <p class="mb-0" style="color: #2d3e36; font-size: 0.95rem; line-height: 1.45;">
-                    It remains <strong class="fw-bold" id="remaining-px" style="color: #d4a11e; font-size: 1.1rem;">--</strong> XP to reach 
-                    <strong class="fw-bold" id="remaining-level" style="color: #3b5d50; background: #e0ece7; padding: 0.1rem 0.6rem; border-radius: 20px;">--</strong> level.
-                </p>
-            </div>
-        </div>
-
-        <!-- Petit indicateur de niveau actuel (ajouté pour l'expérience) -->
-        <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top border-light">
-            <div class="small text-secondary">🏆 Current streak</div>
-            <div class="d-flex gap-3">
-                <div class="text-center">
-                    <div class="fw-bold" style="color: #3b5d50;">
-                        <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="4" y="14" width="16" height="3" rx="1" stroke="#3b5d50" stroke-width="1.5" fill="none"/>
-  <rect x="5" y="10" width="14" height="4" rx="1" stroke="#3b5d50" stroke-width="1.5" fill="none"/>
-  <rect x="6" y="6" width="12" height="4" rx="1" stroke="#3b5d50" stroke-width="1.5" fill="none"/>
-</svg>
-<span id="nb-book">0</span> 
-                    </div>
-                    <div class="small text-secondary">books</div>
-                </div>
-                <div class="text-center">
-                    <div class="fw-bold" style="color: #3b5d50;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2Z" fill="#FFD700" stroke="#FFC107" stroke-width="1" stroke-linejoin="round"/>
-</svg>
-<span id="nb-badges">0</span>
-                    </div>
-                    <div class="small text-secondary mt-4">badges</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-    </div>
-
+</div>
 
 </body>
+</html>

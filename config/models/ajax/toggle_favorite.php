@@ -2,6 +2,7 @@
 header('Content-Type: application/json');
 
 require_once(__DIR__ . '/../../../config/ConnexionDB.php');
+require_once(__DIR__ . '/../../../core/auth_middelware.php');
 
 try {
     $db = ConnexionDB::getInstance();
@@ -16,7 +17,7 @@ if (!isset($_POST['book_id']) || empty($_POST['book_id'])) {
 }
 
 $book_id = intval($_POST['book_id']);
-$user_id = 1;
+$user_id = $_SESSION['user']['id'];
 
 try {
     $check = $db->prepare("SELECT COUNT(*) FROM favorites WHERE user_id = :user_id AND book_id = :book_id");

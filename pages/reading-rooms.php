@@ -5,12 +5,7 @@ include_once('../config/autoloader.php');
 include_once('../config/models/repositories/RoomRepository.php');
 require_once __DIR__ . '/../core/auth_middelware.php';
 
-$_SESSION['user'] = [
-    'id' => 1,
-    'nom' => 'Développeur Test',
-    'email' => 'test@kitab.tn',
-    'role' => 'user'
-];
+$user = Session::get('user');
 
 if (!Session::isLoggedIn()) {
     header('Location: ../includes/components/restricted-block.php');

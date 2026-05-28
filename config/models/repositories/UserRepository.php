@@ -98,4 +98,32 @@ class UserRepository
 
         return $result ? $result->fullname : "Unknown User";
     }
+    public function countBooksByUser($userId)
+    {
+        $stmt = $this->db->prepare("
+        SELECT COUNT(*) 
+        FROM books 
+        WHERE user_id = :id
+    ");
+
+        $stmt->execute([
+            'id' => $userId
+        ]);
+
+        return $stmt->fetchColumn();
+    }
+    public function countFavoritesByUser($userId)
+    {
+        $stmt = $this->db->prepare("
+        SELECT COUNT(*) 
+        FROM favorites 
+        WHERE user_id = :id
+    ");
+
+        $stmt->execute([
+            'id' => $userId
+        ]);
+
+        return $stmt->fetchColumn();
+    }
 }
