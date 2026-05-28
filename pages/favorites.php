@@ -69,7 +69,7 @@ $genresCount = count($distinctGenres);
           <a href="marketplace.php" id="nav_marketplace" ><span class="material-icons">local_mall</span> Marketplace</a>
         </li>
         <li>
-          <a href="../messages.html" id="nav_messages"><span class="material-icons">chat_bubble</span> Messages</a>
+          <a href="messages.php" id="nav_messages"><span class="material-icons">chat_bubble</span> Messages</a>
         </li>
         <li>
           <a href="codeHTML.html" id="nav_exchanges"><span class="material-icons">swap_horiz</span> Exchanges</a>

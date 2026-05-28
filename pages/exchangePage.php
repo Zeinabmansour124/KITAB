@@ -10,18 +10,14 @@ $_SESSION['user'] = [
     'role' => 'user'
 ];
 
-if (!Session::isLoggedIn()) {
-    header('Location: ../includes/components/restricted-block.php');
-    exit;
-}
-
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user'])) {
     header('Location: connect.php');
     exit();
 }
 
 
-$user     = $_SESSION['user_id'];
+
+$user = $_SESSION['user']['id'];
 $exchange=new exchange();
 $book=new Book();
 $us= new User();
@@ -185,7 +181,6 @@ $progress     = $exchange->recuperer_progress($user);
                     </button>
                 </div>
                 <div class="devider1"></div>
->
                 <div class="pending-card position-relative empl mb-4 p-4 rounded-4 w-100 bg-muted d-flex flex-column gap-4"
                      data-exchange-id="<?= (int)$pend->id ?>">
 
