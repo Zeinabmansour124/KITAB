@@ -3,7 +3,17 @@ session_start();
 require_once __DIR__ . '/../config/models/Book.php';
 require_once __DIR__ . '/../config/models/User.php';
 require_once __DIR__ . '/../config/models/exchange.php';
+$_SESSION['user'] = [
+    'id' => 1,
+    'nom' => 'Développeur Test',
+    'email' => 'test@kitab.tn',
+    'role' => 'user'
+];
 
+if (!Session::isLoggedIn()) {
+    header('Location: ../includes/components/restricted-block.php');
+    exit;
+}
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: connect.php');
@@ -231,8 +241,8 @@ $progress     = $exchange->recuperer_progress($user);
                     </div>
 
                     <div class="response-buttons d-flex justify-content-center gap-4">
-                        <button type="button" class="accept-btn btn-teal mt-4">Accept</button>
-                        <button type="button" class="decline-btn btn-outline-secondary mt-4">Decline</button>
+                        <a href="traitement_exchange.php?action=accept&id=<?php echo $pend['id']; ?>" class="btn accept-btn btn-teal mt-4">Accept</a>
+                        <a href="traitement_exchange.php?action=decline&id=<?php echo $pend['id']; ?>" class="btn decline-btn btn-outline-secondary mt-4">Decline</a>
                     </div>
                 </div>
             <?php endforeach; endif; ?>
