@@ -1,11 +1,11 @@
-// ===== VARIABLES GLOBALES =====
+//VARIABLES GLOBALES
 const selectCondition = document.getElementById("constionselect");
 const allBooks = document.querySelectorAll(".book-card");
 const genreselect = document.getElementById("genreselect");
 const searchnav = document.querySelector(".nav-search");
 const noResult = document.getElementById("no-result");
 
-// ===== FONCTION CENTRALE : filtre recherche + condition + genre =====
+//  filtre recherche + condition + genre
 function filtrerbooks() {
   const selected1 = selectCondition.value.toLowerCase();
   const selected2 = genreselect.value.toLowerCase();
@@ -38,7 +38,6 @@ function filtrerbooks() {
   ).length;
   if (noResult) noResult.style.display = visible === 0 ? "flex" : "none";
 
-  // Met à jour le compteur
   const countNum = document.getElementById("countNum");
   if (countNum) countNum.textContent = visible;
 }
@@ -48,7 +47,7 @@ selectCondition.addEventListener("change", filtrerbooks);
 genreselect.addEventListener("change", filtrerbooks);
 searchnav.addEventListener("input", filtrerbooks);
 
-// ===== TRI : prix / A-Z =====
+//  TRI : prix / A-Z
 const bookscontainer = document.querySelector(".cards-container");
 let tabbooks = Array.from(allBooks);
 const priceAZselct = document.getElementById("priceAZselct");
@@ -90,7 +89,7 @@ priceAZselct.addEventListener("click", () => {
   updatebooksorder();
 });
 
-// ===== SLIDER =====
+// SLIDER
 let current = 0;
 const total = 3;
 let timer;
@@ -132,14 +131,14 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") prev();
 });
 
-// ===== NAV SCROLL =====
+// NAV SCROLL
 window.addEventListener("scroll", () => {
   document
     .getElementById("mainNav")
     ?.classList.toggle("scrolled", window.scrollY > 50);
 });
 
-// ===== HEART TOGGLE =====
+// HEART TOGGLE
 document.querySelectorAll(".heart-btn").forEach((btn) => {
   btn.addEventListener("click", function () {
     this.textContent = this.textContent === "♡" ? "♥" : "♡";
@@ -148,7 +147,7 @@ document.querySelectorAll(".heart-btn").forEach((btn) => {
   });
 });
 
-// ===== PROMO BAND PAUSE =====
+//  PROMO BAND PAUSE
 const band = document.querySelector(".promo-items");
 band.addEventListener("mouseenter", () => {
   band.style.animationPlayState = "paused";

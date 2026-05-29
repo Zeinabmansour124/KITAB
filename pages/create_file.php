@@ -8,7 +8,7 @@ $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // Upload image
+    
     $imagePath = 'default-book.jpg';
     if (!empty($_FILES['image']['name'])) {
         $ext       = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
@@ -77,7 +77,7 @@ $pageCSS   = "reading-room.css";
 
 <body>
 
-  <!-- ===== SIDEBAR (corrigée) ===== -->
+  
   <nav class="sidebar">
 
     <header>

@@ -1,16 +1,15 @@
 <?php
-// 1. Force l'affichage des erreurs si un chemin bloque
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// 2. Charge l'autoloader (on remonte d'un cran car on est dans pages/)
 require_once('../config/autoloader.php');
 
-// 3. Initialise le Repository des livres
+
 $bookRepo = new BookRepository();
 
-// 4. Crée et remplit la variable $books pour que ton IF et ton FOREACH fonctionnent !
-// (Tu peux utiliser findAll() pour tout voir, ou une méthode spécifique comme findByUserId() plus tard)
+
+
 $books = $bookRepo->findAll(); 
 ?>
 
@@ -20,7 +19,7 @@ $books = $bookRepo->findAll();
     <p style="text-align:center; width:100%; grid-column: 1/-1;">Aucun livre dynamique trouvé.</p>
 <?php else: ?>
     <?php 
-    // 1. Pour le CSS (Design)
+    
     $css_mapping = [
         'neuf'   => 'like-new',
         'bon'    => 'good',
@@ -28,7 +27,7 @@ $books = $bookRepo->findAll();
         'abimé'  => 'Acceptable'
     ];
 
-    // 2. Pour le Texte (Affichage en anglais)
+    
     $text_mapping = [
         'neuf'   => 'Like-New',
         'bon'    => 'Good',
@@ -39,7 +38,7 @@ $books = $bookRepo->findAll();
 
     <?php foreach ($books as $book): ?>
         <?php 
-            // On récupère la classe et le texte correspondant à la valeur SQL
+           
             $classe_css = $css_mapping[$book->condition] ?? 'good'; 
             $texte_en   = $text_mapping[$book->condition] ?? 'Good';
         ?>
@@ -92,7 +91,7 @@ $books = $bookRepo->findAll();
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    // 1. Au chargement — colorier les coeurs des livres déjà en favoris
+    
     fetch('/projet_web/KITAB/config/models/ajax/get_favorites.php')
     .then(response => response.json())
     .then(data => {
@@ -104,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 2. Clic sur un coeur
+ 
     const favCheckboxes = document.querySelectorAll('.fav-checkbox');
     favCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('change', function () {

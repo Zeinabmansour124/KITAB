@@ -4,7 +4,7 @@ bouton.id = "mode-toggle-btn";
 
 document.body.appendChild(bouton);
 
-// ================= STYLE BUTTON =================
+
 
 bouton.style.cssText = `
   position: fixed;
@@ -31,7 +31,7 @@ bouton.style.cssText = `
   transition: all 0.25s ease;
 `;
 
-// ================= DARK MODE CSS =================
+
 
 const stylesDark = `
 
@@ -108,7 +108,7 @@ const stylesDark = `
 
 `;
 
-// ================= STYLE TAG =================
+
 
 const baliseStyle = document.createElement("style");
 
@@ -116,11 +116,10 @@ baliseStyle.id = "dark-mode-style";
 
 document.head.appendChild(baliseStyle);
 
-// ================= STATE =================
+
 
 let modeEstSombre = localStorage.getItem("kitabi_theme") === "dark";
 
-// ================= UPDATE BUTTON TEXT =================
 
 window.updateModeButton = function () {
   const t = window.currentTranslations || {
@@ -138,7 +137,7 @@ window.updateModeButton = function () {
   }
 };
 
-// ================= APPLY THEME =================
+
 
 function applyTheme() {
   if (modeEstSombre) {
@@ -160,11 +159,10 @@ function applyTheme() {
   window.updateModeButton();
 }
 
-// ================= INITIAL LOAD =================
 
 applyTheme();
 
-// ================= CLICK EVENT =================
+
 
 bouton.addEventListener("click", function () {
   modeEstSombre = !modeEstSombre;
@@ -172,7 +170,7 @@ bouton.addEventListener("click", function () {
   applyTheme();
 });
 
-// ================= HOVER EFFECT =================
+
 
 bouton.addEventListener("mouseenter", () => {
   bouton.style.background = "var(--amber)";

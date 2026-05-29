@@ -1,6 +1,6 @@
 const navTranslations = {
   en: {
-    // ===== NAVBAR =====
+    
 
     nav_marketplace:
       '<span class="material-icons">local_mall</span> Marketplace',
@@ -23,7 +23,7 @@ const navTranslations = {
 
     nav_logout: '<span class="material-icons">logout</span> Log out',
 
-    // ===== COMMON =====
+    
 
     mode_dark: "Dark",
     mode_light: "Light",
@@ -31,7 +31,7 @@ const navTranslations = {
     screen_full: "Fullscreen",
     screen_exit: "Exit Fullscreen",
 
-    // ===== FAVORITES =====
+   
 
     fav_title: "My Favorites",
 
@@ -45,7 +45,7 @@ const navTranslations = {
   },
 
   fr: {
-    // ===== NAVBAR =====
+    
 
     nav_marketplace: '<span class="material-icons">local_mall</span> Marché',
 
@@ -68,7 +68,7 @@ const navTranslations = {
 
     nav_logout: '<span class="material-icons">logout</span> Déconnexion',
 
-    // ===== COMMON =====
+   
 
     mode_dark: "Sombre",
     mode_light: "Clair",
@@ -76,7 +76,7 @@ const navTranslations = {
     screen_full: "Plein écran",
     screen_exit: "Quitter plein écran",
 
-    // ===== FAVORITES =====
+   
 
     fav_title: "Mes Favoris",
 
@@ -90,7 +90,7 @@ const navTranslations = {
   },
 
   ar: {
-    // ===== NAVBAR =====
+   
 
     nav_marketplace: '<span class="material-icons">local_mall</span> السوق',
 
@@ -113,7 +113,7 @@ const navTranslations = {
 
     nav_logout: '<span class="material-icons">logout</span> تسجيل الخروج',
 
-    // ===== COMMON =====
+    
 
     mode_dark: "داكن",
     mode_light: "فاتح",
@@ -121,7 +121,7 @@ const navTranslations = {
     screen_full: "ملء الشاشة",
     screen_exit: "إلغاء ملء الشاشة",
 
-    // ===== FAVORITES =====
+   
 
     fav_title: "مفضلتي",
 
@@ -135,7 +135,7 @@ const navTranslations = {
   },
 };
 
-// ================= HELPER =================
+
 
 function setEl(id, value, html = true) {
   const el = document.getElementById(id);
@@ -149,18 +149,18 @@ function setEl(id, value, html = true) {
   }
 }
 
-// ================= MAIN FUNCTION =================
+
 
 window.setLang = function (lang) {
   if (!navTranslations[lang]) return;
 
   const t = navTranslations[lang];
 
-  // Sauvegarde globale
+ 
 
   window.currentTranslations = t;
 
-  // ===== NAVBAR =====
+
 
   Object.entries(t).forEach(([id, val]) => {
     if (id.startsWith("nav_")) {
@@ -168,7 +168,7 @@ window.setLang = function (lang) {
     }
   });
 
-  // ===== PAGE TRANSLATIONS =====
+ 
 
   if (window.pageTranslations && window.pageTranslations[lang]) {
     const pt = window.pageTranslations[lang];
@@ -185,7 +185,7 @@ window.setLang = function (lang) {
       }
     });
 
-    // ===== PLACEHOLDERS =====
+  
 
     if (pt._placeholders) {
       Object.entries(pt._placeholders).forEach(([id, val]) => {
@@ -194,8 +194,7 @@ window.setLang = function (lang) {
         if (el) el.placeholder = val;
       });
     }
-
-    // ===== SELECTORS =====
+    
 
     if (pt._selectors) {
       Object.entries(pt._selectors).forEach(([selector, val]) => {
@@ -206,7 +205,7 @@ window.setLang = function (lang) {
     }
   }
 
-  // ===== FAVORITES =====
+  
 
   setEl("fav_title", t.fav_title, false);
 
@@ -227,13 +226,13 @@ window.setLang = function (lang) {
       `;
   }
 
-  // ===== RTL =====
+ 
 
   document.body.classList.toggle("rtl", lang === "ar");
 
   document.documentElement.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
 
-  // ===== ACTIVE BUTTON =====
+ 
 
   document.querySelectorAll(".lang-btn").forEach((btn) => {
     btn.classList.remove("lang-active");
@@ -245,7 +244,7 @@ window.setLang = function (lang) {
     activeBtn.classList.add("lang-active");
   }
 
-  // ===== UPDATE EXTERNAL BUTTONS =====
+  
 
   if (typeof window.updateModeButton === "function") {
     window.updateModeButton();
@@ -255,12 +254,12 @@ window.setLang = function (lang) {
     window.updateFullscreenButton();
   }
 
-  // ===== SAVE =====
+ 
 
   localStorage.setItem("kitabi_lang", lang);
 };
 
-// ================= INIT =================
+
 
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("btn-en")?.addEventListener("click", () => {

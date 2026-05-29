@@ -16,7 +16,7 @@ $repo      = new RoomRepository();
 $lives     =  $repo->findByType('live');
 $scheduled = $repo->findByType('scheduled');
 
-// Rooms du user connecté
+
 $myRooms = [];
 if (isset($_SESSION['user'])) {
     $myRooms = $repo->findByHostId($_SESSION['user']['id']);
@@ -43,7 +43,7 @@ $pageCSS   = "reading-room.css";
 
     <div class="page-body">
 
-        <!-- Stats -->
+        
         <div class="stats-container">
             <div class="stat-card live">
                 <div class="stat-info">
@@ -83,13 +83,13 @@ $pageCSS   = "reading-room.css";
             </div>
         </div>
 
-        <!-- Search -->
+        
         <div class="search-area">
             <input type="text" class="search-bar" id="search_bar"
                    placeholder="🔍  Search by book title or author…"/>
         </div>
 
-        <!-- Tabs -->
+        
         <div class="nav-tabs">
             <a href="#" class="nav-tab active" id="tab_discover">Discover</a>
             <a href="#" class="nav-tab"        id="tab_live">Live now</a>
@@ -98,7 +98,7 @@ $pageCSS   = "reading-room.css";
         </div>
         <hr class="separator"/>
 
-        <!-- Live -->
+        
         <div id="live-section">
             <div class="section-label" id="section_live">Live Sessions</div>
             <div class="rooms-container">
@@ -139,7 +139,7 @@ $pageCSS   = "reading-room.css";
             </div>
         </div>
 
-        <!-- Scheduled -->
+        
         <div id="scheduled-section">
             <div class="section-label" style="margin-top:36px" id="section_upcoming">Upcoming Sessions</div>
             <div class="rooms-container">
@@ -180,7 +180,7 @@ $pageCSS   = "reading-room.css";
             </div>
         </div>
 
-        <!-- My Rooms -->
+        
         <div id="myrooms-section" style="display:none">
             <?php if (empty($myRooms)): ?>
                 <div class="myrooms-content">
@@ -228,7 +228,7 @@ $pageCSS   = "reading-room.css";
             <?php endif; ?>
         </div>
 
-        <!-- No search result -->
+        
         <div id="no-result" style="display:none">
             <h3 id="no_rooms_search">No rooms found</h3>
             <p><span id="no_rooms_sub_search">No reading room matches</span>
@@ -238,7 +238,7 @@ $pageCSS   = "reading-room.css";
     </div>
 </div>
 
-<!-- Popup Join -->
+
 <div id="joinPopup">
     <div class="popup-box">
         <div class="popup-header">
@@ -272,7 +272,7 @@ $pageCSS   = "reading-room.css";
 <script src="../assets/js/mode.js"></script>
 
 <script>
-// Search
+
 document.querySelector(".search-bar").addEventListener("input", function () {
     const query = this.value.trim().toLowerCase();
     const cards = document.querySelectorAll(".room-card");
@@ -289,7 +289,7 @@ document.querySelector(".search-bar").addEventListener("input", function () {
     document.getElementById("search-query").textContent = query;
 });
 
-// Tabs
+
 document.querySelectorAll(".nav-tab").forEach(tab => {
     tab.addEventListener("click", function (e) {
         e.preventDefault();

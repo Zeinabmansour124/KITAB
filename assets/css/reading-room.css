@@ -102,7 +102,7 @@
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 16px; /* espace entre profil et boutons langue */
+      gap: 16px; 
     }
 
     .nav-right a#nav_profile,
@@ -145,13 +145,13 @@
     .lang-btn:hover { background: rgba(255,255,255,.18); color: #fff; }
     .lang-btn.lang-active { background: var(--amber); border-color: var(--amber); color: #fff; }
 
-    /* ===== PAGE WRAPPER ===== */
+    
     .page-wrapper {
       margin-top: var(--nav-h);
       min-height: calc(100vh - var(--nav-h));
     }
 
-    /* ===== PAGE HEADER ===== */
+    
     .page-header {
       background: linear-gradient(105deg, rgba(26,18,8,.97) 0%, rgba(14,107,94,.9) 60%, rgba(200,134,10,.4) 100%);
       padding: 36px 5vw 30px;
@@ -206,13 +206,13 @@
       color: #fff;
     }
 
-    /* ===== PAGE BODY ===== */
+    
     .page-body {
       padding: 28px 5vw;
       background: var(--sand);
     }
 
-    /* ===== STATS ===== */
+   
     .stats-container {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -264,7 +264,7 @@
       border-radius: 10px;
     }
 
-    /* ===== SEARCH BAR ===== */
+    
     .search-area {
       background: var(--ink);
       border-radius: 16px;
@@ -297,7 +297,7 @@
       box-shadow: 0 0 0 3px rgba(232,168,42,.15);
     }
 
-    /* ===== NAV TABS ===== */
+    
     .nav-tabs {
       display: flex;
       gap: 8px;
@@ -335,7 +335,7 @@
       margin: 8px 0 20px;
     }
 
-    /* ===== SECTION LABEL ===== */
+   
     .section-label {
       font-size: 11px;
       font-weight: 700;
@@ -354,7 +354,6 @@
       background: linear-gradient(90deg, var(--border), transparent);
     }
 
-    /* ===== ROOM CARDS ===== */
     .rooms-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -529,7 +528,7 @@
       box-shadow: 0 4px 14px rgba(200,134,10,.3);
     }
 
-    /* ===== MY ROOMS SECTION ===== */
+   
     #myrooms-section {
       display: none;
       flex-direction: column;
@@ -569,7 +568,7 @@
       max-width: 360px;
     }
 
-    /* ===== NO RESULT ===== */
+    
     #no-result {
       display: none;
       flex-direction: column;
@@ -586,7 +585,7 @@
     }
     #no-result p { color: var(--muted); font-size: 14px; margin-top: 8px; }
 
-    /* ===== POPUP ===== */
+   
     #joinPopup {
       display: none;
       position: fixed;
@@ -686,7 +685,7 @@
       100% { transform: translateX(0); }
     }
 
-    /* ===== SUCCESS MSG ===== */
+    
     #successMessage {
       display: none;
       position: fixed;
@@ -702,13 +701,13 @@
       animation: slideUp .4s ease;
     }
 
-    /* ===== SCROLLBAR ===== */
+    
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--amber); }
 
-    /* ===== RESPONSIVE ===== */
+    
     @media (max-width: 1200px) {
       .stats-container { grid-template-columns: repeat(2,1fr); }
     }
@@ -724,7 +723,7 @@
       .stats-container { grid-template-columns: 1fr; }
     }
 
-    /* RTL support */
+    
     body.rtl { direction: rtl; }
     body.rtl .badge { left: auto; right: 12px; }
     body.rtl .participants { right: auto; left: 12px; }
