@@ -1,18 +1,14 @@
 (function () {
   "use strict";
 
-  // ── Config ────────────────────────────────────────────────
   const API_URL = "/projet_web/KITAB/pages/chatbot.php";
   const DETAILS_URL = "/projet_web/KITAB/pages/marketplace.php";
 
-  // Placeholder image si le livre n'a pas de cover
   const PLACEHOLDER = "https://via.placeholder.com/60x80/f5f0e8/8b7355?text=📚";
 
-  // ── État ──────────────────────────────────────────────────
   let isOpen = false;
   let isTyping = false;
 
-  // ── Injection du HTML ─────────────────────────────────────
   function injectHTML() {
     const html = `
         <!-- Hint bubble -->
@@ -81,7 +77,6 @@
     document.body.appendChild(wrapper);
   }
 
-  // ── Toggle panel ─────────────────────────────────────────
   function toggleChat() {
     isOpen = !isOpen;
     const panel = document.getElementById("kb-panel");
@@ -106,7 +101,6 @@
     }
   }
 
-  // ── Ajouter message utilisateur ───────────────────────────
   function appendUserMsg(text) {
     const msgs = document.getElementById("kb-messages");
     const row = document.createElement("div");
@@ -119,7 +113,6 @@
     scrollDown();
   }
 
-  // ── Indicateur typing ─────────────────────────────────────
   function showTyping() {
     if (isTyping) return;
     isTyping = true;
@@ -145,7 +138,6 @@
     if (el) el.remove();
   }
 
-  // ── Ajouter réponse bot ───────────────────────────────────
   function appendBotResponse(data) {
     const msgs = document.getElementById("kb-messages");
     const row = document.createElement("div");
@@ -157,7 +149,6 @@
           <div class="kb-bubble kb-bubble--bot">${escHtml(data.message)}</div>
       `;
 
-    // Cartes livres
     if (data.books && data.books.length > 0) {
       inner += `<div class="kb-books-list">`;
       data.books.forEach((book) => {
@@ -200,7 +191,6 @@
       inner += `</div>`;
     }
 
-    // Chips suggestions
     if (data.chips && data.chips.length > 0) {
       inner += `<div class="kb-chips">`;
       data.chips.forEach((chip) => {
@@ -214,7 +204,6 @@
     inner += `</div>`;
     row.innerHTML = inner;
 
-    // Events sur les chips
     row.querySelectorAll(".kb-chip").forEach((btn) => {
       btn.addEventListener("click", () => sendMessage(btn.dataset.msg));
     });
@@ -223,7 +212,6 @@
     scrollDown();
   }
 
-  // ── Message d'erreur ──────────────────────────────────────
   function appendError() {
     const msgs = document.getElementById("kb-messages");
     const row = document.createElement("div");
@@ -238,7 +226,6 @@
     scrollDown();
   }
 
-  // ── Envoi message ─────────────────────────────────────────
   async function sendMessage(text) {
     const input = document.getElementById("kb-input");
     const msg = (text || input.value).trim();
@@ -265,7 +252,6 @@
     }
   }
 
-  // ── Message de bienvenue ──────────────────────────────────
   function sendWelcome() {
     appendBotResponse({
       type: "text",
@@ -281,7 +267,6 @@
     });
   }
 
-  // ── Utilitaires ───────────────────────────────────────────
   function scrollDown() {
     const msgs = document.getElementById("kb-messages");
     requestAnimationFrame(() => {
@@ -299,7 +284,6 @@
       .replace(/'/g, "&#x27;");
   }
 
-  // ── Init ──────────────────────────────────────────────────
   function init() {
     injectHTML();
 
@@ -321,7 +305,6 @@
       if (e.key === "Enter") sendMessage();
     });
 
-    // Masquer le hint après 5s
     setTimeout(() => {
       const hint = document.getElementById("kb-hint");
       if (hint) hint.style.opacity = "0";
@@ -332,7 +315,6 @@
     }, 5500);
   }
 
-  // Lancement après chargement DOM
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
   } else {

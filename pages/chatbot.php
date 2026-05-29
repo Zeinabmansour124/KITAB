@@ -94,41 +94,50 @@ function searchBooks(PDO $db, array $opts): array {
         $where[]  = "b.genre IN ($placeholders)";
         $params   = array_merge($params, $opts['genres']);
     }
+
     if (!empty($opts['budget'])) {
-        $where[]    = "b.prix <= ?";
-        $params[]   = $opts['budget'];
-    }
-    if (!empty($opts['condition'])) {
-        $where[]    = "b.condition = ?";
-        $params[]   = $opts['condition'];
-    }
-    if (!empty($opts['exchange'])) {
-        $where[]    = "b.for_exchange = 1";
-    }
-    if (!empty($opts['search'])) {
-        $where[]    = "(b.titre LIKE ? OR b.auteur LIKE ?)";
-        $like       = '%' . $opts['search'] . '%';
-        $params[]   = $like;
-        $params[]   = $like;
+        $where[]  = "b.prix <= ?";
+        $params[] = $opts['budget'];
     }
 
-    $sql  = "SELECT b.*, u.nom AS owner_nom, u.prenom AS owner_prenom, u.image AS owner_img
-             FROM books b
-             LEFT JOIN users u ON b.user_id = u.id";
+    if (!empty($opts['condition'])) {
+        $where[]  = "b.`condition` = ?"; 
+        $params[] = $opts['condition'];
+    }
+
+    if (!empty($opts['exchange'])) {
+        $where[] = "b.for_exchange = 1";
+    }
+
+    if (!empty($opts['search'])) {
+        $where[] = "(b.titre LIKE ? OR b.auteur LIKE ?)";
+        $like = '%' . $opts['search'] . '%';
+        $params[] = $like;
+        $params[] = $like;
+    }
+
+    $sql = "SELECT b.*, u.nom, u.prenom
+            FROM books b
+            LEFT JOIN users u ON b.user_id = u.id";
 
     if ($where) {
         $sql .= " WHERE " . implode(' AND ', $where);
     }
 
     $order = $opts['order'] ?? 'b.created_at DESC';
-    $limit = $opts['limit'] ?? 4;
-    $sql  .= " ORDER BY $order LIMIT $limit";
+    $limit = (int)($opts['limit'] ?? 100);
 
-    $stmt = $db->prepare($sql);
-    $stmt->execute($params);
-    return $stmt->fetchAll(PDO::FETCH_OBJ);
+    $sql .= " ORDER BY $order LIMIT $limit";
+
+    try {
+        $stmt = $db->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    } catch (Exception $e) {
+        error_log($e->getMessage());
+        return []; 
+    }
 }
-
 
 
 $lower   = mb_strtolower($message);
@@ -156,7 +165,7 @@ if (preg_match('/\b(merci|thanks|شكرا)\b/iu', $lower)) {
 
 
 if (preg_match('/échange|echang|swap|troquer/iu', $lower)) {
-    $books = searchBooks($db, ['exchange' => true, 'genres' => $genres, 'budget' => $budget, 'limit' => 4]);
+    $books = searchBooks($db, ['exchange' => true, 'genres' => $genres, 'budget' => $budget, 'limit' => 100]);
     echo json_encode([
         'type'    => 'books',
         'message' => count($books)
@@ -170,7 +179,7 @@ if (preg_match('/échange|echang|swap|troquer/iu', $lower)) {
 
 
 if ($budget !== null || preg_match('/budget|prix|combien|pas\s+cher|économique/iu', $lower)) {
-    $opts = ['budget' => $budget, 'genres' => $genres, 'order' => 'b.prix ASC', 'limit' => 4];
+    $opts = ['budget' => $budget, 'genres' => $genres, 'order' => 'b.prix ASC', 'limit' => 100];
     $books = searchBooks($db, $opts);
     $msg   = $budget
         ? "Livres disponibles sous " . number_format($budget, 2) . " DT :"
@@ -186,7 +195,7 @@ if ($budget !== null || preg_match('/budget|prix|combien|pas\s+cher|économique/
 
 
 if (!empty($genres)) {
-    $books = searchBooks($db, ['genres' => $genres, 'budget' => $budget, 'limit' => 4]);
+    $books = searchBooks($db, ['genres' => $genres, 'budget' => $budget, 'limit' => 100]);
     echo json_encode([
         'type'    => 'books',
         'message' => count($books)
@@ -200,7 +209,7 @@ if (!empty($genres)) {
 
 
 if (preg_match('/neuf|comme\s+neuf/iu', $lower)) {
-    $books = searchBooks($db, ['condition' => 'neuf', 'limit' => 4]);
+    $books = searchBooks($db, ['condition' => 'neuf', 'limit' => 100]);
     echo json_encode([
         'type' => 'books', 'message' => 'Livres en état neuf :',
         'books' => array_map('formatBook', $books),
@@ -208,7 +217,7 @@ if (preg_match('/neuf|comme\s+neuf/iu', $lower)) {
     exit;
 }
 if (preg_match('/\bbon\b/iu', $lower)) {
-    $books = searchBooks($db, ['condition' => 'bon', 'limit' => 4]);
+    $books = searchBooks($db, ['condition' => 'bon', 'limit' => 100]);
     echo json_encode([
         'type' => 'books', 'message' => 'Livres en bon état :',
         'books' => array_map('formatBook', $books),
@@ -224,7 +233,7 @@ if (preg_match('/cherche|trouve|recherche|looking\s+for|auteur|écrit\s+par/iu',
     $keywords = trim(preg_replace('/\s+/', ' ', $keywords));
 
     if ($keywords !== '') {
-        $books = searchBooks($db, ['search' => $keywords, 'limit' => 4]);
+        $books = searchBooks($db, ['search' => $keywords, 'limit' => 100]);
         if (count($books)) {
             echo json_encode([
                 'type'    => 'books',
@@ -237,7 +246,7 @@ if (preg_match('/cherche|trouve|recherche|looking\s+for|auteur|écrit\s+par/iu',
 }
 
 
-$books = searchBooks($db, ['order' => 'b.created_at DESC', 'limit' => 4]);
+$books = searchBooks($db, ['order' => 'b.created_at DESC', 'limit' => 10]);
 echo json_encode([
     'type'    => 'books',
     'message' => "Je n'ai pas bien compris, mais voici nos dernières arrivées 📚",

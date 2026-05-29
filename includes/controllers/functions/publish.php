@@ -2,15 +2,6 @@
 require_once('../../../core/bootstap.php');      
 require_once('../../../config/autoloader.php');
 
-// TEST AVANT SYSTEME D'AUTHENTIFICATION 
-/*
-$_SESSION['user'] = [
-    'id' => 1,
-    'nom' => 'Développeur Test',
-    'email' => 'test@kitab.tn',
-    'role' => 'user'
-];
-*/
 
 $currentUser = Session::getUser();
 $isLoggedIn  = Session::isLoggedIn();

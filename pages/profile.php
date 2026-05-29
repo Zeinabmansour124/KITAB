@@ -12,7 +12,7 @@ if (!isset($_SESSION['user'])) {
 $userId = $_SESSION['user']['id'];
 $user = $userRepo->findById($userId);
 
-// ✅ stats via repository
+
 $booksCount = $userRepo->countBooksByUser($userId);
 $favCount   = $userRepo->countFavoritesByUser($userId);
 

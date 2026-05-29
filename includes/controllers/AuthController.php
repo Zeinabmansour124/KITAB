@@ -13,19 +13,19 @@ class AuthController
         $this->userRepo = new UserRepository();
     }
 
-    // 📄 SHOW LOGIN
+  
     public function showLogin()
     {
         include __DIR__ . '/../../views/auth/login.php';
     }
 
-    // 📄 SHOW REGISTER
+ 
     public function showRegister()
     {
         include __DIR__ . '/../../views/auth/register.php';
     }
 
-    // 🔐 LOGIN
+
     public function login()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') return;
@@ -53,23 +53,23 @@ class AuthController
         exit;
     }
 
-    // 📝 REGISTER (FINAL CLEAN VERSION)
+
     public function register()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') return;
 
         $email = trim($_POST['email'] ?? '');
 
-        // 🔎 check email exists
+       
         if ($this->userRepo->findByEmail($email)) {
             echo "Email déjà utilisé";
             return;
         }
 
-        // 🔐 hash password
+       
         $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-        // 📸 avatar upload (FORM = avatar)
+      
         $avatarPath = null;
 
         if (!empty($_FILES['avatar']['name'])) {
@@ -88,7 +88,7 @@ class AuthController
             $avatarPath = "uploads/profiles/" . $fileName;
         }
 
-        // 👤 CREATE USER (MATCH User.php EXACT)
+    
         $user = new User(
             null,
             $_POST['nom'] ?? '',
@@ -107,7 +107,7 @@ class AuthController
         exit;
     }
 
-    // 🚪 LOGOUT
+
     public function logout()
     {
         Session::destroy();

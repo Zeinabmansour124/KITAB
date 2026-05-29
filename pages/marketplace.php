@@ -148,7 +148,7 @@ $pageChatbot = true;
             <a href="../includes/controllers/functions/publish.php" class="nav-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
         Publier un livre
     </a>
-            <button id="exchangeBtn" class="nav-btn">Exchange</button>
+            
           </div>
 
           <div class="blocfiltration">
@@ -194,7 +194,7 @@ $pageChatbot = true;
             <div class="image-container">
               <img src="https://m.media-amazon.com/images/I/81Scutrtj4L._UF1000,1000_QL80_.jpg" alt="" />
               <div class="conditionbook Acceptable">Acceptable</div>
-              <div class="forexchange">for exchange</div>
+             
               <label class="heart">
                 <input type="checkbox" />
                 <span class="icon"><i class="bi bi-heart-fill"></i></span>
@@ -218,7 +218,6 @@ $pageChatbot = true;
             <div class="image-container">
               <img src="https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1413706054i/18007564.jpg" alt="" />
               <div class="conditionbook Fair">Fair</div>
-              <div class="forexchange">for exchange</div>
               <label class="heart">
                 <input type="checkbox" />
                 <span class="icon"><i class="bi bi-heart-fill"></i></span>
@@ -242,7 +241,6 @@ $pageChatbot = true;
             <div class="image-container">
               <img src="https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1311932385i/12194590.jpg" alt="" />
               <div class="conditionbook like-new">Like new</div>
-              <div class="forexchange">for exchange</div>
               <label class="heart">
                 <input type="checkbox" />
                 <span class="icon"><i class="bi bi-heart-fill"></i></span>
@@ -266,7 +264,6 @@ $pageChatbot = true;
             <div class="image-container">
               <img src="https://wardahbooks.com/cdn/shop/products/DSC_5863_1024x1024.jpg?v=1705553150" alt="" />
               <div class="conditionbook good">Good</div>
-              <div class="forexchange">for exchange</div>
               <label class="heart">
                 <input type="checkbox" />
                 <span class="icon"><i class="bi bi-heart-fill"></i></span>
@@ -314,7 +311,7 @@ $pageChatbot = true;
             <div class="image-container">
               <img src="https://images.epagine.fr/080/9782369819080_1_75.jpg" alt="" />
               <div class="conditionbook Acceptable">Acceptable</div>
-              <div class="forexchange">for exchange</div>
+    
               <label class="heart">
                 <input type="checkbox" />
                 <span class="icon"><i class="bi bi-heart-fill"></i></span>
@@ -338,7 +335,7 @@ $pageChatbot = true;
             <div class="image-container">
               <img src="https://res.cloudinary.com/bloomsbury-atlas/image/upload/w_360,c_scale,dpr_1.5/jackets/9781408855652.jpg" alt="" />
               <div class="conditionbook Acceptable">Acceptable</div>
-              <div class="forexchange">for exchange</div>
+        
               <label class="heart">
                 <input type="checkbox" />
                 <span class="icon"><i class="bi bi-heart-fill"></i></span>
@@ -362,7 +359,7 @@ $pageChatbot = true;
             <div class="image-container">
               <img src="https://i.pinimg.com/1200x/17/ff/b7/17ffb7a481c02832e942e151030d5cb0.jpg" alt="" />
               <div class="conditionbook good">good</div>
-              <div class="forexchange">for exchange</div>
+            
               <label class="heart">
                 <input type="checkbox" />
                 <span class="icon"><i class="bi bi-heart-fill"></i></span>
