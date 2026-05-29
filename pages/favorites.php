@@ -77,7 +77,7 @@ $genresCount = count($distinctGenres);
           <a href="messages.php" id="nav_messages"><span class="material-icons">chat_bubble</span> Messages</a>
         </li>
         <li>
-          <a href="codeHTML.html" id="nav_exchanges"><span class="material-icons">swap_horiz</span> Exchanges</a>
+          <a href="exchangePage.php" id="nav_exchanges"><span class="material-icons">swap_horiz</span> Exchanges</a>
         </li>
         <li>
           <a href="favorites.php" id="nav_favorites" class="active"><span class="material-icons">favorite</span> Favorites</a>
