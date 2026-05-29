@@ -126,4 +126,21 @@ class UserRepository
 
         return $stmt->fetchColumn();
     }
+
+    public function getUserRate($userId)
+    {
+        $stmt = $this->db->prepare("
+            SELECT AVG(rate) AS average_rate 
+            FROM reviews 
+            WHERE user_id = :id
+        ");
+
+        $stmt->execute([
+            'id' => $userId
+        ]);
+
+        $result = $stmt->fetch(PDO::FETCH_OBJ);
+
+        return $result ? round($result->average_rate, 2) : 0;
+    }
 }

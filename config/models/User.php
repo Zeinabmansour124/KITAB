@@ -14,11 +14,14 @@ class User {
         public $password = "",
         public $avatar = "",
         public $bio = "",
-        public $created_at = null
+        public $created_at = null,
+        public $rate=0
     ) {
 
         $this->userRepository = new UserRepository();
     }
+
+
 
     /**
      * Nom complet
@@ -34,5 +37,13 @@ class User {
     public function getUserAvatar($userId) {
 
         return $this->userRepository->getUserAvatar($userId);
+    }
+
+    /**
+     * Note de l'utilisateur
+     */
+    public function getUserRate($userId) {
+
+        return $this->userRepository->getUserRate($userId);
     }
 }
