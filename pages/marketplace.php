@@ -148,7 +148,7 @@ $pageChatbot = true;
             <a href="../includes/controllers/functions/publish.php" class="nav-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
         Publier un livre
     </a>
-            <button id="exchangeBtn" class="nav-btn">Exchange</button>
+            
           </div>
 
           <div class="blocfiltration">

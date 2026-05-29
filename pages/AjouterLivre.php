@@ -1,5 +1,5 @@
 <?php
-
+//affichage des erreurs PHP 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -7,8 +7,6 @@ require_once('../config/autoloader.php');
 
 
 $bookRepo = new BookRepository();
-
-
 
 $books = $bookRepo->findAll(); 
 ?>

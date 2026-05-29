@@ -1,6 +1,4 @@
 <?php
-// On appelle le contrôleur qui gère la base de données et le mapping des états
-//noter bien ques les details concerne uniquement les books dynamiques et non statiques
 require_once(__DIR__ . '/../../includes/controllers/book-details-controller.php');
 ?>
 <!DOCTYPE html>
@@ -51,11 +49,11 @@ require_once(__DIR__ . '/../../includes/controllers/book-details-controller.php'
                 <div class="detailsside">
                     <div class="imgdetails">
                        <?php 
-                // Si l'image commence par http, c'est une URL directe (Lien Amazon...)
+              
                     if (strpos($book->image, 'http') === 0) {
                          $src_final = htmlspecialchars($book->image);
                     } else {
-                     // Sinon, c'est un fichier téléversé localement
+                   
                      $src_final = "../../uploads/" . htmlspecialchars($book->image);
                             }
 ?>
