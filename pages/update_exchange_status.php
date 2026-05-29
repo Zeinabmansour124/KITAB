@@ -19,7 +19,7 @@ if (!isset($data['exchangeId'], $data['status'])) {
 $exchangeId = (int) $data['exchangeId'];
 $newStatus  = $data['status'];
 
-// Statuts autorisés
+
 $allowed = ['accepted', 'refused', 'in_progress', 'completed', 'pending'];
 if (!in_array($newStatus, $allowed)) {
     echo json_encode(['success' => false, 'error' => 'Statut invalide']);

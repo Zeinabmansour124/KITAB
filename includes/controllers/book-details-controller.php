@@ -2,7 +2,7 @@
 
 <?php
 
-//  Ce fichier extrait toute la logique de traitement PHP, la base de données et le mapping des variables avant l'affichage.
+
 
 
 require_once(__DIR__ . '/../../config/autoloader.php');
