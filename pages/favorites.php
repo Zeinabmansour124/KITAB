@@ -1,7 +1,7 @@
 <?php
-// =========================================================================
+
 require_once __DIR__ . '/../core/auth_middelware.php';
-// =========================================================================
+
 if (!isset($_SESSION['user'])) {
     header("Location: login.php");
     exit;
@@ -11,7 +11,7 @@ if (!isset($_SESSION['user'])) {
 $current_user_id = $_SESSION['user']['id'];
 
 
-// Connexion à la base de données
+
 try {
     $bdd = new PDO('mysql:host=localhost;dbname=kitab;port=3307;charset=utf8', 'root', '');
     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -19,7 +19,7 @@ try {
     die('Erreur BDD : ' . $e->getMessage());
 }
 
-// Requête pour récupérer les livres favoris réels de cet utilisateur
+
 $query = $bdd->prepare("
     SELECT b.* FROM books b 
     INNER JOIN favorites f ON b.id = f.book_id 
@@ -29,16 +29,14 @@ $query = $bdd->prepare("
 $query->execute([$current_user_id]);
 $favBooks = $query->fetchAll(PDO::FETCH_ASSOC);
 
-// =========================================================================
-// 2. CALCUL DYNAMIQUE DES COMPTEURS (STATS)
-// =========================================================================
+
 $totalFavorites = count($favBooks);
 $totalValue = 0;
 $exchangeCount = 0;
 $distinctGenres = [];
 
 foreach ($favBooks as $b) {
-    // Calcul de la valeur totale (ex: "30dt" ou "30" -> extrait le nombre)
+    
     $priceValue = floatval(preg_replace('/[^\d.]/', '', $b['prix']));
     $totalValue += $priceValue;
 
