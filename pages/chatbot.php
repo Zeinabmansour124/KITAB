@@ -94,41 +94,50 @@ function searchBooks(PDO $db, array $opts): array {
         $where[]  = "b.genre IN ($placeholders)";
         $params   = array_merge($params, $opts['genres']);
     }
+
     if (!empty($opts['budget'])) {
-        $where[]    = "b.prix <= ?";
-        $params[]   = $opts['budget'];
-    }
-    if (!empty($opts['condition'])) {
-        $where[]    = "b.condition = ?";
-        $params[]   = $opts['condition'];
-    }
-    if (!empty($opts['exchange'])) {
-        $where[]    = "b.for_exchange = 1";
-    }
-    if (!empty($opts['search'])) {
-        $where[]    = "(b.titre LIKE ? OR b.auteur LIKE ?)";
-        $like       = '%' . $opts['search'] . '%';
-        $params[]   = $like;
-        $params[]   = $like;
+        $where[]  = "b.prix <= ?";
+        $params[] = $opts['budget'];
     }
 
-    $sql  = "SELECT b.*, u.nom AS owner_nom, u.prenom AS owner_prenom, u.image AS owner_img
-             FROM books b
-             LEFT JOIN users u ON b.user_id = u.id";
+    if (!empty($opts['condition'])) {
+        $where[]  = "b.`condition` = ?"; 
+        $params[] = $opts['condition'];
+    }
+
+    if (!empty($opts['exchange'])) {
+        $where[] = "b.for_exchange = 1";
+    }
+
+    if (!empty($opts['search'])) {
+        $where[] = "(b.titre LIKE ? OR b.auteur LIKE ?)";
+        $like = '%' . $opts['search'] . '%';
+        $params[] = $like;
+        $params[] = $like;
+    }
+
+    $sql = "SELECT b.*, u.nom, u.prenom
+            FROM books b
+            LEFT JOIN users u ON b.user_id = u.id";
 
     if ($where) {
         $sql .= " WHERE " . implode(' AND ', $where);
     }
 
     $order = $opts['order'] ?? 'b.created_at DESC';
-    $limit = $opts['limit'] ?? 4;
-    $sql  .= " ORDER BY $order LIMIT $limit";
+    $limit = (int)($opts['limit'] ?? 4);
 
-    $stmt = $db->prepare($sql);
-    $stmt->execute($params);
-    return $stmt->fetchAll(PDO::FETCH_OBJ);
+    $sql .= " ORDER BY $order LIMIT $limit";
+
+    try {
+        $stmt = $db->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    } catch (Exception $e) {
+        error_log($e->getMessage());
+        return []; 
+    }
 }
-
 
 
 $lower   = mb_strtolower($message);
