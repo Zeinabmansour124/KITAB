@@ -1,14 +1,14 @@
-// 1. Fonction globale placée en haut pour être accessible instantanément par traduction.js
+
 window.updateFullscreenButton = function () {
   const bouton = document.getElementById("fullscreen-btn");
-  if (!bouton) return; // Sécurité si le bouton n'est pas encore créé au DOM
+  if (!bouton) return; 
 
   const t = window.currentTranslations || {
     screen_full: "Plein Écran",
     screen_exit: "Quitter Plein Écran",
   };
 
-  // On vérifie l'état réel via la classe présente sur le body
+  
   const estPleinEcran = document.body.classList.contains("fullscreen");
 
   if (estPleinEcran) {
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const bouton = document.createElement("button");
   bouton.id = "fullscreen-btn";
 
-  // Applique la traduction directe dès la création de l'élément
+  
   const t = window.currentTranslations || {
     screen_full: "Plein Écran",
     screen_exit: "Quitter Plein Écran",
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
   `;
   document.head.appendChild(style);
 
-  // Un seul écouteur de clic propre
+  
   bouton.addEventListener("click", function () {
     const estPleinEcranActuel = document.body.classList.contains("fullscreen");
 
@@ -92,11 +92,11 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.classList.add("fullscreen");
     }
 
-    // Met à jour le texte du bouton immédiatement après le changement d'état
+    
     window.updateFullscreenButton();
   });
 
-  // Gère aussi le retour à la normale via la touche Échap du clavier
+
   document.addEventListener("fullscreenchange", function () {
     if (!document.fullscreenElement) {
       document.body.classList.remove("fullscreen");
