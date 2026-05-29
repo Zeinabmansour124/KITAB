@@ -11,6 +11,7 @@
     --sand: #cab091;
 }
 
+/* ===== BASE ===== */
 body {
     margin: 0;
     padding: 0;
@@ -32,15 +33,17 @@ body::-webkit-scrollbar {
 /* ===== NAVBAR ===== */
 nav {
     position: fixed;
-    top: 0; left: 0; right: 0;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 200;
     display: flex;
     align-items: center;
     padding: 0 5vw;
     height: var(--nav-h);
-    background: rgba(26,18,8,0.97);
+    background: rgba(26, 18, 8, 0.97);
     backdrop-filter: blur(10px);
-    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .logo {
@@ -51,6 +54,7 @@ nav {
     text-decoration: none;
 }
 
+/* ===== EXCHANGES SECTION ===== */
 .exchanges {
     flex-grow: 1;
     background: rgba(202, 176, 145, 0.95);
@@ -58,7 +62,7 @@ nav {
     min-height: 100vh;
 }
 
-/* ===== COMPOSANTS DE FILTRAGE ===== */
+/* ===== FILTRES ===== */
 .exchange-filter {
     display: none;
 }
@@ -81,19 +85,23 @@ nav {
     transition: all 0.3s ease;
 }
 
+/* ===== CARTES STATISTIQUES ===== */
 .success-rate {
     transition: transform 0.2s ease;
 }
+
 .success-rate:hover {
     transform: scale(1.03);
 }
 
+/* ===== COULEURS ===== */
 .muted { color: var(--rust); }
 .bg-amber-mid { background-color: var(--amber-mid) !important; }
 .bg-muted { background-color: var(--muted); }
 .bg-teal-light { background-color: var(--teal-light); }
 .text-amber-light { color: var(--amber-light) !important; }
 
+/* ===== BOUTONS ===== */
 .btn-teal {
     background-color: var(--teal) !important;
     color: var(--white) !important;
@@ -110,4 +118,77 @@ nav {
 .btn-outline-teal:hover {
     background-color: var(--teal) !important;
     color: var(--white) !important;
+}
+
+/* ===== TEXTE DES ÉCHANGES ===== */
+.exchanges,
+.exchanges p,
+.exchanges span,
+.exchanges h1,
+.exchanges h2,
+.exchanges h3,
+.exchanges h4 {
+    color: #2b2015 !important;
+}
+
+.exchanges .text-muted,
+.exchanges [id*="-Exchanges"] {
+    color: #4a3b2c !important;
+}
+
+.exchanges h4 {
+    color: var(--rust) !important;
+    font-weight: bold;
+}
+
+/* ===== EMPTY STATE (messages vides) ===== */
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin: 1rem 0;
+}
+
+.empty-state i {
+    font-size: 2.5rem;
+    color: #adb5bd;
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    color: #6c757d;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.empty-state small {
+    color: #adb5bd;
+    font-size: 0.8rem;
+}
+
+/* ===== EN-TÊTE DES SECTIONS ===== */
+.section-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.section-header small {
+    font-size: 0.75rem;
+}
+
+/* ===== CARTES D'ÉCHANGE ===== */
+.exchange-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #e9ecef;
+}
+
+.date-badge {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    background: #f8f9fa;
+    border-radius: 12px;
 }
