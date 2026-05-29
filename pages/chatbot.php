@@ -9,14 +9,14 @@ require_once __DIR__ . '/../config/ConnexionDB.php';
 require_once __DIR__ . '/../config/Repository.php';
 require_once __DIR__ . '/../config/models/repositories/BookRepository.php';
 
-// ── Sécurité : POST uniquement ────────────────────────────
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['error' => 'Méthode non autorisée']);
     exit;
 }
 
-// ── Lecture du body JSON ──────────────────────────────────
+
 $input   = json_decode(file_get_contents('php://input'), true);
 $message = trim($input['message'] ?? '');
 
@@ -27,26 +27,18 @@ if ($message === '') {
 
 $db = ConnexionDB::getInstance();
 
-// ════════════════════════════════════════════════════════════
-//  HELPERS
-// ════════════════════════════════════════════════════════════
 
-/**
- * Extrait le budget depuis un texte (ex : "sous 50dt", "moins de 30", "50 dt")
- */
 function extractBudget(string $text): ?float {
-    // "sous 50", "moins de 30", "max 40", "50dt", "50 dt", "50 dinar"
+    
     if (preg_match('/(?:sous|moins\s+de|max\.?\s*|maximum\s*|<\s*)(\d+(?:[.,]\d+)?)\s*(?:dt|dinar|tnd)?/iu', $text, $m))
         return (float) str_replace(',', '.', $m[1]);
-    // nombre seul suivi de dt/dinar/tnd
+
     if (preg_match('/(\d+(?:[.,]\d+)?)\s*(?:dt|dinar|tnd)/iu', $text, $m))
         return (float) str_replace(',', '.', $m[1]);
     return null;
 }
 
-/**
- * Détecte le(s) genre(s) mentionné(s) dans le texte
- */
+
 function extractGenres(string $text): array {
     $map = [
         'fiction'           => 'Fiction',
@@ -78,9 +70,7 @@ function extractGenres(string $text): array {
     return array_keys($found);
 }
 
-/**
- * Formate un livre en tableau propre pour le JSON
- */
+
 function formatBook(object $book): array {
     return [
         'id'           => $book->id,
@@ -94,9 +84,7 @@ function formatBook(object $book): array {
     ];
 }
 
-/**
- * Requête produits avec filtres dynamiques
- */
+
 function searchBooks(PDO $db, array $opts): array {
     $where  = [];
     $params = [];
@@ -141,15 +129,13 @@ function searchBooks(PDO $db, array $opts): array {
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
 
-// ════════════════════════════════════════════════════════════
-//  INTENT DETECTION + RÉPONSE
-// ════════════════════════════════════════════════════════════
+
 
 $lower   = mb_strtolower($message);
 $budget  = extractBudget($message);
 $genres  = extractGenres($message);
 
-// ─── Intent : salutation ────────────────────────────────
+
 if (preg_match('/\b(bonjour|salut|hello|salam|hi|bonsoir)\b/iu', $lower)) {
     echo json_encode([
         'type'    => 'text',
@@ -159,7 +145,7 @@ if (preg_match('/\b(bonjour|salut|hello|salam|hi|bonsoir)\b/iu', $lower)) {
     exit;
 }
 
-// ─── Intent : merci ────────────────────────────────────
+
 if (preg_match('/\b(merci|thanks|شكرا)\b/iu', $lower)) {
     echo json_encode([
         'type'    => 'text',
@@ -168,7 +154,7 @@ if (preg_match('/\b(merci|thanks|شكرا)\b/iu', $lower)) {
     exit;
 }
 
-// ─── Intent : échange ──────────────────────────────────
+
 if (preg_match('/échange|echang|swap|troquer/iu', $lower)) {
     $books = searchBooks($db, ['exchange' => true, 'genres' => $genres, 'budget' => $budget, 'limit' => 4]);
     echo json_encode([
@@ -182,7 +168,7 @@ if (preg_match('/échange|echang|swap|troquer/iu', $lower)) {
     exit;
 }
 
-// ─── Intent : budget ──────────────────────────────────
+
 if ($budget !== null || preg_match('/budget|prix|combien|pas\s+cher|économique/iu', $lower)) {
     $opts = ['budget' => $budget, 'genres' => $genres, 'order' => 'b.prix ASC', 'limit' => 4];
     $books = searchBooks($db, $opts);
@@ -198,7 +184,7 @@ if ($budget !== null || preg_match('/budget|prix|combien|pas\s+cher|économique/
     exit;
 }
 
-// ─── Intent : genre détecté ───────────────────────────
+
 if (!empty($genres)) {
     $books = searchBooks($db, ['genres' => $genres, 'budget' => $budget, 'limit' => 4]);
     echo json_encode([
@@ -212,7 +198,7 @@ if (!empty($genres)) {
     exit;
 }
 
-// ─── Intent : condition ────────────────────────────────
+
 if (preg_match('/neuf|comme\s+neuf/iu', $lower)) {
     $books = searchBooks($db, ['condition' => 'neuf', 'limit' => 4]);
     echo json_encode([
@@ -230,10 +216,10 @@ if (preg_match('/\bbon\b/iu', $lower)) {
     exit;
 }
 
-// ─── Intent : recherche textuelle (titre / auteur) ────
+
 if (preg_match('/cherche|trouve|recherche|looking\s+for|auteur|écrit\s+par/iu', $lower)
     || mb_strlen($message) > 3) {
-    // nettoyer les mots de remplissage pour extraire les mots-clés
+   
     $keywords = preg_replace('/\b(je|cherche|trouve|un|une|le|la|les|du|de|des|livre|livres|par|auteur)\b/iu', '', $lower);
     $keywords = trim(preg_replace('/\s+/', ' ', $keywords));
 
@@ -250,7 +236,7 @@ if (preg_match('/cherche|trouve|recherche|looking\s+for|auteur|écrit\s+par/iu',
     }
 }
 
-// ─── Fallback : nouveautés ────────────────────────────
+
 $books = searchBooks($db, ['order' => 'b.created_at DESC', 'limit' => 4]);
 echo json_encode([
     'type'    => 'books',
