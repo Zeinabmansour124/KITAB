@@ -104,7 +104,6 @@ $progress            = $exchange->recuperer_progress($user);
             </div>
         </article>
 
-        <!-- Filtres radio -->
         <article class="d-flex justify-content-center empl mb-4 p-3 rounded-bottom-4 rounded-top-4 bg-muted" style="display: inline-block; width: auto;">
             <input type="radio" id="activeBtn" name="exchangeFilter" class="exchange-filter" checked style="display: none;">
             <label for="activeBtn" class="filter-label">Active Exchanges</label>
@@ -113,8 +112,6 @@ $progress            = $exchange->recuperer_progress($user);
             <input type="radio" id="allBtn" name="exchangeFilter" class="exchange-filter" style="display: none;">
             <label for="allBtn" class="filter-label">All Exchanges</label>
         </article>
-
-        <!-- SECTION ACCEPTED (Active) -->
         <section class="mt-4 border border-1 bg-teal-light p-3 exchange-section" id="exchange-Accepted">
             <div class="d-flex justify-content-between align-items-center mb-3 w-100">
                 <h2 class="d-flex align-items-center mb-0 muted fw-bold fs-6">
@@ -168,8 +165,6 @@ $progress            = $exchange->recuperer_progress($user);
                 </div>
             <?php endforeach; endif; ?>
         </section>
-
-        <!-- SECTION PENDING -->
         <section class="pendingResponse mt-4 border border-1 bg-teal-light rounded p-3 exchange-section" id="pending-Exchanges">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h2 class="d-flex align-items-center mb-0 muted fw-bold fs-6">
@@ -234,7 +229,6 @@ $progress            = $exchange->recuperer_progress($user);
             <?php endforeach; endif; ?>
         </section>
 
-        <!-- SECTION COMPLETED -->
         <section class="mt-4 border border-1 bg-teal-light p-3 exchange-section" id="completed-Exchanges" style="display: none;">
             <div class="d-flex justify-content-between align-items-center mb-3 w-100">
                 <h2 class="d-flex align-items-center mb-0 muted fw-bold fs-6">
@@ -283,8 +277,6 @@ $progress            = $exchange->recuperer_progress($user);
                 </div>
             <?php endforeach; endif; ?>
         </section>
-
-        <!-- SECTION REFUSED (cachée par défaut) -->
         <section class="mt-4 border border-1 bg-teal-light p-3 exchange-section" id="refused-Exchanges" style="display: none;">
             <div class="d-flex justify-content-between align-items-center mb-3 w-100">
                 <h2 class="d-flex align-items-center mb-0 muted fw-bold fs-6">
@@ -324,7 +316,6 @@ $progress            = $exchange->recuperer_progress($user);
             <?php endforeach; endif; ?>
         </section>
 
-        <!-- SECTION IN PROGRESS -->
         <section class="mt-4 border border-1 bg-teal-light p-3 exchange-section" id="in-progress-Exchanges" style="display: none;">
             <div class="d-flex justify-content-between align-items-center mb-3 w-100">
                 <h2 class="d-flex align-items-center mb-0 muted fw-bold fs-6">
@@ -368,9 +359,7 @@ $progress            = $exchange->recuperer_progress($user);
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    // Filtrage des sections par onglets
-    const activeBtn = document.getElementById('activeBtn');
+<script>    const activeBtn = document.getElementById('activeBtn');
     const completedBtn = document.getElementById('completedBtn');
     const allBtn = document.getElementById('allBtn');
     
@@ -416,7 +405,6 @@ $progress            = $exchange->recuperer_progress($user);
         if (this.checked) showAllExchanges();
     });
     
-    // Recherche
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
         searchInput.addEventListener('keyup', function() {
@@ -434,7 +422,6 @@ $progress            = $exchange->recuperer_progress($user);
         });
     }
     
-    // Boutons chat
     document.querySelectorAll('.chat-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const partnerId = this.getAttribute('data-partner-id');

@@ -11,7 +11,6 @@
     --sand: #cab091;
 }
 
-/* ===== BASE ===== */
 body {
     margin: 0;
     padding: 0;
@@ -29,8 +28,6 @@ body::-webkit-scrollbar {
     width: 100%;
     padding: 0 !important;
 }
-
-/* ===== NAVBAR ===== */
 nav {
     position: fixed;
     top: 0;
@@ -53,16 +50,12 @@ nav {
     color: var(--amber-mid);
     text-decoration: none;
 }
-
-/* ===== EXCHANGES SECTION ===== */
 .exchanges {
     flex-grow: 1;
     background: rgba(202, 176, 145, 0.95);
     width: 100%;
     min-height: 100vh;
 }
-
-/* ===== FILTRES ===== */
 .exchange-filter {
     display: none;
 }
@@ -84,8 +77,6 @@ nav {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-
-/* ===== CARTES STATISTIQUES ===== */
 .success-rate {
     transition: transform 0.2s ease;
 }
@@ -93,8 +84,6 @@ nav {
 .success-rate:hover {
     transform: scale(1.03);
 }
-
-/* ===== COULEURS ===== */
 .muted { color: var(--rust); }
 .bg-amber-mid { background-color: var(--amber-mid) !important; }
 .bg-muted { background-color: var(--muted); }
@@ -120,7 +109,7 @@ nav {
     color: var(--white) !important;
 }
 
-/* ===== TEXTE DES ÉCHANGES ===== */
+
 .exchanges,
 .exchanges p,
 .exchanges span,
@@ -141,7 +130,6 @@ nav {
     font-weight: bold;
 }
 
-/* ===== EMPTY STATE (messages vides) ===== */
 .empty-state {
     text-align: center;
     padding: 2rem;
@@ -167,7 +155,6 @@ nav {
     font-size: 0.8rem;
 }
 
-/* ===== EN-TÊTE DES SECTIONS ===== */
 .section-header h3 {
     font-size: 1.1rem;
     font-weight: 600;
@@ -177,7 +164,6 @@ nav {
     font-size: 0.75rem;
 }
 
-/* ===== CARTES D'ÉCHANGE ===== */
 .exchange-card {
     background: white;
     border-radius: 12px;

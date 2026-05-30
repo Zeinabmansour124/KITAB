@@ -1,10 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-
-    // ==========================================
-    // 1. GESTION DES ONGLETS (FILTRES DE STATUT)
-    // ==========================================
-
-    // Sélection des boutons radio de filtrage
     const activeBtn = document.getElementById("activeBtn");
     const completedBtn = document.getElementById("completedBtn");
     const allBtn = document.getElementById("allBtn");
@@ -25,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (inProgressSection) inProgressSection.style.setProperty("display", "none", "important");
         if (refusedSection) refusedSection.style.setProperty("display", "none", "important");
 
-        // ÉTAPE 2 : On affiche uniquement celles demandées par l'onglet actif
+       
         if (activeBtn && activeBtn.checked) {
             // Mode Actif : On montre Accepté et En Attente
             if (acceptedSection) acceptedSection.style.setProperty("display", "flex", "important");
@@ -44,18 +38,15 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Écouteurs d'événements sur chaque bouton radio
     if (activeBtn) activeBtn.addEventListener("change", appliquerFiltre);
     if (completedBtn) completedBtn.addEventListener("change", appliquerFiltre);
     if (allBtn) allBtn.addEventListener("change", appliquerFiltre);
 
-    // Lancer une première fois au chargement pour initialiser l'affichage
+    
     appliquerFiltre();
 
 
-    // ==========================================
-    // 2. GESTION DE LA BARRE DE RECHERCHE TEMPS RÉEL
-    // ==========================================
+  
     
     const searchInput = document.querySelector("#search-tool input[type='text']");
 
@@ -63,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
         searchInput.addEventListener("input", function (e) {
             const searchTerm = e.target.value.toLowerCase().trim();
             
-            // Cible les cartes d'échanges générées dans les boucles
             const exchangeCards = document.querySelectorAll(".position-relative.empl, .pending-card");
 
             exchangeCards.forEach(function (card) {
@@ -80,9 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    // ==========================================
-    // 3. SYSTÈME DE NOTIFICATION TOAST
-    // ==========================================
 
     window.showNotification = function(message, type) {
         const colors = { success: '#28a745', error: '#dc3545', info: '#17a2b8' };
